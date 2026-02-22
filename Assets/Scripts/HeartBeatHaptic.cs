@@ -6,12 +6,12 @@ using UnityEngine.XR;
 public class HeartbeatHaptic : MonoBehaviour
 {
     [Header("Heartbeat Settings")]
-    [SerializeField] private float bpm = 60f;
+    [SerializeField] private float bpm = 50f;
     [SerializeField] private float firstBeatAmplitude = 1.0f;
     [SerializeField] private float secondBeatAmplitude = 0.6f;
     [SerializeField] private float firstBeatDuration = 0.08f;
     [SerializeField] private float secondBeatDuration = 0.06f;
-    [SerializeField] private float timeBetweenDoubleBeats = 0.30f;
+    [SerializeField] private float timeBetweenDoubleBeats = 0.40f;
 
     [Header("Hand References")]
     [SerializeField] private Transform leftHandTransform;
@@ -20,7 +20,7 @@ public class HeartbeatHaptic : MonoBehaviour
     [Header("Pulse Visual")]
     [SerializeField] private float expandSpeed = 8f;
     [SerializeField] private float shrinkSpeed = 3f;
-    [SerializeField] private float pulseScaleAmount = 1f;
+    [SerializeField] private float pulseScaleAmount = 0.8f;
     [SerializeField] private float pulseSpeed = 10f;
 
     private Vector3 _baseScale;
