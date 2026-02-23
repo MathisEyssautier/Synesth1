@@ -103,7 +103,6 @@ public class HeartbeatHaptic : MonoBehaviour
         }
     }
 
-    // Boucle haptique — uniquement quand une main est dans la sphère
     private IEnumerator HapticLoop()
     {
         float beatInterval = 60f / bpm;

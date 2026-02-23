@@ -1,11 +1,17 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class KeyboardSpaceSound : MonoBehaviour
 {
-    public AudioSource audioSource;
+    [Header("Audio FMOD")]
+    private StudioEventEmitter emitter;
     public bool isPlaying = false;
 
+    private void Start()
+    {
+        emitter = GetComponent<StudioEventEmitter>();
+    }
     void Update()
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
@@ -14,11 +20,11 @@ public class KeyboardSpaceSound : MonoBehaviour
 
             if (isPlaying)
             {
-                audioSource.Play();
+                emitter.Play();
             }
             else
             {
-                audioSource.Stop();
+                emitter.Stop();
             }
             
         }
