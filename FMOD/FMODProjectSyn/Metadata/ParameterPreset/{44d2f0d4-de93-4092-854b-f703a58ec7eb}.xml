@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{44d2f0d4-de93-4092-854b-f703a58ec7eb}">
+		<property name="name">
+			<value>DoorOpen</value>
+		</property>
+		<relationship name="folder">
+			<destination>{1be2d3c7-d850-4117-9457-3635576aa732}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{dcbf6cbc-6a34-467c-9cbe-0c9b6572aa50}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{dcbf6cbc-6a34-467c-9cbe-0c9b6572aa50}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
