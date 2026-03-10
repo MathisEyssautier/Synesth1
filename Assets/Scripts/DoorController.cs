@@ -1,4 +1,3 @@
-using FMODUnity;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -8,7 +7,8 @@ public class DoorController : MonoBehaviour
 {
     [Header("Références")]
     public Transform doorPivot;
-    public Transform handle;
+    public Transform handle1;
+    public Transform handle2;
 
     [Header("Door Settings")]
     public float maxOpenAngle = 90f;
@@ -18,8 +18,9 @@ public class DoorController : MonoBehaviour
     public float transitionSpeed = 1f;
 
     private XRSimpleInteractable simpleInteractable;
+    private XRSimpleInteractable simpleInteractable2;
     private bool isGrabbed = false;
-    private float currentYAngle = 0f;
+    public float currentYAngle = 0f;
     private float currentDoorParam = 0f;
     private IXRSelectInteractor currentInteractor;
 
@@ -28,9 +29,12 @@ public class DoorController : MonoBehaviour
 
     void Start()
     {
-        simpleInteractable = handle.GetComponent<XRSimpleInteractable>();
+        simpleInteractable = handle1.GetComponent<XRSimpleInteractable>();
         simpleInteractable.selectEntered.AddListener(OnGrab);
         simpleInteractable.selectExited.AddListener(OnRelease);
+        simpleInteractable2 = handle2.GetComponent<XRSimpleInteractable>();
+        simpleInteractable2.selectEntered.AddListener(OnGrab);
+        simpleInteractable2.selectExited.AddListener(OnRelease);
     }
 
     void OnGrab(SelectEnterEventArgs args)
@@ -64,8 +68,6 @@ public class DoorController : MonoBehaviour
         {
             UpdateDoorRotation();
         }
-
-        UpdateFMODParameter();
     }
 
     void UpdateDoorRotation()
@@ -79,14 +81,14 @@ public class DoorController : MonoBehaviour
 
         doorPivot.rotation = Quaternion.Euler(0f, currentYAngle, 0f);
     }
-
-    void UpdateFMODParameter()
+    public void ForceClose()
     {
-        bool isDoorOpen = currentYAngle < -closedAngleThreshold;
-        float targetParam = isDoorOpen ? 1f : 0f;
-
-        currentDoorParam = Mathf.Lerp(currentDoorParam, targetParam, Time.deltaTime * transitionSpeed);
-        RuntimeManager.StudioSystem.setParameterByName("DoorOpen", currentDoorParam);
+        currentYAngle = 0f;
+        grabAngleOffset = 0f;
+        angleAtGrab = 0f;
+        isGrabbed = false;
+        currentInteractor = null;
+        doorPivot.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
     void OnDestroy()
@@ -95,6 +97,8 @@ public class DoorController : MonoBehaviour
         {
             simpleInteractable.selectEntered.RemoveListener(OnGrab);
             simpleInteractable.selectExited.RemoveListener(OnRelease);
+            simpleInteractable2.selectEntered.RemoveListener(OnGrab);
+            simpleInteractable2.selectExited.RemoveListener(OnRelease);
         }
     }
 }

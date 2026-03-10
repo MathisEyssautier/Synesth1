@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "CustomInputActions",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "ac01c840-5e1e-4f71-8da0-ef51b8cba9f8",
+            "actions": [
+                {
+                    "name": "ToggleFreeRoaming",
+                    "type": "Button",
+                    "id": "4332e0ae-8283-47f3-a3c1-a91ad720bfdd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b3d97670-0ed4-4eac-9486-704cde0d0ed3",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleFreeRoaming",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
