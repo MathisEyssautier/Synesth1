@@ -35,7 +35,6 @@ public class HeartbeatHaptic : MonoBehaviour
 
     private void Start()
     {
-        // Le pulse visuel tourne en permanence dès le début
         StartCoroutine(VisualLoop());
     }
 
