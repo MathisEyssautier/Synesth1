@@ -20,15 +20,16 @@ public class BuzzerTrigger : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(PressAnimation());
-
         if (!other.CompareTag("PlayerHand")) return;
+        if (isAnimating) return;
 
         if (MusicManager.Instance.IsPlaying())
             MusicManager.Instance.StopMusic();
         else
             MusicManager.Instance.StartMusic(musicEvent);
+        StartCoroutine(PressAnimation());
     }
+
 
     IEnumerator PressAnimation()
     {

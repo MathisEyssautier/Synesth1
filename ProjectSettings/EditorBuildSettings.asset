@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/BasicScene.unity
     guid: 4e9fef26e6adb88479ad1b9834a32d94
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/KeyInputScene.unity
     guid: 50344cee264712b47a86373bbe87e8e4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SceneFreeRoaming.unity
     guid: caaf204965c817a4ea4c7088f3c9f512
   m_configObjects:
