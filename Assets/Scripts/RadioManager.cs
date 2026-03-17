@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class RadioManager : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class RadioManager : MonoBehaviour
     [Header("Portes")]
     public DoorController porteA;
     public DoorController porteB;
+    public Renderer rendererPorteA;
+    public Renderer rendererPorteB;
+
+    [Header("Emission portes")]
+    public Color couleurPorteAinactive = new Color(0.05f, 0.2f, 0.05f);
+    public Color couleurPorteAactive = new Color(0f, 1f, 0f);
+    public Color couleurPorteBinactive = new Color(0.2f, 0.05f, 0.05f);
+    public Color couleurPorteBactive = new Color(1f, 0f, 0f);
 
     [Header("Entrouverture")]
     public float angleEntrouverte = -8f;
@@ -23,31 +32,18 @@ public class RadioManager : MonoBehaviour
     public enum EtatAlignement { Aucun, AA, BB }
     private EtatAlignement _etatCourant = EtatAlignement.Aucun;
 
-    private float _cibleAnglePorteA = 0f;
-    private float _cibleAnglePorteB = 0f;
-
-    private void OnEnable()
+    private void Awake()
     {
         potard1.OnCranChange += _ => VerifierAlignement();
         potard2.OnCranChange += _ => VerifierAlignement();
-    }
-
-    private void OnDisable()
-    {
-        potard1.OnCranChange -= _ => VerifierAlignement();
-        potard2.OnCranChange -= _ => VerifierAlignement();
     }
 
     private void Start()
     {
         BlockerPorte(porteA);
         BlockerPorte(porteB);
-    }
-
-    private void Update()
-    {
-        AnimerPorte(porteA, ref _cibleAnglePorteA);
-        AnimerPorte(porteB, ref _cibleAnglePorteB);
+        SetEmissionPorte(rendererPorteA, couleurPorteAinactive);
+        SetEmissionPorte(rendererPorteB, couleurPorteBinactive);
     }
 
     private void VerifierAlignement()
@@ -71,13 +67,15 @@ public class RadioManager : MonoBehaviour
 
         if (nouvelEtat == EtatAlignement.AA)
         {
-            DebloquetEtEntrouvrir(porteA, ref _cibleAnglePorteA);
+            DebloquetEtEntrouvrir(porteA);
+            SetEmissionPorte(rendererPorteA, couleurPorteAactive);
             Debug.Log("[RadioManager] A+A - Porte A deverrouillee");
             OnAlignementAA?.Invoke();
         }
         else if (nouvelEtat == EtatAlignement.BB)
         {
-            DebloquetEtEntrouvrir(porteB, ref _cibleAnglePorteB);
+            DebloquetEtEntrouvrir(porteB);
+            SetEmissionPorte(rendererPorteB, couleurPorteBactive);
             Debug.Log("[RadioManager] B+B - Porte B deverrouillee");
             OnAlignementBB?.Invoke();
         }
@@ -86,18 +84,31 @@ public class RadioManager : MonoBehaviour
     private void BlockerPorte(DoorController porte)
     {
         if (porte == null) return;
+        StopAllCoroutines();
         porte.ForceClose();
         SetPoigneesActives(porte, false);
-
-        if (porte == porteA) _cibleAnglePorteA = 0f;
-        if (porte == porteB) _cibleAnglePorteB = 0f;
+        if (porte == porteA) SetEmissionPorte(rendererPorteA, couleurPorteAinactive);
+        if (porte == porteB) SetEmissionPorte(rendererPorteB, couleurPorteBinactive);
     }
 
-    private void DebloquetEtEntrouvrir(DoorController porte, ref float cibleAngle)
+    private void DebloquetEtEntrouvrir(DoorController porte)
     {
         if (porte == null) return;
         SetPoigneesActives(porte, true);
-        cibleAngle = angleEntrouverte;
+        StartCoroutine(EntroouvrirPorte(porte));
+    }
+
+    private IEnumerator EntroouvrirPorte(DoorController porte)
+    {
+        while (Mathf.Abs(porte.currentYAngle - angleEntrouverte) > 0.1f)
+        {
+            porte.currentYAngle = Mathf.Lerp(porte.currentYAngle, angleEntrouverte, Time.deltaTime * vitesseEntrouverture);
+            porte.doorPivot.rotation = Quaternion.Euler(0f, porte.currentYAngle, 0f);
+            yield return null;
+        }
+        // Snap final - RadioManager ne touche plus jamais a cette porte
+        porte.currentYAngle = angleEntrouverte;
+        porte.doorPivot.rotation = Quaternion.Euler(0f, angleEntrouverte, 0f);
     }
 
     private void SetPoigneesActives(DoorController porte, bool actif)
@@ -106,19 +117,11 @@ public class RadioManager : MonoBehaviour
         if (porte.handle2 != null) porte.handle2.gameObject.SetActive(actif);
     }
 
-    private void AnimerPorte(DoorController porte, ref float cibleAngle)
+    private void SetEmissionPorte(Renderer r, Color couleur)
     {
-        if (porte == null) return;
-        if (cibleAngle == 0f) return;
-
-        if (Mathf.Abs(porte.currentYAngle - cibleAngle) < 0.1f)
-        {
-            cibleAngle = 0f;
-            return;
-        }
-
-        porte.currentYAngle = Mathf.Lerp(porte.currentYAngle, cibleAngle, Time.deltaTime * vitesseEntrouverture);
-        porte.doorPivot.rotation = Quaternion.Euler(0f, porte.currentYAngle, 0f);
+        if (r == null) return;
+        r.material.SetColor("_EmissionColor", couleur);
+        r.material.color = couleur;
     }
 
 #if UNITY_EDITOR

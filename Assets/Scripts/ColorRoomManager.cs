@@ -2,18 +2,20 @@ using UnityEngine;
 
 public class ColorRoomManager : MonoBehaviour
 {
-    [Header("Références Faders")]
+    [Header("Références de faders")]
     public FaderController faderPiano;
     public FaderController faderGuitare;
+    public FaderController faderBass;
 
-    [Header("Lumières de la pièce")]
+    [Header("Toutes les lights là dedans")]
     public Light[] roomLights;
 
     [Header("Couleurs")]
-    public Color colorPiano = Color.blue;
+    public Color colorViolons = Color.blue;
     public Color colorGuitare = Color.red;
+    public Color colorBass = Color.green;
 
-    [Header("Intensité")]
+    [Header("Intensité des lights")]
     public float minIntensity = 0.5f;
     public float maxIntensity = 2f;
 
@@ -21,20 +23,18 @@ public class ColorRoomManager : MonoBehaviour
     {
         float piano = faderPiano.value;
         float guitare = faderGuitare.value;
+        float bass = faderBass.value;
 
-        // Couleur = blend entre rouge et bleu selon les valeurs
-        Color roomColor = Color.black;
+        Color roomColor = Color.white;
 
-        if (piano + guitare > 0f)
+        if (piano + guitare + bass > 0f)
         {
-            float totalVolume = piano + guitare;
-            roomColor = (colorPiano * piano + colorGuitare * guitare) / totalVolume;
+            float totalVolume = piano + guitare + bass;
+            roomColor = (colorViolons * piano + colorGuitare * guitare + colorBass * bass) / totalVolume;
         }
 
-        // Intensité basée sur le volume total
-        float intensity = Mathf.Lerp(minIntensity, maxIntensity, (piano + guitare) / 2f);
+        float intensity = Mathf.Lerp(minIntensity, maxIntensity, (piano + guitare + bass) / 2f);
 
-        // On applique à toutes les lumières
         foreach (Light light in roomLights)
         {
             light.color = roomColor;

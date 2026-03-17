@@ -16,14 +16,19 @@ public class MusicManagerScript : MonoBehaviour
         _musicInstance.start();
     }
 
-    public void SetVolumePiano(float value)
+    public void SetVolumeViolons(float value)
     {
-        _musicInstance.setParameterByName("PianoVolume", value);
+        _musicInstance.setParameterByName("ViolonsVolume", value);
     }
 
     public void SetVolumeGuitare(float value)
     {
         _musicInstance.setParameterByName("GuitarVolume", value);
+    }
+
+    public void SetVolumeBass(float value)
+    {
+        _musicInstance.setParameterByName("BassVolume", value);
     }
 
     void OnDestroy()

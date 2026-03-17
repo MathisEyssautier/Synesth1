@@ -20,6 +20,7 @@ public class SubtitleManager : MonoBehaviour
     // Marqueurs dont le nom EST le texte à afficher.
     // "sub_end" est le seul cas spécial : il efface le texte.
     private const string END_MARKER = "sub_end";
+    public static event System.Action OnVoiceEnded;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class SubtitleManager : MonoBehaviour
 
         voiceInstance = RuntimeManager.CreateInstance(voiceEventRef);
         voiceInstance.setCallback(OnFMODCallback, EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
+        voiceInstance.setCallback(OnFMODCallback,
+    EVENT_CALLBACK_TYPE.TIMELINE_MARKER | EVENT_CALLBACK_TYPE.STOPPED);
         RuntimeManager.AttachInstanceToGameObject(voiceInstance, gameObject);
         StartCoroutine(StartVoiceDelayed(5f));
     }
@@ -51,6 +54,11 @@ public class SubtitleManager : MonoBehaviour
             string markerName = props.name;
 
             UnityMainThreadDispatcher.Instance().Enqueue(() => ShowSubtitle(markerName));
+        }
+
+        if (type == EVENT_CALLBACK_TYPE.STOPPED)
+        {
+            UnityMainThreadDispatcher.Instance().Enqueue(() => OnVoiceEnded?.Invoke());
         }
         return FMOD.RESULT.OK;
     }

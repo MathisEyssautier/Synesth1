@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MusicMix/PianoVolume
+  m_Name: parameter:/MusicMix/ViolonsVolume
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: PianoVolume
+  Name: ViolonsVolume
   StudioPath: 
   Min: 0
   Max: 1
@@ -80,6 +80,36 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 26666
+--- !u!114 &-6085602553868425776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SodadeCesariaEvora
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SodadeCesariaEvora
+  Guid:
+    Data1: 1601476338
+    Data2: 1196689717
+    Data3: -587161937
+    Data4: -1774034380
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2445795716688375411}
+  - {fileID: 736246688722898696}
+  - {fileID: 6404346295930155366}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 295105
 --- !u!114 &-5798737156110101823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,10 +125,10 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639088539054604603
+  lastModified: 639092776478291788
   FileSizes:
   - Name: 
-    Value: 1208
+    Value: 1402
   Exists: 1
 --- !u!114 &-4440527232214452256
 MonoBehaviour:
@@ -166,7 +196,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639088539054579474
+  lastModified: 639092776478255676
   FileSizes: []
   Exists: 1
 --- !u!114 &-3784445766276628875
@@ -195,9 +225,10 @@ MonoBehaviour:
   Parameters:
   - {fileID: -8075373536731139576}
   - {fileID: -1161121702991368193}
+  - {fileID: 3335477642814799087}
   MinDistance: 1
   MaxDistance: 20
-  Length: 13333
+  Length: 66638
 --- !u!114 &-3759396105119051157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +246,54 @@ MonoBehaviour:
   StudioPath: bank:/Bank1
   lastModified: 639074671463433570
   FileSizes: []
+  Exists: 1
+--- !u!114 &-1842689052575489592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MogwaiHungryFace/GuitarVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: GuitarVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 574505299
+    data2: 1924609172
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-1204253780865173980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MogwaiHungryFace/BassVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: BassVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3568124258
+    data2: 1255992070
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &-1161121702991368193
 MonoBehaviour:
@@ -291,6 +370,9 @@ MonoBehaviour:
   - {fileID: -6306376074226413401}
   - {fileID: -3784445766276628875}
   - {fileID: 6738613517910657956}
+  - {fileID: 2609729041243421633}
+  - {fileID: -6085602553868425776}
+  - {fileID: 5179341628357760466}
   EditorParameters:
   - {fileID: -4281520253350123451}
   MasterBanks:
@@ -298,7 +380,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5798737156110101823}
   cacheVersion: 131858
-  cacheTime: 639088543439414098
+  cacheTime: 639092776478291788
   SerializableEventsDict:
   - key: event:/SexMachine
     index: 0
@@ -312,6 +394,12 @@ MonoBehaviour:
     index: 4
   - key: event:/VoixOffTest
     index: 5
+  - key: event:/MogwaiHungryFace
+    index: 6
+  - key: event:/SodadeCesariaEvora
+    index: 7
+  - key: event:/FloatingObject
+    index: 8
 --- !u!114 &127718048061380782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,8 +435,56 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639088543439414098
+  lastModified: 639092776478009240
   FileSizes: []
+  Exists: 1
+--- !u!114 &736246688722898696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SodadeCesariaEvora/BassVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: BassVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3568124258
+    data2: 1255992070
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &1008079306343320945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MogwaiHungryFace/ViolonsVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: ViolonsVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2908202438
+    data2: 3755917448
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &1236360154779404229
 MonoBehaviour:
@@ -377,6 +513,84 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2445795716688375411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SodadeCesariaEvora/GuitarVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: GuitarVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 574505299
+    data2: 1924609172
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &2609729041243421633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MogwaiHungryFace
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/MogwaiHungryFace
+  Guid:
+    Data1: -900860527
+    Data2: 1338518338
+    Data3: 381575851
+    Data4: -1495146439
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -1842689052575489592}
+  - {fileID: -1204253780865173980}
+  - {fileID: 1008079306343320945}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 145005
+--- !u!114 &3335477642814799087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicMix/BassVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: BassVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3568124258
+    data2: 1255992070
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &3638091227598523038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +643,57 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &5179341628357760466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FloatingObject
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/FloatingObject
+  Guid:
+    Data1: 1243800018
+    Data2: 1325981244
+    Data3: 1898979245
+    Data4: 971152147
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 14600
+--- !u!114 &6404346295930155366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SodadeCesariaEvora/ViolonsVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: ViolonsVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2908202438
+    data2: 3755917448
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &6559014182210925294
 MonoBehaviour:
   m_ObjectHideFlags: 0
