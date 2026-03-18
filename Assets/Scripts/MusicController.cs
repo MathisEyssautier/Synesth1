@@ -1,6 +1,7 @@
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using System;
 
 public class MusicManager : MonoBehaviour
 {
@@ -43,13 +44,23 @@ public class MusicManager : MonoBehaviour
     [AOT.MonoPInvokeCallback(typeof(EVENT_CALLBACK))]
     static FMOD.RESULT MusicCallback(EVENT_CALLBACK_TYPE type, System.IntPtr instancePtr, System.IntPtr parameterPtr)
     {
-        if (type == EVENT_CALLBACK_TYPE.TIMELINE_MARKER)
+        try
         {
-            var marker = (TIMELINE_MARKER_PROPERTIES)System.Runtime.InteropServices.Marshal.PtrToStructure(
-                parameterPtr, typeof(TIMELINE_MARKER_PROPERTIES));
+            if (type == EVENT_CALLBACK_TYPE.TIMELINE_MARKER)
+            {
+                if (parameterPtr == IntPtr.Zero)
+                    return FMOD.RESULT.OK;
 
-            if (marker.name == "GuitarStart") CurrentInstrument = "guitar";
-            else if (marker.name == "PianoStart") CurrentInstrument = "piano";
+                var marker = (TIMELINE_MARKER_PROPERTIES)System.Runtime.InteropServices.Marshal.PtrToStructure(
+                    parameterPtr, typeof(TIMELINE_MARKER_PROPERTIES));
+
+                if (marker.name == "GuitarStart") CurrentInstrument = "guitar";
+                else if (marker.name == "PianoStart") CurrentInstrument = "piano";
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogException(e);
         }
         return FMOD.RESULT.OK;
     }

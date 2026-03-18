@@ -499,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6bfdbcb316ed242b30a8798c9eb853, type: 3}
   m_Name: KHRSimpleControllerProfile Standalone
   m_EditorClassIdentifier: 
-  m_enabled: 1
+  m_enabled: 0
   nameUi: Khronos Simple Controller Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.khrsimpleprofile
@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6ccd3d0ef0f1d458e69421dccbdae1, type: 3}
   m_Name: ValveIndexControllerProfile Standalone
   m_EditorClassIdentifier: 
-  m_enabled: 1
+  m_enabled: 0
   nameUi: Valve Index Controller Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.valveindex
@@ -870,22 +870,22 @@ MonoBehaviour:
   features:
   - {fileID: 8221564594354640495}
   - {fileID: -8749980634715080836}
-  - {fileID: -1276894210230670667}
+  - {fileID: 4893829345954421791}
   - {fileID: -4580119002416375374}
   - {fileID: -4478006660784508864}
   - {fileID: -6081641041439107477}
-  - {fileID: 32361891232910083}
+  - {fileID: 5007098057516315081}
   - {fileID: 1727173055597128861}
   - {fileID: -5941725581135416239}
   - {fileID: -4647824206626811188}
-  - {fileID: -4314466618941312080}
-  - {fileID: -381482547018402083}
-  - {fileID: 5447152813868908602}
-  - {fileID: 4054846353496584751}
-  - {fileID: -8895518590110429109}
+  - {fileID: 4025793028449617705}
+  - {fileID: 1507748248788215057}
+  - {fileID: 7413458854745118488}
+  - {fileID: -4454024988132797082}
+  - {fileID: 154189092879288027}
   - {fileID: -4731438336562001402}
   - {fileID: 4135229692886101830}
-  - {fileID: -7494486358618572369}
+  - {fileID: 2220871646205782247}
   - {fileID: 239522605376452086}
   customLoaderName: 
   m_renderMode: 1
@@ -2233,7 +2233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5315f812f023cf4ebf26f7e5d2d70f2, type: 3}
   m_Name: HPReverbG2ControllerProfile Standalone
   m_EditorClassIdentifier: 
-  m_enabled: 1
+  m_enabled: 0
   nameUi: HP Reverb G2 Controller Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.hpreverb

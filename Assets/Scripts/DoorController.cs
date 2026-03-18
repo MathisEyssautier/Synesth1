@@ -23,6 +23,19 @@ public class DoorController : MonoBehaviour
     [Header("FMOD")]
     public float transitionSpeed = 1f;
 
+    [Header("Debug")]
+    [SerializeField] private bool debugLogs = false;
+
+    [Header("Shell ambience control")]
+    [Tooltip("Tous les coquillages de la pièce 2 dont le volume doit suivre l'état de la porte.")]
+    [SerializeField] private ShellProximityFeedback[] shellSources;
+
+    [Header("Player / Room 2")]
+    [Tooltip("Transform de la tête XR / caméra du joueur (pour savoir de quel côté de la porte il est).")]
+    [SerializeField] private Transform playerHead;
+    [Tooltip("Volume de la pièce 2 (BoxCollider) : si la tête du joueur est dedans, il est considéré dans la pièce.")]
+    [SerializeField] private BoxCollider room2Bounds;
+
     private XRSimpleInteractable simpleInteractable;
     private XRSimpleInteractable simpleInteractable2;
 
@@ -38,6 +51,18 @@ public class DoorController : MonoBehaviour
     private float _anglePrecedent = 0f;
     private float _velociteAngulaire = 0f;
 
+    private bool _isClosed = true;
+    private float _closedReferenceAngle = 0f;
+    private bool _lastShouldMute = false;
+
+    private float GetDoorYAngle()
+    {
+        // Normalise l'angle Y entre -180 et 180 pour des comparaisons stables.
+        float y = doorPivot.rotation.eulerAngles.y;
+        if (y > 180f) y -= 360f;
+        return y;
+    }
+
     void Start()
     {
         simpleInteractable = handle1.GetComponent<XRSimpleInteractable>();
@@ -47,6 +72,16 @@ public class DoorController : MonoBehaviour
         simpleInteractable2 = handle2.GetComponent<XRSimpleInteractable>();
         simpleInteractable2.selectEntered.AddListener(OnGrab);
         simpleInteractable2.selectExited.AddListener(OnRelease);
+
+        // Angle de référence "porte fermée" pris au démarrage, depuis la pose actuelle dans la scène.
+        _closedReferenceAngle = GetDoorYAngle();
+        currentYAngle = _closedReferenceAngle;
+        _anglePrecedent = currentYAngle;
+
+        // Calcule l'état initial fermé / ouvert et applique aux coquillages.
+        _isClosed = true;
+        _lastShouldMute = false; // force un premier apply
+        RefreshShellMuteState(forceApply: true);
     }
 
     void OnGrab(SelectEnterEventArgs args)
@@ -64,7 +99,8 @@ public class DoorController : MonoBehaviour
         isGrabbed = false;
         currentInteractor = null;
         _inertieActive = Mathf.Abs(_velociteAngulaire) > 0.1f;
-        Debug.Log("Release - velocite : " + _velociteAngulaire);
+        if (debugLogs)
+            Debug.Log("Release - velocite : " + _velociteAngulaire);
     }
 
     float GetHandAngle()
@@ -89,7 +125,8 @@ public class DoorController : MonoBehaviour
         }
         else if (_inertieActive)
         {
-            Debug.Log("Inertie frame - velocite: " + _velociteAngulaire + " | angle: " + currentYAngle);
+            if (debugLogs)
+                Debug.Log("Inertie frame - velocite: " + _velociteAngulaire + " | angle: " + currentYAngle);
             _velociteAngulaire *= Mathf.Pow(1f - damping, Time.deltaTime * 60f);
 
             currentYAngle += _velociteAngulaire * Time.deltaTime;
@@ -103,6 +140,8 @@ public class DoorController : MonoBehaviour
                 _inertieActive = false;
             }
         }
+
+        RefreshShellMuteState(forceApply: false);
     }
 
     void UpdateDoorRotation()
@@ -117,14 +156,55 @@ public class DoorController : MonoBehaviour
 
     public void ForceClose()
     {
-        currentYAngle = 0f;
+        currentYAngle = _closedReferenceAngle;
         grabAngleOffset = 0f;
         angleAtGrab = 0f;
         isGrabbed = false;
         _inertieActive = false;
         currentInteractor = null;
         _velociteAngulaire = 0f;
-        doorPivot.rotation = Quaternion.Euler(0f, 0f, 0f);
+        doorPivot.rotation = Quaternion.Euler(0f, currentYAngle, 0f);
+
+        if (!_isClosed)
+        {
+            _isClosed = true;
+            UpdateShellDoorState(true);
+        }
+    }
+
+    private void RefreshShellMuteState(bool forceApply)
+    {
+        // Porte considérée fermée tant que l'angle reste proche de l'angle de référence pris au Start().
+        _isClosed = Mathf.Abs(currentYAngle - _closedReferenceAngle) <= closedAngleThreshold;
+
+        // Si la porte est fermée mais que le joueur est DANS la pièce 2, on laisse les sons actifs.
+        bool playerInsideRoom2 = IsPlayerInsideRoom2();
+        bool shouldMute = _isClosed && !playerInsideRoom2;
+
+        if (forceApply || shouldMute != _lastShouldMute)
+        {
+            _lastShouldMute = shouldMute;
+            UpdateShellDoorState(shouldMute);
+        }
+    }
+
+    private void UpdateShellDoorState(bool shouldMute)
+    {
+        if (shellSources == null) return;
+        for (int i = 0; i < shellSources.Length; i++)
+        {
+            if (shellSources[i] == null) continue;
+            shellSources[i].SetDoorClosed(shouldMute);
+        }
+    }
+
+    private bool IsPlayerInsideRoom2()
+    {
+        if (playerHead == null || room2Bounds == null)
+            return false;
+
+        // bounds est en world space, parfait pour un test simple.
+        return room2Bounds.bounds.Contains(playerHead.position);
     }
 
     void OnDestroy()

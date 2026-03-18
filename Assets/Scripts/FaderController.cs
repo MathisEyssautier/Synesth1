@@ -28,9 +28,17 @@ public class FaderController : MonoBehaviour
         _grab.trackPosition = false;
         _grab.throwOnDetach = false;
         _grab.selectEntered.AddListener(_ => _isGrabbed = true);
-        _grab.selectExited.AddListener(_ => { _isGrabbed = false; ConstrainToRail(); });
+        _grab.selectExited.AddListener(_ => { _isGrabbed = false; ConstrainToRail(); ApplyValueToMusic(); });
 
         _lockedLocalY = faderBase.InverseTransformPoint(transform.position).y;
+    }
+
+    private void OnEnable()
+    {
+        // Quand le fader apparaît (SetActive true), on pousse tout de suite sa valeur vers FMOD
+        // pour éviter d'avoir une piste muette tant qu'on ne l'a pas grab.
+        ConstrainToRail();
+        ApplyValueToMusic();
     }
 
     void Update()
@@ -47,12 +55,7 @@ public class FaderController : MonoBehaviour
         transform.position = faderBase.TransformPoint(localPos);
         value = Mathf.InverseLerp(-railHalfLength, railHalfLength, localPos.x);
 
-        if (faderType == FaderType.Violons)
-            musicManager.SetVolumeViolons(value);
-        if (faderType == FaderType.Guitare)
-            musicManager.SetVolumeGuitare(value);
-        else
-            musicManager.SetVolumeBass(value);
+        ApplyValueToMusic();
     }
 
     void ConstrainToRail()
@@ -63,5 +66,23 @@ public class FaderController : MonoBehaviour
         localPos.x = Mathf.Clamp(localPos.x, -railHalfLength, railHalfLength);
         transform.position = faderBase.TransformPoint(localPos);
         value = Mathf.InverseLerp(-railHalfLength, railHalfLength, localPos.x);
+    }
+
+    private void ApplyValueToMusic()
+    {
+        if (musicManager == null) return;
+
+        switch (faderType)
+        {
+            case FaderType.Violons:
+                musicManager.SetVolumeViolons(value);
+                break;
+            case FaderType.Guitare:
+                musicManager.SetVolumeGuitare(value);
+                break;
+            case FaderType.Bass:
+                musicManager.SetVolumeBass(value);
+                break;
+        }
     }
 }

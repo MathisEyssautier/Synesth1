@@ -8,27 +8,52 @@ public class MusicManagerScript : MonoBehaviour
     public EventReference musicEvent;
 
     private EventInstance _musicInstance;
+    private bool _initialized = false;
 
-    void Start()
+    private float _violonsVolume = 0f;
+    private float _guitarVolume = 0f;
+    private float _bassVolume = 0f;
+
+    private void Awake()
     {
         _musicInstance = RuntimeManager.CreateInstance(musicEvent);
         RuntimeManager.AttachInstanceToGameObject(_musicInstance, gameObject);
+        _initialized = true;
+    }
+
+    void Start()
+    {
         _musicInstance.start();
+        ApplyCachedVolumes();
     }
 
     public void SetVolumeViolons(float value)
     {
-        _musicInstance.setParameterByName("ViolonsVolume", value);
+        _violonsVolume = value;
+        if (_initialized)
+            _musicInstance.setParameterByName("ViolonsVolume", value);
     }
 
     public void SetVolumeGuitare(float value)
     {
-        _musicInstance.setParameterByName("GuitarVolume", value);
+        _guitarVolume = value;
+        if (_initialized)
+            _musicInstance.setParameterByName("GuitarVolume", value);
     }
 
     public void SetVolumeBass(float value)
     {
-        _musicInstance.setParameterByName("BassVolume", value);
+        _bassVolume = value;
+        if (_initialized)
+            _musicInstance.setParameterByName("BassVolume", value);
+    }
+
+    private void ApplyCachedVolumes()
+    {
+        if (!_initialized) return;
+        _musicInstance.setParameterByName("ViolonsVolume", _violonsVolume);
+        _musicInstance.setParameterByName("GuitarVolume", _guitarVolume);
+        _musicInstance.setParameterByName("BassVolume", _bassVolume);
     }
 
     void OnDestroy()

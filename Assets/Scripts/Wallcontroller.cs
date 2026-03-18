@@ -14,13 +14,16 @@ public class WallController : MonoBehaviour
 
     private Renderer _renderer;
     private Collider _collider;
+    private Material _matInstance;
     private Color _baseColor;
 
     void Start()
     {
         _renderer = GetComponent<Renderer>();
         _collider = GetComponent<Collider>();
-        _baseColor = _renderer.material.color;
+        // Cache une instance du material pour éviter des allocations en Update().
+        _matInstance = _renderer.material;
+        _baseColor = _matInstance.color;
     }
 
     void Update()
@@ -30,8 +33,8 @@ public class WallController : MonoBehaviour
         _collider.enabled = !isTraversable;
 
         float targetAlpha = isTraversable ? transparentAlpha : visibleAlpha;
-        Color current = _renderer.material.color;
+        Color current = _matInstance.color;
         float newAlpha = Mathf.Lerp(current.a, targetAlpha, Time.deltaTime * transitionSpeed);
-        _renderer.material.color = new Color(_baseColor.r, _baseColor.g, _baseColor.b, newAlpha);
+        _matInstance.color = new Color(_baseColor.r, _baseColor.g, _baseColor.b, newAlpha);
     }
 }

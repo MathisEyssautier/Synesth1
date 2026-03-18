@@ -12,6 +12,8 @@ public class OnboardingSequencer : MonoBehaviour
     [SerializeField] private GameObject interactableCube;
     [SerializeField] private float cubeAppearDelay = 1f; // délai après que le mur commence à monter
 
+    private bool _hasStarted = false;
+
     void OnEnable()
     {
         SubtitleManager.OnVoiceEnded += StartOnboardingSequence;
@@ -24,6 +26,8 @@ public class OnboardingSequencer : MonoBehaviour
 
     private void StartOnboardingSequence()
     {
+        if (_hasStarted) return;
+        _hasStarted = true;
         StartCoroutine(OnboardingRoutine());
     }
 
