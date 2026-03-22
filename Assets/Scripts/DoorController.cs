@@ -23,9 +23,6 @@ public class DoorController : MonoBehaviour
     [Header("FMOD")]
     public float transitionSpeed = 1f;
 
-    [Header("Debug")]
-    [SerializeField] private bool debugLogs = false;
-
     [Header("Shell ambience control")]
     [Tooltip("Tous les coquillages de la pièce 2 dont le volume doit suivre l'état de la porte.")]
     [SerializeField] private ShellProximityFeedback[] shellSources;
@@ -99,8 +96,6 @@ public class DoorController : MonoBehaviour
         isGrabbed = false;
         currentInteractor = null;
         _inertieActive = Mathf.Abs(_velociteAngulaire) > 0.1f;
-        if (debugLogs)
-            Debug.Log("Release - velocite : " + _velociteAngulaire);
     }
 
     float GetHandAngle()
@@ -125,8 +120,6 @@ public class DoorController : MonoBehaviour
         }
         else if (_inertieActive)
         {
-            if (debugLogs)
-                Debug.Log("Inertie frame - velocite: " + _velociteAngulaire + " | angle: " + currentYAngle);
             _velociteAngulaire *= Mathf.Pow(1f - damping, Time.deltaTime * 60f);
 
             currentYAngle += _velociteAngulaire * Time.deltaTime;

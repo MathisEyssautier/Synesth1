@@ -45,7 +45,7 @@ public class UnityMainThreadDispatcher : MonoBehaviour
         for (int i = 0; i < actions.Length; i++)
         {
             try { actions[i]?.Invoke(); }
-            catch (Exception e) { Debug.LogException(e); }
+            catch { /* swallow to avoid breaking main thread */ }
         }
     }
 

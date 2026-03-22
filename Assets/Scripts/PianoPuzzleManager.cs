@@ -17,9 +17,6 @@ public class PianoPuzzleManager : MonoBehaviour
     [Tooltip("Si true: une mauvaise touche remet la séquence à zéro.")]
     [SerializeField] private bool resetOnMistake = true;
 
-    [Header("Debug")]
-    [SerializeField] private bool debugLogs = false;
-
     private int _progress = 0;
     private bool _completed = false;
 
@@ -35,8 +32,8 @@ public class PianoPuzzleManager : MonoBehaviour
             }
         }
 
-        if (onSuccessActivate != null)
-            onSuccessActivate.SetActive(false);
+        // Ne force plus l'état au démarrage :
+        // l'objet doit conserver son état tel que placé dans la scène / PlayMode.
     }
 
     public void OnKeyPressed(PianoKey key)
@@ -48,16 +45,12 @@ public class PianoPuzzleManager : MonoBehaviour
         int expected = requiredOrder[_progress];
         if (key.KeyId != expected)
         {
-            if (debugLogs)
-                Debug.Log($"[PianoPuzzle] Wrong key {key.KeyId}, expected {expected}. Reset={resetOnMistake}");
             if (resetOnMistake)
                 _progress = 0;
             return;
         }
 
         _progress++;
-        if (debugLogs)
-            Debug.Log($"[PianoPuzzle] Correct key {key.KeyId}. Progress {_progress}/{requiredOrder.Length}");
         if (_progress >= requiredOrder.Length)
             Complete();
     }
@@ -65,9 +58,6 @@ public class PianoPuzzleManager : MonoBehaviour
     private void Complete()
     {
         _completed = true;
-
-        if (debugLogs)
-            Debug.Log("[PianoPuzzle] Completed!");
 
         if (onSuccessActivate != null)
             onSuccessActivate.SetActive(true);

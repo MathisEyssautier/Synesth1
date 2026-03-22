@@ -89,7 +89,6 @@ public class LocomotionManager : MonoBehaviour
                 break;
         }
 
-        Debug.Log($"[LocomotionManager] Mode : {mode}");
     }
 
     private void OnTeleportStateChanged(LocomotionProvider provider, LocomotionState state)

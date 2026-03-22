@@ -28,7 +28,7 @@ public class OnboardingTransitionController : MonoBehaviour
     [Header("Lighting")]
     [Tooltip("Ex: 2e Directional Light (diffusion) à activer après l'onboarding.")]
     [SerializeField] private GameObject directionalLightToEnableOnEnd;
-    [SerializeField] private bool disableDirectionalLightOnStart = true;
+    [SerializeField] private bool disableDirectionalLightOnStart = false;
 
     [Header("Timing")]
     [SerializeField] private float fadeOutDuration = 1.0f;
@@ -51,9 +51,8 @@ public class OnboardingTransitionController : MonoBehaviour
             fadeCanvasGroup.blocksRaycasts = false;
             fadeCanvasGroup.interactable = false;
         }
-
-        if (disableDirectionalLightOnStart && directionalLightToEnableOnEnd != null)
-            directionalLightToEnableOnEnd.SetActive(false);
+        // On ne désactive plus automatiquement la light au démarrage:
+        // tu veux pouvoir piloter son état directement dans la scène/PlayMode.
     }
 
     private void OnEnable()

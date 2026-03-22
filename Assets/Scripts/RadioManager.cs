@@ -60,7 +60,6 @@ public class RadioManager : MonoBehaviour
             BlockerPorte(porteA);
             BlockerPorte(porteB);
             OnAlignementPerdu?.Invoke();
-            Debug.Log("[RadioManager] Alignement perdu - portes bloquees.");
         }
 
         _etatCourant = nouvelEtat;
@@ -69,14 +68,12 @@ public class RadioManager : MonoBehaviour
         {
             DebloquetEtEntrouvrir(porteA);
             SetEmissionPorte(rendererPorteA, couleurPorteAactive);
-            Debug.Log("[RadioManager] A+A - Porte A deverrouillee");
             OnAlignementAA?.Invoke();
         }
         else if (nouvelEtat == EtatAlignement.BB)
         {
             DebloquetEtEntrouvrir(porteB);
             SetEmissionPorte(rendererPorteB, couleurPorteBactive);
-            Debug.Log("[RadioManager] B+B - Porte B deverrouillee");
             OnAlignementBB?.Invoke();
         }
     }
@@ -124,14 +121,5 @@ public class RadioManager : MonoBehaviour
         r.material.color = couleur;
     }
 
-#if UNITY_EDITOR
-    private void OnGUI()
-    {
-        GUILayout.BeginArea(new Rect(10, 10, 320, 80));
-        GUILayout.Label("Potard1 - cran " + potard1?.CranActuel + " | A:" + potard1?.EstSurA + " B:" + potard1?.EstSurB);
-        GUILayout.Label("Potard2 - cran " + potard2?.CranActuel + " | A:" + potard2?.EstSurA + " B:" + potard2?.EstSurB);
-        GUILayout.Label("Etat : " + _etatCourant);
-        GUILayout.EndArea();
-    }
-#endif
+    // (Debug UI removed)
 }

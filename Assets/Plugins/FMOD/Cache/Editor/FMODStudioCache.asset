@@ -164,6 +164,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 295105
+--- !u!114 &-5902289226252550737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Room3/WrongChordGuitar
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Room3/WrongChordGuitar
+  Guid:
+    Data1: -1535318680
+    Data2: 1170312455
+    Data3: -1543295
+    Data4: 696466343
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3428
 --- !u!114 &-5798737156110101823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,10 +206,10 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639094325088534263
+  lastModified: 639095190665021542
   FileSizes:
   - Name: 
-    Value: 1976
+    Value: 2132
   Exists: 1
 --- !u!114 &-4868045836959923865
 MonoBehaviour:
@@ -331,7 +358,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639094325088503429
+  lastModified: 639095190665000760
   FileSizes: []
   Exists: 1
 --- !u!114 &-3784445766276628875
@@ -382,6 +409,33 @@ MonoBehaviour:
   lastModified: 639074671463433570
   FileSizes: []
   Exists: 1
+--- !u!114 &-3741351084013823429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Room3/CleanChordGuitar
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Room3/CleanChordGuitar
+  Guid:
+    Data1: -1235276205
+    Data2: 1198847065
+    Data3: 59952296
+    Data4: -602516071
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9500
 --- !u!114 &-3066792185154525871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +684,9 @@ MonoBehaviour:
   - {fileID: -1473974838808855017}
   - {fileID: -4517577764876672487}
   - {fileID: 14641455784245092}
+  - {fileID: -3741351084013823429}
+  - {fileID: -5902289226252550737}
+  - {fileID: 1611140977159945031}
   EditorParameters:
   - {fileID: -4281520253350123451}
   MasterBanks:
@@ -637,7 +694,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5798737156110101823}
   cacheVersion: 131858
-  cacheTime: 639094325088534263
+  cacheTime: 639095190665021542
   SerializableEventsDict:
   - key: event:/SexMachine
     index: 0
@@ -685,6 +742,12 @@ MonoBehaviour:
     index: 21
   - key: event:/ShellEvents/SeaShell
     index: 22
+  - key: event:/Room3/CleanChordGuitar
+    index: 23
+  - key: event:/Room3/WrongChordGuitar
+    index: 24
+  - key: event:/Room3/PhoneRinging
+    index: 25
 --- !u!114 &14641455784245092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,7 +810,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639094325088313088
+  lastModified: 639095190664863717
   FileSizes: []
   Exists: 1
 --- !u!114 &736246688722898696
@@ -825,6 +888,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1611140977159945031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Room3/PhoneRinging
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Room3/PhoneRinging
+  Guid:
+    Data1: -1994879816
+    Data2: 1266231247
+    Data3: 1372640656
+    Data4: 340242379
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 24999
 --- !u!114 &2445795716688375411
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,8 +21,8 @@ public class ShellPuzzleManager : MonoBehaviour
 
     private void Awake()
     {
-        if (setRewardInactiveOnStart && rewardObjectToActivate != null)
-            rewardObjectToActivate.SetActive(false);
+        // Ne force plus l'état au démarrage :
+        // on veut que tu puisses laisser le GameObject tel quel dans la scène/PlayMode.
     }
 
     private void Start()

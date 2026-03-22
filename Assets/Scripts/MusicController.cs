@@ -60,7 +60,6 @@ public class MusicManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.LogException(e);
         }
         return FMOD.RESULT.OK;
     }
