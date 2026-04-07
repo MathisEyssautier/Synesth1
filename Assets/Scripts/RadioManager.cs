@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using FMODUnity;
+using FMOD.Studio;
 
 public class RadioManager : MonoBehaviour
 {
@@ -8,11 +10,36 @@ public class RadioManager : MonoBehaviour
     public PotardController potard1;
     public PotardController potard2;
 
+    [Header("Piano — verrouillage")]
+    [Tooltip("Si activé : les potards sont désactivés au démarrage jusqu'à UnlockAfterPianoSuccess().")]
+    [SerializeField] private bool verrouillerPotardsJusquaPiano = true;
+
+    [Header("Piano — déblocage (appelé par PianoPuzzleManager)")]
+    [SerializeField] private Renderer partieRadioNoirBlanc;
+    [SerializeField] private Color couleurRadioVerrouillee = Color.black;
+    [SerializeField] private Color couleurRadioDebloquee = Color.white;
+    [SerializeField] private EventReference sonDeblocageRadio;
+    [SerializeField] private Transform origineSonRadio;
+
     [Header("Portes")]
     public DoorController porteA;
     public DoorController porteB;
     public Renderer rendererPorteA;
     public Renderer rendererPorteB;
+
+    [Header("Audio ouverture automatique")]
+    [Tooltip("One-shot FMOD quand on entre en alignement AA (porte A) ou BB (porte B).")]
+    [SerializeField] private EventReference sonOuverturePorte;
+    [SerializeField] private Transform origineSonOuverturePorte;
+
+    [Header("Audio radio (boucle + chaînes AA / BB)")]
+    [Tooltip("Grésillement / fond : volume 1 en neutre, volume 0 en AA ou BB.")]
+    [SerializeField] private EventReference sonBoucleRadio;
+    [Tooltip("Chaîne AA : démarre au déblocage à volume 0, passe à 1 uniquement en alignement AA.")]
+    [SerializeField] private EventReference sonChaineAA;
+    [Tooltip("Chaîne BB : idem pour BB.")]
+    [SerializeField] private EventReference sonChaineBB;
+    [SerializeField] private Transform origineSonBoucleRadio;
 
     [Header("Emission portes")]
     public Color couleurPorteAinactive = new Color(0.05f, 0.2f, 0.05f);
@@ -30,7 +57,16 @@ public class RadioManager : MonoBehaviour
     public UnityEvent OnAlignementPerdu;
 
     public enum EtatAlignement { Aucun, AA, BB }
+
     private EtatAlignement _etatCourant = EtatAlignement.Aucun;
+    private bool _radioDebloquee;
+    private bool _isStandby;
+
+    private EventInstance _instBoucle;
+    private EventInstance _instAA;
+    private EventInstance _instBB;
+
+    private Transform OrigineAudio => origineSonBoucleRadio != null ? origineSonBoucleRadio : transform;
 
     private void Awake()
     {
@@ -40,10 +76,205 @@ public class RadioManager : MonoBehaviour
 
     private void Start()
     {
+        if (verrouillerPotardsJusquaPiano)
+        {
+            potard1?.SetInteractable(false);
+            potard2?.SetInteractable(false);
+            AppliquerCouleurPartieRadio(couleurRadioVerrouillee);
+        }
+
         BlockerPorte(porteA);
         BlockerPorte(porteB);
         SetEmissionPorte(rendererPorteA, couleurPorteAinactive);
         SetEmissionPorte(rendererPorteB, couleurPorteBinactive);
+    }
+
+    /// <summary>Appelé par PianoPuzzleManager quand la séquence piano est réussie.</summary>
+    public void UnlockAfterPianoSuccess()
+    {
+        potard1?.SetInteractable(true);
+        potard2?.SetInteractable(true);
+        AppliquerCouleurPartieRadio(couleurRadioDebloquee);
+
+        CreerEtDemarrerToutesLesInstancesRadio();
+        _radioDebloquee = true;
+
+        EtatAlignement lu = LireEtatDepuisPotards();
+        AppliquerVolumesRadio(lu);
+        _etatCourant = lu;
+        RefreshPotardInteractivity();
+
+        if (!sonDeblocageRadio.IsNull && !MemeEventReference(sonDeblocageRadio, sonBoucleRadio))
+        {
+            Transform t = origineSonRadio != null ? origineSonRadio : transform;
+            PlayOneShotFmod(sonDeblocageRadio, t.position);
+        }
+    }
+
+    public void ToggleStandby()
+    {
+        SetStandby(!_isStandby);
+    }
+
+    public void SetStandby(bool standby)
+    {
+        if (_isStandby == standby) return;
+        _isStandby = standby;
+        RefreshPotardInteractivity();
+
+        // Ne touche ni aux portes, ni à l'état logique des crans.
+        if (_isStandby)
+        {
+            ForceMuteAllRadioAudio();
+        }
+        else
+        {
+            AppliquerVolumesRadio(_etatCourant);
+        }
+    }
+
+    private void CreerEtDemarrerToutesLesInstancesRadio()
+    {
+        // Libère d’éventuelles instances (double Unlock, etc.).
+        LibererSiValide(ref _instBoucle);
+        LibererSiValide(ref _instAA);
+        LibererSiValide(ref _instBB);
+
+        GameObject go = OrigineAudio.gameObject;
+
+        if (!sonBoucleRadio.IsNull)
+        {
+            _instBoucle = CreateFmodInstance(sonBoucleRadio);
+            if (_instBoucle.isValid())
+            {
+                RuntimeManager.AttachInstanceToGameObject(_instBoucle, go);
+                _instBoucle.start();
+            }
+        }
+
+        if (!sonChaineAA.IsNull)
+        {
+            _instAA = CreateFmodInstance(sonChaineAA);
+            if (_instAA.isValid())
+            {
+                RuntimeManager.AttachInstanceToGameObject(_instAA, go);
+                _instAA.start();
+            }
+        }
+
+        if (!sonChaineBB.IsNull)
+        {
+            _instBB = CreateFmodInstance(sonChaineBB);
+            if (_instBB.isValid())
+            {
+                RuntimeManager.AttachInstanceToGameObject(_instBB, go);
+                _instBB.start();
+            }
+        }
+    }
+
+    /// <summary>
+    /// FMOD Unity résout souvent EventReference par GUID uniquement. Si le GUID en scène est périmé / copié,
+    /// le mauvais event est joué malgré le bon Path dans l’inspecteur. On privilégie donc le Path.
+    /// </summary>
+    private static EventInstance CreateFmodInstance(EventReference er)
+    {
+        if (er.IsNull) return default;
+
+        if (!string.IsNullOrEmpty(er.Path))
+        {
+            try
+            {
+                return RuntimeManager.CreateInstance(er.Path);
+            }
+            catch
+            {
+                // Path affiché mais banque / event invalide : repli sur GUID.
+            }
+        }
+
+        try
+        {
+            return RuntimeManager.CreateInstance(er.Guid);
+        }
+        catch
+        {
+            return default;
+        }
+    }
+
+    private static void PlayOneShotFmod(EventReference er, Vector3 position)
+    {
+        if (er.IsNull) return;
+
+        if (!string.IsNullOrEmpty(er.Path))
+        {
+            try
+            {
+                RuntimeManager.PlayOneShot(er.Path, position);
+                return;
+            }
+            catch
+            {
+                //
+            }
+        }
+
+        try
+        {
+            RuntimeManager.PlayOneShot(er, position);
+        }
+        catch
+        {
+            //
+        }
+    }
+
+    /// <summary>
+    /// Neutre : boucle 1, AA 0, BB 0. AA : boucle 0, AA 1, BB 0. BB : boucle 0, AA 0, BB 1.
+    /// Aucun stop : les timelines continuent en arrière-plan à volume 0.
+    /// </summary>
+    private void AppliquerVolumesRadio(EtatAlignement etat)
+    {
+        if (!_radioDebloquee) return;
+
+        if (_isStandby)
+        {
+            ForceMuteAllRadioAudio();
+            return;
+        }
+
+        if (_instBoucle.isValid())
+            _instBoucle.setVolume(etat == EtatAlignement.Aucun ? 1f : 0f);
+
+        if (_instAA.isValid())
+            _instAA.setVolume(etat == EtatAlignement.AA ? 1f : 0f);
+
+        if (_instBB.isValid())
+            _instBB.setVolume(etat == EtatAlignement.BB ? 1f : 0f);
+    }
+
+    private void ForceMuteAllRadioAudio()
+    {
+        if (_instBoucle.isValid()) _instBoucle.setVolume(0f);
+        if (_instAA.isValid()) _instAA.setVolume(0f);
+        if (_instBB.isValid()) _instBB.setVolume(0f);
+    }
+
+    private void AppliquerCouleurPartieRadio(Color couleur)
+    {
+        if (partieRadioNoirBlanc == null) return;
+
+        var mat = partieRadioNoirBlanc.material;
+        if (mat == null) return;
+
+        if (mat.HasProperty("_BaseColor"))
+            mat.SetColor("_BaseColor", couleur);
+        else
+            mat.color = couleur;
+
+        if (mat.HasProperty("_EmissionColor"))
+            mat.SetColor("_EmissionColor", couleur);
     }
 
     private void VerifierAlignement()
@@ -55,6 +286,8 @@ public class RadioManager : MonoBehaviour
 
         if (nouvelEtat == _etatCourant) return;
 
+        EtatAlignement etatAvant = _etatCourant;
+
         if (_etatCourant != EtatAlignement.Aucun)
         {
             BlockerPorte(porteA);
@@ -63,19 +296,55 @@ public class RadioManager : MonoBehaviour
         }
 
         _etatCourant = nouvelEtat;
+        AppliquerVolumesRadio(nouvelEtat);
+
+        bool entreeAA = nouvelEtat == EtatAlignement.AA && etatAvant != EtatAlignement.AA;
+        bool entreeBB = nouvelEtat == EtatAlignement.BB && etatAvant != EtatAlignement.BB;
 
         if (nouvelEtat == EtatAlignement.AA)
         {
             DebloquetEtEntrouvrir(porteA);
             SetEmissionPorte(rendererPorteA, couleurPorteAactive);
+            if (entreeAA) JouerSonOuverturePorte(porteA);
             OnAlignementAA?.Invoke();
         }
         else if (nouvelEtat == EtatAlignement.BB)
         {
             DebloquetEtEntrouvrir(porteB);
             SetEmissionPorte(rendererPorteB, couleurPorteBactive);
+            if (entreeBB) JouerSonOuverturePorte(porteB);
             OnAlignementBB?.Invoke();
         }
+    }
+
+    private void JouerSonOuverturePorte(DoorController porte)
+    {
+        if (sonOuverturePorte.IsNull) return;
+
+        Vector3 pos = transform.position;
+        if (porte != null && porte.doorPivot != null)
+            pos = porte.doorPivot.position;
+        else if (origineSonOuverturePorte != null)
+            pos = origineSonOuverturePorte.position;
+
+        PlayOneShotFmod(sonOuverturePorte, pos);
+    }
+
+    private EtatAlignement LireEtatDepuisPotards()
+    {
+        if (potard1 != null && potard2 != null && potard1.EstSurA && potard2.EstSurA)
+            return EtatAlignement.AA;
+        if (potard1 != null && potard2 != null && potard1.EstSurB && potard2.EstSurB)
+            return EtatAlignement.BB;
+        return EtatAlignement.Aucun;
+    }
+
+    private static bool MemeEventReference(EventReference a, EventReference b)
+    {
+        if (a.IsNull || b.IsNull) return false;
+        if (!string.IsNullOrEmpty(a.Path) && !string.IsNullOrEmpty(b.Path))
+            return a.Path == b.Path;
+        return a.Guid.Equals(b.Guid);
     }
 
     private void BlockerPorte(DoorController porte)
@@ -103,7 +372,6 @@ public class RadioManager : MonoBehaviour
             porte.doorPivot.rotation = Quaternion.Euler(0f, porte.currentYAngle, 0f);
             yield return null;
         }
-        // Snap final - RadioManager ne touche plus jamais a cette porte
         porte.currentYAngle = angleEntrouverte;
         porte.doorPivot.rotation = Quaternion.Euler(0f, angleEntrouverte, 0f);
     }
@@ -121,5 +389,33 @@ public class RadioManager : MonoBehaviour
         r.material.color = couleur;
     }
 
-    // (Debug UI removed)
+    private void RefreshPotardInteractivity()
+    {
+        if (_isStandby)
+        {
+            potard1?.SetInteractable(false);
+            potard2?.SetInteractable(false);
+            return;
+        }
+
+        bool shouldEnable = _radioDebloquee || !verrouillerPotardsJusquaPiano;
+        potard1?.SetInteractable(shouldEnable);
+        potard2?.SetInteractable(shouldEnable);
+    }
+
+    private void OnDisable()
+    {
+        LibererSiValide(ref _instBoucle);
+        LibererSiValide(ref _instAA);
+        LibererSiValide(ref _instBB);
+        _radioDebloquee = false;
+    }
+
+    private static void LibererSiValide(ref EventInstance inst)
+    {
+        if (!inst.isValid()) return;
+        inst.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        inst.release();
+        inst.clearHandle();
+    }
 }

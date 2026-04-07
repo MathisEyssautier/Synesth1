@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{9afdcdaa-18da-4861-bc5e-077483455c09}">
 		<property name="assetPath">
-			<value>james brown - sex machine.mp3</value>
+			<value>Songs/james brown - sex machine.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

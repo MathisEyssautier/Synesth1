@@ -6,6 +6,7 @@ using FMOD.Studio;
 [RequireComponent(typeof(Collider))]
 public class PianoKey : MonoBehaviour
 {
+    public static event System.Action<PianoKey> OnAnyKeyPressed;
     [Header("Id de la touche (1..5)")]
     [SerializeField] private int keyId = 1;
 
@@ -100,6 +101,8 @@ public class PianoKey : MonoBehaviour
         // Puzzle
         if (puzzleManager != null)
             puzzleManager.OnKeyPressed(this);
+
+        OnAnyKeyPressed?.Invoke(this);
     }
 
     private IEnumerator PressAnim()

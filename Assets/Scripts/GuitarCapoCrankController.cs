@@ -22,6 +22,7 @@ public class GuitarCapoCrankController : MonoBehaviour
     [SerializeField] private int startCrankIndex = 0;
 
     [Header("Visuals (spectrum color + emission)")]
+    [Tooltip("Mesh à teinter (enfant du capot). Laisser vide : premier Renderer trouvé sous ce GameObject, hors la racine.")]
     [SerializeField] private Renderer capoRenderer;
     [SerializeField] private float emissionIntensity = 3f;
     [Tooltip("Couleurs fixes par cran (taille = nombre de crans, ici 5).")]
@@ -33,6 +34,15 @@ public class GuitarCapoCrankController : MonoBehaviour
     [Tooltip("GameObject du 3e fader à activer dans la salle principale.")]
     [SerializeField] private GameObject thirdFaderToActivate;
     [SerializeField] private bool lockAfterSuccess = true;
+    [SerializeField] private bool activateFaderOnSolve = false;
+
+    [Header("Success visual")]
+    [Tooltip("Renderer du body de guitare (ex: enfant 'GuitarBody') à teinter en jaune à la réussite.")]
+    [SerializeField] private Renderer guitarBodyRenderer;
+    [SerializeField] private Color successBodyColor = Color.yellow;
+    [SerializeField] private Color successFlashColor = new Color(1f, 1f, 0.35f);
+    [SerializeField] private float successFlashDuration = 0.25f;
+    [SerializeField] private float successFadeToSoftDuration = 0.45f;
 
     [Header("Gameplay")]
     [SerializeField] private bool onlyAdvanceWhenGuitarHeld = true;
@@ -45,6 +55,7 @@ public class GuitarCapoCrankController : MonoBehaviour
 
     private IXRSelectInteractor _holdingInteractor;
     private Material _matInstance;
+    private Coroutine _successVisualRoutine;
 
     private void Awake()
     {
@@ -60,6 +71,8 @@ public class GuitarCapoCrankController : MonoBehaviour
             rb.useGravity = false;
         }
 
+        ResolveCapoMaterialRenderer();
+
         if (capoRenderer != null)
         {
             _matInstance = capoRenderer.material;
@@ -71,6 +84,26 @@ public class GuitarCapoCrankController : MonoBehaviour
         int maxIndex = Mathf.Max(0, len - 1);
         _currentIndex = Mathf.Clamp(startCrankIndex, 0, maxIndex);
         ApplyIndex(_currentIndex, instant: true);
+    }
+
+    /// <summary>
+    /// Le script est souvent sur la racine du capot (empty) : le mesh visible est sur un enfant.
+    /// Si aucun renderer n'est assigné, on prend le premier Renderer descendant qui n'est pas sur la racine.
+    /// </summary>
+    private void ResolveCapoMaterialRenderer()
+    {
+        if (capoRenderer != null && capoRenderer.transform != transform)
+            return;
+
+        capoRenderer = null;
+        var renderers = GetComponentsInChildren<Renderer>(includeInactive: true);
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            var r = renderers[i];
+            if (r == null || r.transform == transform) continue;
+            capoRenderer = r;
+            return;
+        }
     }
 
     private void OnEnable()
@@ -122,6 +155,8 @@ public class GuitarCapoCrankController : MonoBehaviour
 
     public bool IsOnTargetCrank => !_locked && _currentIndex == targetCrankIndex;
     public bool IsOnTargetCrankEvenIfLocked => _currentIndex == targetCrankIndex;
+    public int CurrentCrankIndex => _currentIndex;
+    public bool IsSolved => _solved;
 
     public void TrySolveFromSoundZone()
     {
@@ -138,9 +173,57 @@ public class GuitarCapoCrankController : MonoBehaviour
         {
             _solved = true;
             if (lockAfterSuccess) _locked = true;
-            if (thirdFaderToActivate != null)
+            if (activateFaderOnSolve && thirdFaderToActivate != null)
                 thirdFaderToActivate.SetActive(true);
+            PlaySuccessBodyFlash();
         }
+    }
+
+    private void PlaySuccessBodyFlash()
+    {
+        if (guitarBodyRenderer == null) return;
+        if (_successVisualRoutine != null)
+            StopCoroutine(_successVisualRoutine);
+        _successVisualRoutine = StartCoroutine(SuccessBodyFlashRoutine());
+    }
+
+    private System.Collections.IEnumerator SuccessBodyFlashRoutine()
+    {
+        if (guitarBodyRenderer == null) yield break;
+
+        var mat = guitarBodyRenderer.material;
+        if (mat == null) yield break;
+
+        // Flash vif immédiat.
+        SetBodyMaterialColor(mat, successFlashColor);
+        if (successFlashDuration > 0f)
+            yield return new WaitForSeconds(successFlashDuration);
+
+        // Transition vers jaune plus doux.
+        float t = 0f;
+        float duration = Mathf.Max(0.01f, successFadeToSoftDuration);
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float a = Mathf.Clamp01(t / duration);
+            Color c = Color.Lerp(successFlashColor, successBodyColor, a);
+            SetBodyMaterialColor(mat, c);
+            yield return null;
+        }
+
+        SetBodyMaterialColor(mat, successBodyColor);
+        _successVisualRoutine = null;
+    }
+
+    private void SetBodyMaterialColor(Material mat, Color color)
+    {
+        if (mat.HasProperty("_BaseColor"))
+            mat.SetColor("_BaseColor", color);
+        else
+            mat.color = color;
+
+        if (mat.HasProperty("_EmissionColor"))
+            mat.SetColor("_EmissionColor", color);
     }
 
     public void SetCrankIndex(int index, bool instant = false)

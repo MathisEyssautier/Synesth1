@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{b5bd49e5-f40f-4c53-a6b2-536b84a605b5}">
+		<property name="assetPath">
+			<value>SodadeRadio.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>293.8750113378685</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26f8cbb0-db8c-42ac-9301-c0916860d78b}</destination>
+		</relationship>
+	</object>
+</objects>

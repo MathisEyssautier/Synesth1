@@ -16,8 +16,12 @@ public class SubtitleManager : MonoBehaviour
     [SerializeField] private GameObject subtitlePanel;
 
     private EventInstance voiceInstance;
-    private bool _ignoreStoppedEvents = false;
     private bool _isShuttingDown = false;
+    private Coroutine _replayRoutine;
+    private bool _isReplaying = false;
+    private bool _pendingReplay = false;
+    private float _pendingReplayDelay = 0f;
+    private EVENT_CALLBACK _voiceCallback;
 
     // Marqueurs dont le nom EST le texte à afficher.
     // "sub_end" est le seul cas spécial : il efface le texte.
@@ -31,54 +35,66 @@ public class SubtitleManager : MonoBehaviour
         if (subtitleText != null)
             subtitleText.text = "";
 
-        voiceInstance = RuntimeManager.CreateInstance(voiceEventRef);
-        voiceInstance.setCallback(OnFMODCallback, EVENT_CALLBACK_TYPE.TIMELINE_MARKER | EVENT_CALLBACK_TYPE.STOPPED);
-        RuntimeManager.AttachInstanceToGameObject(voiceInstance, gameObject);
+        // Keep a strong reference to FMOD callback delegate to avoid GC collection.
+        _voiceCallback = new EVENT_CALLBACK(OnFMODCallback);
+        RecreateVoiceInstance();
         StartCoroutine(StartVoiceDelayed(5f));
     }
 
     private IEnumerator StartVoiceDelayed(float delay)
     {
         yield return new WaitForSeconds(delay);
-        voiceInstance.start();
+        if (_isShuttingDown) yield break;
+        if (voiceInstance.isValid())
+            voiceInstance.start();
     }
 
     public void ReplayVoice(float delaySeconds = 0f)
     {
-        StartCoroutine(ReplayVoiceRoutine(delaySeconds));
+        if (_isShuttingDown) return;
+
+        // Ultra-safe strategy:
+        // never stop a currently playing instance in the middle (avoids FMOD callback races).
+        if (!voiceInstance.isValid())
+            return;
+
+        var result = voiceInstance.getPlaybackState(out PLAYBACK_STATE state);
+        bool isPlaying = result == FMOD.RESULT.OK && state != PLAYBACK_STATE.STOPPED;
+        if (isPlaying || _isReplaying)
+        {
+            // Queue one replay for when current voice naturally ends.
+            _pendingReplay = true;
+            _pendingReplayDelay = Mathf.Max(0f, delaySeconds);
+            return;
+        }
+
+        StartReplayRoutine(delaySeconds);
+    }
+
+    private void StartReplayRoutine(float delaySeconds)
+    {
+        if (_replayRoutine != null)
+            StopCoroutine(_replayRoutine);
+        _replayRoutine = StartCoroutine(ReplayVoiceRoutine(delaySeconds));
     }
 
     private IEnumerator ReplayVoiceRoutine(float delaySeconds)
     {
+        _isReplaying = true;
+
         // Nettoie l'UI avant de rejouer
         if (subtitlePanel != null)
             subtitlePanel.SetActive(false);
         if (subtitleText != null)
             subtitleText.text = "";
 
-        // On veut ignorer uniquement le STOPPED causé par notre stop manuel.
-        // Pour éviter les courses (fadeout qui finit après la 2e lecture), on stop IMMEDIATE
-        // et on attend l'état STOPPED avant de relancer.
-        _ignoreStoppedEvents = true;
-        voiceInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-
-        // Attendre que FMOD confirme l'arrêt (sécurité anti race-condition)
-        const float timeoutSeconds = 1.5f;
-        float t = 0f;
-        while (t < timeoutSeconds)
-        {
-            if (voiceInstance.getPlaybackState(out PLAYBACK_STATE state) == FMOD.RESULT.OK &&
-                state == PLAYBACK_STATE.STOPPED)
-                break;
-            t += Time.unscaledDeltaTime;
-            yield return null;
-        }
-
         if (delaySeconds > 0f)
             yield return new WaitForSeconds(delaySeconds);
 
-        _ignoreStoppedEvents = false;
-        voiceInstance.start();
+        if (!_isShuttingDown && voiceInstance.isValid())
+            voiceInstance.start();
+        _replayRoutine = null;
+        _isReplaying = false;
     }
 
     [AOT.MonoPInvokeCallback(typeof(EVENT_CALLBACK))]
@@ -121,15 +137,22 @@ public class SubtitleManager : MonoBehaviour
                     dispatcher.Enqueue(() =>
                     {
                         if (this == null || _isShuttingDown) return;
-                        if (_ignoreStoppedEvents) return;
+                        if (_pendingReplay)
+                        {
+                            _pendingReplay = false;
+                            float delay = _pendingReplayDelay;
+                            _pendingReplayDelay = 0f;
+                            StartReplayRoutine(delay);
+                            return;
+                        }
                         OnVoiceEnded?.Invoke();
                     });
                 }
             }
         }
-        catch (System.Exception e)
+        catch
         {
-            Debug.LogException(e);
+            //
         }
         return FMOD.RESULT.OK;
     }
@@ -155,7 +178,26 @@ public class SubtitleManager : MonoBehaviour
     void OnDestroy()
     {
         _isShuttingDown = true;
+        if (_replayRoutine != null)
+            StopCoroutine(_replayRoutine);
+        SafeStopAndReleaseVoiceInstance();
+    }
+
+    private void RecreateVoiceInstance()
+    {
+        if (_isShuttingDown || voiceEventRef.IsNull) return;
+        voiceInstance = RuntimeManager.CreateInstance(voiceEventRef);
+        if (!voiceInstance.isValid()) return;
+        voiceInstance.setCallback(_voiceCallback, EVENT_CALLBACK_TYPE.TIMELINE_MARKER | EVENT_CALLBACK_TYPE.STOPPED);
+        RuntimeManager.AttachInstanceToGameObject(voiceInstance, gameObject);
+    }
+
+    private void SafeStopAndReleaseVoiceInstance()
+    {
+        if (!voiceInstance.isValid()) return;
+        voiceInstance.setCallback(null);
         voiceInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         voiceInstance.release();
+        voiceInstance.clearHandle();
     }
 }

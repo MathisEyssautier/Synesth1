@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{a7e23df8-76c2-4e7c-99ec-e9dfba5f8eea}">
+		<property name="assetPath">
+			<value>NotesGuitare/SolG.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.7932653061224491</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26f8cbb0-db8c-42ac-9301-c0916860d78b}</destination>
+		</relationship>
+	</object>
+</objects>

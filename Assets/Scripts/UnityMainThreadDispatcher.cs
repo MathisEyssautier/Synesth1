@@ -24,8 +24,16 @@ public class UnityMainThreadDispatcher : MonoBehaviour
 
     void Awake()
     {
-        if (_instance == null) { _instance = this; DontDestroyOnLoad(gameObject); }
-        else Destroy(gameObject);
+        if (_instance == null)
+        {
+            _instance = this;
+            var root = transform.root != null ? transform.root.gameObject : gameObject;
+            DontDestroyOnLoad(root);
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()

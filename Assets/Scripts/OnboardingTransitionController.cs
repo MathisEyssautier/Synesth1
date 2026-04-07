@@ -7,6 +7,10 @@ using Unity.XR.CoreUtils;
 
 public class OnboardingTransitionController : MonoBehaviour
 {
+    [Header("Legacy flow")]
+    [Tooltip("Désactivé par défaut: évite les conflits avec le nouvel onboarding salon.")]
+    [SerializeField] private bool enableLegacyTransitionFlow = false;
+
     [Header("Refs")]
     [SerializeField] private SubtitleManager subtitleManager;
     [SerializeField] private CanvasGroup fadeCanvasGroup;
@@ -51,24 +55,28 @@ public class OnboardingTransitionController : MonoBehaviour
             fadeCanvasGroup.blocksRaycasts = false;
             fadeCanvasGroup.interactable = false;
         }
-        // On ne désactive plus automatiquement la light au démarrage:
-        // tu veux pouvoir piloter son état directement dans la scène/PlayMode.
+
+        if (disableDirectionalLightOnStart && directionalLightToEnableOnEnd != null)
+            directionalLightToEnableOnEnd.SetActive(false);
     }
 
     private void OnEnable()
     {
+        if (!enableLegacyTransitionFlow) return;
         InteractableCube.OnFirstDeactivated += OnCubeFirstDeactivated;
         SubtitleManager.OnVoiceEnded += OnVoiceEnded;
     }
 
     private void OnDisable()
     {
+        if (!enableLegacyTransitionFlow) return;
         InteractableCube.OnFirstDeactivated -= OnCubeFirstDeactivated;
         SubtitleManager.OnVoiceEnded -= OnVoiceEnded;
     }
 
     private void OnCubeFirstDeactivated(InteractableCube cube)
     {
+        if (!enableLegacyTransitionFlow) return;
         if (_transitionStarted) return;
         if (_waitingForOutroVoiceEnd) return;
 
@@ -79,6 +87,7 @@ public class OnboardingTransitionController : MonoBehaviour
 
     private void OnVoiceEnded()
     {
+        if (!enableLegacyTransitionFlow) return;
         if (!_waitingForOutroVoiceEnd) return;
         if (_transitionStarted) return;
         StartCoroutine(TransitionRoutine());

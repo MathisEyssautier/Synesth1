@@ -38,6 +38,9 @@ public class LocomotionManager : MonoBehaviour
 
     private LocomotionMode _currentMode;
     private Transform _defaultForwardSource;
+    private bool _snapTurnEnabled = true;
+    private bool _forceDisabled = false;
+    public bool IsForceDisabled => _forceDisabled;
 
     void Start()
     {
@@ -57,38 +60,59 @@ public class LocomotionManager : MonoBehaviour
         teleportationProvider.locomotionStateChanged -= OnTeleportStateChanged;
 
         _currentMode = mode;
+        ApplyCurrentModeState();
+    }
 
+    public void SetSnapTurnEnabled(bool enabled)
+    {
+        _snapTurnEnabled = enabled;
+        ApplyCurrentModeState();
+    }
+
+    public void SetForceDisabled(bool disabled)
+    {
+        _forceDisabled = disabled;
+        ApplyCurrentModeState();
+    }
+
+    private void ApplyCurrentModeState()
+    {
         // Désactivation de tout
         moveObject.SetActive(false);
         turnObject.SetActive(false);
         teleportationObject.SetActive(false);
         SetTeleportInteractorsActive(false);
 
-        switch (mode)
+        if (_forceDisabled)
+            return;
+
+        switch (_currentMode)
         {
             case LocomotionMode.LinearSnapTurn:
                 moveObject.SetActive(true);
-                turnObject.SetActive(true);
+                turnObject.SetActive(_snapTurnEnabled);
                 continuousMoveProvider.forwardSource = _defaultForwardSource;
                 break;
 
             case LocomotionMode.LinearGaze:
                 moveObject.SetActive(true);
+                turnObject.SetActive(_snapTurnEnabled);
                 continuousMoveProvider.forwardSource = xrCamera;
                 break;
 
             case LocomotionMode.Teleport:
                 teleportationObject.SetActive(true);
                 SetTeleportInteractorsActive(true);
+                turnObject.SetActive(_snapTurnEnabled);
                 break;
 
             case LocomotionMode.TeleportBlink:
                 teleportationObject.SetActive(true);
                 SetTeleportInteractorsActive(true);
+                turnObject.SetActive(_snapTurnEnabled);
                 teleportationProvider.locomotionStateChanged += OnTeleportStateChanged;
                 break;
         }
-
     }
 
     private void OnTeleportStateChanged(LocomotionProvider provider, LocomotionState state)

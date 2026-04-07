@@ -16,9 +16,14 @@ public class ShellProximityFeedback : MonoBehaviour
     [Header("FMOD")]
     [SerializeField] private EventReference shellEvent;
     [Range(0f, 1f)]
-    [SerializeField] private float baseVolume = 0.15f;
+    [SerializeField] private float baseVolume = 0.02f;
     [Range(0f, 1f)]
     [SerializeField] private float maxVolume = 1f;
+    [Header("Audio gating")]
+    [Tooltip("Si true : le son (même très faible) ne s'entend que lorsque la coquille est attrapée.")]
+    [SerializeField] private bool playAudioOnlyWhenHeld = true;
+    [Tooltip("Multiplicateur de 'baseVolume' quand la coquille est loin (toujours en mode 'attrapée').")]
+    [SerializeField] private float heldFarBaseMultiplier = 0.1f;
     [Tooltip("Distance (m) à laquelle le son est au max (près de la tête).")]
     [SerializeField] private float maxVolumeDistance = 0.12f;
     [Tooltip("Distance (m) à laquelle le boost est nul (loin de la tête).")]
@@ -116,14 +121,18 @@ public class ShellProximityFeedback : MonoBehaviour
         // Audio
         if (_hasInstance)
         {
-            if (_doorClosed)
+            float v = 0f;
+
+            if (!_doorClosed)
             {
-                _instance.setVolume(0f);
-                return;
+                bool allowAudio = !playAudioOnlyWhenHeld || IsHeld;
+                if (allowAudio)
+                {
+                    float shaped = volumeByProximity01.Evaluate(proximity01);
+                    v = Mathf.Lerp(baseVolume * heldFarBaseMultiplier, maxVolume, shaped);
+                }
             }
 
-            float shaped = volumeByProximity01.Evaluate(proximity01);
-            float v = Mathf.Lerp(baseVolume, maxVolume, shaped);
             _instance.setVolume(v);
         }
 

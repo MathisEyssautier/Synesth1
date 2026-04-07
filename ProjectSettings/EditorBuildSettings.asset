@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SceneFreeRoaming.unity
     guid: caaf204965c817a4ea4c7088f3c9f512
   - enabled: 1
-    path: "Assets/Scenes/M\xE9canique1.unity"
+    path: Assets/Scenes/SynesthesiaMain.unity
     guid: 9a3ba688539d3244f927cba4a18762a5
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}

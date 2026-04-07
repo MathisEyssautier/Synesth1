@@ -6,16 +6,17 @@ TagManager:
   tags:
   - Anchor
   - PlayerHand
+  - TurntableDisc
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Meuble
   - Water
   - UI
   - Grabbable
-  - 
-  - 
+  - PlayerBody
+  - PlayerBlocker
   - 
   - 
   - 

@@ -11,6 +11,8 @@ public class PotardController : MonoBehaviour
     public int nombreCrans = 12;
     [Tooltip("Degres de rotation de main necessaires pour avancer d'un cran")]
     public float seuilDegresCran = 8f;
+    [Tooltip("Cran logique au Start (0 = premier cran). À ajuster si la pose du mesh en scène ne correspond pas à l'index 0.")]
+    [SerializeField] private int cranIndexDepart = 0;
 
     [Header("Positions valides (index de cran, 0 a nombreCrans-1)")]
     public int cranPositionA = 3;
@@ -51,6 +53,13 @@ public class PotardController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
+    /// <summary>Désactive la saisie XR (grab) sans retirer le script.</summary>
+    public void SetInteractable(bool interactable)
+    {
+        if (_grabInteractable != null)
+            _grabInteractable.enabled = interactable;
+    }
+
     private void Start()
     {
         _rotationBaseLocale = Quaternion.Euler(
@@ -59,6 +68,8 @@ public class PotardController : MonoBehaviour
             transform.localEulerAngles.z
         );
         _rb.constraints = RigidbodyConstraints.FreezeAll;
+        int max = Mathf.Max(0, nombreCrans - 1);
+        _cranActuel = Mathf.Clamp(cranIndexDepart, 0, max);
         AppliquerRotationCran(_cranActuel);
         MettreAJourCouleur();
     }

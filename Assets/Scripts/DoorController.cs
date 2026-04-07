@@ -39,7 +39,6 @@ public class DoorController : MonoBehaviour
     private bool isGrabbed = false;
     private bool _inertieActive = false;
     public float currentYAngle = 0f;
-    private float currentDoorParam = 0f;
     private IXRSelectInteractor currentInteractor;
     private float grabAngleOffset = 0f;
     private float angleAtGrab = 0f;

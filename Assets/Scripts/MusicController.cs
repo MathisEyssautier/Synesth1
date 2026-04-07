@@ -1,7 +1,6 @@
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
-using System;
 
 public class MusicManager : MonoBehaviour
 {
@@ -48,7 +47,7 @@ public class MusicManager : MonoBehaviour
         {
             if (type == EVENT_CALLBACK_TYPE.TIMELINE_MARKER)
             {
-                if (parameterPtr == IntPtr.Zero)
+                if (parameterPtr == System.IntPtr.Zero)
                     return FMOD.RESULT.OK;
 
                 var marker = (TIMELINE_MARKER_PROPERTIES)System.Runtime.InteropServices.Marshal.PtrToStructure(
@@ -58,7 +57,7 @@ public class MusicManager : MonoBehaviour
                 else if (marker.name == "PianoStart") CurrentInstrument = "piano";
             }
         }
-        catch (Exception e)
+        catch
         {
         }
         return FMOD.RESULT.OK;

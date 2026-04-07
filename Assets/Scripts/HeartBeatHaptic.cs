@@ -21,7 +21,6 @@ public class HeartbeatHaptic : MonoBehaviour
     [SerializeField] private float expandSpeed = 8f;
     [SerializeField] private float shrinkSpeed = 3f;
     [SerializeField] private float pulseScaleAmount = 0.8f;
-    [SerializeField] private float pulseSpeed = 10f;
 
     private Vector3 _baseScale;
     private Coroutine _heartbeatCoroutine;

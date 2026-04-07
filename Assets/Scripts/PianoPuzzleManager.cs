@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMODUnity;
 
 public class PianoPuzzleManager : MonoBehaviour
 {
@@ -12,6 +13,19 @@ public class PianoPuzzleManager : MonoBehaviour
     [Header("Réussite")]
     [SerializeField] private GameObject onSuccessActivate;
     [SerializeField] private bool disableKeysOnSuccess = true;
+
+    [Header("Réussite — visuel piano")]
+    [Tooltip("Mesh du piano à teinter en jaune (ou autre) quand la séquence est bonne.")]
+    [SerializeField] private Renderer pianoSuccessRenderer;
+    [SerializeField] private Color pianoSuccessColor = new Color(1f, 0.92f, 0.016f);
+    [SerializeField] private float pianoSuccessEmissionMul = 1.25f;
+
+    [Header("Réussite — audio piano")]
+    [SerializeField] private EventReference pianoSuccessSound;
+    [SerializeField] private Transform pianoSuccessSoundOrigin;
+
+    [Header("Réussite — radio (potards + son + blanc)")]
+    [SerializeField] private RadioManager radioManager;
 
     [Header("Échec / reset")]
     [Tooltip("Si true: une mauvaise touche remet la séquence à zéro.")]
@@ -70,6 +84,37 @@ public class PianoPuzzleManager : MonoBehaviour
                 k.SetInteractable(false);
             }
         }
+
+        ApplyPianoSuccessVisual();
+        PlayPianoSuccessSound();
+        radioManager?.UnlockAfterPianoSuccess();
+    }
+
+    private void ApplyPianoSuccessVisual()
+    {
+        if (pianoSuccessRenderer == null) return;
+
+        var mat = pianoSuccessRenderer.material;
+        if (mat == null) return;
+
+        if (mat.HasProperty("_BaseColor"))
+            mat.SetColor("_BaseColor", pianoSuccessColor);
+        else
+            mat.color = pianoSuccessColor;
+
+        if (mat.HasProperty("_EmissionColor"))
+        {
+            mat.EnableKeyword("_EMISSION");
+            mat.SetColor("_EmissionColor", pianoSuccessColor * pianoSuccessEmissionMul);
+        }
+    }
+
+    private void PlayPianoSuccessSound()
+    {
+        if (pianoSuccessSound.IsNull) return;
+
+        var t = pianoSuccessSoundOrigin != null ? pianoSuccessSoundOrigin : transform;
+        RuntimeManager.PlayOneShot(pianoSuccessSound, t.position);
     }
 }
 
