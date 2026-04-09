@@ -148,8 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c3e183ec27ba64d83e010bf18edb92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _useDefaultDevice: 1
-  _deviceID: 
   _channel: 0
   _filterType: 2
   _autoGain: 1
@@ -158,6 +156,7 @@ MonoBehaviour:
   _smoothFall: 1
   _fallSpeed: 0.8
   _propertyBinders: []
+  audioSource: {fileID: 0}
   references:
     version: 2
     RefIds: []
@@ -206,7 +205,7 @@ VFXRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512898155}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -366,8 +365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c3e183ec27ba64d83e010bf18edb92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _useDefaultDevice: 1
-  _deviceID: 
   _channel: 0
   _filterType: 3
   _autoGain: 1
@@ -376,6 +373,7 @@ MonoBehaviour:
   _smoothFall: 1
   _fallSpeed: 0.8
   _propertyBinders: []
+  audioSource: {fileID: 0}
   references:
     version: 2
     RefIds: []
@@ -765,8 +763,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c3e183ec27ba64d83e010bf18edb92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _useDefaultDevice: 1
-  _deviceID: 
   _channel: 0
   _filterType: 1
   _autoGain: 1
@@ -775,6 +771,7 @@ MonoBehaviour:
   _smoothFall: 1
   _fallSpeed: 0.8
   _propertyBinders: []
+  audioSource: {fileID: 0}
   references:
     version: 2
     RefIds: []
@@ -870,7 +867,7 @@ VFXRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537961398}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1033,7 +1030,7 @@ VFXRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091022145}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
