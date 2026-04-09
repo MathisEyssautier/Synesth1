@@ -1038,8 +1038,7 @@ MonoBehaviour:
   onSuccessActivate: {fileID: 1337883048}
   disableKeysOnSuccess: 0
   pianoSuccessRenderer: {fileID: 104796152}
-  pianoSuccessColor: {r: 0.6226415, g: 0.57326263, b: 0.0029369951, a: 1}
-  pianoSuccessEmissionMul: 1.25
+  pianoSuccessBoolProperty: Success
   pianoSuccessSound:
     Guid:
       Data1: 453739466
@@ -14714,6 +14713,7 @@ MonoBehaviour:
   successFlashDuration: 0.25
   successFadeToSoftDuration: 0.45
   onlyAdvanceWhenGuitarHeld: 1
+  indexTriggerThreshold: 0.65
 --- !u!1 &1012046001
 GameObject:
   m_ObjectHideFlags: 0
@@ -20123,6 +20123,11 @@ MonoBehaviour:
   faderBase: {fileID: 1067441662}
   railHalfLength: 0.35
   value: 1
+  enableTargetHaptics: 1
+  targetValue: 0.5
+  targetTolerance: 0.03
+  hapticAmplitude: 0.75
+  hapticDuration: 0.06
 --- !u!1001 &1304314026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21019,7 +21024,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 2030889225}
   stringIndex: 1
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!1 &1371133058
 GameObject:
@@ -22824,7 +22828,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 341448209}
   stringIndex: 4
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!1 &1438445341
 GameObject:
@@ -23831,7 +23834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 14.83, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5999756, y: -170.92505}
+  m_AnchoredPosition: {x: 0.5999756, y: -170.92503}
   m_SizeDelta: {x: -499.99994, y: -544.44995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514419964
@@ -24702,16 +24705,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594276381}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.271, y: 1.192, z: -10.604}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.44676006, y: 5.6594505, z: 0.44676018}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2089472367}
   - {fileID: 2139187366}
   - {fileID: 2095927096}
   - {fileID: 1656848158}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 6238778130100888080}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1594276383
 MonoBehaviour:
@@ -25568,7 +25571,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 607287444}
   stringIndex: 2
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!1 &1620836360
 GameObject:
@@ -26114,7 +26116,7 @@ Transform:
   m_GameObject: {fileID: 1656848157}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.14738, y: 0, z: 6.86979}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29257,6 +29259,7 @@ MonoBehaviour:
   - {fileID: 520001324}
   - {fileID: 1752235525}
   - {fileID: 1427787566}
+  autoDiscoverScenePianoKeys: 1
   objectsToActivateAfterPiano:
   - {fileID: 4230198831188735823}
   - {fileID: 1605989411}
@@ -29391,6 +29394,11 @@ MonoBehaviour:
   faderBase: {fileID: 1068482578}
   railHalfLength: 0.35
   value: 1
+  enableTargetHaptics: 1
+  targetValue: 0.5
+  targetTolerance: 0.03
+  hapticAmplitude: 0.75
+  hapticDuration: 0.06
 --- !u!114 &1838902009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30446,7 +30454,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 265699569}
   stringIndex: 5
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!1 &1902204105
 GameObject:
@@ -31469,7 +31476,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 2077181773}
   stringIndex: 3
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!1 &1968281272
 GameObject:
@@ -31960,6 +31966,11 @@ MonoBehaviour:
   faderBase: {fileID: 777860607}
   railHalfLength: 0.35
   value: 1
+  enableTargetHaptics: 1
+  targetValue: 0.5
+  targetTolerance: 0.03
+  hapticAmplitude: 0.75
+  hapticDuration: 0.06
 --- !u!114 &2008411766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33736,7 +33747,7 @@ Transform:
   m_GameObject: {fileID: 2089472366}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.14738, y: 0, z: 6.86979}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -33934,7 +33945,7 @@ Transform:
   m_GameObject: {fileID: 2095927095}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.14738, y: 0, z: 6.86979}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34227,7 +34238,7 @@ Transform:
   m_GameObject: {fileID: 2139187365}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.14738, y: 0, z: 6.86979}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50489,6 +50500,7 @@ MonoBehaviour:
   successFlashDuration: 0.25
   successFadeToSoftDuration: 0.45
   onlyAdvanceWhenGuitarHeld: 1
+  indexTriggerThreshold: 0.65
 --- !u!23 &5639301586567720614
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51817,6 +51829,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 813626199}
+  - {fileID: 1594276382}
   m_Father: {fileID: 813840218}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &6247950190284293821
@@ -53903,7 +53916,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 1313934094}
   stringIndex: 0
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!23 &7152133821560471531
 MeshRenderer:
@@ -60756,7 +60768,6 @@ SceneRoots:
   - {fileID: 1249617921}
   - {fileID: 1925149487}
   - {fileID: 243537422}
-  - {fileID: 1594276382}
   - {fileID: 1139429030}
   - {fileID: 1759310597}
   - {fileID: 1304314026}
