@@ -35,6 +35,11 @@ public class TurntableDisc : MonoBehaviour
     private bool _isDocked = false;
     private TurntableBase _currentBase;
     private Collider[] _physicsColliders;
+    private bool _playbackPhysicsLocked;
+    private bool _savedUseGravity;
+    private bool _savedIsKinematic;
+    private bool _savedDetectCollisions;
+    private RigidbodyConstraints _savedConstraints;
 
     public int DiscNumber => discNumber;
     public bool IsPlaying => _isPlaying;
@@ -73,6 +78,8 @@ public class TurntableDisc : MonoBehaviour
 
     private void OnDisable()
     {
+        UnlockPlaybackPhysics();
+
         if (_eventInstance.isValid())
         {
             _eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
@@ -135,9 +142,10 @@ public class TurntableDisc : MonoBehaviour
 
         _isPlaying = play;
 
-        // Lock grab only while active.
-        _grab.enabled = !play;
-        SetPhysicsCollidersEnabled(!play);
+        if (play)
+            LockPlaybackPhysics();
+        else
+            UnlockPlaybackPhysics();
 
         if (_eventInstance.isValid())
         {
@@ -183,6 +191,55 @@ public class TurntableDisc : MonoBehaviour
             if (c.isTrigger) continue; // conserve les triggers utilitaires
             c.enabled = enabled;
         }
+    }
+
+    private void LockPlaybackPhysics()
+    {
+        if (_playbackPhysicsLocked) return;
+        if (_grab != null)
+            _grab.enabled = false;
+        SetPhysicsCollidersEnabled(false);
+
+        if (_rb != null)
+        {
+            _savedUseGravity = _rb.useGravity;
+            _savedIsKinematic = _rb.isKinematic;
+            _savedDetectCollisions = _rb.detectCollisions;
+            _savedConstraints = _rb.constraints;
+
+            _rb.linearVelocity = Vector3.zero;
+            _rb.angularVelocity = Vector3.zero;
+            _rb.useGravity = false;
+            _rb.isKinematic = true;
+            _rb.detectCollisions = false;
+            _rb.constraints = RigidbodyConstraints.FreezeAll;
+        }
+
+        _playbackPhysicsLocked = true;
+    }
+
+    private void UnlockPlaybackPhysics()
+    {
+        if (!_playbackPhysicsLocked)
+        {
+            if (_grab != null) _grab.enabled = true;
+            SetPhysicsCollidersEnabled(true);
+            return;
+        }
+
+        if (_rb != null)
+        {
+            _rb.constraints = _savedConstraints;
+            _rb.detectCollisions = _savedDetectCollisions;
+            _rb.isKinematic = _savedIsKinematic;
+            _rb.useGravity = _savedUseGravity;
+        }
+
+        SetPhysicsCollidersEnabled(true);
+        if (_grab != null)
+            _grab.enabled = true;
+
+        _playbackPhysicsLocked = false;
     }
 
     private void ResetPlaybackToStart()

@@ -15,10 +15,9 @@ public class PianoPuzzleManager : MonoBehaviour
     [SerializeField] private bool disableKeysOnSuccess = true;
 
     [Header("Réussite — visuel piano")]
-    [Tooltip("Mesh du piano à teinter en jaune (ou autre) quand la séquence est bonne.")]
+    [Tooltip("Mesh du piano dont le shader expose un bool 'Success' (ou propriété équivalente).")]
     [SerializeField] private Renderer pianoSuccessRenderer;
-    [SerializeField] private Color pianoSuccessColor = new Color(1f, 0.92f, 0.016f);
-    [SerializeField] private float pianoSuccessEmissionMul = 1.25f;
+    [SerializeField] private string pianoSuccessBoolProperty = "Success";
 
     [Header("Réussite — audio piano")]
     [SerializeField] private EventReference pianoSuccessSound;
@@ -93,20 +92,34 @@ public class PianoPuzzleManager : MonoBehaviour
     private void ApplyPianoSuccessVisual()
     {
         if (pianoSuccessRenderer == null) return;
+        Material[] mats = pianoSuccessRenderer.materials;
+        if (mats == null || mats.Length == 0) return;
 
-        var mat = pianoSuccessRenderer.material;
-        if (mat == null) return;
+        string configured = pianoSuccessBoolProperty;
+        string configuredUnderscore = string.IsNullOrEmpty(configured) ? string.Empty : "_" + configured;
 
-        if (mat.HasProperty("_BaseColor"))
-            mat.SetColor("_BaseColor", pianoSuccessColor);
-        else
-            mat.color = pianoSuccessColor;
-
-        if (mat.HasProperty("_EmissionColor"))
+        for (int i = 0; i < mats.Length; i++)
         {
-            mat.EnableKeyword("_EMISSION");
-            mat.SetColor("_EmissionColor", pianoSuccessColor * pianoSuccessEmissionMul);
+            var mat = mats[i];
+            if (mat == null) continue;
+
+            if (TrySetSuccessProperty(mat, configured)) continue;
+            if (TrySetSuccessProperty(mat, configuredUnderscore)) continue;
+            if (TrySetSuccessProperty(mat, "Success")) continue;
+            TrySetSuccessProperty(mat, "_Success");
         }
+    }
+
+    private static bool TrySetSuccessProperty(Material mat, string propertyName)
+    {
+        if (mat == null) return false;
+        if (string.IsNullOrEmpty(propertyName)) return false;
+        if (!mat.HasProperty(propertyName)) return false;
+
+        // Toggle shader properties are represented as float 0/1.
+        mat.SetFloat(propertyName, 1f);
+        mat.SetInt(propertyName, 1);
+        return true;
     }
 
     private void PlayPianoSuccessSound()

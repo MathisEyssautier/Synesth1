@@ -979,8 +979,8 @@ Transform:
   m_GameObject: {fileID: 34116325}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.4386, y: 0, z: -49.9169}
-  m_LocalScale: {x: 12.883329, y: 10, z: 10.049554}
+  m_LocalPosition: {x: -7.4386, y: -0, z: -6.6621}
+  m_LocalScale: {x: 12.883329, y: 10, z: 18.565157}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1038,8 +1038,7 @@ MonoBehaviour:
   onSuccessActivate: {fileID: 1337883048}
   disableKeysOnSuccess: 0
   pianoSuccessRenderer: {fileID: 104796152}
-  pianoSuccessColor: {r: 0.6226415, g: 0.57326263, b: 0.0029369951, a: 1}
-  pianoSuccessEmissionMul: 1.25
+  pianoSuccessBoolProperty: Success
   pianoSuccessSound:
     Guid:
       Data1: 453739466
@@ -1101,7 +1100,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1330,11 +1329,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FinalSequenceController
   redFader:
     fader: {fileID: 1302270931}
-    targetValue: 0.25
+    targetValue: 0.5
     tolerance: 0.1
   greenFader:
     fader: {fileID: 2008411765}
-    targetValue: 0.5
+    targetValue: 0.25
     tolerance: 0.1
   blueFader:
     fader: {fileID: 1838902008}
@@ -1627,7 +1626,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9276a8833c7580e4181c94baf46ac704, type: 2}
+  - {fileID: 2100000, guid: 42e0d5de936e1f647a02aca788621a82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3788,6 +3787,146 @@ LODGroup:
     renderers:
     - renderer: {fileID: 210536077}
   m_Enabled: 1
+--- !u!1 &231573479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 231573483}
+  - component: {fileID: 231573482}
+  - component: {fileID: 231573481}
+  - component: {fileID: 231573480}
+  - component: {fileID: 231573484}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &231573480
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231573479}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &231573481
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231573479}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &231573482
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231573479}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &231573483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231573479}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.7525, y: -0.695, z: -3.4797}
+  m_LocalScale: {x: 15.076331, y: 1, z: 11.561615}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &231573484
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231573479}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &243537421
 GameObject:
   m_ObjectHideFlags: 0
@@ -5714,7 +5853,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -6529,8 +6668,8 @@ GameObject:
   - component: {fileID: 404186388}
   - component: {fileID: 404186387}
   - component: {fileID: 404186386}
-  - component: {fileID: 404186390}
   - component: {fileID: 404186389}
+  - component: {fileID: 404186390}
   m_Layer: 0
   m_Name: Touche9
   m_TagString: Untagged
@@ -6568,7 +6707,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -7679,7 +7818,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -7769,7 +7908,7 @@ MonoBehaviour:
   pressColor: {r: 1, g: 0, b: 1, a: 1}
   colorFlashDuration: 0.15
   pressDepth: 0.01
-  pressDownTime: 0.5
+  pressDownTime: 0.05
   returnTime: 0.08
   puzzleManager: {fileID: 37110170}
 --- !u!54 &520001325
@@ -8266,7 +8405,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8356,7 +8495,7 @@ MonoBehaviour:
   pressColor: {r: 1, g: 0, b: 0, a: 1}
   colorFlashDuration: 0.15
   pressDepth: 0.01
-  pressDownTime: 0.5
+  pressDownTime: 0.05
   returnTime: 0.08
   puzzleManager: {fileID: 37110170}
 --- !u!54 &551081338
@@ -9566,7 +9705,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -9656,7 +9795,7 @@ MonoBehaviour:
   pressColor: {r: 1, g: 0.5098561, b: 0, a: 1}
   colorFlashDuration: 0.15
   pressDepth: 0.01
-  pressDownTime: 0.5
+  pressDownTime: 0.05
   returnTime: 0.08
   puzzleManager: {fileID: 37110170}
 --- !u!54 &658289991
@@ -11441,6 +11580,7 @@ GameObject:
   - component: {fileID: 787091882}
   - component: {fileID: 787091881}
   - component: {fileID: 787091884}
+  - component: {fileID: 787091885}
   m_Layer: 0
   m_Name: Touche2
   m_TagString: Untagged
@@ -11478,7 +11618,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -11571,6 +11711,33 @@ MonoBehaviour:
   pressDownTime: 0.05
   returnTime: 0.08
   puzzleManager: {fileID: 37110170}
+--- !u!54 &787091885
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787091879}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &790069067
 GameObject:
   m_ObjectHideFlags: 0
@@ -18696,203 +18863,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1243939546}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1249617917
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1249617921}
-  - component: {fileID: 1249617920}
-  - component: {fileID: 1249617919}
-  - component: {fileID: 1249617918}
-  - component: {fileID: 1249617922}
-  m_Layer: 0
-  m_Name: Plane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!64 &1249617918
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249617917}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1249617919
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249617917}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 17cc7053715de964b9ebe534e729e357, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1249617920
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249617917}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1249617921
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249617917}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.7085, y: 0, z: 49.888}
-  m_LocalScale: {x: 12.883329, y: 10, z: 10.049554}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1249617922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249617917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38f6bf3d943ac7945842268c9ef1dca6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_InteractionManager: {fileID: 0}
-  m_Colliders: []
-  m_InteractionLayers:
-    m_Bits: 2147483648
-  m_DistanceCalculationMode: 1
-  m_SelectMode: 1
-  m_FocusMode: 1
-  m_CustomReticle: {fileID: 0}
-  m_AllowGazeInteraction: 0
-  m_AllowGazeSelect: 0
-  m_OverrideGazeTimeToSelect: 0
-  m_GazeTimeToSelect: 0.5
-  m_OverrideTimeToAutoDeselectGaze: 0
-  m_TimeToAutoDeselectGaze: 3
-  m_AllowGazeAssistance: 0
-  m_FirstHoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastHoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_HoverExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FirstSelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastSelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_SelectExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FirstFocusEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_LastFocusExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FocusEntered:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FocusExited:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Activated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Deactivated:
-    m_PersistentCalls:
-      m_Calls: []
-  m_StartingHoverFilters: []
-  m_StartingSelectFilters: []
-  m_StartingInteractionStrengthFilters: []
-  m_AutoFindParentInteractableInHierarchy: 0
-  m_ParentInteractableObject: {fileID: 0}
-  m_TeleportationProvider: {fileID: 0}
-  m_MatchOrientation: 0
-  m_MatchDirectionalInput: 1
-  m_TeleportTrigger: 0
-  m_FilterSelectionByHitNormal: 0
-  m_UpNormalToleranceDegrees: 30
-  m_Teleporting:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1252202201
 GameObject:
   m_ObjectHideFlags: 0
@@ -19957,6 +19927,11 @@ MonoBehaviour:
   faderBase: {fileID: 1067441662}
   railHalfLength: 0.35
   value: 1
+  enableTargetHaptics: 1
+  targetValue: 0.5
+  targetTolerance: 0.03
+  hapticAmplitude: 0.75
+  hapticDuration: 0.06
 --- !u!1001 &1304314026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20853,7 +20828,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 2030889225}
   stringIndex: 1
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!1 &1371133058
 GameObject:
@@ -21615,7 +21589,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -22088,7 +22062,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -22178,7 +22152,7 @@ MonoBehaviour:
   pressColor: {r: 0, g: 0.14901961, b: 1, a: 1}
   colorFlashDuration: 0.15
   pressDepth: 0.01
-  pressDownTime: 0.5
+  pressDownTime: 0.05
   returnTime: 0.08
   puzzleManager: {fileID: 37110170}
 --- !u!54 &1427787567
@@ -22658,7 +22632,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 341448209}
   stringIndex: 4
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!1 &1438445341
 GameObject:
@@ -25345,7 +25318,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 607287444}
   stringIndex: 2
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!1 &1620836360
 GameObject:
@@ -26759,8 +26731,8 @@ GameObject:
   - component: {fileID: 1716198294}
   - component: {fileID: 1716198293}
   - component: {fileID: 1716198292}
-  - component: {fileID: 1716198296}
   - component: {fileID: 1716198295}
+  - component: {fileID: 1716198296}
   m_Layer: 0
   m_Name: Touche1
   m_TagString: Untagged
@@ -26798,7 +26770,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -27404,7 +27376,7 @@ MonoBehaviour:
   - {fileID: 336866678}
   blackCubeRenderer: {fileID: 7523227233155545810}
   solvedColor: {r: 1, g: 1, b: 1, a: 1}
-  rewardObjectToActivate: {fileID: 911932564}
+  rewardObjectToActivate: {fileID: 1484924397}
   activateRewardObjectOnSolve: 0
   rewardUnlockedOneShot:
     Guid:
@@ -27479,7 +27451,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -27569,7 +27541,7 @@ MonoBehaviour:
   pressColor: {r: 0.46262684, g: 0, b: 0.8018868, a: 1}
   colorFlashDuration: 0.15
   pressDepth: 0.01
-  pressDownTime: 0.5
+  pressDownTime: 0.05
   returnTime: 0.08
   puzzleManager: {fileID: 37110170}
 --- !u!54 &1752235526
@@ -28541,6 +28513,7 @@ MonoBehaviour:
   - {fileID: 520001324}
   - {fileID: 1752235525}
   - {fileID: 1427787566}
+  autoDiscoverScenePianoKeys: 1
   objectsToActivateAfterPiano:
   - {fileID: 4230198831188735823}
   - {fileID: 1605989411}
@@ -28675,6 +28648,11 @@ MonoBehaviour:
   faderBase: {fileID: 1068482578}
   railHalfLength: 0.35
   value: 1
+  enableTargetHaptics: 1
+  targetValue: 0.5
+  targetTolerance: 0.03
+  hapticAmplitude: 0.75
+  hapticDuration: 0.06
 --- !u!114 &1838902009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29730,7 +29708,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 265699569}
   stringIndex: 5
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!1 &1902204105
 GameObject:
@@ -30753,7 +30730,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 2077181773}
   stringIndex: 3
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!1 &1968281272
 GameObject:
@@ -31244,6 +31220,11 @@ MonoBehaviour:
   faderBase: {fileID: 777860607}
   railHalfLength: 0.35
   value: 1
+  enableTargetHaptics: 1
+  targetValue: 0.5
+  targetTolerance: 0.03
+  hapticAmplitude: 0.75
+  hapticDuration: 0.06
 --- !u!114 &2008411766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34685,7 +34666,7 @@ MonoBehaviour:
   snapPoint: {fileID: 1385678095}
   requiredShellPuzzle: {fileID: 0}
   requiredGuitarPuzzle: {fileID: 5605554354709227366}
-  faderToActivate: {fileID: 1484924397}
+  faderToActivate: {fileID: 911932564}
   requireObjectReleased: 1
   disableGrabAfterPlaced: 1
   lockRigidbodyKinematic: 1
@@ -47454,7 +47435,7 @@ MonoBehaviour:
   snapPoint: {fileID: 1325544210}
   requiredShellPuzzle: {fileID: 1752026538}
   requiredGuitarPuzzle: {fileID: 0}
-  faderToActivate: {fileID: 911932564}
+  faderToActivate: {fileID: 1484924397}
   requireObjectReleased: 1
   disableGrabAfterPlaced: 1
   lockRigidbodyKinematic: 1
@@ -53016,7 +52997,6 @@ MonoBehaviour:
   canvasRoot: {fileID: 1313934094}
   stringIndex: 0
   guitarAssemblyManager: {fileID: 1041920800}
-  requireHeldToPlace: 1
   guitarRootNameHint: GUITAR
 --- !u!23 &7152133821560471531
 MeshRenderer:
@@ -59866,10 +59846,10 @@ SceneRoots:
   - {fileID: 756192408}
   - {fileID: 2092139010}
   - {fileID: 34116330}
-  - {fileID: 1249617921}
   - {fileID: 1925149487}
   - {fileID: 243537422}
   - {fileID: 1139429030}
   - {fileID: 1759310597}
   - {fileID: 1304314026}
   - {fileID: 1853944269}
+  - {fileID: 231573483}

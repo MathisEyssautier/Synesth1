@@ -23,7 +23,6 @@ public class GuitarStringFeedback : MonoBehaviour
     [Tooltip("Index de la corde (0..5). Doit correspondre à l'entrée dans GuitarAssemblyManager.")]
     [SerializeField] private int stringIndex = 0;
     [SerializeField] private GuitarAssemblyManager guitarAssemblyManager;
-    [SerializeField] private bool requireHeldToPlace = true;
     [SerializeField] private string guitarRootNameHint = "GUITARE";
 
     private XRGrabInteractable _grab;
@@ -85,21 +84,22 @@ public class GuitarStringFeedback : MonoBehaviour
         _feedbackRoutine = StartCoroutine(FeedbackRoutine());
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        TryPlaceOnGuitar(other);
+        TryPlaceOnGuitar(collision);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionStay(Collision collision)
     {
-        TryPlaceOnGuitar(other);
+        TryPlaceOnGuitar(collision);
     }
 
-    private void TryPlaceOnGuitar(Collider other)
+    private void TryPlaceOnGuitar(Collision collision)
     {
         if (_placedOnGuitar) return;
+        if (collision == null) return;
+        Collider other = collision.collider;
         if (other == null) return;
-        if (requireHeldToPlace && (_grab == null || !_grab.isSelected)) return;
 
         var manager = guitarAssemblyManager;
         if (manager == null)

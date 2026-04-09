@@ -42,14 +42,14 @@ public class PianoKey : MonoBehaviour
     private Coroutine _animRoutine;
     private Coroutine _colorRoutine;
     private Rigidbody _rb;
+    private Collider _keyCollider;
+    private readonly Collider[] _overlapResults = new Collider[16];
 
     public int KeyId => keyId;
 
     private void Awake()
     {
-        var col = GetComponent<Collider>();
-        col.isTrigger = true;
-
+        _keyCollider = GetComponent<Collider>();
         _initialLocalPos = transform.localPosition;
         _rb = GetComponent<Rigidbody>();
 
@@ -60,6 +60,13 @@ public class PianoKey : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // Fallback robuste: détecte la main par overlap physique même si les callbacks Trigger/Collision
+        // ne sont pas envoyés (cas XR + rigidbodies kinematic).
+        TryPressFromOverlap();
+    }
+
     public void SetInteractable(bool interactable)
     {
         _isInteractable = interactable;
@@ -67,12 +74,88 @@ public class PianoKey : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        TryPressFromCollider(other);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        TryPressFromCollider(other);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision == null) return;
+        TryPressFromCollider(collision.collider);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision == null) return;
+        TryPressFromCollider(collision.collider);
+    }
+
+    private void TryPressFromCollider(Collider other)
+    {
+        if (other == null) return;
         if (!_isInteractable) return;
-        if (!other.CompareTag(handTag)) return;
+        if (!IsHandCollider(other)) return;
         if (Time.time < _nextAllowedPressTime) return;
 
         _nextAllowedPressTime = Time.time + pressCooldown;
         Press();
+    }
+
+    private bool IsHandCollider(Collider other)
+    {
+        if (other == null || string.IsNullOrEmpty(handTag)) return false;
+        if (other.CompareTag(handTag)) return true;
+
+        Rigidbody rb = other.attachedRigidbody;
+        if (rb != null)
+        {
+            if (rb.CompareTag(handTag)) return true;
+            if (rb.transform != null && rb.transform.root != null && rb.transform.root.CompareTag(handTag))
+                return true;
+        }
+
+        if (other.transform != null)
+        {
+            if (other.transform.CompareTag(handTag)) return true;
+            if (other.transform.root != null && other.transform.root.CompareTag(handTag)) return true;
+        }
+
+        return false;
+    }
+
+    private void TryPressFromOverlap()
+    {
+        if (_keyCollider == null) return;
+        if (!_isInteractable) return;
+        if (Time.time < _nextAllowedPressTime) return;
+
+        Bounds b = _keyCollider.bounds;
+        if (b.extents.sqrMagnitude <= 0f) return;
+
+        int count = Physics.OverlapBoxNonAlloc(
+            b.center,
+            b.extents * 0.95f,
+            _overlapResults,
+            transform.rotation,
+            ~0,
+            QueryTriggerInteraction.Collide);
+
+        for (int i = 0; i < count; i++)
+        {
+            Collider c = _overlapResults[i];
+            if (c == null) continue;
+            if (c == _keyCollider) continue;
+            if (c.transform.IsChildOf(transform)) continue;
+            if (!IsHandCollider(c)) continue;
+
+            _nextAllowedPressTime = Time.time + pressCooldown;
+            Press();
+            break;
+        }
     }
 
     private void Press()

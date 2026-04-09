@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class FaderController : MonoBehaviour
 {
@@ -18,17 +20,26 @@ public class FaderController : MonoBehaviour
     [Range(0f, 1f)]
     public float value = 0f;
 
+    [Header("Haptique cible")]
+    [SerializeField] private bool enableTargetHaptics = true;
+    [Range(0f, 1f)] [SerializeField] private float targetValue = 0.5f;
+    [Range(0.001f, 0.2f)] [SerializeField] private float targetTolerance = 0.03f;
+    [Range(0f, 1f)] [SerializeField] private float hapticAmplitude = 0.75f;
+    [SerializeField] private float hapticDuration = 0.06f;
+
     private XRGrabInteractable _grab;
     private bool _isGrabbed = false;
     private float _lockedLocalY;
+    private IXRSelectInteractor _activeInteractor;
+    private bool _wasInsideTarget;
 
     void Awake()
     {
         _grab = GetComponent<XRGrabInteractable>();
         _grab.trackPosition = false;
         _grab.throwOnDetach = false;
-        _grab.selectEntered.AddListener(_ => _isGrabbed = true);
-        _grab.selectExited.AddListener(_ => { _isGrabbed = false; ConstrainToRail(); ApplyValueToMusic(); });
+        _grab.selectEntered.AddListener(OnGrabbed);
+        _grab.selectExited.AddListener(OnReleased);
 
         _lockedLocalY = faderBase.InverseTransformPoint(transform.position).y;
     }
@@ -55,6 +66,7 @@ public class FaderController : MonoBehaviour
         transform.position = faderBase.TransformPoint(localPos);
         value = Mathf.InverseLerp(-railHalfLength, railHalfLength, localPos.x);
 
+        UpdateTargetHaptics();
         ApplyValueToMusic();
     }
 
@@ -84,5 +96,83 @@ public class FaderController : MonoBehaviour
                 musicManager.SetVolumeBass(value);
                 break;
         }
+    }
+
+    private void OnGrabbed(SelectEnterEventArgs args)
+    {
+        _isGrabbed = true;
+        _activeInteractor = args.interactorObject;
+        _wasInsideTarget = Mathf.Abs(value - targetValue) <= targetTolerance;
+    }
+
+    private void OnReleased(SelectExitEventArgs args)
+    {
+        _isGrabbed = false;
+        _activeInteractor = null;
+        _wasInsideTarget = false;
+        ConstrainToRail();
+        ApplyValueToMusic();
+    }
+
+    private void UpdateTargetHaptics()
+    {
+        if (!enableTargetHaptics || !_isGrabbed) return;
+
+        bool inside = Mathf.Abs(value - targetValue) <= targetTolerance;
+        if (inside && !_wasInsideTarget)
+            SendHapticToCurrentInteractor(hapticAmplitude, hapticDuration);
+
+        _wasInsideTarget = inside;
+    }
+
+    private void SendHapticToCurrentInteractor(float amplitude, float duration)
+    {
+        float amp = Mathf.Clamp01(amplitude);
+        float dur = Mathf.Max(0.01f, duration);
+
+        if (_activeInteractor is XRBaseInputInteractor inputInteractor)
+        {
+            inputInteractor.SendHapticImpulse(amp, dur);
+            return;
+        }
+
+        Transform t = _activeInteractor != null ? _activeInteractor.transform : null;
+        if (t == null) return;
+
+        if (NameLooksLeft(t))
+        {
+            TrySendToNode(XRNode.LeftHand, amp, dur);
+            return;
+        }
+
+        if (NameLooksRight(t))
+        {
+            TrySendToNode(XRNode.RightHand, amp, dur);
+        }
+    }
+
+    private static bool NameLooksLeft(Transform t)
+    {
+        if (t == null) return false;
+        if (t.name.Contains("Left Controller")) return true;
+        if (t.parent != null && t.parent.name.Contains("Left Controller")) return true;
+        return false;
+    }
+
+    private static bool NameLooksRight(Transform t)
+    {
+        if (t == null) return false;
+        if (t.name.Contains("Right Controller")) return true;
+        if (t.parent != null && t.parent.name.Contains("Right Controller")) return true;
+        return false;
+    }
+
+    private static bool TrySendToNode(XRNode node, float amp, float dur)
+    {
+        InputDevice device = InputDevices.GetDeviceAtXRNode(node);
+        if (!device.isValid) return false;
+        if (!device.TryGetHapticCapabilities(out HapticCapabilities caps)) return false;
+        if (!caps.supportsImpulse || caps.numChannels <= 0) return false;
+        return device.SendHapticImpulse(0u, amp, dur);
     }
 }

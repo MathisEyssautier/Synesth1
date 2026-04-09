@@ -35,6 +35,7 @@ public class SalonOnboardingController : MonoBehaviour
 
     [Header("Piano interaction gate")]
     [SerializeField] private PianoKey[] pianoKeys;
+    [SerializeField] private bool autoDiscoverScenePianoKeys = true;
 
     [Header("Objects to reveal after first piano note (cube, old phone, etc.)")]
     [SerializeField] private GameObject[] objectsToActivateAfterPiano;
@@ -45,9 +46,12 @@ public class SalonOnboardingController : MonoBehaviour
     private FlowState _state = FlowState.WaitVoice1End;
     private float[] _otherLightsTargetIntensities;
     private bool _otherLightsFadeStarted;
+    private PianoKey[] _resolvedPianoKeys;
 
     private void Awake()
     {
+        ResolvePianoKeys();
+
         if (pianoDirectionalLight != null)
         {
             if (!pianoDirectionalLight.gameObject.activeSelf)
@@ -146,12 +150,24 @@ public class SalonOnboardingController : MonoBehaviour
 
     private void SetPianoInteractable(bool interactable)
     {
-        if (pianoKeys == null) return;
-        for (int i = 0; i < pianoKeys.Length; i++)
+        if (_resolvedPianoKeys == null) return;
+        for (int i = 0; i < _resolvedPianoKeys.Length; i++)
         {
-            if (pianoKeys[i] == null) continue;
-            pianoKeys[i].SetInteractable(interactable);
+            if (_resolvedPianoKeys[i] == null) continue;
+            _resolvedPianoKeys[i].SetInteractable(interactable);
         }
+    }
+
+    private void ResolvePianoKeys()
+    {
+        if (autoDiscoverScenePianoKeys)
+        {
+            _resolvedPianoKeys = FindObjectsByType<PianoKey>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            if (_resolvedPianoKeys != null && _resolvedPianoKeys.Length > 0)
+                return;
+        }
+
+        _resolvedPianoKeys = pianoKeys;
     }
 
     private static void SetObjectsActive(GameObject[] objects, bool active)
