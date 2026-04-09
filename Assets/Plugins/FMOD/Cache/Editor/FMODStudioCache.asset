@@ -392,7 +392,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639106588907704008
+  lastModified: 639111622767250062
   FileSizes:
   - Name: 
     Value: 3884
@@ -679,7 +679,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639106588907683631
+  lastModified: 639111622767239901
   FileSizes: []
   Exists: 1
 --- !u!114 &-3784445766276628875
@@ -1246,7 +1246,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5798737156110101823}
   cacheVersion: 131858
-  cacheTime: 639106588907704008
+  cacheTime: 639111622767250062
   SerializableEventsDict:
   - key: event:/SexMachine
     index: 0
@@ -1488,7 +1488,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639106588907428888
+  lastModified: 639111622767137174
   FileSizes: []
   Exists: 1
 --- !u!114 &446376785645907964
