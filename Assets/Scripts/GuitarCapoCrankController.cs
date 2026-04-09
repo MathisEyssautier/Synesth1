@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -53,9 +54,13 @@ public class GuitarCapoCrankController : MonoBehaviour
     private bool _solved;
     private bool _locked;
 
-    private IXRSelectInteractor _holdingInteractor;
     private Material _matInstance;
     private Coroutine _successVisualRoutine;
+
+    [Header("Index trigger (les deux mains)")]
+    [SerializeField] private float indexTriggerThreshold = 0.65f;
+    private bool _leftTriggerWasDown;
+    private bool _rightTriggerWasDown;
 
     private void Awake()
     {
@@ -112,7 +117,6 @@ public class GuitarCapoCrankController : MonoBehaviour
         {
             _guitar.selectEntered.AddListener(OnGuitarGrabbed);
             _guitar.selectExited.AddListener(OnGuitarReleased);
-            _guitar.activated.AddListener(OnGuitarActivated);
         }
     }
 
@@ -122,35 +126,52 @@ public class GuitarCapoCrankController : MonoBehaviour
         {
             _guitar.selectEntered.RemoveListener(OnGuitarGrabbed);
             _guitar.selectExited.RemoveListener(OnGuitarReleased);
-            _guitar.activated.RemoveListener(OnGuitarActivated);
+        }
+    }
+
+    private void Update()
+    {
+        if (_solved && _locked) return;
+        if (crankMarkers == null || crankMarkers.Length == 0) return;
+        if (onlyAdvanceWhenGuitarHeld && !_guitarHeld) return;
+        if (_locked) return;
+
+        // Index trigger gauche ou droite : front montant pour avancer d'un cran.
+        // (Les deux appels sont nécessaires chaque frame pour mettre à jour l'état wasDown.)
+        bool leftEdge = TryIndexTriggerRisingEdge(XRNode.LeftHand, ref _leftTriggerWasDown);
+        bool rightEdge = TryIndexTriggerRisingEdge(XRNode.RightHand, ref _rightTriggerWasDown);
+        if (leftEdge || rightEdge)
+        {
+            int next = (_currentIndex + 1) % crankMarkers.Length;
+            SetCrankIndex(next);
         }
     }
 
     private void OnGuitarGrabbed(SelectEnterEventArgs args)
     {
         _guitarHeld = true;
-        _holdingInteractor = args.interactorObject;
     }
 
     private void OnGuitarReleased(SelectExitEventArgs args)
     {
         _guitarHeld = false;
-        _holdingInteractor = null;
+        _leftTriggerWasDown = false;
+        _rightTriggerWasDown = false;
     }
 
-    private void OnGuitarActivated(ActivateEventArgs args)
+    private bool TryIndexTriggerRisingEdge(XRNode node, ref bool wasDown)
     {
-        if (_solved && _locked) return;
-        if (crankMarkers == null || crankMarkers.Length == 0) return;
+        InputDevice dev = InputDevices.GetDeviceAtXRNode(node);
+        if (!dev.isValid) return false;
 
-        // Ne réagit qu'aux activations faites par l'interactor qui tient la guitare.
-        if (onlyAdvanceWhenGuitarHeld && !_guitarHeld) return;
+        float v = 0f;
+        if (!dev.TryGetFeatureValue(CommonUsages.trigger, out v))
+            return false;
 
-        if (_locked) return;
-
-        // Avance au cran suivant à chaque pression.
-        int next = (_currentIndex + 1) % crankMarkers.Length;
-        SetCrankIndex(next);
+        bool down = v >= indexTriggerThreshold;
+        bool rising = down && !wasDown;
+        wasDown = down;
+        return rising;
     }
 
     public bool IsOnTargetCrank => !_locked && _currentIndex == targetCrankIndex;

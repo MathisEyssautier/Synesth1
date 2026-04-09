@@ -38,7 +38,7 @@ public class LocomotionManager : MonoBehaviour
 
     private LocomotionMode _currentMode;
     private Transform _defaultForwardSource;
-    private bool _snapTurnEnabled = true;
+    private bool _snapTurnEnabled = false;
     private bool _forceDisabled = false;
     public bool IsForceDisabled => _forceDisabled;
 

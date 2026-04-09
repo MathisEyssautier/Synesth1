@@ -51,7 +51,7 @@ public class VRPauseMenuController : MonoBehaviour
     private float _playerHeightOffset;
 
     private MoveMode _moveMode = MoveMode.Linear;
-    private bool _snapTurnEnabled = true;
+    private bool _snapTurnEnabled = false;
     private readonly float[] _snapAngles = { 30f, 45f, 60f };
     private int _snapAngleIndex = 1;
 

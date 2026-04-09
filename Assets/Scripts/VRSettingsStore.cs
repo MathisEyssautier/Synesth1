@@ -5,7 +5,7 @@ public static class VRSettingsStore
     // Session-only settings (no PlayerPrefs):
     // shared between scenes while app runs, reset on game restart.
     private static int _moveMode = 0; // 0 linear, 1 teleport
-    private static bool _snapEnabled = true;
+    private static bool _snapEnabled = false;
     private static float _snapAngle = 45f;
     private static float _heightOffset = 0f;
 
