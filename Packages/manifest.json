@@ -19,6 +19,7 @@
     "com.unity.test-framework": "1.6.0",
     "com.unity.timeline": "1.8.10",
     "com.unity.ugui": "2.0.0",
+    "com.unity.visualeffectgraph": "17.3.0",
     "com.unity.visualscripting": "1.9.9",
     "com.unity.xr.interaction.toolkit": "3.3.1",
     "com.unity.xr.legacyinputhelpers": "2.1.13",
@@ -59,5 +60,14 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "Keijiro",
+      "url": "https://registry.npmjs.com",
+      "scopes": [
+        "jp.keijiro"
+      ]
+    }
+  ]
 }
