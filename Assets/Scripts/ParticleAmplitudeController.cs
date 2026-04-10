@@ -37,6 +37,8 @@ public class VFXAmplitudeDriver : MonoBehaviour
     private void Start()
     {
         SetupDSP();
+        Debug.Log("SetUp");
+
     }
 
     private void Update()
@@ -58,6 +60,7 @@ public class VFXAmplitudeDriver : MonoBehaviour
             if (vfx.HasFloat(_propertyID))
                 vfx.SetFloat(_propertyID, value);
         }
+        Debug.Log(value);
     }
 
     // ── FMOD DSP SETUP ─────────────────────────────

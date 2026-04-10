@@ -3,6 +3,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using FMODUnity;
 using FMOD.Studio;
+using System.Collections;
+
 
 [RequireComponent(typeof(XRGrabInteractable))]
 public class GrabbableMusicObject : MonoBehaviour
@@ -32,6 +34,14 @@ public class GrabbableMusicObject : MonoBehaviour
     private Color _baseColor = Color.white;
     private bool _isOn = false;
     public bool IsOn => _isOn;
+    private FMOD.DSP _dsp;
+    private FMOD.DSP_METERING_INFO _inputInfo;
+    private FMOD.DSP_METERING_INFO _outputInfo;
+    private FMOD.Studio.PLAYBACK_STATE _playbackState;
+    private Coroutine _meterCoroutine;
+
+
+
 
     private void Awake()
     {
@@ -57,6 +67,7 @@ public class GrabbableMusicObject : MonoBehaviour
             _eventInstance = RuntimeManager.CreateInstance(musicEvent);
             RuntimeManager.AttachInstanceToGameObject(_eventInstance, gameObject);
             _eventInstance.start();
+            _meterCoroutine = StartCoroutine(SetupMetering());
         }
 
         SetEnabledState(startEnabled, instant: true);
@@ -69,8 +80,45 @@ public class GrabbableMusicObject : MonoBehaviour
             _eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             _eventInstance.release();
         }
+        if (_meterCoroutine != null)
+        {
+            StopCoroutine(_meterCoroutine);
+            _meterCoroutine = null;
+        }
     }
+    private IEnumerator SetupMetering()
+    {
+        // attendre que l'event soit réellement en train de jouer
+        do
+        {
+            _eventInstance.getPlaybackState(out _playbackState);
+            yield return null;
+        }
+        while (_playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING);
 
+        _eventInstance.getChannelGroup(out FMOD.ChannelGroup channelGroup);
+
+        channelGroup.getDSP(
+            FMOD.CHANNELCONTROL_DSP_INDEX.FADER,
+            out _dsp
+        );
+
+        _dsp.setMeteringEnabled(true, true);
+    }
+    private void Update()
+    {
+        if (!_eventInstance.isValid()) return;
+
+        if (_playbackState == FMOD.Studio.PLAYBACK_STATE.PLAYING && _dsp.hasHandle())
+        {
+            _dsp.getMeteringInfo(out _inputInfo, out _outputInfo);
+
+            float left = _outputInfo.rmslevel[0];
+            float right = _outputInfo.rmslevel[1];
+
+            Debug.Log($"FMOD L: {left:F4} | R: {right:F4}");
+        }
+    }
     private void OnDestroy()
     {
         if (_grab != null)

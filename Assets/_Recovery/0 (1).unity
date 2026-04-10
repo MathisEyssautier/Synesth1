@@ -24723,7 +24723,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594276381}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a46f7f701be869479568deacfc50f79, type: 3}
   m_Name: 
@@ -24735,7 +24735,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594276381}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &1602268954
 GameObject:
   m_ObjectHideFlags: 0
@@ -26129,7 +26129,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656848157}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -33761,7 +33761,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089472366}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74c3e183ec27ba64d83e010bf18edb92, type: 3}
   m_Name: 
@@ -53375,15 +53375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e014d315de120cb45a05fbd16ae70500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnityVFXReactiveAudio.FMODAudioCapture
-  _emitter: {fileID: 0}
-  _musicObject: {fileID: 7006277426748370361}
-  _autoFindEmitter: 1
-  <IsReady>k__BackingField: 0
-  <ChannelCount>k__BackingField: 0
-  <SampleRate>k__BackingField: 0
-  _dspAttached: 0
-  _fmodChannels: 0
-  _fmodSampleRate: 0
 --- !u!114 &7006277426748370363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53410,9 +53401,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 6764203278970648746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 720e1411a2191d44a8208dd353bd8384, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b02aae0e9f278144acde17449269401, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::VolumeListener
+  m_EditorClassIdentifier: Assembly-CSharp::DisplayEventSound
+  eventReference:
+    Guid:
+      Data1: 935017928
+      Data2: 1182852487
+      Data3: 1982473357
+      Data4: 1257707208
+    Path: event:/LonelyDayIPOD
+  vfxTargets:
+  - {fileID: 1787346948}
+  propertyName: Amplitude
+  amplitudeMultiplier: 50
+  leftVolume: 0
+  rightVolume: 0
 --- !u!33 &7015368017014868244
 MeshFilter:
   m_ObjectHideFlags: 0
