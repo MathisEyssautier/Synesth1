@@ -1,89 +1,51 @@
+using System;
 using UnityEngine;
 using Unity.Mathematics;
 
 namespace UnityVFXReactiveAudio
 {
-    /// <summary>
-    /// Version modifiée de SpectrumAnalyzer compatible avec AudioCapture ET FMODAudioCapture.
-    /// Seul changement : audioSource est maintenant un Component casté via IAudioCapture.
-    /// </summary>
+    //
+    // Unity component used to provide spectrum data from a specific audio
+    // channel.
+    //
     [AddComponentMenu("UnityVFXReactiveAudio/Spectrum Analyzer")]
     public sealed class SpectrumAnalyzer : MonoBehaviour
     {
-        #region Editor attributes
-
+        #region Editor attributes and public properties
+        
+        // Channel Selection
         [SerializeField, Range(0, 15)] int _channel = 0;
-        public int channel { get => _channel; set => _channel = value; }
+        public int channel
+          { get => _channel;
+            set => _channel = value; }
 
+        // Spectrum resolution
         [SerializeField] int _resolution = 512;
         public int resolution
-        { get => _resolution; set => _resolution = ValidateResolution(value); }
+          { get => _resolution;
+            set => _resolution = ValidateResolution(value); }
 
+        // Auto gain control switch
         [SerializeField] bool _autoGain = true;
-        public bool autoGain { get => _autoGain; set => _autoGain = value; }
+        public bool autoGain
+          { get => _autoGain;
+            set => _autoGain = value; }
 
+        // Manual input gain (only used when auto gain is off)
         [SerializeField, Range(-10, 120)] float _gain = 0;
-        public float gain { get => _gain; set => _gain = value; }
+        public float gain
+          { get => _gain;
+            set => _gain = value; }
 
+        // Dynamic range in dB
         [SerializeField, Range(1, 120)] float _dynamicRange = 80;
-        public float dynamicRange { get => _dynamicRange; set => _dynamicRange = value; }
+        public float dynamicRange
+          { get => _dynamicRange;
+            set => _dynamicRange = value; }
 
         #endregion
 
-        #region Audio source — accepte AudioCapture OU FMODAudioCapture
-
-        [SerializeField] private Component _audioSourceComponent = null;
-
-        private IAudioCapture _captureCache;
-
-        public IAudioCapture AudioSource
-        {
-            get
-            {
-                if (_captureCache == null && _audioSourceComponent != null)
-                    _captureCache = _audioSourceComponent as IAudioCapture;
-                return _captureCache;
-            }
-        }
-
-        public void SetAudioSource(IAudioCapture source)
-        {
-            _audioSourceComponent = source as Component;
-            _captureCache = source;
-        }
-
-        [System.Obsolete("Utilisez SetAudioSource() ou le champ _audioSourceComponent dans l'Inspector.")]
-        public AudioCapture audioSource
-        {
-            get => _audioSourceComponent as AudioCapture;
-            set { _audioSourceComponent = value; _captureCache = value; }
-        }
-
-        #endregion
-
-        #region Runtime public properties
-
-        public float currentGain => _autoGain ? -_head : _gain;
-
-        public Unity.Collections.NativeArray<float> spectrumArray    => Fft.Spectrum;
-        public Unity.Collections.NativeArray<float> logSpectrumArray => LogScaler.Resample(Fft.Spectrum);
-        public System.ReadOnlySpan<float> spectrumSpan    => Fft.Spectrum.GetReadOnlySpan();
-        public System.ReadOnlySpan<float> logSpectrumSpan => logSpectrumArray.GetReadOnlySpan();
-
-        public void ResetAutoGain() => _head = kSilence;
-
-        #endregion
-
-        #region Private
-
-        const float kSilence = -240;
-        float _head = kSilence;
-
-        FftBuffer Fft => _fft ?? (_fft = new FftBuffer(_resolution * 2));
-        FftBuffer _fft;
-
-        LogScaler LogScaler => _logScaler ?? (_logScaler = new LogScaler());
-        LogScaler _logScaler;
+        #region Attribute validators
 
         static int ValidateResolution(int x)
         {
@@ -94,44 +56,101 @@ namespace UnityVFXReactiveAudio
 
         #endregion
 
-        #region MonoBehaviour
+        #region Runtime public properties and methods
+
+        // Current input gain (dB)
+        public float currentGain => _autoGain ? -_head : _gain;
+
+        // Spectrum data as NativeArray
+        public Unity.Collections.NativeArray<float> spectrumArray
+          => Fft.Spectrum;
+
+        // X-axis log scaled spectrum data as NativeArray
+        public Unity.Collections.NativeArray<float> logSpectrumArray
+          => LogScaler.Resample(Fft.Spectrum);
+
+        // Spectrum data as ReadOnlySpan
+        public System.ReadOnlySpan<float> spectrumSpan
+          => Fft.Spectrum.GetReadOnlySpan();
+
+        // X-axis log scaled spectrum data as ReadOnlySpan
+        public System.ReadOnlySpan<float> logSpectrumSpan
+          => logSpectrumArray.GetReadOnlySpan();
+
+        // Reset the auto gain state.
+        public void ResetAutoGain() => _head = kSilence;
+
+        #endregion
+
+        #region Private members
+
+        // Silence: Locally defined noise floor level (dBFS)
+        const float kSilence = -240;
+
+        // Nominal level of auto gain (recent maximum level)
+        float _head = kSilence;
+        
+        public AudioCapture audioSource;
+
+        // FFT buffer object with lazy initialization
+        FftBuffer Fft => _fft ?? (_fft = new FftBuffer(_resolution * 2));
+        FftBuffer _fft;
+
+        // Log scale resampler with lazy initialization
+        LogScaler LogScaler => _logScaler ?? (_logScaler = new LogScaler());
+        LogScaler _logScaler;
+
+        #endregion
+
+        #region MonoBehaviour implementation
 
         private void OnEnable()
-        {
+        { 
             _head = kSilence + _dynamicRange;
+
             Update();
         }
 
         void OnDisable()
         {
-            _fft?.Dispose(); _fft = null;
-            _logScaler?.Dispose(); _logScaler = null;
+            _fft?.Dispose();
+            _fft = null;
+
+            _logScaler?.Dispose();
+            _logScaler = null;
         }
 
         void Update()
         {
-            var src = AudioSource;
             float input = kSilence;
-
-            if (src != null && src.IsReady)
-                input = src.GetChannelLevel(_channel);
-
+            
+            if (audioSource && audioSource.IsReady) 
+                input = audioSource?.GetChannelLevel(_channel) ?? kSilence;
+            
             var dt = Time.deltaTime;
 
+            // Auto gain control
             if (_autoGain)
             {
+                // Slowly return to the noise floor.
                 const float kDecaySpeed = 0.6f;
                 _head -= kDecaySpeed * dt;
                 _head = Mathf.Max(_head, kSilence + _dynamicRange);
+
+                // Pull up by input with a small headroom.
                 var room = _dynamicRange * 0.05f;
                 _head = Mathf.Clamp(input - room, _head, 0);
             }
 
-            if (src != null && src.IsReady && src.InterleavedDataSlice.Length > 0)
-                _fft?.Push(src.GetChannelDataSlice(_channel));
+            // FFT
+            if (audioSource.IsReady && audioSource.InterleavedDataSlice.Length > 0)
+            {
+                _fft?.Push(audioSource.GetChannelDataSlice(_channel));
+            }
             else
+            {
                 _fft?.PushEmptyData(0);
-
+            }
             _fft?.Analyze(-currentGain - _dynamicRange, -currentGain);
         }
 

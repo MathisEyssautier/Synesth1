@@ -27,6 +27,7 @@ public class GrabbableMusicObject : MonoBehaviour
 
     private XRGrabInteractable _grab;
     private EventInstance _eventInstance;
+    public EventInstance EventInstance => _eventInstance;
     private Material _materialInstance;
     private Color _baseColor = Color.white;
     private bool _isOn = false;
