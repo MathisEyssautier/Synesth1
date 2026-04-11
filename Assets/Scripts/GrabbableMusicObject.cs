@@ -3,6 +3,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using FMODUnity;
 using FMOD.Studio;
+using System.Collections;
+
 
 [RequireComponent(typeof(XRGrabInteractable))]
 public class GrabbableMusicObject : MonoBehaviour
@@ -27,10 +29,14 @@ public class GrabbableMusicObject : MonoBehaviour
 
     private XRGrabInteractable _grab;
     private EventInstance _eventInstance;
+    public EventInstance EventInstance => _eventInstance;
     private Material _materialInstance;
     private Color _baseColor = Color.white;
     private bool _isOn = false;
     public bool IsOn => _isOn;
+
+    private FMOD.Studio.PLAYBACK_STATE _playbackState;
+
 
     private void Awake()
     {
@@ -68,6 +74,7 @@ public class GrabbableMusicObject : MonoBehaviour
             _eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             _eventInstance.release();
         }
+
     }
 
     private void OnDestroy()
