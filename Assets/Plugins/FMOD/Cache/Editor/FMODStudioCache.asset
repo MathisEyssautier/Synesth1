@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9128418490045400064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/OhTiensJeReconnais
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/OhTiensJeReconnais
+  Guid:
+    Data1: 1128982924
+    Data2: 1321930191
+    Data3: -1433277272
+    Data4: 599267699
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6500
 --- !u!114 &-9110657429012124012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,6 +54,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2774
+--- !u!114 &-9050941347508989675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/CePianoEst
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/CePianoEst
+  Guid:
+    Data1: -1437882833
+    Data2: 1185629307
+    Data3: 299732926
+    Data4: 655916559
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6857
 --- !u!114 &-9025335989715715533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,6 +108,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2793
+--- !u!114 &-8819560123134006521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/TuNesPasFigee
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/TuNesPasFigee
+  Guid:
+    Data1: -157853777
+    Data2: 1177914623
+    Data3: -296514147
+    Data4: -1621774133
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4500
 --- !u!114 &-8605844182580786680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +162,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 226272
+--- !u!114 &-8584983375903005888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/TousCesSonsCest
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/TousCesSonsCest
+  Guid:
+    Data1: 234449134
+    Data2: 1104300718
+    Data3: 152748465
+    Data4: -190463053
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12040
 --- !u!114 &-8555967393748916185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +240,33 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-7927269728208128393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/ExploreEtTuAuras
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/ExploreEtTuAuras
+  Guid:
+    Data1: 1261732101
+    Data2: 1291221039
+    Data3: -114466389
+    Data4: 196489357
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2850
 --- !u!114 &-7006819119561845045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +294,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 290000
+--- !u!114 &-6760970487421072936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/ParfaitGuitare
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/ParfaitGuitare
+  Guid:
+    Data1: 484028357
+    Data2: 1213803221
+    Data3: 226826638
+    Data4: -1069729989
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4500
 --- !u!114 &-6757707339066175397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +376,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 169741
+--- !u!114 &-6648365324011521560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/JeMeSouviensDe
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/JeMeSouviensDe
+  Guid:
+    Data1: 1778323507
+    Data2: 1132435852
+    Data3: -1197448028
+    Data4: -764891619
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7995
 --- !u!114 &-6487648263600503744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,10 +581,10 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639113648867796156
+  lastModified: 639115318062345549
   FileSizes:
   - Name: 
-    Value: 3884
+    Value: 5898
   Exists: 1
 --- !u!114 &-5272253111589699419
 MonoBehaviour:
@@ -640,6 +829,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1437
+--- !u!114 &-4341650846497611854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/OuiJespere
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/OuiJespere
+  Guid:
+    Data1: 829017378
+    Data2: 1127911275
+    Data3: -56334948
+    Data4: -1630020020
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1160
 --- !u!114 &-4281520253350123451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,6 +880,141 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-4192113488083913082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/ParfaitK7
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/ParfaitK7
+  Guid:
+    Data1: -1100321250
+    Data2: 1155956269
+    Data3: -1596015939
+    Data4: 816416721
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3950
+--- !u!114 &-4092683984641794370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/AhCestLePiano
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/AhCestLePiano
+  Guid:
+    Data1: -1617585852
+    Data2: 1246317502
+    Data3: 1772712106
+    Data4: -404521762
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3150
+--- !u!114 &-4073649269054004256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/CestPresqueTermine
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/CestPresqueTermine
+  Guid:
+    Data1: 741712296
+    Data2: 1159945311
+    Data3: 712388487
+    Data4: -1194023908
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3800
+--- !u!114 &-4062537788742753883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/IlMeSembleQueNumeros
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/IlMeSembleQueNumeros
+  Guid:
+    Data1: -231462666
+    Data2: 1170337523
+    Data3: 1943820990
+    Data4: 890175452
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2700
+--- !u!114 &-4015100214691671318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/SiTuAsBesoinDeSouffler
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/SiTuAsBesoinDeSouffler
+  Guid:
+    Data1: 1098567144
+    Data2: 1094746419
+    Data3: 146108091
+    Data4: -398646389
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4050
 --- !u!114 &-3944850858861134307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,7 +1030,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639113648867796156
+  lastModified: 639115318062315105
   FileSizes: []
   Exists: 1
 --- !u!114 &-3784445766276628875
@@ -712,6 +1063,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 66638
+--- !u!114 &-3783727981775354585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/CeCollierMaMere
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/CeCollierMaMere
+  Guid:
+    Data1: 1887001476
+    Data2: 1211520465
+    Data3: 508969358
+    Data4: -1204708507
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8468
 --- !u!114 &-3759396105119051157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,6 +1135,87 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 9500
+--- !u!114 &-3522275946009040588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/BienJoueTuFaisDesProgres
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/BienJoueTuFaisDesProgres
+  Guid:
+    Data1: 2093935140
+    Data2: 1310687128
+    Data3: 1009661373
+    Data4: -252573513
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5643
+--- !u!114 &-3484505916202668768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/WowLesSensations
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/WowLesSensations
+  Guid:
+    Data1: -1001866083
+    Data2: 1220510640
+    Data3: -884923982
+    Data4: -1113883607
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6446
+--- !u!114 &-3433289354231411186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/TuEsDansTonMonde
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/TuEsDansTonMonde
+  Guid:
+    Data1: -217621700
+    Data2: 1074009549
+    Data3: -1903509093
+    Data4: -777003331
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3850
 --- !u!114 &-3402725914878025044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,6 +1270,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 33888
+--- !u!114 &-3327525478461231129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/JeMeSuisToujoursDit
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/JeMeSuisToujoursDit
+  Guid:
+    Data1: -770494292
+    Data2: 1322837838
+    Data3: -915529050
+    Data4: -391411617
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2711
 --- !u!114 &-3066792185154525871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,6 +1432,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2665
+--- !u!114 &-1766117228751132368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/OuiCestVraiNumeros
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/OuiCestVraiNumeros
+  Guid:
+    Data1: -869957226
+    Data2: 1126530681
+    Data3: -1701465208
+    Data4: -1972990127
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2317
 --- !u!114 &-1764462274365716043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,6 +1646,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1294
+--- !u!114 &-32494633538881311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
+  Guid:
+    Data1: 1641737819
+    Data2: 1084357459
+    Data3: -77032560
+    Data4: 1426636831
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2850
 --- !u!114 &-4028541562840104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1239,6 +1779,44 @@ MonoBehaviour:
   - {fileID: -871983670037928290}
   - {fileID: -5269449021933104347}
   - {fileID: 2455758450675642915}
+  - {fileID: 3489273857504099850}
+  - {fileID: -7927269728208128393}
+  - {fileID: -4192113488083913082}
+  - {fileID: -4341650846497611854}
+  - {fileID: -3522275946009040588}
+  - {fileID: 6886631673596882012}
+  - {fileID: -9050941347508989675}
+  - {fileID: -6648365324011521560}
+  - {fileID: 7004603494115460113}
+  - {fileID: 6387961528479259746}
+  - {fileID: -3433289354231411186}
+  - {fileID: -4092683984641794370}
+  - {fileID: 1146677561845561461}
+  - {fileID: 3731365386466965258}
+  - {fileID: -32494633538881311}
+  - {fileID: 4510310269009244104}
+  - {fileID: 825092104633335042}
+  - {fileID: 8771447471616940794}
+  - {fileID: 5848506359923954416}
+  - {fileID: -3783727981775354585}
+  - {fileID: -9128418490045400064}
+  - {fileID: 2606782615743060545}
+  - {fileID: -1766117228751132368}
+  - {fileID: -3484505916202668768}
+  - {fileID: 6289446439773689439}
+  - {fileID: 9149092215587837511}
+  - {fileID: -4073649269054004256}
+  - {fileID: 7213305712750698315}
+  - {fileID: -3327525478461231129}
+  - {fileID: -8819560123134006521}
+  - {fileID: 385819604909127482}
+  - {fileID: 213000695039031890}
+  - {fileID: -6760970487421072936}
+  - {fileID: 4955995906551341618}
+  - {fileID: -4015100214691671318}
+  - {fileID: 5177671906412773454}
+  - {fileID: -8584983375903005888}
+  - {fileID: -4062537788742753883}
   EditorParameters:
   - {fileID: -4281520253350123451}
   MasterBanks:
@@ -1246,7 +1824,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5798737156110101823}
   cacheVersion: 131858
-  cacheTime: 639113648867796156
+  cacheTime: 639115318062345549
   SerializableEventsDict:
   - key: event:/SexMachine
     index: 0
@@ -1372,6 +1950,82 @@ MonoBehaviour:
     index: 60
   - key: event:/NotesPiano2/NotePiano10
     index: 61
+  - key: event:/VoixOffs/Therapiste/AQuoiCaTaFaitPenser
+    index: 62
+  - key: event:/VoixOffs/Therapiste/ExploreEtTuAuras
+    index: 63
+  - key: event:/VoixOffs/Therapiste/ParfaitK7
+    index: 64
+  - key: event:/VoixOffs/Naya/OuiJespere
+    index: 65
+  - key: event:/VoixOffs/Therapiste/BienJoueTuFaisDesProgres
+    index: 66
+  - key: event:/VoixOffs/Naya/CesDisquesMesParents
+    index: 67
+  - key: event:/VoixOffs/Naya/CePianoEst
+    index: 68
+  - key: event:/VoixOffs/Naya/JeMeSouviensDe
+    index: 69
+  - key: event:/VoixOffs/Therapiste/LeTempsPasse
+    index: 70
+  - key: event:/VoixOffs/Naya/JaimaisTellementEcouter
+    index: 71
+  - key: event:/VoixOffs/Therapiste/TuEsDansTonMonde
+    index: 72
+  - key: event:/VoixOffs/Naya/AhCestLePiano
+    index: 73
+  - key: event:/VoixOffs/Therapiste/CestNormalController
+    index: 74
+  - key: event:/VoixOffs/Naya/OhCestLaCuisine
+    index: 75
+  - key: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
+    index: 76
+  - key: event:/VoixOffs/Naya/IlManquaitMonAssiette
+    index: 77
+  - key: event:/VoixOffs/Therapiste/EtLaTuViensDeRajouter
+    index: 78
+  - key: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
+    index: 79
+  - key: event:/VoixOffs/Naya/C'estLaRadioQui
+    index: 80
+  - key: event:/VoixOffs/Naya/CeCollierMaMere
+    index: 81
+  - key: event:/VoixOffs/Naya/OhTiensJeReconnais
+    index: 82
+  - key: event:/VoixOffs/Therapiste/TyEsPresqueEquilibre
+    index: 83
+  - key: event:/VoixOffs/Naya/OuiCestVraiNumeros
+    index: 84
+  - key: event:/VoixOffs/Naya/WowLesSensations
+    index: 85
+  - key: event:/VoixOffs/Therapiste/JeVaisCompter
+    index: 86
+  - key: event:/VoixOffs/Therapiste/QuandPreteSors
+    index: 87
+  - key: event:/VoixOffs/Therapiste/CestPresqueTermine
+    index: 88
+  - key: event:/VoixOffs/Naya/JeComprendsPas
+    index: 89
+  - key: event:/VoixOffs/Naya/JeMeSuisToujoursDit
+    index: 90
+  - key: event:/VoixOffs/Therapiste/TuNesPasFigee
+    index: 91
+  - key: event:/VoixOffs/Naya/OkJeSuisPrete
+    index: 92
+  - key: event:/VoixOffs/Therapiste/DisMoiEstceQueTu
+    index: 93
+  - key: event:/VoixOffs/Therapiste/ParfaitGuitare
+    index: 94
+  - key: event:/VoixOffs/Therapiste/SuperNaya
+    index: 95
+  - key: event:/VoixOffs/Therapiste/SiTuAsBesoinDeSouffler
+    index: 96
+  - key: event:/VoixOffs/Naya/CetteGuitareMaToujours
+    index: 97
+  - key: event:/VoixOffs/Naya/TousCesSonsCest
+    index: 98
+  - key: event:/VoixOffs/Naya/IlMeSembleQueNumeros
+    index: 99
 --- !u!114 &14641455784245092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,6 +2127,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2350
+--- !u!114 &213000695039031890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/DisMoiEstceQueTu
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/DisMoiEstceQueTu
+  Guid:
+    Data1: 1098013121
+    Data2: 1107545110
+    Data3: -1569964375
+    Data4: 253566050
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4400
 --- !u!114 &368644671798409376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1488,9 +2169,36 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639113648867796156
+  lastModified: 639115318062066463
   FileSizes: []
   Exists: 1
+--- !u!114 &385819604909127482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/OkJeSuisPrete
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/OkJeSuisPrete
+  Guid:
+    Data1: 248660148
+    Data2: 1278861947
+    Data3: -316592213
+    Data4: -368761826
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2800
 --- !u!114 &446376785645907964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,6 +2226,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1763
+--- !u!114 &825092104633335042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/EtLaTuViensDeRajouter
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/EtLaTuViensDeRajouter
+  Guid:
+    Data1: 2054065261
+    Data2: 1132422311
+    Data3: 311312789
+    Data4: -1781774827
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3850
 --- !u!114 &974898766549954033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1545,6 +2280,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 82300
+--- !u!114 &1146677561845561461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/CestNormalController
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/CestNormalController
+  Guid:
+    Data1: 395027784
+    Data2: 1216736435
+    Data3: 1909370510
+    Data4: -1278178410
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4550
 --- !u!114 &1611140977159945031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1653,6 +2415,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1446
+--- !u!114 &2606782615743060545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/TyEsPresqueEquilibre
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/TyEsPresqueEquilibre
+  Guid:
+    Data1: -1043095916
+    Data2: 1169139975
+    Data3: 692881064
+    Data4: 25150780
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3800
 --- !u!114 &3244236143324663543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1758,6 +2547,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5000
+--- !u!114 &3489273857504099850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/AQuoiCaTaFaitPenser
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/AQuoiCaTaFaitPenser
+  Guid:
+    Data1: -1514327292
+    Data2: 1197765143
+    Data3: -1988693085
+    Data4: -1140129714
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1260
 --- !u!114 &3638091227598523038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1809,6 +2625,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2831
+--- !u!114 &3731365386466965258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/OhCestLaCuisine
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/OhCestLaCuisine
+  Guid:
+    Data1: 303955786
+    Data2: 1252153865
+    Data3: -159526518
+    Data4: 840227982
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7600
 --- !u!114 &3820572607557435059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1836,6 +2679,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2793
+--- !u!114 &4510310269009244104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/IlManquaitMonAssiette
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/IlManquaitMonAssiette
+  Guid:
+    Data1: 646505320
+    Data2: 1214424697
+    Data3: 683130759
+    Data4: -697267218
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3500
 --- !u!114 &4581336049834165681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,6 +2761,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &4955995906551341618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/SuperNaya
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/SuperNaya
+  Guid:
+    Data1: 593878738
+    Data2: 1265536016
+    Data3: -1496029043
+    Data4: -1645498975
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3212
+--- !u!114 &5177671906412773454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/CetteGuitareMaToujours
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/CetteGuitareMaToujours
+  Guid:
+    Data1: -265879059
+    Data2: 1155840999
+    Data3: -194015595
+    Data4: 1882857493
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5600
 --- !u!114 &5533084886036988558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1945,6 +2869,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5000
+--- !u!114 &5848506359923954416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/C'estLaRadioQui
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/C'estLaRadioQui
+  Guid:
+    Data1: -180378752
+    Data2: 1225933632
+    Data3: -1648609399
+    Data4: 515657676
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4050
 --- !u!114 &5860211162360221973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2053,6 +3004,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 308088
+--- !u!114 &6289446439773689439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/JeVaisCompter
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/JeVaisCompter
+  Guid:
+    Data1: -1445273183
+    Data2: 1298816723
+    Data3: -665455737
+    Data4: 1142299505
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11558
+--- !u!114 &6387961528479259746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/JaimaisTellementEcouter
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/JaimaisTellementEcouter
+  Guid:
+    Data1: -1591041992
+    Data2: 1290031687
+    Data3: -897493837
+    Data4: -315334127
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3050
 --- !u!114 &6559014182210925294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2158,6 +3163,87 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 9508
+--- !u!114 &6886631673596882012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/CesDisquesMesParents
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/CesDisquesMesParents
+  Guid:
+    Data1: -596183507
+    Data2: 1170779355
+    Data3: 832870030
+    Data4: -847228869
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4250
+--- !u!114 &7004603494115460113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/LeTempsPasse
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/LeTempsPasse
+  Guid:
+    Data1: -1426160330
+    Data2: 1120824913
+    Data3: 586933417
+    Data4: 962022363
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5000
+--- !u!114 &7213305712750698315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/JeComprendsPas
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/JeComprendsPas
+  Guid:
+    Data1: 1596101035
+    Data2: 1204408569
+    Data3: 1910507446
+    Data4: -879857957
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3017
 --- !u!114 &7253377360284583582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2267,3 +3353,57 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8771447471616940794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
+  Guid:
+    Data1: -1521320842
+    Data2: 1273675021
+    Data3: 464167833
+    Data4: -15982010
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6200
+--- !u!114 &9149092215587837511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/QuandPreteSors
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/QuandPreteSors
+  Guid:
+    Data1: 198250920
+    Data2: 1215484378
+    Data3: 406582171
+    Data4: -26054369
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4200

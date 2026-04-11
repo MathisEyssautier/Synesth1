@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{a649d2fa-0b7f-4d4a-9b32-035cc0886ef0}">
+		<property name="assetPath">
+			<value>VoixOffPH/Naya/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26f8cbb0-db8c-42ac-9301-c0916860d78b}</destination>
+		</relationship>
+	</object>
+</objects>
