@@ -5415,6 +5415,20 @@ MonoBehaviour:
       Data4: -1593670620
     Path: event:/DoorOpening
   origineSonOuverturePorte: {fileID: 0}
+  sonFermeturePorteA:
+    Guid:
+      Data1: 1503420625
+      Data2: 1266374623
+      Data3: 1577420186
+      Data4: -1831112700
+    Path: event:/DoorClose
+  sonFermeturePorteB:
+    Guid:
+      Data1: 1503420625
+      Data2: 1266374623
+      Data3: 1577420186
+      Data4: -1831112700
+    Path: event:/DoorClose
   sonBoucleRadio:
     Guid:
       Data1: 1679673778
@@ -24300,7 +24314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.61960787}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -35877,6 +35891,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1819657607}
         m_TargetAssemblyTypeName: SalonExplorationNarrative, Assembly-CSharp
         m_MethodName: NotifyGuitarPlacedOnStand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 313657686}
+        m_TargetAssemblyTypeName: RadioManager, Assembly-CSharp
+        m_MethodName: ResetPotardsAuCranZeroEtFermerPortesSiBesoin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -48750,7 +48776,19 @@ MonoBehaviour:
   activateAfterPlaced: []
   onObjectPlaced:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 313657686}
+        m_TargetAssemblyTypeName: RadioManager, Assembly-CSharp
+        m_MethodName: ResetPotardsAuCranZeroEtFermerPortesSiBesoin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &5072607354800756587
 BoxCollider:
   m_ObjectHideFlags: 0

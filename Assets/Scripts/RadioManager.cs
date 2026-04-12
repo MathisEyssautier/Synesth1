@@ -32,6 +32,12 @@ public class RadioManager : MonoBehaviour
     [SerializeField] private EventReference sonOuverturePorte;
     [SerializeField] private Transform origineSonOuverturePorte;
 
+    [Header("Audio fermeture portes (3D)")]
+    [Tooltip("One-shot à la position de la porte A (ex. cuisine) quand on quitte l’alignement AA.")]
+    [SerializeField] private EventReference sonFermeturePorteA;
+    [Tooltip("One-shot à la position de la porte B (ex. bureau) quand on quitte l’alignement BB.")]
+    [SerializeField] private EventReference sonFermeturePorteB;
+
     [Header("Audio radio (boucle + chaînes AA / BB)")]
     [Tooltip("Grésillement / fond : volume 1 en neutre, volume 0 en AA ou BB.")]
     [SerializeField] private EventReference sonBoucleRadio;
@@ -143,6 +149,21 @@ public class RadioManager : MonoBehaviour
             CreerEtDemarrerToutesLesInstancesRadio();
             AppliquerVolumesRadio(_etatCourant);
         }
+    }
+
+    /// <summary>
+    /// Si la radio était en veille (bouton), la rallume ; remet les potards au cran 0 ;
+    /// réévalue l’alignement AA/BB et ferme les portes si besoin (son fermeture 3D sur la porte concernée).
+    /// À brancher sur <c>UnlockPlacementSocket.onObjectPlaced</c> (cassette et guitare).
+    /// </summary>
+    public void ResetPotardsAuCranZeroEtFermerPortesSiBesoin()
+    {
+        if (_isStandby)
+            SetStandby(false);
+
+        potard1?.SetCranSansInteraction(0);
+        potard2?.SetCranSansInteraction(0);
+        AppliquerChangementAlignementSiDifferent(ComputeAlignementDepuisPotards());
     }
 
     /// <summary>Appelé par PianoPuzzleManager quand la séquence piano est réussie.</summary>
@@ -335,11 +356,22 @@ public class RadioManager : MonoBehaviour
 
     private void VerifierAlignement()
     {
-        EtatAlignement nouvelEtat = EtatAlignement.Aucun;
+        AppliquerChangementAlignementSiDifferent(ComputeAlignementDepuisPotards());
+    }
 
-        if (potard1.EstSurA && potard2.EstSurA) nouvelEtat = EtatAlignement.AA;
-        else if (potard1.EstSurB && potard2.EstSurB) nouvelEtat = EtatAlignement.BB;
+    private EtatAlignement ComputeAlignementDepuisPotards()
+    {
+        if (potard1 == null || potard2 == null)
+            return EtatAlignement.Aucun;
+        if (potard1.EstSurA && potard2.EstSurA)
+            return EtatAlignement.AA;
+        if (potard1.EstSurB && potard2.EstSurB)
+            return EtatAlignement.BB;
+        return EtatAlignement.Aucun;
+    }
 
+    private void AppliquerChangementAlignementSiDifferent(EtatAlignement nouvelEtat)
+    {
         if (nouvelEtat == _etatCourant) return;
 
         EtatAlignement etatAvant = _etatCourant;
@@ -349,6 +381,7 @@ public class RadioManager : MonoBehaviour
             BlockerPorte(porteA);
             BlockerPorte(porteB);
             OnAlignementPerdu?.Invoke();
+            JouerSonFermeturePortePourAlignementPerdu(etatAvant);
         }
 
         _etatCourant = nouvelEtat;
@@ -386,14 +419,29 @@ public class RadioManager : MonoBehaviour
         PlayOneShotFmod(sonOuverturePorte, pos);
     }
 
-    private EtatAlignement LireEtatDepuisPotards()
+    /// <summary>Alignement AA = porte A (ex. cuisine), BB = porte B (ex. bureau).</summary>
+    private void JouerSonFermeturePortePourAlignementPerdu(EtatAlignement alignementQuOnQuitte)
     {
-        if (potard1 != null && potard2 != null && potard1.EstSurA && potard2.EstSurA)
-            return EtatAlignement.AA;
-        if (potard1 != null && potard2 != null && potard1.EstSurB && potard2.EstSurB)
-            return EtatAlignement.BB;
-        return EtatAlignement.Aucun;
+        if (alignementQuOnQuitte == EtatAlignement.AA)
+        {
+            if (!sonFermeturePorteA.IsNull && porteA != null)
+                PlayOneShotFmod(sonFermeturePorteA, GetPosition3DPorte(porteA));
+        }
+        else if (alignementQuOnQuitte == EtatAlignement.BB)
+        {
+            if (!sonFermeturePorteB.IsNull && porteB != null)
+                PlayOneShotFmod(sonFermeturePorteB, GetPosition3DPorte(porteB));
+        }
     }
+
+    private static Vector3 GetPosition3DPorte(DoorController porte)
+    {
+        if (porte != null && porte.doorPivot != null)
+            return porte.doorPivot.position;
+        return porte != null ? porte.transform.position : Vector3.zero;
+    }
+
+    private EtatAlignement LireEtatDepuisPotards() => ComputeAlignementDepuisPotards();
 
     private static bool MemeEventReference(EventReference a, EventReference b)
     {
