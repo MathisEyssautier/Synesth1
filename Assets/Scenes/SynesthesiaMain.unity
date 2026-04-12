@@ -5567,6 +5567,7 @@ MonoBehaviour:
   snapOnCorrectWhenReleased: 1
   snapPoint: {fileID: 1893019228}
   puzzleManager: {fileID: 1752026538}
+  shellInteractionRequiresThisActive: {fileID: 0}
 --- !u!65 &336866679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9115,6 +9116,37 @@ RectTransform:
   m_AnchoredPosition: {x: -2.7601004, y: -47}
   m_SizeDelta: {x: 14.8, y: 108}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &562983825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 562983826}
+  m_Layer: 0
+  m_Name: SnapPointAssiette
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &562983826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562983825}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 995298237129324793}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &567955965
 GameObject:
   m_ObjectHideFlags: 0
@@ -11051,6 +11083,7 @@ Transform:
   - {fileID: 8570083789496937663}
   - {fileID: 2007048322932761690}
   - {fileID: 5137677187108069887}
+  - {fileID: 995298237129324793}
   - {fileID: 7234729558199156543}
   - {fileID: 1415992142}
   - {fileID: 1654128412}
@@ -13486,7 +13519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &880432812
 Transform:
   m_ObjectHideFlags: 0
@@ -13578,6 +13611,7 @@ MonoBehaviour:
   snapOnCorrectWhenReleased: 1
   snapPoint: {fileID: 687132730}
   puzzleManager: {fileID: 1752026538}
+  shellInteractionRequiresThisActive: {fileID: 880432811}
 --- !u!65 &880432817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18928,6 +18962,7 @@ MonoBehaviour:
   snapOnCorrectWhenReleased: 1
   snapPoint: {fileID: 117091474}
   puzzleManager: {fileID: 1752026538}
+  shellInteractionRequiresThisActive: {fileID: 0}
 --- !u!65 &1235171684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22445,7 +22480,7 @@ Transform:
   m_GameObject: {fileID: 1415992141}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.53005695, y: 0.8649859, z: -4.0596695}
+  m_LocalPosition: {x: -0.53005695, y: 0.8649859, z: -3.873}
   m_LocalScale: {x: 24.156334, y: 24.15633, z: 2.7787623}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26475,7 +26510,7 @@ Transform:
   m_GameObject: {fileID: 1654128411}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.53005695, y: 0.8649859, z: -4.48067}
+  m_LocalPosition: {x: -0.039, y: 0.8649859, z: -4.48067}
   m_LocalScale: {x: 24.156334, y: 24.15633, z: 2.7787623}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28785,7 +28820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1795840978
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30342,6 +30377,7 @@ MonoBehaviour:
   snapOnCorrectWhenReleased: 1
   snapPoint: {fileID: 805061920}
   puzzleManager: {fileID: 1752026538}
+  shellInteractionRequiresThisActive: {fileID: 0}
 --- !u!65 &1876886827
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33047,7 +33083,7 @@ Transform:
   m_GameObject: {fileID: 2030716497}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.53005695, y: 0.8649859, z: -4.8996706}
+  m_LocalPosition: {x: -0.53005695, y: 0.8649859, z: -4.508}
   m_LocalScale: {x: 24.156334, y: 24.15633, z: 2.7787623}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34234,7 +34270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2093018017
 Transform:
   m_ObjectHideFlags: 0
@@ -35834,6 +35870,7 @@ MonoBehaviour:
   placedObjectColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   hideSocketOnPlaced: 1
   socketVisualToHide: {fileID: 86045551309666321}
+  activateAfterPlaced: []
   onObjectPlaced:
     m_PersistentCalls:
       m_Calls:
@@ -37719,6 +37756,22 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &995298237129324793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566904642679671664}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalPosition: {x: -0.032, y: 0.872, z: -3.861}
+  m_LocalScale: {x: 24.156334, y: 24.15633, z: 2.7787623}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 562983826}
+  m_Father: {fileID: 703561299}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &995303907970517507
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47302,6 +47355,26 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4566904642679671664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 995298237129324793}
+  - component: {fileID: 8168043876020352439}
+  - component: {fileID: 6766160518985152111}
+  - component: {fileID: 8168043876020352441}
+  - component: {fileID: 8168043876020352440}
+  m_Layer: 0
+  m_Name: AssietteSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!23 &4572634638912570582
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48674,6 +48747,7 @@ MonoBehaviour:
   placedObjectColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.36078432}
   hideSocketOnPlaced: 1
   socketVisualToHide: {fileID: 4596758352185697836}
+  activateAfterPlaced: []
   onObjectPlaced:
     m_PersistentCalls:
       m_Calls: []
@@ -53251,6 +53325,55 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!23 &6766160518985152111
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566904642679671664}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 127ff362159f0ed48af2014f81b18954, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &6767171486341687831
 Transform:
   m_ObjectHideFlags: 0
@@ -54569,7 +54692,7 @@ Transform:
   m_GameObject: {fileID: 6257199563813276854}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.53005695, y: 0.8649859, z: -3.6198723}
+  m_LocalPosition: {x: 0.6126, y: 0.9753, z: -0.449}
   m_LocalScale: {x: 24.156334, y: 24.15633, z: 2.7787623}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -57740,6 +57863,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5599612507755210600}
   m_Mesh: {fileID: -3856989908210332490, guid: 4337bcf48d47bfb41a584f76e652bd0f, type: 3}
+--- !u!33 &8168043876020352439
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566904642679671664}
+  m_Mesh: {fileID: 4522132694267101021, guid: e83b10b9882d7f84982a105735644d72, type: 3}
+--- !u!114 &8168043876020352440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566904642679671664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84b241ca13ac5e49ba1280fe27f9d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnlockPlacementSocket
+  expectedObjectRoot: {fileID: 7234729558199156543}
+  expectedObjectAnchor: {fileID: 0}
+  snapPoint: {fileID: 562983826}
+  requiredShellPuzzle: {fileID: 0}
+  requiredGuitarPuzzle: {fileID: 0}
+  faderToActivate: {fileID: 0}
+  requireObjectReleased: 1
+  disableGrabAfterPlaced: 1
+  lockRigidbodyKinematic: 1
+  disableObjectCollidersOnPlaced: 1
+  behavioursToDisableOnPlaced: []
+  shellPuzzleAudioToStop: {fileID: 0}
+  placedObjectRenderer: {fileID: 0}
+  placedObjectColor: {r: 1, g: 1, b: 1, a: 1}
+  hideSocketOnPlaced: 1
+  socketVisualToHide: {fileID: 0}
+  activateAfterPlaced:
+  - {fileID: 880432811}
+  - {fileID: 1795840977}
+  onObjectPlaced:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &8168043876020352441
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566904642679671664}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.022783937, y: 0.02090798, z: 0.02960523}
+  m_Center: {x: -0.00032464787, y: 0.0009159574, z: 0.0049736244}
 --- !u!4 &8218746088711051828
 Transform:
   m_ObjectHideFlags: 0
