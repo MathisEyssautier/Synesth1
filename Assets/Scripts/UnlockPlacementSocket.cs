@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 [RequireComponent(typeof(Collider))]
@@ -34,6 +35,9 @@ public class UnlockPlacementSocket : MonoBehaviour
     [SerializeField] private bool hideSocketOnPlaced = true;
     [Tooltip("Optionnel: visuel à cacher (mesh jaune). Si vide et hideSocketOnPlaced=true, on masque ce GameObject.")]
     [SerializeField] private GameObject socketVisualToHide;
+
+    [Header("Narration")]
+    [SerializeField] private UnityEvent onObjectPlaced;
 
     private bool _filled;
 
@@ -182,6 +186,8 @@ public class UnlockPlacementSocket : MonoBehaviour
             else
                 gameObject.SetActive(false);
         }
+
+        onObjectPlaced?.Invoke();
     }
 
     private bool IsExpectedObjectHeld()

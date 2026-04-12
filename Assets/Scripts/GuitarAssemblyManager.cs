@@ -1,12 +1,17 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GuitarAssemblyManager : MonoBehaviour
 {
     [Header("Strings visuals on guitar (size = 6)")]
     [SerializeField] private GameObject[] guitarStringVisuals = new GameObject[6];
 
+    [Header("Narration")]
+    [SerializeField] private UnityEvent onAllStringsPlaced;
+
     private bool[] _placed;
     private int _placedCount;
+    private bool _allStringsEventFired;
 
     public bool AreAllStringsPlaced => _placed != null && _placedCount >= _placed.Length && _placed.Length > 0;
 
@@ -42,6 +47,12 @@ public class GuitarAssemblyManager : MonoBehaviour
 
         if (pickupStringObject != null)
             pickupStringObject.SetActive(false);
+
+        if (!_allStringsEventFired && _placed.Length > 0 && _placedCount >= _placed.Length)
+        {
+            _allStringsEventFired = true;
+            onAllStringsPlaced?.Invoke();
+        }
 
         return true;
     }

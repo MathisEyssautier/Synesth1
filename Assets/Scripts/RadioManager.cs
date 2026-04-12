@@ -56,6 +56,9 @@ public class RadioManager : MonoBehaviour
     public UnityEvent OnAlignementBB;
     public UnityEvent OnAlignementPerdu;
 
+    [Tooltip("Invoque quand un son exclusif (ex. vocal parents) s'est terminé et avant la restauration des boucles.")]
+    public UnityEvent onExclusiveRadioPlaybackEnded;
+
     public enum EtatAlignement { Aucun, AA, BB }
 
     private EtatAlignement _etatCourant = EtatAlignement.Aucun;
@@ -65,6 +68,8 @@ public class RadioManager : MonoBehaviour
     private EventInstance _instBoucle;
     private EventInstance _instAA;
     private EventInstance _instBB;
+    private EventInstance _instExclusiveOverride;
+    private Coroutine _restoreRadioAfterOverrideRoutine;
 
     private Transform OrigineAudio => origineSonBoucleRadio != null ? origineSonBoucleRadio : transform;
 
@@ -87,6 +92,57 @@ public class RadioManager : MonoBehaviour
         BlockerPorte(porteB);
         SetEmissionPorte(rendererPorteA, couleurPorteAinactive);
         SetEmissionPorte(rendererPorteB, couleurPorteBinactive);
+    }
+
+    /// <summary>
+    /// Arrête et libère les boucles AA/BB/grésillement, joue un event FMOD 3D attaché à la radio (ex. vocal parents),
+    /// puis rétablit les boucles une fois l'event terminé (si la radio était déjà débloquée).
+    /// </summary>
+    public void PlayExclusiveEventStoppingRadioStreams(EventReference eventReference)
+    {
+        if (eventReference.IsNull) return;
+
+        if (_restoreRadioAfterOverrideRoutine != null)
+        {
+            StopCoroutine(_restoreRadioAfterOverrideRoutine);
+            _restoreRadioAfterOverrideRoutine = null;
+        }
+
+        LibererSiValide(ref _instBoucle);
+        LibererSiValide(ref _instAA);
+        LibererSiValide(ref _instBB);
+        LibererSiValide(ref _instExclusiveOverride);
+
+        _instExclusiveOverride = CreateFmodInstance(eventReference);
+        if (!_instExclusiveOverride.isValid()) return;
+
+        GameObject go = OrigineAudio.gameObject;
+        RuntimeManager.AttachInstanceToGameObject(_instExclusiveOverride, go);
+        _instExclusiveOverride.start();
+
+        _restoreRadioAfterOverrideRoutine = StartCoroutine(RestoreRadioStreamsAfterExclusiveEnds());
+    }
+
+    private IEnumerator RestoreRadioStreamsAfterExclusiveEnds()
+    {
+        while (_instExclusiveOverride.isValid())
+        {
+            _instExclusiveOverride.getPlaybackState(out PLAYBACK_STATE st);
+            if (st == PLAYBACK_STATE.STOPPED)
+                break;
+            yield return null;
+        }
+
+        LibererSiValide(ref _instExclusiveOverride);
+        _restoreRadioAfterOverrideRoutine = null;
+
+        onExclusiveRadioPlaybackEnded?.Invoke();
+
+        if (_radioDebloquee)
+        {
+            CreerEtDemarrerToutesLesInstancesRadio();
+            AppliquerVolumesRadio(_etatCourant);
+        }
     }
 
     /// <summary>Appelé par PianoPuzzleManager quand la séquence piano est réussie.</summary>
@@ -405,9 +461,16 @@ public class RadioManager : MonoBehaviour
 
     private void OnDisable()
     {
+        if (_restoreRadioAfterOverrideRoutine != null)
+        {
+            StopCoroutine(_restoreRadioAfterOverrideRoutine);
+            _restoreRadioAfterOverrideRoutine = null;
+        }
+
         LibererSiValide(ref _instBoucle);
         LibererSiValide(ref _instAA);
         LibererSiValide(ref _instBB);
+        LibererSiValide(ref _instExclusiveOverride);
         _radioDebloquee = false;
     }
 
