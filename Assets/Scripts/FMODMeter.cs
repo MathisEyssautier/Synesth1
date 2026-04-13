@@ -90,8 +90,6 @@ public class FMODMeteringSource : MonoBehaviour
     private void Update()
     {
         if (!_eventInstance.isValid()) return;
-        Debug.Log("FMOD");
-
 
         _eventInstance.getPlaybackState(out _playbackState);
 
