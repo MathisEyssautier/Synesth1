@@ -60,6 +60,19 @@ public class PotardController : MonoBehaviour
             _grabInteractable.enabled = interactable;
     }
 
+    /// <summary>
+    /// Force le cran logique (0 = premier cran) sans haptique ni grab.
+    /// À utiliser pour un reset distant (ex. pose cassette / guitare sur socket).
+    /// </summary>
+    public void SetCranSansInteraction(int cranIndex)
+    {
+        int max = Mathf.Max(0, nombreCrans - 1);
+        _cranActuel = Mathf.Clamp(cranIndex, 0, max);
+        _accumulateurDelta = 0f;
+        AppliquerRotationCran(_cranActuel);
+        MettreAJourCouleur();
+    }
+
     private void Start()
     {
         _rotationBaseLocale = Quaternion.Euler(

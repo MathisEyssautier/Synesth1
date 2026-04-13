@@ -63,6 +63,13 @@ public class FinalSequenceController : MonoBehaviour
     [SerializeField] private float outsideFinalMusicFadeInDuration = 1.2f;
     [SerializeField] private WorldSpaceCreditsScroller creditsScroller;
 
+    [Header("Voix off (début séquence finale, après bons faders)")]
+    [SerializeField] private SubtitleManager subtitleManager;
+    [SerializeField] private float delaySecondsBeforeFinalDialogue = 5f;
+    [SerializeField] private EventReference voNayaJeComprendsPas;
+    [SerializeField] private EventReference voTherapeuteCestNormalController;
+    [SerializeField] private EventReference voTherapeuteQuandPreteSors;
+
     private bool _started;
     private bool _modulationEnabled;
     private float _stableTimer;
@@ -257,6 +264,9 @@ public class FinalSequenceController : MonoBehaviour
 
     private IEnumerator RunFinalAudioSequence()
     {
+        if (subtitleManager != null)
+            StartCoroutine(PlayDelayedFinalDialogueRoutine());
+
         // 1) Fade out master.
         if (_masterBus.isValid())
             yield return FadeBusVolume(_masterBus, _masterInitialVolume, 0f, masterFadeOutDuration);
@@ -271,6 +281,21 @@ public class FinalSequenceController : MonoBehaviour
         // 4) Start continuous pan/volume modulation on object buses.
         _modulationEnabled = true;
         UnlockExitForPlayer();
+    }
+
+    private IEnumerator PlayDelayedFinalDialogueRoutine()
+    {
+        float d = Mathf.Max(0f, delaySecondsBeforeFinalDialogue);
+        if (d > 0f)
+            yield return new WaitForSeconds(d);
+
+        if (subtitleManager == null) yield break;
+        if (!voNayaJeComprendsPas.IsNull)
+            subtitleManager.EnqueueSubtitledLine(voNayaJeComprendsPas);
+        if (!voTherapeuteCestNormalController.IsNull)
+            subtitleManager.EnqueueSubtitledLine(voTherapeuteCestNormalController);
+        if (!voTherapeuteQuandPreteSors.IsNull)
+            subtitleManager.EnqueueSubtitledLine(voTherapeuteQuandPreteSors);
     }
 
     private void UnlockExitForPlayer()

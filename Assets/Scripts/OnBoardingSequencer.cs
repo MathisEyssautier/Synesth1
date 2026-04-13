@@ -1,8 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class OnboardingSequencer : MonoBehaviour
+/// <summary>
+/// Ancien flux : salle d'accueil avec mur + cube aprùs N fins de voix off.
+/// Dùsactivù par dùfaut : le jeu dùmarre directement dans le salon (voir SalonOnboardingController).
+/// </summary>
+public class OnBoardingSequencer : MonoBehaviour
 {
+    [Header("Legacy (dùsactivù par dùfaut)")]
+    [Tooltip("Si faux : ce script ne s'abonne pas aux voix off et ne fait rien (flux salon actuel).")]
+    [SerializeField] private bool enableLegacyWallAndCubeFlow = false;
+
     [Header("Mur qui monte")]
     [SerializeField] private GameObject wallSection;
     [SerializeField] private float wallMoveDistance = 4f;
@@ -10,39 +18,58 @@ public class OnboardingSequencer : MonoBehaviour
 
     [Header("Cube interagible")]
     [SerializeField] private GameObject interactableCube;
-    [SerializeField] private float cubeAppearDelay = 1f; // dÈlai aprËs que le mur commence ‡ monter
+    [SerializeField] private float cubeAppearDelay = 1f;
 
-    private bool _hasStarted = false;
+    [Tooltip("Nombre de fins de ligne VO avant le mur (ancien onboarding).")]
+    [SerializeField] private int voiceEndCountBeforeWall = 3;
 
-    void OnEnable()
+    private bool _hasStarted;
+    private int _voiceEndsRemaining;
+
+    private void OnEnable()
     {
-        SubtitleManager.OnVoiceEnded += StartOnboardingSequence;
+        if (!enableLegacyWallAndCubeFlow)
+            return;
+
+        _voiceEndsRemaining = Mathf.Max(1, voiceEndCountBeforeWall);
+        SubtitleManager.OnVoiceEnded += OnSubtitleVoiceEnded;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
-        SubtitleManager.OnVoiceEnded -= StartOnboardingSequence;
+        if (!enableLegacyWallAndCubeFlow)
+            return;
+
+        SubtitleManager.OnVoiceEnded -= OnSubtitleVoiceEnded;
     }
 
-    private void StartOnboardingSequence()
+    private void OnSubtitleVoiceEnded()
     {
+        if (!enableLegacyWallAndCubeFlow) return;
         if (_hasStarted) return;
+
+        _voiceEndsRemaining--;
+        if (_voiceEndsRemaining > 0) return;
+
         _hasStarted = true;
         StartCoroutine(OnboardingRoutine());
     }
 
     private IEnumerator OnboardingRoutine()
     {
-        // 1. Le mur monte
-        StartCoroutine(MoveWallUp());
+        if (wallSection != null)
+            StartCoroutine(MoveWallUp());
 
-        // 2. Le cube apparaÓt avec un dÈlai
         yield return new WaitForSeconds(cubeAppearDelay);
-        interactableCube.SetActive(true);
+
+        if (interactableCube != null)
+            interactableCube.SetActive(true);
     }
 
     private IEnumerator MoveWallUp()
     {
+        if (wallSection == null) yield break;
+
         Vector3 startPos = wallSection.transform.position;
         Vector3 endPos = startPos + Vector3.up * wallMoveDistance;
         float elapsed = 0f;

@@ -193,7 +193,7 @@
 			<value>6.1717461397257312</value>
 		</property>
 		<property name="name">
-			<value>end_sub</value>
+			<value>sub_end</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{620c2c36-105b-4f79-9ce1-204570595930}</destination>

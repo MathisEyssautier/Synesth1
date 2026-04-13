@@ -32,6 +32,12 @@ public class RadioManager : MonoBehaviour
     [SerializeField] private EventReference sonOuverturePorte;
     [SerializeField] private Transform origineSonOuverturePorte;
 
+    [Header("Audio fermeture portes (3D)")]
+    [Tooltip("One-shot à la position de la porte A (ex. cuisine) quand on quitte l’alignement AA.")]
+    [SerializeField] private EventReference sonFermeturePorteA;
+    [Tooltip("One-shot à la position de la porte B (ex. bureau) quand on quitte l’alignement BB.")]
+    [SerializeField] private EventReference sonFermeturePorteB;
+
     [Header("Audio radio (boucle + chaînes AA / BB)")]
     [Tooltip("Grésillement / fond : volume 1 en neutre, volume 0 en AA ou BB.")]
     [SerializeField] private EventReference sonBoucleRadio;
@@ -56,6 +62,9 @@ public class RadioManager : MonoBehaviour
     public UnityEvent OnAlignementBB;
     public UnityEvent OnAlignementPerdu;
 
+    [Tooltip("Invoque quand un son exclusif (ex. vocal parents) s'est terminé et avant la restauration des boucles.")]
+    public UnityEvent onExclusiveRadioPlaybackEnded;
+
     public enum EtatAlignement { Aucun, AA, BB }
 
     private EtatAlignement _etatCourant = EtatAlignement.Aucun;
@@ -65,6 +74,8 @@ public class RadioManager : MonoBehaviour
     private EventInstance _instBoucle;
     private EventInstance _instAA;
     private EventInstance _instBB;
+    private EventInstance _instExclusiveOverride;
+    private Coroutine _restoreRadioAfterOverrideRoutine;
 
     private Transform OrigineAudio => origineSonBoucleRadio != null ? origineSonBoucleRadio : transform;
 
@@ -87,6 +98,72 @@ public class RadioManager : MonoBehaviour
         BlockerPorte(porteB);
         SetEmissionPorte(rendererPorteA, couleurPorteAinactive);
         SetEmissionPorte(rendererPorteB, couleurPorteBinactive);
+    }
+
+    /// <summary>
+    /// Arrête et libère les boucles AA/BB/grésillement, joue un event FMOD 3D attaché à la radio (ex. vocal parents),
+    /// puis rétablit les boucles une fois l'event terminé (si la radio était déjà débloquée).
+    /// </summary>
+    public void PlayExclusiveEventStoppingRadioStreams(EventReference eventReference)
+    {
+        if (eventReference.IsNull) return;
+
+        if (_restoreRadioAfterOverrideRoutine != null)
+        {
+            StopCoroutine(_restoreRadioAfterOverrideRoutine);
+            _restoreRadioAfterOverrideRoutine = null;
+        }
+
+        LibererSiValide(ref _instBoucle);
+        LibererSiValide(ref _instAA);
+        LibererSiValide(ref _instBB);
+        LibererSiValide(ref _instExclusiveOverride);
+
+        _instExclusiveOverride = CreateFmodInstance(eventReference);
+        if (!_instExclusiveOverride.isValid()) return;
+
+        GameObject go = OrigineAudio.gameObject;
+        RuntimeManager.AttachInstanceToGameObject(_instExclusiveOverride, go);
+        _instExclusiveOverride.start();
+
+        _restoreRadioAfterOverrideRoutine = StartCoroutine(RestoreRadioStreamsAfterExclusiveEnds());
+    }
+
+    private IEnumerator RestoreRadioStreamsAfterExclusiveEnds()
+    {
+        while (_instExclusiveOverride.isValid())
+        {
+            _instExclusiveOverride.getPlaybackState(out PLAYBACK_STATE st);
+            if (st == PLAYBACK_STATE.STOPPED)
+                break;
+            yield return null;
+        }
+
+        LibererSiValide(ref _instExclusiveOverride);
+        _restoreRadioAfterOverrideRoutine = null;
+
+        onExclusiveRadioPlaybackEnded?.Invoke();
+
+        if (_radioDebloquee)
+        {
+            CreerEtDemarrerToutesLesInstancesRadio();
+            AppliquerVolumesRadio(_etatCourant);
+        }
+    }
+
+    /// <summary>
+    /// Si la radio était en veille (bouton), la rallume ; remet les potards au cran 0 ;
+    /// réévalue l’alignement AA/BB et ferme les portes si besoin (son fermeture 3D sur la porte concernée).
+    /// À brancher sur <c>UnlockPlacementSocket.onObjectPlaced</c> (cassette et guitare).
+    /// </summary>
+    public void ResetPotardsAuCranZeroEtFermerPortesSiBesoin()
+    {
+        if (_isStandby)
+            SetStandby(false);
+
+        potard1?.SetCranSansInteraction(0);
+        potard2?.SetCranSansInteraction(0);
+        AppliquerChangementAlignementSiDifferent(ComputeAlignementDepuisPotards());
     }
 
     /// <summary>Appelé par PianoPuzzleManager quand la séquence piano est réussie.</summary>
@@ -279,11 +356,22 @@ public class RadioManager : MonoBehaviour
 
     private void VerifierAlignement()
     {
-        EtatAlignement nouvelEtat = EtatAlignement.Aucun;
+        AppliquerChangementAlignementSiDifferent(ComputeAlignementDepuisPotards());
+    }
 
-        if (potard1.EstSurA && potard2.EstSurA) nouvelEtat = EtatAlignement.AA;
-        else if (potard1.EstSurB && potard2.EstSurB) nouvelEtat = EtatAlignement.BB;
+    private EtatAlignement ComputeAlignementDepuisPotards()
+    {
+        if (potard1 == null || potard2 == null)
+            return EtatAlignement.Aucun;
+        if (potard1.EstSurA && potard2.EstSurA)
+            return EtatAlignement.AA;
+        if (potard1.EstSurB && potard2.EstSurB)
+            return EtatAlignement.BB;
+        return EtatAlignement.Aucun;
+    }
 
+    private void AppliquerChangementAlignementSiDifferent(EtatAlignement nouvelEtat)
+    {
         if (nouvelEtat == _etatCourant) return;
 
         EtatAlignement etatAvant = _etatCourant;
@@ -293,6 +381,7 @@ public class RadioManager : MonoBehaviour
             BlockerPorte(porteA);
             BlockerPorte(porteB);
             OnAlignementPerdu?.Invoke();
+            JouerSonFermeturePortePourAlignementPerdu(etatAvant);
         }
 
         _etatCourant = nouvelEtat;
@@ -330,14 +419,29 @@ public class RadioManager : MonoBehaviour
         PlayOneShotFmod(sonOuverturePorte, pos);
     }
 
-    private EtatAlignement LireEtatDepuisPotards()
+    /// <summary>Alignement AA = porte A (ex. cuisine), BB = porte B (ex. bureau).</summary>
+    private void JouerSonFermeturePortePourAlignementPerdu(EtatAlignement alignementQuOnQuitte)
     {
-        if (potard1 != null && potard2 != null && potard1.EstSurA && potard2.EstSurA)
-            return EtatAlignement.AA;
-        if (potard1 != null && potard2 != null && potard1.EstSurB && potard2.EstSurB)
-            return EtatAlignement.BB;
-        return EtatAlignement.Aucun;
+        if (alignementQuOnQuitte == EtatAlignement.AA)
+        {
+            if (!sonFermeturePorteA.IsNull && porteA != null)
+                PlayOneShotFmod(sonFermeturePorteA, GetPosition3DPorte(porteA));
+        }
+        else if (alignementQuOnQuitte == EtatAlignement.BB)
+        {
+            if (!sonFermeturePorteB.IsNull && porteB != null)
+                PlayOneShotFmod(sonFermeturePorteB, GetPosition3DPorte(porteB));
+        }
     }
+
+    private static Vector3 GetPosition3DPorte(DoorController porte)
+    {
+        if (porte != null && porte.doorPivot != null)
+            return porte.doorPivot.position;
+        return porte != null ? porte.transform.position : Vector3.zero;
+    }
+
+    private EtatAlignement LireEtatDepuisPotards() => ComputeAlignementDepuisPotards();
 
     private static bool MemeEventReference(EventReference a, EventReference b)
     {
@@ -405,9 +509,16 @@ public class RadioManager : MonoBehaviour
 
     private void OnDisable()
     {
+        if (_restoreRadioAfterOverrideRoutine != null)
+        {
+            StopCoroutine(_restoreRadioAfterOverrideRoutine);
+            _restoreRadioAfterOverrideRoutine = null;
+        }
+
         LibererSiValide(ref _instBoucle);
         LibererSiValide(ref _instAA);
         LibererSiValide(ref _instBB);
+        LibererSiValide(ref _instExclusiveOverride);
         _radioDebloquee = false;
     }
 

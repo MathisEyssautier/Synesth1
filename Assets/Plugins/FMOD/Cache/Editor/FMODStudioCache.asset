@@ -581,10 +581,10 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639115968345252116
+  lastModified: 639116173123382679
   FileSizes:
   - Name: 
-    Value: 5898
+    Value: 6000
   Exists: 1
 --- !u!114 &-5272253111589699419
 MonoBehaviour:
@@ -1030,7 +1030,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639113648867796156
+  lastModified: 639116173123351703
   FileSizes: []
   Exists: 1
 --- !u!114 &-3784445766276628875
@@ -1351,6 +1351,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1375
+--- !u!114 &-2395040490406161597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VocalParents
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VocalParents
+  Guid:
+    Data1: 1669244525
+    Data2: 1207274480
+    Data3: 1358016669
+    Data4: 959288839
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 15828
+--- !u!114 &-2385448088208939368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorClose
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DoorClose
+  Guid:
+    Data1: 1503420625
+    Data2: 1266374623
+    Data3: 1577420186
+    Data4: -1831112700
+  Banks:
+  - {fileID: 368644671798409376}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &-2370295056293473915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1817,6 +1871,8 @@ MonoBehaviour:
   - {fileID: 5177671906412773454}
   - {fileID: -8584983375903005888}
   - {fileID: -4062537788742753883}
+  - {fileID: -2395040490406161597}
+  - {fileID: -2385448088208939368}
   EditorParameters:
   - {fileID: -4281520253350123451}
   MasterBanks:
@@ -1824,7 +1880,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5798737156110101823}
   cacheVersion: 131858
-  cacheTime: 639115968345252116
+  cacheTime: 639116173123382679
   SerializableEventsDict:
   - key: event:/SexMachine
     index: 0
@@ -2026,6 +2082,10 @@ MonoBehaviour:
     index: 98
   - key: event:/VoixOffs/Naya/IlMeSembleQueNumeros
     index: 99
+  - key: event:/VocalParents
+    index: 100
+  - key: event:/DoorClose
+    index: 101
 --- !u!114 &14641455784245092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2169,7 +2229,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639115968345252116
+  lastModified: 639116173123029554
   FileSizes: []
   Exists: 1
 --- !u!114 &385819604909127482
