@@ -18,6 +18,7 @@ public class PianoKey : MonoBehaviour
 
     [Header("Audio FMOD")]
     [SerializeField] private EventReference noteEvent;
+    [SerializeField] private ParticleVFXAmplitude vfxAmplitude;
     [Range(0f, 1f)]
     [SerializeField] private float volume = 1f;
 
@@ -186,6 +187,10 @@ public class PianoKey : MonoBehaviour
             puzzleManager.OnKeyPressed(this);
 
         OnAnyKeyPressed?.Invoke(this);
+        if (vfxAmplitude != null)
+        {
+            vfxAmplitude.TriggerAmplitudePulse(50f, 1f);
+        }
     }
 
     private IEnumerator PressAnim()

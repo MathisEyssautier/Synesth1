@@ -43,6 +43,8 @@ public class ShellProximityFeedback : MonoBehaviour
 
     private XRGrabInteractable _grab;
     private EventInstance _instance;
+    public EventInstance EventInstance => _instance;
+
     private bool _hasInstance = false;
 
     // Piloté par la porte : quand true, on coupe le son mais on garde le feedback visuel.
