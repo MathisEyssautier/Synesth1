@@ -27,6 +27,7 @@ public class TurntableDisc : MonoBehaviour
     private XRGrabInteractable _grab;
     private Rigidbody _rb;
     private EventInstance _eventInstance;
+    public EventInstance EventInstance => _eventInstance;
     private Material _mat;
 
     private Color _baseColor = Color.white;
