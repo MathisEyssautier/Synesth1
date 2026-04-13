@@ -6,13 +6,13 @@ using FMODUnity;
 
 /// <summary>
 /// Onboarding salon : séquence voix off + lumières + iPod + piano jusqu'à l'exploration libre.
-/// Les EventReference doivent pointer vers les events 2D avec marqueurs sous-titres + sub_end.
+/// Intro : une seule ligne VO (anc. 3 lignes fusionnées). Les EventReference : events 2D + marqueurs sous-titres + sub_end.
 /// </summary>
 public class SalonOnboardingController : MonoBehaviour
 {
     private enum Phase
     {
-        Intro3Lines,
+        IntroFirstLine,
         WaitLaisseLineEnd,
         WaitIpodGrab,
         WaitIpodOff,
@@ -26,10 +26,8 @@ public class SalonOnboardingController : MonoBehaviour
     [Tooltip("Délai avant la première phrase (les 3 intro s'enfilent juste après).")]
     [SerializeField] private float delayBeforeFirstIntroLineSeconds = 5f;
 
-    [Header("Intro (3 lignes puis lumière + iPod + Laisse)")]
+    [Header("Intro (1 ligne regroupée puis lumière + iPod + Laisse)")]
     [SerializeField] private EventReference voNayaTuPeuxGarder;
-    [SerializeField] private EventReference voNayaOkJeSuisPrete;
-    [SerializeField] private EventReference voTherapeuteJeVaisCompter;
     [SerializeField] private EventReference voTherapeuteLaisseToiGuiderPar;
 
     [Header("iPod")]
@@ -70,8 +68,8 @@ public class SalonOnboardingController : MonoBehaviour
     [Header("Exploration narrative (timers indices piano)")]
     [SerializeField] private SalonExplorationNarrative explorationNarrative;
 
-    private Phase _phase = Phase.Intro3Lines;
-    private int _introLinesRemaining = 3;
+    private Phase _phase = Phase.IntroFirstLine;
+    private int _introLinesRemaining = 1;
     private int _postFirstPianoVoRemaining;
     private float[] _otherLightsTargetIntensities;
     private bool _otherLightsFadeStarted;
@@ -119,8 +117,6 @@ public class SalonOnboardingController : MonoBehaviour
             yield break;
 
         subtitleManager.EnqueueSubtitledLine(voNayaTuPeuxGarder);
-        subtitleManager.EnqueueSubtitledLine(voNayaOkJeSuisPrete);
-        subtitleManager.EnqueueSubtitledLine(voTherapeuteJeVaisCompter);
     }
 
     private void OnEnable()
@@ -158,7 +154,7 @@ public class SalonOnboardingController : MonoBehaviour
 
     private void OnVoiceEnded()
     {
-        if (_phase == Phase.Intro3Lines)
+        if (_phase == Phase.IntroFirstLine)
         {
             _introLinesRemaining--;
             if (_introLinesRemaining > 0)

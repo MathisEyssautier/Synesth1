@@ -1450,7 +1450,7 @@ MonoBehaviour:
   outsideFinalMusicFadeInDuration: 3
   creditsScroller: {fileID: 551165454}
   subtitleManager: {fileID: 1311652530}
-  delaySecondsBeforeFinalDialogue: 5
+  delaySecondsBeforeFinalDialogue: 7
   voNayaJeComprendsPas:
     Guid:
       Data1: 1596101035
@@ -29266,20 +29266,6 @@ MonoBehaviour:
       Data3: -77032560
       Data4: 1426636831
     Path: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
-  voNayaOkJeSuisPrete:
-    Guid:
-      Data1: 248660148
-      Data2: 1278861947
-      Data3: -316592213
-      Data4: -368761826
-    Path: event:/VoixOffs/Naya/OkJeSuisPrete
-  voTherapeuteJeVaisCompter:
-    Guid:
-      Data1: -1445273183
-      Data2: 1298816723
-      Data3: -665455737
-      Data4: 1142299505
-    Path: event:/VoixOffs/Therapiste/JeVaisCompter
   voTherapeuteLaisseToiGuiderPar:
     Guid:
       Data1: -1521320842
@@ -29467,13 +29453,6 @@ MonoBehaviour:
       Data3: -1596015939
       Data4: 816416721
     Path: event:/VoixOffs/Therapiste/ParfaitK7
-  voTherapeuteAQuoiCaTaFaitPenser:
-    Guid:
-      Data1: -1514327292
-      Data2: 1197765143
-      Data3: -1988693085
-      Data4: -1140129714
-    Path: event:/VoixOffs/Therapiste/AQuoiCaTaFaitPenser
   voNayaTousCesSonsCest:
     Guid:
       Data1: 234449134

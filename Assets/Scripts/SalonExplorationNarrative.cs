@@ -51,7 +51,6 @@ public class SalonExplorationNarrative : MonoBehaviour
 
     [Header("Coquillages / cassette résolus")]
     [SerializeField] private EventReference voTherapeuteParfaitK7;
-    [SerializeField] private EventReference voTherapeuteAQuoiCaTaFaitPenser;
     [SerializeField] private EventReference voNayaTousCesSonsCest;
     [SerializeField] private EventReference voTherapeuteLeTempsPasse;
     [SerializeField] private EventReference voNayaOuiJespere;
@@ -221,7 +220,6 @@ public class SalonExplorationNarrative : MonoBehaviour
         if (_shellPuzzleVoDone) return;
         _shellPuzzleVoDone = true;
         EnqueueSub(voTherapeuteParfaitK7);
-        EnqueueSub(voTherapeuteAQuoiCaTaFaitPenser);
         EnqueueSub(voNayaTousCesSonsCest);
         EnqueueSub(voTherapeuteLeTempsPasse);
         EnqueueSub(voNayaOuiJespere);
