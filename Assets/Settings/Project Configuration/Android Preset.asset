@@ -75,3 +75,16 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 0
+--- !u!114 &9095645953843351947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab40ef0296f774b37864154aaae1e725, type: 3}
+  m_Name: AquaEffectFeature
+  m_EditorClassIdentifier: Kino.Aqua.Universal.Runtime::Kino.Aqua.Universal.AquaEffectFeature
+  m_Active: 1
