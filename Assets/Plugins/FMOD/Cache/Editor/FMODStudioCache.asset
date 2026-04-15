@@ -1,1887 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9049307310459161461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/Accord2
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/Accord2
-  Guid:
-    Data1: 486369761
-    Data2: 1076889677
-    Data3: -592597881
-    Data4: 2102441105
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2807
---- !u!114 &-8813360396007940065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/Accord5
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/Accord5
-  Guid:
-    Data1: -1731211502
-    Data2: 1249615787
-    Data3: 1694305181
-    Data4: -2120949265
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2774
---- !u!114 &-8436920314069954880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano9
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano9
-  Guid:
-    Data1: -1693021422
-    Data2: 1155528440
-    Data3: 689673093
-    Data4: -1893296456
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1294
---- !u!114 &-8245680849921943004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/VoixBank.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: Assets/FMODAssets/Desktop/VoixBank.bank
-  Name: VoixBank
-  StudioPath: bank:/VoixBank
-  lastModified: 639118734686596403
-  FileSizes: []
-  Exists: 1
---- !u!114 &-8232905762462756286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VocalParents
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VocalParents
-  Guid:
-    Data1: 1669244525
-    Data2: 1207274480
-    Data3: 1358016669
-    Data4: 959288839
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 15828
---- !u!114 &-8005434940447761800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/CePianoEst
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/CePianoEst
-  Guid:
-    Data1: -1437882833
-    Data2: 1185629307
-    Data3: 299732926
-    Data4: 655916559
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 6600
---- !u!114 &-7601246309303943142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/ParfaitGuitare
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/ParfaitGuitare
-  Guid:
-    Data1: 484028357
-    Data2: 1213803221
-    Data3: 226826638
-    Data4: -1069729989
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3250
---- !u!114 &-7380111282462407230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/IlManquaitMonAssiette
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/IlManquaitMonAssiette
-  Guid:
-    Data1: 646505320
-    Data2: 1214424697
-    Data3: 683130759
-    Data4: -697267218
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3150
---- !u!114 &-7086780540974942243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ShellEvents/CicadaShell
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/ShellEvents/CicadaShell
-  Guid:
-    Data1: 1375167066
-    Data2: 1337064788
-    Data3: -1496784753
-    Data4: 1465792612
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 24565
---- !u!114 &-6757707339066175397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/HeartBeat
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/HeartBeat
-  Guid:
-    Data1: 303730684
-    Data2: 1147812154
-    Data3: -757080649
-    Data4: -147649550
-  Banks:
-  - {fileID: -3759396105119051157}
-  - {fileID: 7407138131787572129}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-6666345959379469947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MusicMix/GuitarVolume
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: GuitarVolume
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 574505299
-    data2: 1924609172
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &-6513509555519179291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/DoorClose
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/DoorClose
-  Guid:
-    Data1: 1503420625
-    Data2: 1266374623
-    Data3: 1577420186
-    Data4: -1831112700
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1000
---- !u!114 &-6206047491118427737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ShellEvents/BirdsShell
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/ShellEvents/BirdsShell
-  Guid:
-    Data1: 732418501
-    Data2: 1130440168
-    Data3: 1474243465
-    Data4: 2000221785
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 20000
---- !u!114 &-5962073051191801651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/BienJoueTuFaisDesProgres
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/BienJoueTuFaisDesProgres
-  Guid:
-    Data1: 2093935140
-    Data2: 1310687128
-    Data3: 1009661373
-    Data4: -252573513
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4700
---- !u!114 &-5798737156110101823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: Assets/FMODAssets/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 639118734683299670
-  FileSizes:
-  - Name: 
-    Value: 5824
-  Exists: 1
---- !u!114 &-5769745904455276464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SodadeRadio
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/SodadeRadio
-  Guid:
-    Data1: 1905198240
-    Data2: 1216706782
-    Data3: -380757352
-    Data4: 784234028
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 290000
---- !u!114 &-5700651001776005839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/IlMeSembleQueNumeros
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/IlMeSembleQueNumeros
-  Guid:
-    Data1: -231462666
-    Data2: 1170337523
-    Data3: 1943820990
-    Data4: 890175452
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3550
---- !u!114 &-5648676380988971732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/CesDisquesMesParents
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/CesDisquesMesParents
-  Guid:
-    Data1: -596183507
-    Data2: 1170779355
-    Data3: 832870030
-    Data4: -847228869
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3900
---- !u!114 &-5519309160587383388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/C'estLaRadioQui
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/C'estLaRadioQui
-  Guid:
-    Data1: -180378752
-    Data2: 1225933632
-    Data3: -1648609399
-    Data4: 515657676
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3300
---- !u!114 &-5480552449246339727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano8
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano8
-  Guid:
-    Data1: 1864353345
-    Data2: 1078953299
-    Data3: 552247191
-    Data4: 2095288305
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1437
---- !u!114 &-5293697396606895227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RadioHumming
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/RadioHumming
-  Guid:
-    Data1: 1679673778
-    Data2: 1291173890
-    Data3: -1970789200
-    Data4: 1244107025
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 22507
---- !u!114 &-5201922655775761675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/TousCesSonsCest
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/TousCesSonsCest
-  Guid:
-    Data1: 234449134
-    Data2: 1104300718
-    Data3: 152748465
-    Data4: -190463053
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 12071
---- !u!114 &-5168318479038623059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Room3/PhoneRing2
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Room3/PhoneRing2
-  Guid:
-    Data1: 1238797482
-    Data2: 1132506270
-    Data3: -338647623
-    Data4: 1173924455
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2883
---- !u!114 &-5071339486361130286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Room3/CleanChordGuitar
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Room3/CleanChordGuitar
-  Guid:
-    Data1: -1235276205
-    Data2: 1198847065
-    Data3: 59952296
-    Data4: -602516071
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 9500
---- !u!114 &-5050525105717793105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/JeVaisCompter
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/JeVaisCompter
-  Guid:
-    Data1: -1445273183
-    Data2: 1298816723
-    Data3: -665455737
-    Data4: 1142299505
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 11558
---- !u!114 &-4992167236288606557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RadioOn
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/RadioOn
-  Guid:
-    Data1: -2023247581
-    Data2: 1151541498
-    Data3: -314029647
-    Data4: 213612731
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 548
---- !u!114 &-4568120168456481021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano6
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano6
-  Guid:
-    Data1: -707342059
-    Data2: 1193013366
-    Data3: 68045728
-    Data4: -497311433
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1441
---- !u!114 &-4281520253350123451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/DoorOpen
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: DoorOpen
-  StudioPath: parameter:/DoorOpen
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1580876383
-    data2: 2676421694
-  Type: 0
-  IsGlobal: 1
-  Labels: []
-  Exists: 1
---- !u!114 &-3944850858861134307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: Assets/FMODAssets/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 639118734683257530
-  FileSizes: []
-  Exists: 1
---- !u!114 &-3759396105119051157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Bank1.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: FMOD/Desktop/Bank1.bank
-  Name: Bank1
-  StudioPath: bank:/Bank1
-  lastModified: 639074671463433570
-  FileSizes: []
-  Exists: 1
---- !u!114 &-3496929295697680608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/OuiCestVraiNumeros
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/OuiCestVraiNumeros
-  Guid:
-    Data1: -869957226
-    Data2: 1126530681
-    Data3: -1701465208
-    Data4: -1972990127
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2400
---- !u!114 &-3458744685319805935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano11
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano11
-  Guid:
-    Data1: -1517348905
-    Data2: 1238945228
-    Data3: 751711892
-    Data4: -1486381905
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1468
---- !u!114 &-3321921840590731923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano10
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano10
-  Guid:
-    Data1: -1818214950
-    Data2: 1191399928
-    Data3: -1393997634
-    Data4: -640166684
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1446
---- !u!114 &-3258023032983027252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/OkJeSuisPrete
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/OkJeSuisPrete
-  Guid:
-    Data1: 248660148
-    Data2: 1278861947
-    Data3: -316592213
-    Data4: -368761826
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2800
---- !u!114 &-2918818831082034648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/OhCestLaCuisine
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/OhCestLaCuisine
-  Guid:
-    Data1: 303955786
-    Data2: 1252153865
-    Data3: -159526518
-    Data4: 840227982
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 7921
---- !u!114 &-2698718531115796126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/DoorOpening
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/DoorOpening
-  Guid:
-    Data1: -2013703904
-    Data2: 1245085483
-    Data3: -133938272
-    Data4: -1593670620
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1790
---- !u!114 &-2007632197032981062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/LonelyDayIPOD
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/LonelyDayIPOD
-  Guid:
-    Data1: 935017928
-    Data2: 1182852487
-    Data3: 1982473357
-    Data4: 1257707208
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 169741
---- !u!114 &-1906315771735302742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/LeTempsPasse
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/LeTempsPasse
-  Guid:
-    Data1: -1426160330
-    Data2: 1120824913
-    Data3: 586933417
-    Data4: 962022363
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 6083
---- !u!114 &-1409991204204669124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/DrumsLoopRadio
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/DrumsLoopRadio
-  Guid:
-    Data1: 1736375454
-    Data2: 1323731813
-    Data3: 1107453351
-    Data4: 809727430
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 33888
---- !u!114 &-1161095524945758815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MelodyInstruments
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/MelodyInstruments
-  Guid:
-    Data1: -873141106
-    Data2: 1156080571
-    Data3: -1173471339
-    Data4: 1821694507
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 6737846778972117725}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 26666
---- !u!114 &-1014909667090725424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/SolG
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/SolG
-  Guid:
-    Data1: 1146171862
-    Data2: 1285989096
-    Data3: -1988125254
-    Data4: -1281353714
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2793
---- !u!114 &-798505710221881432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/Accord3
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/Accord3
-  Guid:
-    Data1: -746138944
-    Data2: 1085338760
-    Data3: 1781193402
-    Data4: 1955459472
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2831
---- !u!114 &-760918120035481786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/InputSpaceMusic
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/InputSpaceMusic
-  Guid:
-    Data1: 239873021
-    Data2: 1164686268
-    Data3: -1986019454
-    Data4: -1332776665
-  Banks:
-  - {fileID: -3759396105119051157}
-  - {fileID: 7407138131787572129}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-639715640937323323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
-  Guid:
-    Data1: 1641737819
-    Data2: 1084357459
-    Data3: -77032560
-    Data4: 1426636831
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 27611
---- !u!114 &-556544171768703536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/CeCollierMaMere
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/CeCollierMaMere
-  Guid:
-    Data1: 1887001476
-    Data2: 1211520465
-    Data3: 508969358
-    Data4: -1204708507
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 8000
---- !u!114 &-545374927099482449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RewindClic
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/RewindClic
-  Guid:
-    Data1: -525159449
-    Data2: 1302290736
-    Data3: 1078304903
-    Data4: -1733720035
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2350
---- !u!114 &-542163583184763467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano/EPianoRe
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano/EPianoRe
-  Guid:
-    Data1: 1755382827
-    Data2: 1279327854
-    Data3: 1702537395
-    Data4: 1832075939
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2767
---- !u!114 &-239206225237987068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/ParfaitK7
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/ParfaitK7
-  Guid:
-    Data1: -1100321250
-    Data2: 1155956269
-    Data3: -1596015939
-    Data4: 816416721
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5399
---- !u!114 &-96567342145389163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano5
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano5
-  Guid:
-    Data1: 708545167
-    Data2: 1312658338
-    Data3: 1340323223
-    Data4: 1871048279
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1763
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EventCache
-  EditorBanks:
-  - {fileID: -5798737156110101823}
-  - {fileID: 368644671798409376}
-  - {fileID: -3944850858861134307}
-  - {fileID: -8245680849921943004}
-  EditorEvents:
-  - {fileID: 6230230716058943299}
-  - {fileID: 2387354438099921323}
-  - {fileID: 2481067997646718094}
-  - {fileID: -8436920314069954880}
-  - {fileID: -8813360396007940065}
-  - {fileID: -4568120168456481021}
-  - {fileID: 849570990228968617}
-  - {fileID: -239206225237987068}
-  - {fileID: -2698718531115796126}
-  - {fileID: 378721608686658285}
-  - {fileID: 1826111193469268794}
-  - {fileID: -4992167236288606557}
-  - {fileID: -5962073051191801651}
-  - {fileID: 7743085732953919011}
-  - {fileID: 4474105234762101484}
-  - {fileID: -542163583184763467}
-  - {fileID: 2957793023386949403}
-  - {fileID: -5648676380988971732}
-  - {fileID: -8005434940447761800}
-  - {fileID: 2921129534064433049}
-  - {fileID: 8055469437492414363}
-  - {fileID: 6488344469986387925}
-  - {fileID: -1906315771735302742}
-  - {fileID: 8836462244006179700}
-  - {fileID: 6853937766192072537}
-  - {fileID: -5480552449246339727}
-  - {fileID: 7495607890067665220}
-  - {fileID: 9006600719712598237}
-  - {fileID: -2918818831082034648}
-  - {fileID: -5071339486361130286}
-  - {fileID: 933587745476921641}
-  - {fileID: 4777404678797910513}
-  - {fileID: -7086780540974942243}
-  - {fileID: -639715640937323323}
-  - {fileID: 8727599751295254740}
-  - {fileID: 6496356799121701623}
-  - {fileID: -7380111282462407230}
-  - {fileID: 2701493365287380193}
-  - {fileID: 2076417134562616607}
-  - {fileID: 3942158934305082647}
-  - {fileID: -8232905762462756286}
-  - {fileID: 8256935499168699646}
-  - {fileID: 1231796839786085203}
-  - {fileID: -5519309160587383388}
-  - {fileID: 8472760738191114480}
-  - {fileID: -556544171768703536}
-  - {fileID: 3109195876922659429}
-  - {fileID: 6034026409873832865}
-  - {fileID: 2020245841842912983}
-  - {fileID: -1161095524945758815}
-  - {fileID: -96567342145389163}
-  - {fileID: 5599361855495409639}
-  - {fileID: -3496929295697680608}
-  - {fileID: 8228701802241067459}
-  - {fileID: 7162583982176332181}
-  - {fileID: -1409991204204669124}
-  - {fileID: -5769745904455276464}
-  - {fileID: -5050525105717793105}
-  - {fileID: 6465861188818556905}
-  - {fileID: 2001439718129237728}
-  - {fileID: 1895192018847770676}
-  - {fileID: 7272445558490780950}
-  - {fileID: -5168318479038623059}
-  - {fileID: 8352931170191248324}
-  - {fileID: 4113574040324982538}
-  - {fileID: 3490867244950746037}
-  - {fileID: -5293697396606895227}
-  - {fileID: -3258023032983027252}
-  - {fileID: 3381460756296390977}
-  - {fileID: -798505710221881432}
-  - {fileID: 1946108378003644525}
-  - {fileID: -7601246309303943142}
-  - {fileID: -6206047491118427737}
-  - {fileID: -2007632197032981062}
-  - {fileID: 9215848619685322838}
-  - {fileID: 7548159590765495730}
-  - {fileID: 9160470503553056005}
-  - {fileID: -6513509555519179291}
-  - {fileID: 7084863723653271884}
-  - {fileID: 1381541554863406678}
-  - {fileID: -1014909667090725424}
-  - {fileID: -3458744685319805935}
-  - {fileID: -3321921840590731923}
-  - {fileID: 1739061091985666450}
-  - {fileID: 9116250199269176693}
-  - {fileID: -9049307310459161461}
-  - {fileID: 8664538021451264041}
-  - {fileID: -545374927099482449}
-  - {fileID: 307686941388078141}
-  - {fileID: 2968873941918083264}
-  - {fileID: -5201922655775761675}
-  - {fileID: 8913592520143396890}
-  - {fileID: 31760131879908790}
-  - {fileID: -5700651001776005839}
-  - {fileID: 8556406883086866707}
-  EditorParameters:
-  - {fileID: -4281520253350123451}
-  MasterBanks:
-  - {fileID: -3944850858861134307}
-  StringsBanks:
-  - {fileID: -5798737156110101823}
-  cacheVersion: 131858
-  cacheTime: 639118734686596403
-  SerializableEventsDict:
-  - key: event:/VoixOffs/Therapiste/AQuoiCaTaFaitPenser
-    index: 0
-  - key: event:/VoixOffs/Therapiste/ExploreEtTuAuras
-    index: 1
-  - key: event:/FinalMusic
-    index: 2
-  - key: event:/NotesPiano2/NotePiano9
-    index: 3
-  - key: event:/NotesGuitare/Accord5
-    index: 4
-  - key: event:/NotesPiano2/NotePiano6
-    index: 5
-  - key: event:/LightSwitch
-    index: 6
-  - key: event:/VoixOffs/Therapiste/ParfaitK7
-    index: 7
-  - key: event:/DoorOpening
-    index: 8
-  - key: event:/NotesGuitare/LaA
-    index: 9
-  - key: event:/VoixOffs/Naya/OuiJespere
-    index: 10
-  - key: event:/RadioOn
-    index: 11
-  - key: event:/VoixOffs/Therapiste/BienJoueTuFaisDesProgres
-    index: 12
-  - key: event:/NotesPiano/EPianoDo
-    index: 13
-  - key: event:/NotesPiano2/NotePiano4
-    index: 14
-  - key: event:/NotesPiano/EPianoRe
-    index: 15
-  - key: event:/MusicMix
-    index: 16
-  - key: event:/VoixOffs/Naya/CesDisquesMesParents
-    index: 17
-  - key: event:/VoixOffs/Naya/CePianoEst
-    index: 18
-  - key: event:/NotesGuitare/MiE1
-    index: 19
-  - key: event:/NotesPiano/EPianoFa
-    index: 20
-  - key: event:/VoixOffs/Naya/JeMeSouviensDe
-    index: 21
-  - key: event:/VoixOffs/Therapiste/LeTempsPasse
-    index: 22
-  - key: event:/VoixOffs/Naya/JaimaisTellementEcouter
-    index: 23
-  - key: event:/VoixOffs/Therapiste/TuEsDansTonMonde
-    index: 24
-  - key: event:/NotesPiano2/NotePiano8
-    index: 25
-  - key: event:/VoixOffs/Naya/AhCestLePiano
-    index: 26
-  - key: event:/VoixOffs/Therapiste/CestNormalController
-    index: 27
-  - key: event:/VoixOffs/Naya/OhCestLaCuisine
-    index: 28
-  - key: event:/Room3/CleanChordGuitar
-    index: 29
-  - key: event:/NotesPiano/EPianoSol
-    index: 30
-  - key: event:/ShellEvents/WindShell
-    index: 31
-  - key: event:/ShellEvents/CicadaShell
-    index: 32
-  - key: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
-    index: 33
-  - key: event:/BiggieVinyl
-    index: 34
-  - key: event:/NotesPiano2/NotePiano2
-    index: 35
-  - key: event:/VoixOffs/Naya/IlManquaitMonAssiette
-    index: 36
-  - key: event:/Room3/WrongChordGuitar
-    index: 37
-  - key: event:/NotesGuitare/AccordNeutre
-    index: 38
-  - key: event:/VoixOffs/Therapiste/EtLaTuViensDeRajouter
-    index: 39
-  - key: event:/VocalParents
-    index: 40
-  - key: event:/Voicemail
-    index: 41
-  - key: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
-    index: 42
-  - key: event:/VoixOffs/Naya/C'estLaRadioQui
-    index: 43
-  - key: event:/NotesPiano2/NotePiano3
-    index: 44
-  - key: event:/VoixOffs/Naya/CeCollierMaMere
-    index: 45
-  - key: event:/NotesGuitare/SiB
-    index: 46
-  - key: event:/VoixOffs/Naya/OhTiensJeReconnais
-    index: 47
-  - key: event:/MusicBox
-    index: 48
-  - key: event:/MelodyInstruments
-    index: 49
-  - key: event:/NotesPiano2/NotePiano5
-    index: 50
-  - key: event:/VoixOffs/Therapiste/TyEsPresqueEquilibre
-    index: 51
-  - key: event:/VoixOffs/Naya/OuiCestVraiNumeros
-    index: 52
-  - key: event:/NotesPiano2/NotePiano7
-    index: 53
-  - key: event:/VoixOffs/Naya/WowLesSensations
-    index: 54
-  - key: event:/DrumsLoopRadio
-    index: 55
-  - key: event:/SodadeRadio
-    index: 56
-  - key: event:/VoixOffs/Therapiste/JeVaisCompter
-    index: 57
-  - key: event:/NotesGuitare/Accord1
-    index: 58
-  - key: event:/NotesGuitare/Accord4Good
-    index: 59
-  - key: event:/VoixOffs/Therapiste/QuandPreteSors
-    index: 60
-  - key: event:/VoixOffs/Therapiste/CestPresqueTermine
-    index: 61
-  - key: event:/Room3/PhoneRing2
-    index: 62
-  - key: event:/VoixOffs/Naya/JeComprendsPas
-    index: 63
-  - key: event:/VoixOffs/Naya/JeMeSuisToujoursDit
-    index: 64
-  - key: event:/VoixOffs/Therapiste/TuNesPasFigee
-    index: 65
-  - key: event:/RadioHumming
-    index: 66
-  - key: event:/VoixOffs/Naya/OkJeSuisPrete
-    index: 67
-  - key: event:/Room3/PhoneRinging
-    index: 68
-  - key: event:/NotesGuitare/Accord3
-    index: 69
-  - key: event:/VoixOffs/Therapiste/DisMoiEstceQueTu
-    index: 70
-  - key: event:/VoixOffs/Therapiste/ParfaitGuitare
-    index: 71
-  - key: event:/ShellEvents/BirdsShell
-    index: 72
-  - key: event:/LonelyDayIPOD
-    index: 73
-  - key: event:/PianoCompletion
-    index: 74
-  - key: event:/NotesPiano2/NotePiano1
-    index: 75
-  - key: event:/NotesPiano/EPianoMi
-    index: 76
-  - key: event:/DoorClose
-    index: 77
-  - key: event:/VoixOffs/Therapiste/SuperNaya
-    index: 78
-  - key: event:/NotesGuitare/MiE2
-    index: 79
-  - key: event:/NotesGuitare/SolG
-    index: 80
-  - key: event:/NotesPiano2/NotePiano11
-    index: 81
-  - key: event:/NotesPiano2/NotePiano10
-    index: 82
-  - key: event:/HymneALAmourRadio
-    index: 83
-  - key: event:/Sigh
-    index: 84
-  - key: event:/NotesGuitare/Accord2
-    index: 85
-  - key: event:/ShellEvents/SeaShell
-    index: 86
-  - key: event:/RewindClic
-    index: 87
-  - key: event:/VoixOffs/Therapiste/SiTuAsBesoinDeSouffler
-    index: 88
-  - key: event:/VoixOffs/Naya/CetteGuitareMaToujours
-    index: 89
-  - key: event:/2pacVinyl
-    index: 90
-  - key: event:/VoixOffs/Naya/TousCesSonsCest
-    index: 91
-  - key: event:/MusiqueStartFond
-    index: 92
-  - key: event:/NotesGuitare/ReD
-    index: 93
-  - key: event:/VoixOffs/Naya/IlMeSembleQueNumeros
-    index: 94
-  - key: event:/InputSpaceMusic
-    index: 95
---- !u!114 &31760131879908790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/ReD
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/ReD
-  Guid:
-    Data1: -410942733
-    Data2: 1227478554
-    Data3: -239675713
-    Data4: -404635069
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2812
---- !u!114 &127718048061380782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: FMOD/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 639074671462268381
-  FileSizes:
-  - Name: 
-    Value: 918
-  Exists: 1
---- !u!114 &307686941388078141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/SiTuAsBesoinDeSouffler
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/SiTuAsBesoinDeSouffler
-  Guid:
-    Data1: 1098567144
-    Data2: 1094746419
-    Data3: 146108091
-    Data4: -398646389
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4188
---- !u!114 &368644671798409376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/BankGame.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: Assets/FMODAssets/Desktop/BankGame.bank
-  Name: BankGame
-  StudioPath: bank:/BankGame
-  lastModified: 639118734683030444
-  FileSizes: []
-  Exists: 1
---- !u!114 &378721608686658285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/LaA
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/LaA
-  Guid:
-    Data1: -714198239
-    Data2: 1243062915
-    Data3: -2024534126
-    Data4: -926885794
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2817
---- !u!114 &849570990228968617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/LightSwitch
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/LightSwitch
-  Guid:
-    Data1: 1634457111
-    Data2: 1338709014
-    Data3: -537548399
-    Data4: -1235109563
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 221
---- !u!114 &933587745476921641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano/EPianoSol
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano/EPianoSol
-  Guid:
-    Data1: 169717590
-    Data2: 1192591165
-    Data3: -1803724381
-    Data4: 638615725
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2879
---- !u!114 &1231796839786085203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
-  Guid:
-    Data1: -1521320842
-    Data2: 1273675021
-    Data3: 464167833
-    Data4: -15982010
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 7636
---- !u!114 &1381541554863406678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/MiE2
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/MiE2
-  Guid:
-    Data1: -1608556075
-    Data2: 1082148990
-    Data3: -1294891093
-    Data4: 1752605638
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2793
---- !u!114 &1739061091985666450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/HymneALAmourRadio
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/HymneALAmourRadio
-  Guid:
-    Data1: 627625692
-    Data2: 1091828045
-    Data3: 655567548
-    Data4: -220662874
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 205875
---- !u!114 &1826111193469268794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/OuiJespere
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/OuiJespere
-  Guid:
-    Data1: 829017378
-    Data2: 1127911275
-    Data3: -56334948
-    Data4: -1630020020
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1340
---- !u!114 &1895192018847770676
+--- !u!114 &-8970706829637141827
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1900,7 +19,7 @@ MonoBehaviour:
     Data3: 406582171
     Data4: -26054369
   Banks:
-  - {fileID: -8245680849921943004}
+  - {fileID: 4829153925183180669}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1908,7 +27,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4383
---- !u!114 &1946108378003644525
+--- !u!114 &-8784920509585058532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1918,24 +37,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/DisMoiEstceQueTu
+  m_Name: event:/VoixOffs/Naya/AhCestLePiano
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/DisMoiEstceQueTu
+  Path: event:/VoixOffs/Naya/AhCestLePiano
   Guid:
-    Data1: 1098013121
-    Data2: 1107545110
-    Data3: -1569964375
-    Data4: 253566050
+    Data1: -1617585852
+    Data2: 1246317502
+    Data3: 1772712106
+    Data4: -404521762
   Banks:
-  - {fileID: -8245680849921943004}
+  - {fileID: 4829153925183180669}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4146
---- !u!114 &2001439718129237728
+  Length: 3150
+--- !u!114 &-8598037566263899442
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1945,51 +64,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/Accord4Good
+  m_Name: event:/SodadeRadio
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/Accord4Good
+  Path: event:/SodadeRadio
   Guid:
-    Data1: 1184647587
-    Data2: 1191234397
-    Data3: 1624722332
-    Data4: -1566728209
+    Data1: 1905198240
+    Data2: 1216706782
+    Data3: -380757352
+    Data4: 784234028
   Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2793
---- !u!114 &2020245841842912983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MusicBox
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/MusicBox
-  Guid:
-    Data1: 757438350
-    Data2: 1262089174
-    Data3: -1294635345
-    Data4: 800823322
-  Banks:
-  - {fileID: 368644671798409376}
+  - {fileID: -7541018856739055291}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 58047
---- !u!114 &2076417134562616607
+  Length: 290000
+--- !u!114 &-8235671546496579809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1999,78 +91,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/AccordNeutre
+  m_Name: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/AccordNeutre
+  Path: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
   Guid:
-    Data1: -956761748
-    Data2: 1190357716
-    Data3: 1182418852
-    Data4: -997403296
+    Data1: 1641737819
+    Data2: 1084357459
+    Data3: -77032560
+    Data4: 1426636831
   Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2793
---- !u!114 &2387354438099921323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/ExploreEtTuAuras
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/ExploreEtTuAuras
-  Guid:
-    Data1: 1261732101
-    Data2: 1291221039
-    Data3: -114466389
-    Data4: 196489357
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4050
---- !u!114 &2481067997646718094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/FinalMusic
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/FinalMusic
-  Guid:
-    Data1: -1879334902
-    Data2: 1114892876
-    Data3: 565632404
-    Data4: 2118475993
-  Banks:
-  - {fileID: 368644671798409376}
+  - {fileID: 4829153925183180669}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 226272
---- !u!114 &2701493365287380193
+  Length: 27611
+--- !u!114 &-8205910711986180892
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2080,24 +118,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Room3/WrongChordGuitar
+  m_Name: event:/NotesPiano2/NotePiano1
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Room3/WrongChordGuitar
+  Path: event:/NotesPiano2/NotePiano1
   Guid:
-    Data1: -1535318680
-    Data2: 1170312455
-    Data3: -1543295
-    Data4: 696466343
+    Data1: -1607676464
+    Data2: 1083415314
+    Data3: 2003028667
+    Data4: 161805046
   Banks:
-  - {fileID: 368644671798409376}
+  - {fileID: -7541018856739055291}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3428
---- !u!114 &2921129534064433049
+  Length: 1562
+--- !u!114 &-8086957970884828296
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2107,162 +145,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/MiE1
+  m_Name: event:/VoixOffs/Naya/OuiJespere
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/MiE1
+  Path: event:/VoixOffs/Naya/OuiJespere
   Guid:
-    Data1: -1525430737
-    Data2: 1110171129
-    Data3: -971257665
-    Data4: -50358967
+    Data1: 829017378
+    Data2: 1127911275
+    Data3: -56334948
+    Data4: -1630020020
   Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2793
---- !u!114 &2957793023386949403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MusicMix
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/MusicMix
-  Guid:
-    Data1: -2104285395
-    Data2: 1084456860
-    Data3: 1560406438
-    Data4: 733602536
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 5867157993981030306}
-  - {fileID: 4957152491317177254}
-  - {fileID: -6666345959379469947}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 66638
---- !u!114 &2968873941918083264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/CetteGuitareMaToujours
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/CetteGuitareMaToujours
-  Guid:
-    Data1: -265879059
-    Data2: 1155840999
-    Data3: -194015595
-    Data4: 1882857493
-  Banks:
-  - {fileID: -8245680849921943004}
+  - {fileID: 4829153925183180669}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 5741
---- !u!114 &3109195876922659429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/SiB
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/SiB
-  Guid:
-    Data1: 1800305797
-    Data2: 1228798481
-    Data3: 1535488439
-    Data4: 2003325028
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2793
---- !u!114 &3381460756296390977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Room3/PhoneRinging
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Room3/PhoneRinging
-  Guid:
-    Data1: -1994879816
-    Data2: 1266231247
-    Data3: 1372640656
-    Data4: 340242379
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 24999
---- !u!114 &3490867244950746037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/TuNesPasFigee
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/TuNesPasFigee
-  Guid:
-    Data1: -157853777
-    Data2: 1177914623
-    Data3: -296514147
-    Data4: -1621774133
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5571
---- !u!114 &3942158934305082647
+  Length: 1340
+--- !u!114 &-7911636566751161388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2281,7 +181,7 @@ MonoBehaviour:
     Data3: 311312789
     Data4: -1781774827
   Banks:
-  - {fileID: -8245680849921943004}
+  - {fileID: 4829153925183180669}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2289,7 +189,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4806
---- !u!114 &4113574040324982538
+--- !u!114 &-7636995603242533217
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2299,102 +199,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/JeMeSuisToujoursDit
+  m_Name: event:/Room3/CleanChordGuitar
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/JeMeSuisToujoursDit
+  Path: event:/Room3/CleanChordGuitar
   Guid:
-    Data1: -770494292
-    Data2: 1322837838
-    Data3: -915529050
-    Data4: -391411617
+    Data1: -1235276205
+    Data2: 1198847065
+    Data3: 59952296
+    Data4: -602516071
   Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3250
---- !u!114 &4474105234762101484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano4
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano4
-  Guid:
-    Data1: -956980441
-    Data2: 1283149430
-    Data3: 1112455327
-    Data4: -1363484977
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1535
---- !u!114 &4777404678797910513
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ShellEvents/WindShell
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/ShellEvents/WindShell
-  Guid:
-    Data1: -522991016
-    Data2: 1307909193
-    Data3: 460977026
-    Data4: -776251879
-  Banks:
-  - {fileID: 368644671798409376}
+  - {fileID: -7541018856739055291}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 47156
---- !u!114 &4957152491317177254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MusicMix/BassVolume
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: BassVolume
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3568124258
-    data2: 1255992070
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &5599361855495409639
+  Length: 9500
+--- !u!114 &-7630781081655009854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2404,24 +226,177 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/TyEsPresqueEquilibre
+  m_Name: event:/VoixOffs/Naya/CesDisquesMesParents
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/TyEsPresqueEquilibre
+  Path: event:/VoixOffs/Naya/CesDisquesMesParents
   Guid:
-    Data1: -1043095916
-    Data2: 1169139975
-    Data3: 692881064
-    Data4: 25150780
+    Data1: -596183507
+    Data2: 1170779355
+    Data3: 832870030
+    Data4: -847228869
   Banks:
-  - {fileID: -8245680849921943004}
+  - {fileID: 4829153925183180669}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3855
---- !u!114 &5867157993981030306
+  Length: 3900
+--- !u!114 &-7541018856739055291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BankGame.bank
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
+  Path: Assets/FMODAssets/Desktop/BankGame.bank
+  Name: BankGame
+  StudioPath: bank:/BankGame
+  lastModified: 639118734683030444
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-7479661072940848510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/ParfaitK7
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/ParfaitK7
+  Guid:
+    Data1: -1100321250
+    Data2: 1155956269
+    Data3: -1596015939
+    Data4: 816416721
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5399
+--- !u!114 &-7121209045773375518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorClose
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DoorClose
+  Guid:
+    Data1: 1503420625
+    Data2: 1266374623
+    Data3: 1577420186
+    Data4: -1831112700
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
+--- !u!114 &-7113358915994336466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sigh
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Sigh
+  Guid:
+    Data1: -271383071
+    Data2: 1216573720
+    Data3: 2115971494
+    Data4: -1110620088
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5593
+--- !u!114 &-6519019513017961102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/SuperNaya
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/SuperNaya
+  Guid:
+    Data1: 593878738
+    Data2: 1265536016
+    Data3: -1496029043
+    Data4: -1645498975
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4756
+--- !u!114 &-6385285246568810479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/BienJoueTuFaisDesProgres
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/BienJoueTuFaisDesProgres
+  Guid:
+    Data1: 2093935140
+    Data2: 1310687128
+    Data3: 1009661373
+    Data4: -252573513
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4700
+--- !u!114 &-6001162488735312397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2445,7 +420,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &6034026409873832865
+--- !u!114 &-5790857923334244805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2455,24 +430,315 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/OhTiensJeReconnais
+  m_Name: event:/NotesPiano2/NotePiano4
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/OhTiensJeReconnais
+  Path: event:/NotesPiano2/NotePiano4
   Guid:
-    Data1: 1128982924
-    Data2: 1321930191
-    Data3: -1433277272
-    Data4: 599267699
+    Data1: -956980441
+    Data2: 1283149430
+    Data3: 1112455327
+    Data4: -1363484977
   Banks:
-  - {fileID: -8245680849921943004}
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1535
+--- !u!114 &-5274961479293366026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/CestPresqueTermine
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/CestPresqueTermine
+  Guid:
+    Data1: 741712296
+    Data2: 1159945311
+    Data3: 712388487
+    Data4: -1194023908
+  Banks:
+  - {fileID: 4829153925183180669}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 5725
---- !u!114 &6230230716058943299
+  Length: 3800
+--- !u!114 &-4898432899841450552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RadioOn
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/RadioOn
+  Guid:
+    Data1: -2023247581
+    Data2: 1151541498
+    Data3: -314029647
+    Data4: 213612731
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 548
+--- !u!114 &-4825259892060320570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/ReD
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/ReD
+  Guid:
+    Data1: -410942733
+    Data2: 1227478554
+    Data3: -239675713
+    Data4: -404635069
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2812
+--- !u!114 &-4651155247982268820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/OkJeSuisPrete
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/OkJeSuisPrete
+  Guid:
+    Data1: 248660148
+    Data2: 1278861947
+    Data3: -316592213
+    Data4: -368761826
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2800
+--- !u!114 &-4581009103829930400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/LaA
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/LaA
+  Guid:
+    Data1: -714198239
+    Data2: 1243062915
+    Data3: -2024534126
+    Data4: -926885794
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2817
+--- !u!114 &-4577971730246927847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
+  Path: Assets/FMODAssets/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 639118734683257530
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-4401507192086391337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano9
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano9
+  Guid:
+    Data1: -1693021422
+    Data2: 1155528440
+    Data3: 689673093
+    Data4: -1893296456
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1294
+--- !u!114 &-4263626818752629897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MusicMix
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/MusicMix
+  Guid:
+    Data1: -2104285395
+    Data2: 1084456860
+    Data3: 1560406438
+    Data4: 733602536
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6001162488735312397}
+  - {fileID: 6866941073115100002}
+  - {fileID: -971768541864660070}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 66638
+--- !u!114 &-4045179522911118825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ShellEvents/SeaShell
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/ShellEvents/SeaShell
+  Guid:
+    Data1: 516840418
+    Data2: 1305254481
+    Data3: -2059617385
+    Data4: -174501040
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 263750
+--- !u!114 &-4027494032246550661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano/EPianoMi
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano/EPianoMi
+  Guid:
+    Data1: 236576208
+    Data2: 1159278569
+    Data3: -302823018
+    Data4: 1491437611
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2665
+--- !u!114 &-3993546833036801013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/TousCesSonsCest
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/TousCesSonsCest
+  Guid:
+    Data1: 234449134
+    Data2: 1104300718
+    Data3: 152748465
+    Data4: -190463053
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12071
+--- !u!114 &-3650072928830457055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2491,7 +757,7 @@ MonoBehaviour:
     Data3: -1988693085
     Data4: -1140129714
   Banks:
-  - {fileID: -8245680849921943004}
+  - {fileID: 4829153925183180669}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2499,7 +765,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1260
---- !u!114 &6465861188818556905
+--- !u!114 &-3449906942238905613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2509,24 +775,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/Accord1
+  m_Name: event:/MusiqueStartFond
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/Accord1
+  Path: event:/MusiqueStartFond
   Guid:
-    Data1: -177146463
-    Data2: 1249839191
-    Data3: 1817380285
-    Data4: 390080765
+    Data1: -53404689
+    Data2: 1230439184
+    Data3: -654359627
+    Data4: 424061248
   Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2802
---- !u!114 &6488344469986387925
+  Length: 82300
+--- !u!114 &-3206128366042984509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2536,24 +802,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/JeMeSouviensDe
+  m_Name: event:/VoixOffs/Therapiste/ParfaitGuitare
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/JeMeSouviensDe
+  Path: event:/VoixOffs/Therapiste/ParfaitGuitare
   Guid:
-    Data1: 1778323507
-    Data2: 1132435852
-    Data3: -1197448028
-    Data4: -764891619
+    Data1: 484028357
+    Data2: 1213803221
+    Data3: 226826638
+    Data4: -1069729989
   Banks:
-  - {fileID: -8245680849921943004}
+  - {fileID: 4829153925183180669}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 9149
---- !u!114 &6496356799121701623
+  Length: 3250
+--- !u!114 &-2877153947856916740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2563,24 +829,1107 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano2
+  m_Name: event:/VoixOffs/Naya/OhCestLaCuisine
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano2
+  Path: event:/VoixOffs/Naya/OhCestLaCuisine
   Guid:
-    Data1: -1853002653
-    Data2: 1320873511
-    Data3: 482376089
-    Data4: -2118546354
+    Data1: 303955786
+    Data2: 1252153865
+    Data3: -159526518
+    Data4: 840227982
   Banks:
-  - {fileID: 368644671798409376}
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7921
+--- !u!114 &-2852906624421896248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VocalParents
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VocalParents
+  Guid:
+    Data1: 1669244525
+    Data2: 1207274480
+    Data3: 1358016669
+    Data4: 959288839
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 15828
+--- !u!114 &-2654014078918424792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/InputSpaceMusic
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/InputSpaceMusic
+  Guid:
+    Data1: 239873021
+    Data2: 1164686268
+    Data3: -1986019454
+    Data4: -1332776665
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2610631701080228910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Room3/WrongChordGuitar
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Room3/WrongChordGuitar
+  Guid:
+    Data1: -1535318680
+    Data2: 1170312455
+    Data3: -1543295
+    Data4: 696466343
+  Banks:
+  - {fileID: -7541018856739055291}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1544
---- !u!114 &6737846778972117725
+  Length: 3428
+--- !u!114 &-2459021604774384895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MelodyInstruments
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/MelodyInstruments
+  Guid:
+    Data1: -873141106
+    Data2: 1156080571
+    Data3: -1173471339
+    Data4: 1821694507
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2189827790591958515}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 26666
+--- !u!114 &-2325054442767258642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/MiE1
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/MiE1
+  Guid:
+    Data1: -1525430737
+    Data2: 1110171129
+    Data3: -971257665
+    Data4: -50358967
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
+--- !u!114 &-2233393156224278820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/TuEsDansTonMonde
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/TuEsDansTonMonde
+  Guid:
+    Data1: -217621700
+    Data2: 1074009549
+    Data3: -1903509093
+    Data4: -777003331
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5147
+--- !u!114 &-1570752823380418120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano8
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano8
+  Guid:
+    Data1: 1864353345
+    Data2: 1078953299
+    Data3: 552247191
+    Data4: 2095288305
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1437
+--- !u!114 &-1473095724688376953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RadioHumming
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/RadioHumming
+  Guid:
+    Data1: 1679673778
+    Data2: 1291173890
+    Data3: -1970789200
+    Data4: 1244107025
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 22507
+--- !u!114 &-971768541864660070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicMix/GuitarVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: GuitarVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 574505299
+    data2: 1924609172
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-805969137661390139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/LeTempsPasse
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/LeTempsPasse
+  Guid:
+    Data1: -1426160330
+    Data2: 1120824913
+    Data3: 586933417
+    Data4: 962022363
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6083
+--- !u!114 &-800514903779890338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MusicBox
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/MusicBox
+  Guid:
+    Data1: 757438350
+    Data2: 1262089174
+    Data3: -1294635345
+    Data4: 800823322
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 58047
+--- !u!114 &-692105602696707713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ShellEvents/CicadaShell
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/ShellEvents/CicadaShell
+  Guid:
+    Data1: 1375167066
+    Data2: 1337064788
+    Data3: -1496784753
+    Data4: 1465792612
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 24565
+--- !u!114 &-587728652396203438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Voicemail
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Voicemail
+  Guid:
+    Data1: 1099004271
+    Data2: 1155031755
+    Data3: 1166013834
+    Data4: 1278869781
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6000
+--- !u!114 &-483241490232273370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/Accord3
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/Accord3
+  Guid:
+    Data1: -746138944
+    Data2: 1085338760
+    Data3: 1781193402
+    Data4: 1955459472
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2831
+--- !u!114 &-467971088993529560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FinalMusic
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/FinalMusic
+  Guid:
+    Data1: -1879334902
+    Data2: 1114892876
+    Data3: 565632404
+    Data4: 2118475993
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 226272
+--- !u!114 &-419615507740520585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano/EPianoFa
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano/EPianoFa
+  Guid:
+    Data1: 1534494001
+    Data2: 1301129466
+    Data3: 590225040
+    Data4: -1309443553
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2691
+--- !u!114 &-89869963427684198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DoorOpen
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: DoorOpen
+  StudioPath: parameter:/DoorOpen
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1580876383
+    data2: 2676421694
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EventCache
+  EditorBanks:
+  - {fileID: 993065276575086482}
+  - {fileID: -7541018856739055291}
+  - {fileID: -4577971730246927847}
+  - {fileID: 4829153925183180669}
+  EditorEvents:
+  - {fileID: -467971088993529560}
+  - {fileID: -4401507192086391337}
+  - {fileID: 6886382848221838839}
+  - {fileID: 6576452200379396528}
+  - {fileID: 2790863669305651942}
+  - {fileID: 6979952687803173508}
+  - {fileID: -4581009103829930400}
+  - {fileID: -4898432899841450552}
+  - {fileID: 3138706694481171535}
+  - {fileID: -5790857923334244805}
+  - {fileID: 6411828872687406998}
+  - {fileID: -4263626818752629897}
+  - {fileID: -2325054442767258642}
+  - {fileID: -419615507740520585}
+  - {fileID: -1570752823380418120}
+  - {fileID: -7636995603242533217}
+  - {fileID: 5356487206081993928}
+  - {fileID: 7090546410189177715}
+  - {fileID: -692105602696707713}
+  - {fileID: 6603550804284492394}
+  - {fileID: 6511772453061412723}
+  - {fileID: -2610631701080228910}
+  - {fileID: 7302811707753197198}
+  - {fileID: -587728652396203438}
+  - {fileID: 5402323260097916185}
+  - {fileID: 4427030497315469318}
+  - {fileID: -800514903779890338}
+  - {fileID: -2459021604774384895}
+  - {fileID: 165728565562775406}
+  - {fileID: 4452245985177112075}
+  - {fileID: 2088916239496031210}
+  - {fileID: -8598037566263899442}
+  - {fileID: 3622293408593011072}
+  - {fileID: 6690576944406377594}
+  - {fileID: 283188579544821374}
+  - {fileID: -1473095724688376953}
+  - {fileID: 3460830696951787593}
+  - {fileID: -483241490232273370}
+  - {fileID: 783031199519678424}
+  - {fileID: 2759514948911000069}
+  - {fileID: 3034067231586577338}
+  - {fileID: -8205910711986180892}
+  - {fileID: -4027494032246550661}
+  - {fileID: -7121209045773375518}
+  - {fileID: 7324046884096138582}
+  - {fileID: 9070972156681110677}
+  - {fileID: 3363420273855192794}
+  - {fileID: 733639057642511109}
+  - {fileID: 4337560973118661607}
+  - {fileID: 502897119302808057}
+  - {fileID: -4045179522911118825}
+  - {fileID: 7740350895443161682}
+  - {fileID: -3449906942238905613}
+  - {fileID: -4825259892060320570}
+  - {fileID: -3650072928830457055}
+  - {fileID: 4751745242287663157}
+  - {fileID: -7479661072940848510}
+  - {fileID: -8086957970884828296}
+  - {fileID: -6385285246568810479}
+  - {fileID: -7630781081655009854}
+  - {fileID: 373059927675811505}
+  - {fileID: 3367340274458062411}
+  - {fileID: -805969137661390139}
+  - {fileID: 4280726693455779956}
+  - {fileID: -2233393156224278820}
+  - {fileID: -8784920509585058532}
+  - {fileID: 8941647932764998986}
+  - {fileID: -2877153947856916740}
+  - {fileID: -8235671546496579809}
+  - {fileID: 8590296151768172980}
+  - {fileID: -7911636566751161388}
+  - {fileID: -2852906624421896248}
+  - {fileID: 7844320366717297327}
+  - {fileID: 3888220425857203400}
+  - {fileID: 8761821551841379384}
+  - {fileID: 2040808362175255039}
+  - {fileID: 7838361108017043610}
+  - {fileID: 7441168017929658245}
+  - {fileID: 8188838476552341812}
+  - {fileID: 1825572430044347828}
+  - {fileID: -8970706829637141827}
+  - {fileID: -5274961479293366026}
+  - {fileID: 1407981136477803542}
+  - {fileID: 7262035642967928371}
+  - {fileID: 1405362861416832222}
+  - {fileID: -4651155247982268820}
+  - {fileID: 2853671368839417718}
+  - {fileID: -3206128366042984509}
+  - {fileID: -6519019513017961102}
+  - {fileID: -7113358915994336466}
+  - {fileID: 5051934174366446873}
+  - {fileID: 6542401506026059571}
+  - {fileID: -3993546833036801013}
+  - {fileID: 4612397850388937987}
+  - {fileID: -2654014078918424792}
+  EditorParameters:
+  - {fileID: -89869963427684198}
+  MasterBanks:
+  - {fileID: -4577971730246927847}
+  StringsBanks:
+  - {fileID: 993065276575086482}
+  cacheVersion: 131858
+  cacheTime: 639118734686596403
+  SerializableEventsDict:
+  - key: event:/FinalMusic
+    index: 0
+  - key: event:/NotesPiano2/NotePiano9
+    index: 1
+  - key: event:/NotesGuitare/Accord5
+    index: 2
+  - key: event:/NotesPiano2/NotePiano6
+    index: 3
+  - key: event:/LightSwitch
+    index: 4
+  - key: event:/DoorOpening
+    index: 5
+  - key: event:/NotesGuitare/LaA
+    index: 6
+  - key: event:/RadioOn
+    index: 7
+  - key: event:/NotesPiano/EPianoDo
+    index: 8
+  - key: event:/NotesPiano2/NotePiano4
+    index: 9
+  - key: event:/NotesPiano/EPianoRe
+    index: 10
+  - key: event:/MusicMix
+    index: 11
+  - key: event:/NotesGuitare/MiE1
+    index: 12
+  - key: event:/NotesPiano/EPianoFa
+    index: 13
+  - key: event:/NotesPiano2/NotePiano8
+    index: 14
+  - key: event:/Room3/CleanChordGuitar
+    index: 15
+  - key: event:/NotesPiano/EPianoSol
+    index: 16
+  - key: event:/ShellEvents/WindShell
+    index: 17
+  - key: event:/ShellEvents/CicadaShell
+    index: 18
+  - key: event:/BiggieVinyl
+    index: 19
+  - key: event:/NotesPiano2/NotePiano2
+    index: 20
+  - key: event:/Room3/WrongChordGuitar
+    index: 21
+  - key: event:/NotesGuitare/AccordNeutre
+    index: 22
+  - key: event:/Voicemail
+    index: 23
+  - key: event:/NotesPiano2/NotePiano3
+    index: 24
+  - key: event:/NotesGuitare/SiB
+    index: 25
+  - key: event:/MusicBox
+    index: 26
+  - key: event:/MelodyInstruments
+    index: 27
+  - key: event:/NotesPiano2/NotePiano5
+    index: 28
+  - key: event:/NotesPiano2/NotePiano7
+    index: 29
+  - key: event:/DrumsLoopRadio
+    index: 30
+  - key: event:/SodadeRadio
+    index: 31
+  - key: event:/NotesGuitare/Accord1
+    index: 32
+  - key: event:/NotesGuitare/Accord4Good
+    index: 33
+  - key: event:/Room3/PhoneRing2
+    index: 34
+  - key: event:/RadioHumming
+    index: 35
+  - key: event:/Room3/PhoneRinging
+    index: 36
+  - key: event:/NotesGuitare/Accord3
+    index: 37
+  - key: event:/ShellEvents/BirdsShell
+    index: 38
+  - key: event:/LonelyDayIPOD
+    index: 39
+  - key: event:/PianoCompletion
+    index: 40
+  - key: event:/NotesPiano2/NotePiano1
+    index: 41
+  - key: event:/NotesPiano/EPianoMi
+    index: 42
+  - key: event:/DoorClose
+    index: 43
+  - key: event:/NotesGuitare/MiE2
+    index: 44
+  - key: event:/NotesGuitare/SolG
+    index: 45
+  - key: event:/NotesPiano2/NotePiano11
+    index: 46
+  - key: event:/NotesPiano2/NotePiano10
+    index: 47
+  - key: event:/HymneALAmourRadio
+    index: 48
+  - key: event:/NotesGuitare/Accord2
+    index: 49
+  - key: event:/ShellEvents/SeaShell
+    index: 50
+  - key: event:/RewindClic
+    index: 51
+  - key: event:/MusiqueStartFond
+    index: 52
+  - key: event:/NotesGuitare/ReD
+    index: 53
+  - key: event:/VoixOffs/Therapiste/AQuoiCaTaFaitPenser
+    index: 54
+  - key: event:/VoixOffs/Therapiste/ExploreEtTuAuras
+    index: 55
+  - key: event:/VoixOffs/Therapiste/ParfaitK7
+    index: 56
+  - key: event:/VoixOffs/Naya/OuiJespere
+    index: 57
+  - key: event:/VoixOffs/Therapiste/BienJoueTuFaisDesProgres
+    index: 58
+  - key: event:/VoixOffs/Naya/CesDisquesMesParents
+    index: 59
+  - key: event:/VoixOffs/Naya/CePianoEst
+    index: 60
+  - key: event:/VoixOffs/Naya/JeMeSouviensDe
+    index: 61
+  - key: event:/VoixOffs/Therapiste/LeTempsPasse
+    index: 62
+  - key: event:/VoixOffs/Naya/JaimaisTellementEcouter
+    index: 63
+  - key: event:/VoixOffs/Therapiste/TuEsDansTonMonde
+    index: 64
+  - key: event:/VoixOffs/Naya/AhCestLePiano
+    index: 65
+  - key: event:/VoixOffs/Therapiste/CestNormalController
+    index: 66
+  - key: event:/VoixOffs/Naya/OhCestLaCuisine
+    index: 67
+  - key: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
+    index: 68
+  - key: event:/VoixOffs/Naya/IlManquaitMonAssiette
+    index: 69
+  - key: event:/VoixOffs/Therapiste/EtLaTuViensDeRajouter
+    index: 70
+  - key: event:/VocalParents
+    index: 71
+  - key: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
+    index: 72
+  - key: event:/VoixOffs/Naya/C'estLaRadioQui
+    index: 73
+  - key: event:/VoixOffs/Naya/CeCollierMaMere
+    index: 74
+  - key: event:/VoixOffs/Naya/OhTiensJeReconnais
+    index: 75
+  - key: event:/VoixOffs/Therapiste/TyEsPresqueEquilibre
+    index: 76
+  - key: event:/VoixOffs/Naya/OuiCestVraiNumeros
+    index: 77
+  - key: event:/VoixOffs/Naya/WowLesSensations
+    index: 78
+  - key: event:/VoixOffs/Therapiste/JeVaisCompter
+    index: 79
+  - key: event:/VoixOffs/Therapiste/QuandPreteSors
+    index: 80
+  - key: event:/VoixOffs/Therapiste/CestPresqueTermine
+    index: 81
+  - key: event:/VoixOffs/Naya/JeComprendsPas
+    index: 82
+  - key: event:/VoixOffs/Naya/JeMeSuisToujoursDit
+    index: 83
+  - key: event:/VoixOffs/Therapiste/TuNesPasFigee
+    index: 84
+  - key: event:/VoixOffs/Naya/OkJeSuisPrete
+    index: 85
+  - key: event:/VoixOffs/Therapiste/DisMoiEstceQueTu
+    index: 86
+  - key: event:/VoixOffs/Therapiste/ParfaitGuitare
+    index: 87
+  - key: event:/VoixOffs/Therapiste/SuperNaya
+    index: 88
+  - key: event:/Sigh
+    index: 89
+  - key: event:/VoixOffs/Therapiste/SiTuAsBesoinDeSouffler
+    index: 90
+  - key: event:/VoixOffs/Naya/CetteGuitareMaToujours
+    index: 91
+  - key: event:/VoixOffs/Naya/TousCesSonsCest
+    index: 92
+  - key: event:/VoixOffs/Naya/IlMeSembleQueNumeros
+    index: 93
+  - key: event:/InputSpaceMusic
+    index: 94
+--- !u!114 &165728565562775406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano5
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano5
+  Guid:
+    Data1: 708545167
+    Data2: 1312658338
+    Data3: 1340323223
+    Data4: 1871048279
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1763
+--- !u!114 &283188579544821374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Room3/PhoneRing2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Room3/PhoneRing2
+  Guid:
+    Data1: 1238797482
+    Data2: 1132506270
+    Data3: -338647623
+    Data4: 1173924455
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2883
+--- !u!114 &373059927675811505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/CePianoEst
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/CePianoEst
+  Guid:
+    Data1: -1437882833
+    Data2: 1185629307
+    Data3: 299732926
+    Data4: 655916559
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6600
+--- !u!114 &502897119302808057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/Accord2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/Accord2
+  Guid:
+    Data1: 486369761
+    Data2: 1076889677
+    Data3: -592597881
+    Data4: 2102441105
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2807
+--- !u!114 &733639057642511109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano10
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano10
+  Guid:
+    Data1: -1818214950
+    Data2: 1191399928
+    Data3: -1393997634
+    Data4: -640166684
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1446
+--- !u!114 &783031199519678424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ShellEvents/BirdsShell
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/ShellEvents/BirdsShell
+  Guid:
+    Data1: 732418501
+    Data2: 1130440168
+    Data3: 1474243465
+    Data4: 2000221785
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20000
+--- !u!114 &993065276575086482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
+  Path: Assets/FMODAssets/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 639118734683299670
+  FileSizes:
+  - Name: 
+    Value: 5824
+  Exists: 1
+--- !u!114 &1405362861416832222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/TuNesPasFigee
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/TuNesPasFigee
+  Guid:
+    Data1: -157853777
+    Data2: 1177914623
+    Data3: -296514147
+    Data4: -1621774133
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5571
+--- !u!114 &1407981136477803542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/JeComprendsPas
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/JeComprendsPas
+  Guid:
+    Data1: 1596101035
+    Data2: 1204408569
+    Data3: 1910507446
+    Data4: -879857957
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2500
+--- !u!114 &1825572430044347828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/JeVaisCompter
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/JeVaisCompter
+  Guid:
+    Data1: -1445273183
+    Data2: 1298816723
+    Data3: -665455737
+    Data4: 1142299505
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11558
+--- !u!114 &2040808362175255039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/OhTiensJeReconnais
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/OhTiensJeReconnais
+  Guid:
+    Data1: 1128982924
+    Data2: 1321930191
+    Data3: -1433277272
+    Data4: 599267699
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5725
+--- !u!114 &2088916239496031210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DrumsLoopRadio
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DrumsLoopRadio
+  Guid:
+    Data1: 1736375454
+    Data2: 1323731813
+    Data3: 1107453351
+    Data4: 809727430
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 33888
+--- !u!114 &2189827790591958515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2604,7 +1953,7 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &6853937766192072537
+--- !u!114 &2759514948911000069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2614,241 +1963,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/TuEsDansTonMonde
+  m_Name: event:/LonelyDayIPOD
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/TuEsDansTonMonde
+  Path: event:/LonelyDayIPOD
   Guid:
-    Data1: -217621700
-    Data2: 1074009549
-    Data3: -1903509093
-    Data4: -777003331
+    Data1: 935017928
+    Data2: 1182852487
+    Data3: 1982473357
+    Data4: 1257707208
   Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5147
---- !u!114 &7084863723653271884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/SuperNaya
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/SuperNaya
-  Guid:
-    Data1: 593878738
-    Data2: 1265536016
-    Data3: -1496029043
-    Data4: -1645498975
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4756
---- !u!114 &7162583982176332181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/WowLesSensations
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/WowLesSensations
-  Guid:
-    Data1: -1001866083
-    Data2: 1220510640
-    Data3: -884923982
-    Data4: -1113883607
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 8500
---- !u!114 &7253377360284583582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: FMOD/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 639074671462237705
-  FileSizes: []
-  Exists: 1
---- !u!114 &7272445558490780950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/CestPresqueTermine
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/CestPresqueTermine
-  Guid:
-    Data1: 741712296
-    Data2: 1159945311
-    Data3: 712388487
-    Data4: -1194023908
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3800
---- !u!114 &7407138131787572129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/Bank1.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: FMOD/Desktop/Desktop/Bank1.bank
-  Name: Desktop/Bank1
-  StudioPath: bank:/Bank1
-  lastModified: 639084074503621119
-  FileSizes: []
-  Exists: 0
---- !u!114 &7465062004698849721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/BankGame.bank
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
-  Path: FMOD/Desktop/Desktop/BankGame.bank
-  Name: Desktop/BankGame
-  StudioPath: 
-  lastModified: 639084075110060800
-  FileSizes: []
-  Exists: 1
---- !u!114 &7495607890067665220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/AhCestLePiano
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/AhCestLePiano
-  Guid:
-    Data1: -1617585852
-    Data2: 1246317502
-    Data3: 1772712106
-    Data4: -404521762
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3150
---- !u!114 &7548159590765495730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano1
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano1
-  Guid:
-    Data1: -1607676464
-    Data2: 1083415314
-    Data3: 2003028667
-    Data4: 161805046
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1562
---- !u!114 &7730849722443585296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SexMachine
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/SexMachine
-  Guid:
-    Data1: 1593326851
-    Data2: 1265712733
-    Data3: 1438358426
-    Data4: -1012689059
-  Banks:
-  - {fileID: -3759396105119051157}
-  - {fileID: 7407138131787572129}
+  - {fileID: -7541018856739055291}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &7743085732953919011
+  Length: 169741
+--- !u!114 &2790863669305651942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2858,24 +1990,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano/EPianoDo
+  m_Name: event:/LightSwitch
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano/EPianoDo
+  Path: event:/LightSwitch
   Guid:
-    Data1: 284727079
-    Data2: 1333661139
-    Data3: -1636089977
-    Data4: 525422071
+    Data1: 1634457111
+    Data2: 1338709014
+    Data3: -537548399
+    Data4: -1235109563
   Banks:
-  - {fileID: 368644671798409376}
+  - {fileID: -7541018856739055291}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2750
---- !u!114 &8055469437492414363
+  Length: 221
+--- !u!114 &2853671368839417718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2885,348 +2017,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano/EPianoFa
+  m_Name: event:/VoixOffs/Therapiste/DisMoiEstceQueTu
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano/EPianoFa
+  Path: event:/VoixOffs/Therapiste/DisMoiEstceQueTu
   Guid:
-    Data1: 1534494001
-    Data2: 1301129466
-    Data3: 590225040
-    Data4: -1309443553
+    Data1: 1098013121
+    Data2: 1107545110
+    Data3: -1569964375
+    Data4: 253566050
   Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2691
---- !u!114 &8228701802241067459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano7
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano7
-  Guid:
-    Data1: -1493441130
-    Data2: 1160810973
-    Data3: 1810398386
-    Data4: 1152609177
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1401
---- !u!114 &8256935499168699646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Voicemail
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Voicemail
-  Guid:
-    Data1: 1099004271
-    Data2: 1155031755
-    Data3: 1166013834
-    Data4: 1278869781
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 6000
---- !u!114 &8352931170191248324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/JeComprendsPas
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/JeComprendsPas
-  Guid:
-    Data1: 1596101035
-    Data2: 1204408569
-    Data3: 1910507446
-    Data4: -879857957
-  Banks:
-  - {fileID: -8245680849921943004}
+  - {fileID: 4829153925183180669}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2500
---- !u!114 &8472760738191114480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano3
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano3
-  Guid:
-    Data1: -371482238
-    Data2: 1294964196
-    Data3: 1811548059
-    Data4: 1462580157
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1375
---- !u!114 &8556406883086866707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/InputSpaceMusic
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/InputSpaceMusic
-  Guid:
-    Data1: 239873021
-    Data2: 1164686268
-    Data3: -1986019454
-    Data4: -1332776665
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &8664538021451264041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ShellEvents/SeaShell
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/ShellEvents/SeaShell
-  Guid:
-    Data1: 516840418
-    Data2: 1305254481
-    Data3: -2059617385
-    Data4: -174501040
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 263750
---- !u!114 &8727599751295254740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BiggieVinyl
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/BiggieVinyl
-  Guid:
-    Data1: -161719709
-    Data2: 1260369684
-    Data3: 723816125
-    Data4: 1774483584
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 249939
---- !u!114 &8836462244006179700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Naya/JaimaisTellementEcouter
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Naya/JaimaisTellementEcouter
-  Guid:
-    Data1: -1591041992
-    Data2: 1290031687
-    Data3: -897493837
-    Data4: -315334127
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2350
---- !u!114 &8913592520143396890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MusiqueStartFond
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/MusiqueStartFond
-  Guid:
-    Data1: -53404689
-    Data2: 1230439184
-    Data3: -654359627
-    Data4: 424061248
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 82300
---- !u!114 &9006600719712598237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VoixOffs/Therapiste/CestNormalController
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VoixOffs/Therapiste/CestNormalController
-  Guid:
-    Data1: 395027784
-    Data2: 1216736435
-    Data3: 1909370510
-    Data4: -1278178410
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4860
---- !u!114 &9116250199269176693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Sigh
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Sigh
-  Guid:
-    Data1: -271383071
-    Data2: 1216573720
-    Data3: 2115971494
-    Data4: -1110620088
-  Banks:
-  - {fileID: -8245680849921943004}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5593
---- !u!114 &9160470503553056005
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano/EPianoMi
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano/EPianoMi
-  Guid:
-    Data1: 236576208
-    Data2: 1159278569
-    Data3: -302823018
-    Data4: 1491437611
-  Banks:
-  - {fileID: 368644671798409376}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2665
---- !u!114 &9215848619685322838
+  Length: 4146
+--- !u!114 &3034067231586577338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3245,7 +2053,7 @@ MonoBehaviour:
     Data3: 2003314085
     Data4: 1403652900
   Banks:
-  - {fileID: 368644671798409376}
+  - {fileID: -7541018856739055291}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -3253,3 +2061,1017 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3079
+--- !u!114 &3138706694481171535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano/EPianoDo
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano/EPianoDo
+  Guid:
+    Data1: 284727079
+    Data2: 1333661139
+    Data3: -1636089977
+    Data4: 525422071
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2750
+--- !u!114 &3363420273855192794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano11
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano11
+  Guid:
+    Data1: -1517348905
+    Data2: 1238945228
+    Data3: 751711892
+    Data4: -1486381905
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1468
+--- !u!114 &3367340274458062411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/JeMeSouviensDe
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/JeMeSouviensDe
+  Guid:
+    Data1: 1778323507
+    Data2: 1132435852
+    Data3: -1197448028
+    Data4: -764891619
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9149
+--- !u!114 &3460830696951787593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Room3/PhoneRinging
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Room3/PhoneRinging
+  Guid:
+    Data1: -1994879816
+    Data2: 1266231247
+    Data3: 1372640656
+    Data4: 340242379
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 24999
+--- !u!114 &3622293408593011072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/Accord1
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/Accord1
+  Guid:
+    Data1: -177146463
+    Data2: 1249839191
+    Data3: 1817380285
+    Data4: 390080765
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2802
+--- !u!114 &3888220425857203400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/C'estLaRadioQui
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/C'estLaRadioQui
+  Guid:
+    Data1: -180378752
+    Data2: 1225933632
+    Data3: -1648609399
+    Data4: 515657676
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3300
+--- !u!114 &4280726693455779956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/JaimaisTellementEcouter
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/JaimaisTellementEcouter
+  Guid:
+    Data1: -1591041992
+    Data2: 1290031687
+    Data3: -897493837
+    Data4: -315334127
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2350
+--- !u!114 &4337560973118661607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/HymneALAmourRadio
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/HymneALAmourRadio
+  Guid:
+    Data1: 627625692
+    Data2: 1091828045
+    Data3: 655567548
+    Data4: -220662874
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 205875
+--- !u!114 &4427030497315469318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/SiB
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/SiB
+  Guid:
+    Data1: 1800305797
+    Data2: 1228798481
+    Data3: 1535488439
+    Data4: 2003325028
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
+--- !u!114 &4452245985177112075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano7
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano7
+  Guid:
+    Data1: -1493441130
+    Data2: 1160810973
+    Data3: 1810398386
+    Data4: 1152609177
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1401
+--- !u!114 &4612397850388937987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/IlMeSembleQueNumeros
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/IlMeSembleQueNumeros
+  Guid:
+    Data1: -231462666
+    Data2: 1170337523
+    Data3: 1943820990
+    Data4: 890175452
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3550
+--- !u!114 &4751745242287663157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/ExploreEtTuAuras
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/ExploreEtTuAuras
+  Guid:
+    Data1: 1261732101
+    Data2: 1291221039
+    Data3: -114466389
+    Data4: 196489357
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4050
+--- !u!114 &4829153925183180669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/VoixBank.bank
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorBankRef
+  Path: Assets/FMODAssets/Desktop/VoixBank.bank
+  Name: VoixBank
+  StudioPath: bank:/VoixBank
+  lastModified: 639118734686596403
+  FileSizes: []
+  Exists: 1
+--- !u!114 &5051934174366446873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/SiTuAsBesoinDeSouffler
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/SiTuAsBesoinDeSouffler
+  Guid:
+    Data1: 1098567144
+    Data2: 1094746419
+    Data3: 146108091
+    Data4: -398646389
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4188
+--- !u!114 &5356487206081993928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano/EPianoSol
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano/EPianoSol
+  Guid:
+    Data1: 169717590
+    Data2: 1192591165
+    Data3: -1803724381
+    Data4: 638615725
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2879
+--- !u!114 &5402323260097916185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano3
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano3
+  Guid:
+    Data1: -371482238
+    Data2: 1294964196
+    Data3: 1811548059
+    Data4: 1462580157
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1375
+--- !u!114 &6411828872687406998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano/EPianoRe
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano/EPianoRe
+  Guid:
+    Data1: 1755382827
+    Data2: 1279327854
+    Data3: 1702537395
+    Data4: 1832075939
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2767
+--- !u!114 &6511772453061412723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano2
+  Guid:
+    Data1: -1853002653
+    Data2: 1320873511
+    Data3: 482376089
+    Data4: -2118546354
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1544
+--- !u!114 &6542401506026059571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/CetteGuitareMaToujours
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/CetteGuitareMaToujours
+  Guid:
+    Data1: -265879059
+    Data2: 1155840999
+    Data3: -194015595
+    Data4: 1882857493
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5741
+--- !u!114 &6576452200379396528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano6
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano6
+  Guid:
+    Data1: -707342059
+    Data2: 1193013366
+    Data3: 68045728
+    Data4: -497311433
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1441
+--- !u!114 &6603550804284492394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BiggieVinyl
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/BiggieVinyl
+  Guid:
+    Data1: -161719709
+    Data2: 1260369684
+    Data3: 723816125
+    Data4: 1774483584
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 249939
+--- !u!114 &6690576944406377594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/Accord4Good
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/Accord4Good
+  Guid:
+    Data1: 1184647587
+    Data2: 1191234397
+    Data3: 1624722332
+    Data4: -1566728209
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
+--- !u!114 &6866941073115100002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicMix/BassVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: BassVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3568124258
+    data2: 1255992070
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &6886382848221838839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/Accord5
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/Accord5
+  Guid:
+    Data1: -1731211502
+    Data2: 1249615787
+    Data3: 1694305181
+    Data4: -2120949265
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2774
+--- !u!114 &6979952687803173508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorOpening
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DoorOpening
+  Guid:
+    Data1: -2013703904
+    Data2: 1245085483
+    Data3: -133938272
+    Data4: -1593670620
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1790
+--- !u!114 &7090546410189177715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ShellEvents/WindShell
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/ShellEvents/WindShell
+  Guid:
+    Data1: -522991016
+    Data2: 1307909193
+    Data3: 460977026
+    Data4: -776251879
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 47156
+--- !u!114 &7262035642967928371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/JeMeSuisToujoursDit
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/JeMeSuisToujoursDit
+  Guid:
+    Data1: -770494292
+    Data2: 1322837838
+    Data3: -915529050
+    Data4: -391411617
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3250
+--- !u!114 &7302811707753197198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/AccordNeutre
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/AccordNeutre
+  Guid:
+    Data1: -956761748
+    Data2: 1190357716
+    Data3: 1182418852
+    Data4: -997403296
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
+--- !u!114 &7324046884096138582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/MiE2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/MiE2
+  Guid:
+    Data1: -1608556075
+    Data2: 1082148990
+    Data3: -1294891093
+    Data4: 1752605638
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
+--- !u!114 &7441168017929658245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/OuiCestVraiNumeros
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/OuiCestVraiNumeros
+  Guid:
+    Data1: -869957226
+    Data2: 1126530681
+    Data3: -1701465208
+    Data4: -1972990127
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2400
+--- !u!114 &7740350895443161682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RewindClic
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/RewindClic
+  Guid:
+    Data1: -525159449
+    Data2: 1302290736
+    Data3: 1078304903
+    Data4: -1733720035
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2350
+--- !u!114 &7838361108017043610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/TyEsPresqueEquilibre
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/TyEsPresqueEquilibre
+  Guid:
+    Data1: -1043095916
+    Data2: 1169139975
+    Data3: 692881064
+    Data4: 25150780
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3855
+--- !u!114 &7844320366717297327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
+  Guid:
+    Data1: -1521320842
+    Data2: 1273675021
+    Data3: 464167833
+    Data4: -15982010
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 7636
+--- !u!114 &8188838476552341812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/WowLesSensations
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/WowLesSensations
+  Guid:
+    Data1: -1001866083
+    Data2: 1220510640
+    Data3: -884923982
+    Data4: -1113883607
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8500
+--- !u!114 &8590296151768172980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/IlManquaitMonAssiette
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/IlManquaitMonAssiette
+  Guid:
+    Data1: 646505320
+    Data2: 1214424697
+    Data3: 683130759
+    Data4: -697267218
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3150
+--- !u!114 &8761821551841379384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/CeCollierMaMere
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/CeCollierMaMere
+  Guid:
+    Data1: 1887001476
+    Data2: 1211520465
+    Data3: 508969358
+    Data4: -1204708507
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8000
+--- !u!114 &8941647932764998986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Therapiste/CestNormalController
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Therapiste/CestNormalController
+  Guid:
+    Data1: 395027784
+    Data2: 1216736435
+    Data3: 1909370510
+    Data4: -1278178410
+  Banks:
+  - {fileID: 4829153925183180669}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4860
+--- !u!114 &9070972156681110677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/SolG
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/SolG
+  Guid:
+    Data1: 1146171862
+    Data2: 1285989096
+    Data3: -1988125254
+    Data4: -1281353714
+  Banks:
+  - {fileID: -7541018856739055291}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
