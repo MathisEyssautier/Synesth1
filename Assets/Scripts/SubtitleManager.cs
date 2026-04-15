@@ -43,6 +43,7 @@ public class SubtitleManager : MonoBehaviour
 
     private const string END_MARKER = "sub_end";
     public static event System.Action OnVoiceEnded;
+    public static event System.Action<string> OnSubtitleMarker;
 
     /// <summary>Vrai si aucune ligne en file et aucune lecture FMOD active (ou lecture arrùtùe).</summary>
     public bool IsNarrationIdle()
@@ -243,6 +244,7 @@ public class SubtitleManager : MonoBehaviour
                     dispatcher.Enqueue(() =>
                     {
                         if (this == null || _isShuttingDown) return;
+                        OnSubtitleMarker?.Invoke(markerName);
                         ShowSubtitle(markerName);
                     });
                 }

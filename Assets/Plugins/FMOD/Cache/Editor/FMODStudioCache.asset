@@ -1420,7 +1420,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 993065276575086482}
   cacheVersion: 131858
-  cacheTime: 639118734686596403
+  cacheTime: 639118748415448547
   SerializableEventsDict:
   - key: event:/FinalMusic
     index: 0
@@ -2400,7 +2400,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/VoixBank.bank
   Name: VoixBank
   StudioPath: bank:/VoixBank
-  lastModified: 639118734686596403
+  lastModified: 639118748415448547
   FileSizes: []
   Exists: 1
 --- !u!114 &5051934174366446873
