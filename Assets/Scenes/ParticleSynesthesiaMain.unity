@@ -1049,6 +1049,9 @@ MonoBehaviour:
   pianoSuccessSoundOrigin: {fileID: 1004123190}
   radioManager: {fileID: 313657686}
   resetOnMistake: 1
+  onPuzzleSolved:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &37640258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,6 +1438,29 @@ MonoBehaviour:
     Path: event:/FinalMusic
   outsideFinalMusicFadeInDuration: 3
   creditsScroller: {fileID: 551165454}
+  subtitleManager: {fileID: 0}
+  delaySecondsBeforeFinalDialogue: 5
+  voNayaJeComprendsPas:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  voTherapeuteCestNormalController:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  voTherapeuteQuandPreteSors:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &103552180
 GameObject:
   m_ObjectHideFlags: 0
@@ -5205,6 +5231,20 @@ MonoBehaviour:
       Data4: 784234028
     Path: event:/DoorOpening
   origineSonOuverturePorte: {fileID: 0}
+  sonFermeturePorteA:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  sonFermeturePorteB:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   sonBoucleRadio:
     Guid:
       Data1: -2013703904
@@ -5240,6 +5280,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnAlignementPerdu:
+    m_PersistentCalls:
+      m_Calls: []
+  onExclusiveRadioPlaybackEnded:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &336866673
@@ -5354,6 +5397,7 @@ MonoBehaviour:
   snapOnCorrectWhenReleased: 1
   snapPoint: {fileID: 1893019228}
   puzzleManager: {fileID: 1752026538}
+  shellInteractionRequiresThisActive: {fileID: 0}
 --- !u!65 &336866679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13159,6 +13203,7 @@ MonoBehaviour:
   snapOnCorrectWhenReleased: 1
   snapPoint: {fileID: 687132730}
   puzzleManager: {fileID: 1752026538}
+  shellInteractionRequiresThisActive: {fileID: 0}
 --- !u!65 &880432817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14713,6 +14758,9 @@ MonoBehaviour:
   successFlashDuration: 0.25
   successFadeToSoftDuration: 0.45
   onlyAdvanceWhenGuitarHeld: 1
+  onChordSolved:
+    m_PersistentCalls:
+      m_Calls: []
   indexTriggerThreshold: 0.65
 --- !u!1 &1012046001
 GameObject:
@@ -15287,6 +15335,9 @@ MonoBehaviour:
   - {fileID: 1187458681}
   - {fileID: 1815250023}
   - {fileID: 1687636569}
+  onAllStringsPlaced:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1049434492
 GameObject:
   m_ObjectHideFlags: 0
@@ -18448,6 +18499,7 @@ MonoBehaviour:
   snapOnCorrectWhenReleased: 1
   snapPoint: {fileID: 117091474}
   puzzleManager: {fileID: 1752026538}
+  shellInteractionRequiresThisActive: {fileID: 0}
 --- !u!65 &1235171684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20128,79 +20180,6 @@ MonoBehaviour:
   targetTolerance: 0.03
   hapticAmplitude: 0.75
   hapticDuration: 0.06
---- !u!1001 &1304314026
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.41664
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.41664
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.41664
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.281
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.016
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.57
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9855054
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.1696444
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -19.534
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_Name
-      value: TungTungTungSahur
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
 --- !u!1 &1307418249
 GameObject:
   m_ObjectHideFlags: 0
@@ -20407,6 +20386,8 @@ MonoBehaviour:
       Data3: -2016341599
       Data4: -350475742
     Path: event:/VoixOffTest
+  autoStartSingleVoice: 0
+  autoStartDelaySeconds: 0
   subtitleText: {fileID: 1371133060}
   subtitlePanel: {fileID: 1514419962}
 --- !u!1 &1313934094
@@ -23921,7 +23902,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 14.83, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5999756, y: -170.92505}
+  m_AnchoredPosition: {x: 0.5999756, y: -170.92502}
   m_SizeDelta: {x: -499.99994, y: -544.44995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514419964
@@ -27762,6 +27743,9 @@ MonoBehaviour:
   disableCassetteHapticsOnSolve: 1
   setRewardInactiveOnStart: 1
   disableShellGrabOnSolve: 1
+  onPuzzleSolved:
+    m_PersistentCalls:
+      m_Calls: []
   cassetteRootOverride: {fileID: 4091491999835018476}
   cassetteSpotlightOnSolve: {fileID: 1457063351}
 --- !u!1 &1752235520
@@ -28857,8 +28841,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SalonOnboardingController
   subtitleManager: {fileID: 1311652530}
-  replayDelayAfterIpodOff: 0.5
-  replayDelayAfterFirstPianoNote: 0.5
+  delayBeforeFirstIntroLineSeconds: 5
+  voNayaTuPeuxGarder:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  voTherapeuteLaisseToiGuiderPar:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  ipodMusicObject: {fileID: 7006277426748370361}
+  ipodGrab: {fileID: 7006277426748370358}
+  voTherapeuteTuEsDansTonMonde:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  voTherapeuteSuperNaya:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  voNayaAhCestLePiano:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  voNayaWowLesSensations:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  voTherapeuteExploreEtTuAuras:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   pianoDirectionalLight: {fileID: 299639868}
   pianoDirectionalTargetIntensity: 10
   pianoDirectionalFadeDuration: 1.2
@@ -28870,8 +28904,6 @@ MonoBehaviour:
   - {fileID: 2110856798}
   - {fileID: 1573027816}
   otherLightsFadeDuration: 1.8
-  ipodMusicObject: {fileID: 7006277426748370361}
-  ipodGrab: {fileID: 7006277426748370358}
   pianoKeys:
   - {fileID: 658289990}
   - {fileID: 551081337}
@@ -28884,6 +28916,7 @@ MonoBehaviour:
   - {fileID: 1605989411}
   behavioursToDisableUntilPiano:
   - {fileID: 2139057726}
+  explorationNarrative: {fileID: 0}
 --- !u!1 &1825056083
 GameObject:
   m_ObjectHideFlags: 0
@@ -29586,11 +29619,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da81dc6e6b3b71c4ab424efade326e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  enableLegacyWallAndCubeFlow: 0
   wallSection: {fileID: 1005554984}
   wallMoveDistance: 4
   wallMoveDuration: 4
   interactableCube: {fileID: 122789885}
   cubeAppearDelay: 1
+  voiceEndCountBeforeWall: 3
 --- !u!4 &1869125860
 Transform:
   m_ObjectHideFlags: 0
@@ -29784,6 +29819,7 @@ MonoBehaviour:
   snapOnCorrectWhenReleased: 1
   snapPoint: {fileID: 805061920}
   puzzleManager: {fileID: 1752026538}
+  shellInteractionRequiresThisActive: {fileID: 0}
 --- !u!65 &1876886827
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35211,6 +35247,10 @@ MonoBehaviour:
   placedObjectColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   hideSocketOnPlaced: 1
   socketVisualToHide: {fileID: 86045551309666321}
+  activateAfterPlaced: []
+  onObjectPlaced:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &86045551312131671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48009,6 +48049,10 @@ MonoBehaviour:
   placedObjectColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.36078432}
   hideSocketOnPlaced: 1
   socketVisualToHide: {fileID: 4596758352185697836}
+  activateAfterPlaced: []
+  onObjectPlaced:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &5072607354800756587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50146,6 +50190,9 @@ MonoBehaviour:
   successFlashDuration: 0.25
   successFadeToSoftDuration: 0.45
   onlyAdvanceWhenGuitarHeld: 1
+  onChordSolved:
+    m_PersistentCalls:
+      m_Calls: []
   indexTriggerThreshold: 0.65
 --- !u!23 &5639301586567720614
 MeshRenderer:
@@ -60663,6 +60710,5 @@ SceneRoots:
   - {fileID: 243537422}
   - {fileID: 1139429030}
   - {fileID: 1759310597}
-  - {fileID: 1304314026}
   - {fileID: 2086398967}
   - {fileID: 1853944269}
