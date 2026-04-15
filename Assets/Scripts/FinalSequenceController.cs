@@ -97,6 +97,7 @@ public class FinalSequenceController : MonoBehaviour
             _masterBus.getVolume(out _masterInitialVolume);
 
         CacheObjectBuses();
+        SyncFaderHapticTargetsWithWinCondition();
 
         // Optional convenience: use one same collider for blocking+trigger.
         if (exitTriggerCollider == null && exitBlockerAndTriggerCollider != null)
@@ -135,6 +136,24 @@ public class FinalSequenceController : MonoBehaviour
                 StartCoroutine(RunOutsideFinalSequence());
             _wasInsideExitTrigger = inside;
         }
+    }
+
+    private void OnValidate()
+    {
+        SyncFaderHapticTargetsWithWinCondition();
+    }
+
+    private void SyncFaderHapticTargetsWithWinCondition()
+    {
+        SyncSingleFaderHaptics(redFader);
+        SyncSingleFaderHaptics(greenFader);
+        SyncSingleFaderHaptics(blueFader);
+    }
+
+    private static void SyncSingleFaderHaptics(FaderTarget target)
+    {
+        if (target == null || target.fader == null) return;
+        target.fader.ConfigureTargetHaptics(target.targetValue, target.tolerance);
     }
 
     private void CacheObjectBuses()
