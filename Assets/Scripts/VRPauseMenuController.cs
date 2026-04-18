@@ -3,6 +3,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.XR;
+#endif
 using FMODUnity;
 using FMOD.Studio;
 using UnityEngine.SceneManagement;
@@ -91,11 +96,7 @@ public class VRPauseMenuController : MonoBehaviour
 
     private void Update()
     {
-        InputDevice left = InputDevices.GetDeviceAtXRNode(leftHandNode);
-
-        bool yPressed = false;
-        if (left.isValid)
-            left.TryGetFeatureValue(CommonUsages.secondaryButton, out yPressed);
+        bool yPressed = ReadLeftSecondaryButtonPressed();
 
         if (yPressed && !_yWasPressed)
         {
@@ -105,7 +106,46 @@ public class VRPauseMenuController : MonoBehaviour
         _yWasPressed = yPressed;
 
         if (!_isOpen) return;
-        HandleNavigation(left);
+        HandleNavigation();
+    }
+
+    private bool ReadLeftSecondaryButtonPressed()
+    {
+#if ENABLE_INPUT_SYSTEM
+        var leftXr = XRController.leftHand;
+        if (leftXr != null)
+        {
+            var btn = leftXr.TryGetChildControl<ButtonControl>("secondaryButton");
+            if (btn != null && btn.isPressed)
+                return true;
+        }
+#endif
+        var left = UnityEngine.XR.InputDevices.GetDeviceAtXRNode(leftHandNode);
+        return left.isValid
+            && left.TryGetFeatureValue(UnityEngine.XR.CommonUsages.secondaryButton, out bool legacy)
+            && legacy;
+    }
+
+    private bool TryReadLeftPrimary2DAxis(out Vector2 axis)
+    {
+#if ENABLE_INPUT_SYSTEM
+        var leftXr = XRController.leftHand;
+        if (leftXr != null)
+        {
+            var stick = leftXr.TryGetChildControl<Vector2Control>("primary2DAxis")
+                        ?? leftXr.TryGetChildControl<Vector2Control>("thumbstick");
+            if (stick != null)
+            {
+                axis = stick.ReadValue();
+                return true;
+            }
+        }
+#endif
+        var left = UnityEngine.XR.InputDevices.GetDeviceAtXRNode(leftHandNode);
+        if (left.isValid && left.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primary2DAxis, out axis))
+            return true;
+        axis = default;
+        return false;
     }
 
     private void OpenMenu()
@@ -152,12 +192,11 @@ public class VRPauseMenuController : MonoBehaviour
 
     }
 
-    private void HandleNavigation(InputDevice left)
+    private void HandleNavigation()
     {
-        if (!left.isValid) return;
         if (Time.unscaledTime < _nextAxisTime) return;
 
-        if (!left.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 axis))
+        if (!TryReadLeftPrimary2DAxis(out Vector2 axis))
             return;
 
         if (_isControlsPage)
