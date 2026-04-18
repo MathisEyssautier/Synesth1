@@ -117,7 +117,7 @@ public class SalonOnboardingController : MonoBehaviour
     {
         float d = Mathf.Max(0f, delayBeforeFirstIntroLineSeconds);
         if (d > 0f)
-            yield return new WaitForSeconds(d);
+            yield return new WaitForSecondsRealtime(d);
 
         if (subtitleManager == null)
             yield break;

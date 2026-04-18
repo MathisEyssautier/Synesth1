@@ -109,10 +109,33 @@ public class VRPauseMenuController : MonoBehaviour
         HandleNavigation();
     }
 
+#if ENABLE_INPUT_SYSTEM
+    // Touch Plus (OpenXR) peut exposer la manette sans matcher XRController.leftHand ; on retombe sur l'usage LeftHand.
+    private static UnityEngine.InputSystem.InputDevice FindLeftHandInputDevice()
+    {
+        var x = XRController.leftHand;
+        if (x != null)
+            return x;
+
+        foreach (var d in InputSystem.devices)
+        {
+            if (d == null || !d.added || !d.enabled)
+                continue;
+            foreach (var usage in d.usages)
+            {
+                if (usage == UnityEngine.InputSystem.CommonUsages.LeftHand)
+                    return d;
+            }
+        }
+
+        return null;
+    }
+#endif
+
     private bool ReadLeftSecondaryButtonPressed()
     {
 #if ENABLE_INPUT_SYSTEM
-        var leftXr = XRController.leftHand;
+        var leftXr = FindLeftHandInputDevice();
         if (leftXr != null)
         {
             var btn = leftXr.TryGetChildControl<ButtonControl>("secondaryButton");
@@ -129,7 +152,7 @@ public class VRPauseMenuController : MonoBehaviour
     private bool TryReadLeftPrimary2DAxis(out Vector2 axis)
     {
 #if ENABLE_INPUT_SYSTEM
-        var leftXr = XRController.leftHand;
+        var leftXr = FindLeftHandInputDevice();
         if (leftXr != null)
         {
             var stick = leftXr.TryGetChildControl<Vector2Control>("primary2DAxis")
@@ -286,7 +309,13 @@ public class VRPauseMenuController : MonoBehaviour
     private IEnumerator ApplyLocomotionSettingsNextFrame()
     {
         yield return null;
-        ApplyLocomotionSettings();
+        // Après reload / destruction du rig, le manager ou ses GameObjects peuvent être invalides.
+        if (this != null && locomotionManager != null)
+        {
+            ApplyLocomotionSettings();
+            // Une frame après réactivation du Move : réapplique Enable/Disable des InputActions XRI.
+            locomotionManager.RefreshControllerInputActionManagers();
+        }
         _isClosingMenu = false;
     }
 

@@ -8,8 +8,8 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// File d'events FMOD 2D avec marqueurs = sous-titres (sauf lignes attachùes 3D sans UI).
-/// Les lignes se jouent ù la suite ; les nouvelles demandes sont mises en file si une lecture est en cours.
+/// File d'events FMOD 2D avec marqueurs = sous-titres (sauf lignes attach?es 3D sans UI).
+/// Les lignes se jouent ? la suite ; les nouvelles demandes sont mises en file si une lecture est en cours.
 /// </summary>
 public class SubtitleManager : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class SubtitleManager : MonoBehaviour
     }
 
     [Header("FMOD (optionnel, legacy)")]
-    [Tooltip("Si Auto Start Single Voice est cochù, cet event est jouù au dùmarrage (file).")]
+    [Tooltip("Si Auto Start Single Voice est coch?, cet event est jou? au d?marrage (file).")]
     [SerializeField] private EventReference voiceEventRef;
     [SerializeField] private bool autoStartSingleVoice = false;
     [SerializeField] private float autoStartDelaySeconds = 0f;
@@ -38,14 +38,13 @@ public class SubtitleManager : MonoBehaviour
     private bool _isReplaying;
     private bool _pendingReplay;
     private float _pendingReplayDelay;
-    private EVENT_CALLBACK _voiceCallback;
     private bool _currentLineUsesSubtitles = true;
 
     private const string END_MARKER = "sub_end";
     public static event System.Action OnVoiceEnded;
     public static event System.Action<string> OnSubtitleMarker;
 
-    /// <summary>Vrai si aucune ligne en file et aucune lecture FMOD active (ou lecture arrùtùe).</summary>
+    /// <summary>Vrai si aucune ligne en file et aucune lecture FMOD active (ou lecture arr?t?e).</summary>
     public bool IsNarrationIdle()
     {
         if (_isShuttingDown)
@@ -69,11 +68,6 @@ public class SubtitleManager : MonoBehaviour
         if (string.Equals(t, "sub end", StringComparison.OrdinalIgnoreCase))
             return true;
         return false;
-    }
-
-    private void Awake()
-    {
-        _voiceCallback = new EVENT_CALLBACK(OnFMODCallback);
     }
 
     private void Start()
@@ -108,7 +102,7 @@ public class SubtitleManager : MonoBehaviour
         TryStartNextInQueue();
     }
 
-    /// <summary>Enfile plusieurs lignes subtitrùes dans l'ordre.</summary>
+    /// <summary>Enfile plusieurs lignes subtitr?es dans l'ordre.</summary>
     public void EnqueueSubtitledLines(params EventReference[] lines)
     {
         if (lines == null) return;
@@ -116,7 +110,7 @@ public class SubtitleManager : MonoBehaviour
             EnqueueSubtitledLine(lines[i]);
     }
 
-    /// <summary>Event 3D sans sous-titres (ex. vocal parents sur la radio). Attacher au Transform donnù.</summary>
+    /// <summary>Event 3D sans sous-titres (ex. vocal parents sur la radio). Attacher au Transform donn?.</summary>
     public void EnqueueAttachedWithoutSubtitles(EventReference eventReference, Transform attachTo)
     {
         if (eventReference.IsNull || attachTo == null) return;
@@ -129,7 +123,7 @@ public class SubtitleManager : MonoBehaviour
         TryStartNextInQueue();
     }
 
-    /// <summary>Compatibilitù : rejoue voiceEventRef s'il est assignù.</summary>
+    /// <summary>Compatibilit? : rejoue voiceEventRef s'il est assign?.</summary>
     public void ReplayVoice(float delaySeconds = 0f)
     {
         if (_isShuttingDown || voiceEventRef.IsNull) return;
@@ -180,22 +174,52 @@ public class SubtitleManager : MonoBehaviour
     private void TryStartNextInQueue()
     {
         if (_isShuttingDown) return;
-        if (!voiceInstance.isValid() && _queue.Count > 0)
-            StartNextQueuedInternal();
+        if (_queue.Count == 0) return;
+
+        if (voiceInstance.isValid())
+        {
+            if (voiceInstance.getPlaybackState(out PLAYBACK_STATE st) == FMOD.RESULT.OK &&
+                st != PLAYBACK_STATE.STOPPED)
+                return;
+            SafeStopAndReleaseVoiceInstance();
+        }
+
+        StartNextQueuedInternal();
     }
 
     private void StartNextQueuedInternal()
     {
         if (_queue.Count == 0) return;
 
-        var line = _queue.Dequeue();
+        var line = _queue.Peek();
         SafeStopAndReleaseVoiceInstance();
 
-        voiceInstance = RuntimeManager.CreateInstance(line.EventRef);
-        if (!voiceInstance.isValid()) return;
+        try
+        {
+            voiceInstance = RuntimeManager.CreateInstance(line.EventRef);
+        }
+        catch (EventNotFoundException ex)
+        {
+            _queue.Dequeue();
+            Debug.LogError("[SubtitleManager] FMOD event not found (bank manquant ou GUID obsol?te) : " + ex.Message);
+            TryStartNextInQueue();
+            return;
+        }
+
+        if (!voiceInstance.isValid())
+        {
+            _queue.Dequeue();
+            TryStartNextInQueue();
+            return;
+        }
+
+        _queue.Dequeue();
 
         _currentLineUsesSubtitles = line.UseSubtitles;
-        voiceInstance.setCallback(_voiceCallback, EVENT_CALLBACK_TYPE.TIMELINE_MARKER | EVENT_CALLBACK_TYPE.STOPPED);
+
+        GCHandle selfHandle = GCHandle.Alloc(this, GCHandleType.Normal);
+        voiceInstance.setUserData(GCHandle.ToIntPtr(selfHandle));
+        voiceInstance.setCallback(FmodEventCallback, EVENT_CALLBACK_TYPE.TIMELINE_MARKER | EVENT_CALLBACK_TYPE.STOPPED);
 
         GameObject attachGo = ResolveAttachTarget(line);
         RuntimeManager.AttachInstanceToGameObject(voiceInstance, attachGo);
@@ -216,21 +240,32 @@ public class SubtitleManager : MonoBehaviour
     }
 
     [AOT.MonoPInvokeCallback(typeof(EVENT_CALLBACK))]
-    private FMOD.RESULT OnFMODCallback(
+    private static FMOD.RESULT FmodEventCallback(
         EVENT_CALLBACK_TYPE type,
-        System.IntPtr instancePtr,
-        System.IntPtr paramPtr)
+        IntPtr eventPtr,
+        IntPtr paramPtr)
     {
         try
         {
-            if (_isShuttingDown)
+            var ev = new EventInstance(eventPtr);
+            if (ev.getUserData(out IntPtr userdata) != FMOD.RESULT.OK || userdata == IntPtr.Zero)
+                return FMOD.RESULT.OK;
+
+            if (!GCHandle.FromIntPtr(userdata).IsAllocated)
+                return FMOD.RESULT.OK;
+
+            var mgr = GCHandle.FromIntPtr(userdata).Target as SubtitleManager;
+            if (mgr == null)
+                return FMOD.RESULT.OK;
+
+            if (mgr._isShuttingDown)
                 return FMOD.RESULT.OK;
 
             if (type == EVENT_CALLBACK_TYPE.TIMELINE_MARKER)
             {
-                if (!_currentLineUsesSubtitles)
+                if (!mgr._currentLineUsesSubtitles)
                     return FMOD.RESULT.OK;
-                if (paramPtr == System.IntPtr.Zero)
+                if (paramPtr == IntPtr.Zero)
                     return FMOD.RESULT.OK;
 
                 var props = (TIMELINE_MARKER_PROPERTIES)
@@ -243,9 +278,9 @@ public class SubtitleManager : MonoBehaviour
                 {
                     dispatcher.Enqueue(() =>
                     {
-                        if (this == null || _isShuttingDown) return;
+                        if (mgr == null || mgr._isShuttingDown) return;
                         OnSubtitleMarker?.Invoke(markerName);
-                        ShowSubtitle(markerName);
+                        mgr.ShowSubtitle(markerName);
                     });
                 }
             }
@@ -257,21 +292,21 @@ public class SubtitleManager : MonoBehaviour
                 {
                     dispatcher.Enqueue(() =>
                     {
-                        if (this == null || _isShuttingDown) return;
+                        if (mgr == null || mgr._isShuttingDown) return;
 
-                        if (_pendingReplay)
+                        if (mgr._pendingReplay)
                         {
-                            _pendingReplay = false;
-                            float delay = _pendingReplayDelay;
-                            _pendingReplayDelay = 0f;
-                            StartReplayRoutine(delay, voiceEventRef);
+                            mgr._pendingReplay = false;
+                            float delay = mgr._pendingReplayDelay;
+                            mgr._pendingReplayDelay = 0f;
+                            mgr.StartReplayRoutine(delay, mgr.voiceEventRef);
                             return;
                         }
 
                         OnVoiceEnded?.Invoke();
-                        SafeStopAndReleaseVoiceInstance();
-                        if (_queue.Count > 0)
-                            StartNextQueuedInternal();
+                        mgr.SafeStopAndReleaseVoiceInstance();
+                        if (mgr._queue.Count > 0)
+                            mgr.StartNextQueuedInternal();
                     });
                 }
             }
@@ -315,6 +350,14 @@ public class SubtitleManager : MonoBehaviour
         if (!voiceInstance.isValid()) return;
         voiceInstance.setCallback(null);
         voiceInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
+        if (voiceInstance.getUserData(out IntPtr userdata) == FMOD.RESULT.OK && userdata != IntPtr.Zero)
+        {
+            if (GCHandle.FromIntPtr(userdata).IsAllocated)
+                GCHandle.FromIntPtr(userdata).Free();
+            voiceInstance.setUserData(IntPtr.Zero);
+        }
+
         voiceInstance.release();
         voiceInstance.clearHandle();
     }

@@ -53,7 +53,8 @@ android {
     }
 
     androidResources {
-        noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ')
+        // FMOD: .bank must stay uncompressed in the APK or loadBankFile from StreamingAssets can fail on device.
+        noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ') + ['bank']
         ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~"
     }**PACKAGING**
 }

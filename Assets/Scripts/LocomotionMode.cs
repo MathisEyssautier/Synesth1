@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public enum LocomotionMode
 {
@@ -57,7 +58,8 @@ public class LocomotionManager : MonoBehaviour
     public void SetMode(LocomotionMode mode)
     {
         // Désabonnement préventif
-        teleportationProvider.locomotionStateChanged -= OnTeleportStateChanged;
+        if (teleportationProvider != null)
+            teleportationProvider.locomotionStateChanged -= OnTeleportStateChanged;
 
         _currentMode = mode;
         ApplyCurrentModeState();
@@ -77,10 +79,10 @@ public class LocomotionManager : MonoBehaviour
 
     private void ApplyCurrentModeState()
     {
-        // Désactivation de tout
-        moveObject.SetActive(false);
-        turnObject.SetActive(false);
-        teleportationObject.SetActive(false);
+        // Désactivation de tout (null ou objet détruit : ignorer — ex. coroutine menu après reload scène)
+        if (moveObject != null) moveObject.SetActive(false);
+        if (turnObject != null) turnObject.SetActive(false);
+        if (teleportationObject != null) teleportationObject.SetActive(false);
         SetTeleportInteractorsActive(false);
 
         if (_forceDisabled)
@@ -89,29 +91,52 @@ public class LocomotionManager : MonoBehaviour
         switch (_currentMode)
         {
             case LocomotionMode.LinearSnapTurn:
-                moveObject.SetActive(true);
-                turnObject.SetActive(_snapTurnEnabled);
-                continuousMoveProvider.forwardSource = _defaultForwardSource;
+                if (moveObject != null) moveObject.SetActive(true);
+                if (turnObject != null) turnObject.SetActive(_snapTurnEnabled);
+                if (continuousMoveProvider != null) continuousMoveProvider.forwardSource = _defaultForwardSource;
                 break;
 
             case LocomotionMode.LinearGaze:
-                moveObject.SetActive(true);
-                turnObject.SetActive(_snapTurnEnabled);
-                continuousMoveProvider.forwardSource = xrCamera;
+                if (moveObject != null) moveObject.SetActive(true);
+                if (turnObject != null) turnObject.SetActive(_snapTurnEnabled);
+                if (continuousMoveProvider != null) continuousMoveProvider.forwardSource = xrCamera;
                 break;
 
             case LocomotionMode.Teleport:
-                teleportationObject.SetActive(true);
+                if (teleportationObject != null) teleportationObject.SetActive(true);
                 SetTeleportInteractorsActive(true);
-                turnObject.SetActive(_snapTurnEnabled);
+                if (turnObject != null) turnObject.SetActive(_snapTurnEnabled);
                 break;
 
             case LocomotionMode.TeleportBlink:
-                teleportationObject.SetActive(true);
+                if (teleportationObject != null) teleportationObject.SetActive(true);
                 SetTeleportInteractorsActive(true);
-                turnObject.SetActive(_snapTurnEnabled);
-                teleportationProvider.locomotionStateChanged += OnTeleportStateChanged;
+                if (turnObject != null) turnObject.SetActive(_snapTurnEnabled);
+                if (teleportationProvider != null)
+                    teleportationProvider.locomotionStateChanged += OnTeleportStateChanged;
                 break;
+        }
+
+        // Réactive les bonnes InputActions (Move / téléport / snap) sur les manettes. Sans ça, un état bloqué
+        // dans ControllerInputActionManager (Near-Far, UI, menu pause) peut laisser Move désactivée alors que
+        // la lecture directe du stick (ex. menu) fonctionne encore.
+        RefreshControllerInputActionManagers();
+    }
+
+    /// <summary>
+    /// Rejoue les règles d’activation des actions XRI sur les contrôleurs (Starter Assets).
+    /// </summary>
+    public void RefreshControllerInputActionManagers()
+    {
+        if (continuousMoveProvider == null) return;
+
+        var managers = continuousMoveProvider.transform.root.GetComponentsInChildren<ControllerInputActionManager>(true);
+        for (int i = 0; i < managers.Length; i++)
+        {
+            var mgr = managers[i];
+            if (mgr == null) continue;
+            mgr.smoothMotionEnabled = mgr.smoothMotionEnabled;
+            mgr.smoothTurnEnabled = mgr.smoothTurnEnabled;
         }
     }
 

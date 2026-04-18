@@ -563,17 +563,21 @@ public class FinalSequenceController : MonoBehaviour
     {
         _modulationEnabled = false;
 
-        if (_masterBus.isValid())
+        var fmodReady = RuntimeManager.IsInitialized;
+
+        if (fmodReady && _masterBus.isValid())
             _masterBus.setVolume(_masterInitialVolume);
 
-        for (int i = 0; i < _objectBuses.Count; i++)
+        // Ne pas appeler getChannelGroup ici : à l'arrêt du Play / déchargement FMOD, le studio peut être
+        // déjà déchargé (ERR_STUDIO_NOT_LOADED) alors que IsInitialized reste vrai un instant.
+        if (fmodReady)
         {
-            Bus bus = _objectBuses[i];
-            if (!bus.isValid()) continue;
-            bus.setVolume(1f);
-            bus.getChannelGroup(out ChannelGroup group);
-            if (group.hasHandle())
-                group.setPan(0f);
+            for (int i = 0; i < _objectBuses.Count; i++)
+            {
+                Bus bus = _objectBuses[i];
+                if (!bus.isValid()) continue;
+                bus.setVolume(1f);
+            }
         }
 
         if (renderersToModulate != null && _rendererBaseColors != null)
@@ -596,7 +600,7 @@ public class FinalSequenceController : MonoBehaviour
             }
         }
 
-        if (_outsideFinalMusicInstance.isValid())
+        if (fmodReady && _outsideFinalMusicInstance.isValid())
         {
             _outsideFinalMusicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             _outsideFinalMusicInstance.release();
