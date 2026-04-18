@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using FMODUnity;
 
 public class PianoPuzzleManager : MonoBehaviour
@@ -30,8 +31,13 @@ public class PianoPuzzleManager : MonoBehaviour
     [Tooltip("Si true: une mauvaise touche remet la séquence à zéro.")]
     [SerializeField] private bool resetOnMistake = true;
 
+    [Header("Narration")]
+    [SerializeField] private UnityEvent onPuzzleSolved;
+
     private int _progress = 0;
     private bool _completed = false;
+
+    public bool IsSolved => _completed;
 
     private void Awake()
     {
@@ -87,6 +93,7 @@ public class PianoPuzzleManager : MonoBehaviour
         ApplyPianoSuccessVisual();
         PlayPianoSuccessSound();
         radioManager?.UnlockAfterPianoSuccess();
+        onPuzzleSolved?.Invoke();
     }
 
     private void ApplyPianoSuccessVisual()

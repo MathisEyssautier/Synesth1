@@ -19,6 +19,10 @@ public class ShellPlacementZone : MonoBehaviour
     [Header("Manager")]
     [SerializeField] private ShellPuzzleManager puzzleManager;
 
+    [Header("Prérequis (ex. assiette sur socket)")]
+    [Tooltip("Si renseigné : tant que cet objet est inactif, la zone ne valide pas le coquillage et ne snap pas (ex. enfant CylinderSeaBlue activé seulement après pose de l’assiette).")]
+    [SerializeField] private GameObject shellInteractionRequiresThisActive;
+
     public ShellColorId ZoneColorId => zoneColorId;
     public bool IsCorrectlyOccupied { get; private set; }
     public ShellProximityFeedback CurrentShell { get; private set; }
@@ -64,6 +68,11 @@ public class ShellPlacementZone : MonoBehaviour
         ApplyLockedPose();
     }
 
+    private bool IsShellInteractionReady()
+    {
+        return shellInteractionRequiresThisActive == null || shellInteractionRequiresThisActive.activeInHierarchy;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         var shell = other.GetComponentInParent<ShellProximityFeedback>();
@@ -83,6 +92,12 @@ public class ShellPlacementZone : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (CurrentShell == null) return;
+        if (!IsShellInteractionReady())
+        {
+            if (IsCorrectlyOccupied)
+                SetCorrect(false);
+            return;
+        }
         UpdateState();
     }
 
@@ -116,6 +131,13 @@ public class ShellPlacementZone : MonoBehaviour
     {
         if (CurrentShell == null)
             return;
+
+        if (!IsShellInteractionReady())
+        {
+            if (IsCorrectlyOccupied)
+                SetCorrect(false);
+            return;
+        }
 
         bool correct = CurrentShell.ColorId == zoneColorId;
         SetCorrect(correct);

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 [RequireComponent(typeof(Collider))]
@@ -34,6 +35,13 @@ public class UnlockPlacementSocket : MonoBehaviour
     [SerializeField] private bool hideSocketOnPlaced = true;
     [Tooltip("Optionnel: visuel à cacher (mesh jaune). Si vide et hideSocketOnPlaced=true, on masque ce GameObject.")]
     [SerializeField] private GameObject socketVisualToHide;
+
+    [Header("Après placement (ex. assiette → zone coquillage)")]
+    [Tooltip("Activés en dernier (ex. CylinderSeaBlue + canvas symbole). Leurs colliders sont réactivés même si l’option ci-dessous a désactivé ceux du root.")]
+    [SerializeField] private GameObject[] activateAfterPlaced;
+
+    [Header("Narration")]
+    [SerializeField] private UnityEvent onObjectPlaced;
 
     private bool _filled;
 
@@ -182,6 +190,37 @@ public class UnlockPlacementSocket : MonoBehaviour
             else
                 gameObject.SetActive(false);
         }
+
+        if (activateAfterPlaced != null)
+        {
+            for (int i = 0; i < activateAfterPlaced.Length; i++)
+            {
+                var go = activateAfterPlaced[i];
+                if (go == null) continue;
+                go.SetActive(true);
+                var cols = go.GetComponentsInChildren<Collider>(true);
+                for (int c = 0; c < cols.Length; c++)
+                {
+                    if (cols[c] != null)
+                        cols[c].enabled = true;
+                }
+            }
+        }
+
+        // Les triggers sous le root (ex. ShellPlacementZone sur CylinderSeaBlue) sont pilotés par le
+        // Rigidbody parent : si detectCollisions a été mis à false avec disableObjectCollidersOnPlaced,
+        // réactiver les colliders ne suffit pas — aucun OnTriggerEnter / Stay.
+        if (activateAfterPlaced != null && activateAfterPlaced.Length > 0 && expectedObjectRoot != null && lockRigidbodyKinematic)
+        {
+            var rbsRestore = expectedObjectRoot.GetComponentsInChildren<Rigidbody>(true);
+            for (int i = 0; i < rbsRestore.Length; i++)
+            {
+                if (rbsRestore[i] == null) continue;
+                rbsRestore[i].detectCollisions = true;
+            }
+        }
+
+        onObjectPlaced?.Invoke();
     }
 
     private bool IsExpectedObjectHeld()

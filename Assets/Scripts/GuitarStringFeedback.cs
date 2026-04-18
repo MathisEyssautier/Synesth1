@@ -24,6 +24,8 @@ public class GuitarStringFeedback : MonoBehaviour
     [SerializeField] private int stringIndex = 0;
     [SerializeField] private GuitarAssemblyManager guitarAssemblyManager;
     [SerializeField] private string guitarRootNameHint = "GUITARE";
+    [SerializeField] private ParticleVFXAmplitude vfxAmplitude;
+
 
     private XRGrabInteractable _grab;
     private Material _baseMaterial;
@@ -82,6 +84,10 @@ public class GuitarStringFeedback : MonoBehaviour
         if (_feedbackRoutine != null)
             StopCoroutine(_feedbackRoutine);
         _feedbackRoutine = StartCoroutine(FeedbackRoutine());
+        if (vfxAmplitude != null)
+        {
+            vfxAmplitude.TriggerAmplitudePulse(50f, 1f);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

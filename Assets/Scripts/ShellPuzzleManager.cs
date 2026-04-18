@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using FMODUnity;
 using FMOD.Studio;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -40,6 +41,9 @@ public class ShellPuzzleManager : MonoBehaviour
     [Header("Shells after solve")]
     [Tooltip("Quand le puzzle est résolu : désactive la saisie XR des coquillages (ils ne sont plus attrapables).")]
     [SerializeField] private bool disableShellGrabOnSolve = true;
+
+    [Header("Narration")]
+    [SerializeField] private UnityEvent onPuzzleSolved;
 
     private bool _solved = false;
     public bool IsSolved => _solved;
@@ -225,6 +229,8 @@ public class ShellPuzzleManager : MonoBehaviour
                 c.isTrigger = false;
             }
         }
+
+        onPuzzleSolved?.Invoke();
     }
 
     private void EnsureXRGrabInteractableCollidersAssigned()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -47,6 +48,9 @@ public class GuitarCapoCrankController : MonoBehaviour
 
     [Header("Gameplay")]
     [SerializeField] private bool onlyAdvanceWhenGuitarHeld = true;
+
+    [Header("Narration")]
+    [SerializeField] private UnityEvent onChordSolved;
 
     private XRGrabInteractable _guitar;
     private int _currentIndex;
@@ -197,6 +201,7 @@ public class GuitarCapoCrankController : MonoBehaviour
             if (activateFaderOnSolve && thirdFaderToActivate != null)
                 thirdFaderToActivate.SetActive(true);
             PlaySuccessBodyFlash();
+            onChordSolved?.Invoke();
         }
     }
 

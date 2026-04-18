@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{06903935-f7ab-4068-8231-d677eedac14a}">
+		<property name="assetPath">
+			<value>VoixOffFinal/TherapeuteFinal/SuperNayaF.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>4.9062585034013608</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{26f8cbb0-db8c-42ac-9301-c0916860d78b}</destination>
+		</relationship>
+	</object>
+</objects>

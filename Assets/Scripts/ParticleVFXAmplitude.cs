@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.VFX;
+using System.Collections;
 
 /// <summary>
 /// À attacher sur ParticleObject (enfant direct de l'iPod).
@@ -27,6 +28,7 @@ public class ParticleVFXAmplitude : MonoBehaviour
     // Tous les VFX graphs dans les enfants (les 3 systèmes de particules)
     private VisualEffect[] _vfxGraphs;
     private float _smoothedAmplitude;
+    private Coroutine _pulseRoutine;
 
     private void Awake()
     {
@@ -64,6 +66,32 @@ public class ParticleVFXAmplitude : MonoBehaviour
         {
             if (vfx.HasFloat(vfxPropertyName))
                 vfx.SetFloat(vfxPropertyName, finalValue);
+        }
+    }
+    public void TriggerAmplitudePulse(float amplitude = 50f, float duration = 1f)
+    {
+        if (_pulseRoutine != null)
+            StopCoroutine(_pulseRoutine);
+
+        _pulseRoutine = StartCoroutine(PulseRoutine(amplitude, duration));
+    }
+    private IEnumerator PulseRoutine(float amplitude, float duration)
+    {
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            float value = amplitude * amplitudeScale;
+
+            foreach (VisualEffect vfx in _vfxGraphs)
+            {
+                if (vfx.HasFloat(vfxPropertyName))
+                    vfx.SetFloat(vfxPropertyName, value);
+            }
+
+            yield return null;
         }
     }
 }
