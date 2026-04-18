@@ -31,8 +31,7 @@ public class DisplayEventSound : MonoBehaviour
 
     IEnumerator PlayEventAsync()
     {
-        FMODUnity.RuntimeManager.StudioSystem.getEvent(eventReference.Path, out FMOD.Studio.EventDescription eventDescription);
-        eventDescription.createInstance(out FMOD.Studio.EventInstance eventInstance);
+        FMOD.Studio.EventInstance eventInstance = FMODUnity.RuntimeManager.CreateInstance(eventReference);
         eventInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         eventInstance.start();
 

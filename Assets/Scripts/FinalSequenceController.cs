@@ -524,19 +524,6 @@ public class FinalSequenceController : MonoBehaviour
     {
         if (er.IsNull) return;
 
-        if (!string.IsNullOrEmpty(er.Path))
-        {
-            try
-            {
-                RuntimeManager.PlayOneShot(er.Path, position);
-                return;
-            }
-            catch
-            {
-                // fallback GUID
-            }
-        }
-
         try
         {
             RuntimeManager.PlayOneShot(er, position);
