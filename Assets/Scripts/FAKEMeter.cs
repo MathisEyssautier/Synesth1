@@ -7,20 +7,21 @@ public class FakeMeteringSource : MonoBehaviour
     public float MeterRight { get; private set; }
 
     [SerializeField] private float fakeAmplitude = 50f;
-    [SerializeField] private float duration = 1f;
+    [SerializeField] private float defaultDuration = 1f;
 
     private Coroutine _pulseRoutine;
 
     // 👉 appel public depuis PianoKey
-    public void TriggerPulse()
+    // Si aucun paramètre n'est passé, la durée par défaut est 1 seconde
+    public void TriggerPulse(float duration = 1f)
     {
         if (_pulseRoutine != null)
             StopCoroutine(_pulseRoutine);
 
-        _pulseRoutine = StartCoroutine(Pulse());
+        _pulseRoutine = StartCoroutine(Pulse(duration));
     }
 
-    private IEnumerator Pulse()
+    private IEnumerator Pulse(float duration)
     {
         MeterLeft = fakeAmplitude;
         MeterRight = fakeAmplitude;

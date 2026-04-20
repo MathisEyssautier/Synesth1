@@ -84,8 +84,8 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 2.1076236, g: 0, b: 0, a: 1}
-          key1: {r: 1.1580213, g: 0, b: 1.5357116, a: 1}
+          key0: {r: 0, g: 0.53450066, b: 2.1076236, a: 1}
+          key1: {r: 0.47297674, g: 0.6093339, b: 1.2379143, a: 1}
           key2: {r: 0, g: 0, b: 0, a: 0}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
@@ -109,7 +109,7 @@ VisualEffect:
           atime6: 0
           atime7: 0
           m_Mode: 0
-          m_ColorSpace: -1
+          m_ColorSpace: 1
           m_NumColorKeys: 2
           m_NumAlphaKeys: 2
         m_Name: Base Color
@@ -219,7 +219,7 @@ VisualEffect:
       - m_Value: 1
         m_Name: Scale
         m_Overridden: 1
-      - m_Value: 0.4
+      - m_Value: 0.2
         m_Name: Radius
         m_Overridden: 1
       - m_Value: 0
@@ -237,6 +237,9 @@ VisualEffect:
       - m_Value: {x: 0.21542363, y: 0.9716981, z: 0.65442914, w: 1}
         m_Name: Highlight
         m_Overridden: 1
+      - m_Value: {x: 0.07075471, y: 0.14433523, z: 1, w: 0}
+        m_Name: Color
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
@@ -249,8 +252,8 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 2.1076236, g: 0, b: 0, a: 1}
-          key1: {r: 1.1580213, g: 0, b: 1.5357116, a: 1}
+          key0: {r: 0, g: 0.3712566, b: 2.1076236, a: 1}
+          key1: {r: 0.43109855, g: 0.63686275, b: 1.4506809, a: 1}
           key2: {r: 0, g: 0, b: 0, a: 0}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
@@ -274,7 +277,7 @@ VisualEffect:
           atime6: 0
           atime7: 0
           m_Mode: 0
-          m_ColorSpace: -1
+          m_ColorSpace: 1
           m_NumColorKeys: 2
           m_NumAlphaKeys: 2
         m_Name: Base Color
@@ -387,7 +390,7 @@ VisualEffect:
       - m_Value: 0
         m_Name: Amplitude
         m_Overridden: 1
-      - m_Value: 0.2
+      - m_Value: 0.1
         m_Name: Radius
         m_Overridden: 1
     m_Vector2f:
@@ -414,8 +417,8 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 2.1076236, g: 0, b: 0, a: 1}
-          key1: {r: 1.1580213, g: 0, b: 1.5357116, a: 1}
+          key0: {r: 0, g: 0.27394307, b: 2.1076236, a: 1}
+          key1: {r: 0.46458283, g: 0.78122663, b: 1.4700234, a: 1}
           key2: {r: 0, g: 0, b: 0, a: 0}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
@@ -439,7 +442,7 @@ VisualEffect:
           atime6: 0
           atime7: 0
           m_Mode: 0
-          m_ColorSpace: -1
+          m_ColorSpace: 1
           m_NumColorKeys: 2
           m_NumAlphaKeys: 2
         m_Name: Base Color
@@ -520,7 +523,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8077094334738910561}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: 0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.44676006, y: 5.6594505, z: 0.44676018}
   m_ConstrainProportionsScale: 0
@@ -529,7 +532,7 @@ Transform:
   - {fileID: 5579429578246390356}
   - {fileID: 5653263673720004181}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 89.98, y: 0, z: 0}
 --- !u!114 &7432330397806505310
 MonoBehaviour:
   m_ObjectHideFlags: 0
