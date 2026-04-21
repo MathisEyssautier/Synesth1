@@ -5786,6 +5786,11 @@ MonoBehaviour:
   xrCamera: {fileID: 441087513}
   fadeCanvasGroup: {fileID: 1338495529}
   blinkDuration: 0.15
+  enableLegacyXrFallback: 1
+  fallbackMoveSpeed: 2.5
+  fallbackMoveDeadzone: 0.15
+  fallbackSnapThreshold: 0.7
+  fallbackSnapCooldown: 0.22
 --- !u!1 &402279470
 GameObject:
   m_ObjectHideFlags: 0
@@ -22718,7 +22723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1561635182
 BoxCollider:
   m_ObjectHideFlags: 0

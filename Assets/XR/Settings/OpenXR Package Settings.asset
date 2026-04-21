@@ -40,6 +40,7 @@ MonoBehaviour:
   - {fileID: -7091151715228630462}
   - {fileID: 7356778046488490154}
   - {fileID: 8027881947884670494}
+  - {fileID: 6926556138447070769}
   - {fileID: -4781740525630498137}
   - {fileID: 8231373519857342015}
   - {fileID: 6002509192428507138}
@@ -984,7 +985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6bfdbcb316ed242b30a8798c9eb853, type: 3}
   m_Name: KHRSimpleControllerProfile Standalone
   m_EditorClassIdentifier: Unity.XR.OpenXR::UnityEngine.XR.OpenXR.Features.Interactions.KHRSimpleControllerProfile
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Khronos Simple Controller Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.khrsimpleprofile

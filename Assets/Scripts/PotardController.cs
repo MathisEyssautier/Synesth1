@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 
 [RequireComponent(typeof(XRGrabInteractable))]
 [RequireComponent(typeof(Rigidbody))]
@@ -200,14 +204,124 @@ public class PotardController : MonoBehaviour
 
     private void EnvoyerHapticsCran()
     {
+        bool sentByInteractor = false;
         if (_interactorCourant is XRBaseInputInteractor inputInteractor)
+        {
             inputInteractor.SendHapticImpulse(intensiteCran, dureeCran);
+            sentByInteractor = true;
+        }
+
+        if (!sentByInteractor || ShouldUseLegacyHapticsFallback())
+            TrySendLegacyHapticsToCurrentInteractor(intensiteCran, dureeCran);
     }
 
     private void EnvoyerHapticsPositionValide()
     {
+        bool sentByInteractor = false;
         if (_interactorCourant is XRBaseInputInteractor inputInteractor)
+        {
             inputInteractor.SendHapticImpulse(intensitePositionValide, dureePositionValide);
+            sentByInteractor = true;
+        }
+
+        if (!sentByInteractor || ShouldUseLegacyHapticsFallback())
+            TrySendLegacyHapticsToCurrentInteractor(intensitePositionValide, dureePositionValide);
+    }
+
+    private void TrySendLegacyHapticsToCurrentInteractor(float amplitude, float duration)
+    {
+        var t = _interactorCourant != null ? (_interactorCourant as Component)?.transform : null;
+        if (t == null)
+            return;
+
+        if (NameLooksLeft(t))
+        {
+            TrySendToNode(XRNode.LeftHand, amplitude, duration);
+            return;
+        }
+
+        if (NameLooksRight(t))
+        {
+            TrySendToNode(XRNode.RightHand, amplitude, duration);
+            return;
+        }
+
+        // Last resort for runtimes that do not expose clear interactor naming.
+        // Avoids losing haptics entirely on Quest Link fallback.
+        if (TrySendToNode(XRNode.LeftHand, amplitude, duration))
+            return;
+        TrySendToNode(XRNode.RightHand, amplitude, duration);
+    }
+
+    private static bool NameLooksLeft(Transform t)
+    {
+        if (t == null) return false;
+        if (ContainsInHierarchy(t, "Left Controller")) return true;
+        return false;
+    }
+
+    private static bool NameLooksRight(Transform t)
+    {
+        if (t == null) return false;
+        if (ContainsInHierarchy(t, "Right Controller")) return true;
+        return false;
+    }
+
+    private static bool ContainsInHierarchy(Transform t, string token)
+    {
+        Transform current = t;
+        while (current != null)
+        {
+            if (current.name.Contains(token))
+                return true;
+            current = current.parent;
+        }
+
+        return false;
+    }
+
+    private static bool TrySendToNode(XRNode node, float amplitude, float duration)
+    {
+        UnityEngine.XR.InputDevice device = InputDevices.GetDeviceAtXRNode(node);
+        if (!device.isValid) return false;
+        if (!device.TryGetHapticCapabilities(out HapticCapabilities caps)) return false;
+        if (!caps.supportsImpulse || caps.numChannels <= 0) return false;
+        return device.SendHapticImpulse(0u, Mathf.Clamp01(amplitude), Mathf.Max(0.01f, duration));
+    }
+
+    private static bool ShouldUseLegacyHapticsFallback()
+    {
+        bool hasLegacyController = IsLegacyControllerAvailable(XRNode.LeftHand) || IsLegacyControllerAvailable(XRNode.RightHand);
+        if (!hasLegacyController)
+            return false;
+
+        return !HasInputSystemXrControllers();
+    }
+
+    private static bool IsLegacyControllerAvailable(XRNode node)
+    {
+        var device = InputDevices.GetDeviceAtXRNode(node);
+        if (!device.isValid)
+            return false;
+
+        if (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.isTracked, out bool tracked))
+            return tracked;
+
+        return true;
+    }
+
+    private static bool HasInputSystemXrControllers()
+    {
+#if ENABLE_INPUT_SYSTEM
+        foreach (var device in InputSystem.devices)
+        {
+            if (device == null || !device.added || !device.enabled)
+                continue;
+            if (device is UnityEngine.InputSystem.XR.XRController)
+                return true;
+        }
+#endif
+        return false;
     }
 
 #if UNITY_EDITOR

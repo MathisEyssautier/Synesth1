@@ -168,11 +168,13 @@ public class GuitarCapoCrankController : MonoBehaviour
         InputDevice dev = InputDevices.GetDeviceAtXRNode(node);
         if (!dev.isValid) return false;
 
-        float v = 0f;
-        if (!dev.TryGetFeatureValue(CommonUsages.trigger, out v))
-            return false;
+        bool down = false;
+        if (dev.TryGetFeatureValue(CommonUsages.triggerButton, out bool triggerButton))
+            down |= triggerButton;
 
-        bool down = v >= indexTriggerThreshold;
+        if (dev.TryGetFeatureValue(CommonUsages.trigger, out float triggerValue))
+            down |= triggerValue >= indexTriggerThreshold;
+
         bool rising = down && !wasDown;
         wasDown = down;
         return rising;
