@@ -15,10 +15,6 @@ public class GuitarCapoCrankController : MonoBehaviour
     [Tooltip("Transforms représentant la position/rotation de chaque cran du capot (un par 'crans').")]
     [SerializeField] private Transform[] crankMarkers;
 
-    [Header("Target (rose)")]
-    [Tooltip("Index du cran 'rose' (couleur cible).")]
-    [SerializeField] private int targetCrankIndex = 0;
-
     [Header("Start")]
     [Tooltip("Cran de départ du capot. Pour 'position 1' -> index 0.")]
     [SerializeField] private int startCrankIndex = 0;
@@ -180,30 +176,52 @@ public class GuitarCapoCrankController : MonoBehaviour
         return rising;
     }
 
-    public bool IsOnTargetCrank => !_locked && _currentIndex == targetCrankIndex;
-    public bool IsOnTargetCrankEvenIfLocked => _currentIndex == targetCrankIndex;
     public int CurrentCrankIndex => _currentIndex;
     public bool IsSolved => _solved;
 
+    public void TrySolveFromPrismPuzzle()
+    {
+        // La résolution peut arriver à la fin d'une anim : la main n'est pas forcément sur la guitare.
+        TrySolveInternal(bypassGuitarHeldCheck: true);
+    }
+
     public void TrySolveFromSoundZone()
     {
-        if (_solved) return;
-        if (lockAfterSuccess == false)
-        {
-            // Si tu veux juste un feedback sans lock, laisse lockAfterSuccess=false.
-        }
+        // Compatibilité rétro si un ancien UnityEvent appelle encore cette méthode.
+        TrySolveInternal(bypassGuitarHeldCheck: false);
+    }
 
-        bool isTarget = _currentIndex == targetCrankIndex;
-        bool allowed = (!_guitarHeld && onlyAdvanceWhenGuitarHeld) ? false : true;
+    private void TrySolveInternal(bool bypassGuitarHeldCheck)
+    {
+        if (_solved)
+            return;
 
-        if (isTarget && allowed)
+        bool allowed = bypassGuitarHeldCheck || (!onlyAdvanceWhenGuitarHeld || _guitarHeld);
+        if (!allowed)
+            return;
+
+        _solved = true;
+        if (lockAfterSuccess) _locked = true;
+        if (activateFaderOnSolve && thirdFaderToActivate != null)
+            thirdFaderToActivate.SetActive(true);
+        PlaySuccessBodyFlash();
+        onChordSolved?.Invoke();
+    }
+
+    private void OnValidate()
+    {
+        // Sécurité: toujours forcer la taille attendue des couleurs de cran
+        // pour éviter les erreurs d'index dans l'inspecteur.
+        if (crankColors == null || crankColors.Length != 5)
         {
-            _solved = true;
-            if (lockAfterSuccess) _locked = true;
-            if (activateFaderOnSolve && thirdFaderToActivate != null)
-                thirdFaderToActivate.SetActive(true);
-            PlaySuccessBodyFlash();
-            onChordSolved?.Invoke();
+            var old = crankColors;
+            crankColors = new Color[5];
+            if (old != null)
+            {
+                int len = Mathf.Min(old.Length, crankColors.Length);
+                for (int i = 0; i < len; i++)
+                    crankColors[i] = old[i];
+            }
         }
     }
 
@@ -277,27 +295,49 @@ public class GuitarCapoCrankController : MonoBehaviour
     private void UpdateColor(int index)
     {
         if (_matInstance == null) return;
+        ApplyCapoColorToMaterial(_matInstance, index);
+    }
 
-        bool hasEmission = _matInstance.HasProperty("_EmissionColor");
-        bool hasBaseColor = _matInstance.HasProperty("_BaseColor");
+    /// <summary>
+    /// Pour le puzzle prisme : matériau distinct avec la même apparence que le capot sur un cran donné (à Destroy après usage).
+    /// </summary>
+    public Material CreateCapoVisualMaterialForCrankIndex(int crankIndex)
+    {
+        ResolveCapoMaterialRenderer();
+        if (capoRenderer == null)
+            return null;
+
+        Material src = capoRenderer.sharedMaterial;
+        if (src == null)
+            return null;
+
+        var m = new Material(src);
+        ApplyCapoColorToMaterial(m, crankIndex);
+        return m;
+    }
+
+    private void ApplyCapoColorToMaterial(Material m, int index)
+    {
+        if (m == null)
+            return;
 
         Color c = roseColor;
         if (crankColors != null && index >= 0 && index < crankColors.Length)
             c = crankColors[index];
 
-        ApplyMaterialColor(c, hasBaseColor, hasEmission);
-    }
+        bool hasEmission = m.HasProperty("_EmissionColor");
+        bool hasBaseColor = m.HasProperty("_BaseColor");
 
-    private void ApplyMaterialColor(Color c, bool hasBaseColor, bool hasEmission)
-    {
-        // Base color (URP/HDRP peuvent utiliser _BaseColor au lieu de .color).
         if (hasBaseColor)
-            _matInstance.SetColor("_BaseColor", c);
+            m.SetColor("_BaseColor", c);
         else
-            _matInstance.color = c;
+            m.color = c;
 
         if (hasEmission)
-            _matInstance.SetColor("_EmissionColor", c * emissionIntensity);
+        {
+            m.EnableKeyword("_EMISSION");
+            m.SetColor("_EmissionColor", c * emissionIntensity);
+        }
     }
 }
 
