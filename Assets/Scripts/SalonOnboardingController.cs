@@ -63,6 +63,8 @@ public class SalonOnboardingController : MonoBehaviour
     [Header("Piano interaction gate")]
     [SerializeField] private PianoKey[] pianoKeys;
     [SerializeField] private bool autoDiscoverScenePianoKeys = true;
+    [Tooltip("Boules de séquence piano : révélées en même temps que l'iPod (EnableIpod). Laisser vide si pas utilisé.")]
+    [SerializeField] private PianoPuzzleManager pianoPuzzleManager;
 
     [Header("Objects to reveal after first piano note")]
     [SerializeField] private GameObject[] objectsToActivateAfterPiano;
@@ -272,6 +274,8 @@ public class SalonOnboardingController : MonoBehaviour
             ipodMusicObject.enabled = true;
         if (ipodGrab != null)
             ipodGrab.enabled = true;
+
+        pianoPuzzleManager?.RevealSequenceIndicators();
     }
 
     private void TriggerIntroRevealAndQueueLaisse()

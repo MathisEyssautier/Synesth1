@@ -13,7 +13,7 @@ public class PianoKey : MonoBehaviour
     [Header("Déclenchement")]
     [Tooltip("Tag de la main qui touche la touche")]
     [SerializeField] private string handTag = "PlayerHand";
-    [Tooltip("Temps mini entre deux presses (évite spam si la main reste dedans)")]
+    [Tooltip("Temps mini entre deux presses (évite spam si la main reste dedans). Minimum forcé: 1 seconde.")]
     [SerializeField] private float pressCooldown = 0.25f;
 
     [Header("Audio FMOD")]
@@ -45,6 +45,7 @@ public class PianoKey : MonoBehaviour
     private Rigidbody _rb;
     private Collider _keyCollider;
     private readonly Collider[] _overlapResults = new Collider[16];
+    private const float MinPressCooldown = 1f;
 
     public int KeyId => keyId;
 
@@ -102,7 +103,7 @@ public class PianoKey : MonoBehaviour
         if (!IsHandCollider(other)) return;
         if (Time.time < _nextAllowedPressTime) return;
 
-        _nextAllowedPressTime = Time.time + pressCooldown;
+        _nextAllowedPressTime = Time.time + Mathf.Max(MinPressCooldown, pressCooldown);
         Press();
     }
 
@@ -153,7 +154,7 @@ public class PianoKey : MonoBehaviour
             if (c.transform.IsChildOf(transform)) continue;
             if (!IsHandCollider(c)) continue;
 
-            _nextAllowedPressTime = Time.time + pressCooldown;
+            _nextAllowedPressTime = Time.time + Mathf.Max(MinPressCooldown, pressCooldown);
             Press();
             break;
         }

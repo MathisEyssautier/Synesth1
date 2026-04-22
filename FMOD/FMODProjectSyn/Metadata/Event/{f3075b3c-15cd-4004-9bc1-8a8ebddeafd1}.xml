@@ -124,7 +124,7 @@
 			<value>0</value>
 		</property>
 		<property name="name">
-			<value>Tu est dans ton monde intérieur.</value>
+			<value>Tu es dans ton monde intérieur.</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{219f6d41-68c5-4170-84b3-5167d3e6963b}</destination>

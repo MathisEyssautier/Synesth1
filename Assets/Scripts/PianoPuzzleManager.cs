@@ -27,6 +27,21 @@ public class PianoPuzzleManager : MonoBehaviour
     [Header("Réussite — radio (potards + son + blanc)")]
     [SerializeField] private RadioManager radioManager;
 
+    [Header("Feedback visuel séquence (boules)")]
+    [Tooltip("Boules d'étape dans l'ordre de la séquence (ex: 4 boules pour 4 notes).")]
+    [SerializeField] private Renderer[] sequenceIndicators;
+    [Tooltip("Couleur affichée pour chaque étape validée. Exemple: jaune, bleu, rose, rouge.")]
+    [SerializeField] private Color[] sequenceStepColors = new[]
+    {
+        new Color(1f, 0.92f, 0.2f), // jaune
+        new Color(0.25f, 0.55f, 1f), // bleu
+        new Color(1f, 0.35f, 0.8f), // rose
+        new Color(1f, 0.25f, 0.25f) // rouge
+    };
+    [SerializeField] private Color sequenceOffColor = Color.white;
+    [Tooltip("Si activé : les boules sont désactivées au démarrage et n'apparaissent qu'après RevealSequenceIndicators() (ex: avec EnableIpod du salon).")]
+    [SerializeField] private bool hideSequenceIndicatorsUntilIpodReveal = true;
+
     [Header("Échec / reset")]
     [Tooltip("Si true: une mauvaise touche remet la séquence à zéro.")]
     [SerializeField] private bool resetOnMistake = true;
@@ -36,8 +51,20 @@ public class PianoPuzzleManager : MonoBehaviour
 
     private int _progress = 0;
     private bool _completed = false;
+    private Material[] _sequenceIndicatorMaterials;
 
     public bool IsSolved => _completed;
+
+    /// <summary>
+    /// À appeler en même temps que le déblocage de l'iPod (ex. <see cref="SalonOnboardingController"/>).
+    /// Active les GameObjects des indicateurs et réinitialise leur couleur.
+    /// </summary>
+    public void RevealSequenceIndicators()
+    {
+        SetSequenceIndicatorRootsActive(true);
+        CacheSequenceIndicatorMaterials();
+        ResetSequenceIndicators();
+    }
 
     private void Awake()
     {
@@ -51,8 +78,25 @@ public class PianoPuzzleManager : MonoBehaviour
             }
         }
 
-        // Ne force plus l'état au démarrage :
-        // l'objet doit conserver son état tel que placé dans la scène / PlayMode.
+        if (hideSequenceIndicatorsUntilIpodReveal)
+            SetSequenceIndicatorRootsActive(false);
+        else
+        {
+            CacheSequenceIndicatorMaterials();
+            ResetSequenceIndicators();
+        }
+    }
+
+    private void SetSequenceIndicatorRootsActive(bool active)
+    {
+        if (sequenceIndicators == null)
+            return;
+        for (int i = 0; i < sequenceIndicators.Length; i++)
+        {
+            var r = sequenceIndicators[i];
+            if (r != null)
+                r.gameObject.SetActive(active);
+        }
     }
 
     public void OnKeyPressed(PianoKey key)
@@ -65,11 +109,15 @@ public class PianoPuzzleManager : MonoBehaviour
         if (key.KeyId != expected)
         {
             if (resetOnMistake)
+            {
                 _progress = 0;
+                ResetSequenceIndicators();
+            }
             return;
         }
 
         _progress++;
+        RefreshSequenceIndicators();
         if (_progress >= requiredOrder.Length)
             Complete();
     }
@@ -94,6 +142,63 @@ public class PianoPuzzleManager : MonoBehaviour
         PlayPianoSuccessSound();
         radioManager?.UnlockAfterPianoSuccess();
         onPuzzleSolved?.Invoke();
+    }
+
+    private void CacheSequenceIndicatorMaterials()
+    {
+        if (sequenceIndicators == null || sequenceIndicators.Length == 0)
+        {
+            _sequenceIndicatorMaterials = null;
+            return;
+        }
+
+        _sequenceIndicatorMaterials = new Material[sequenceIndicators.Length];
+        for (int i = 0; i < sequenceIndicators.Length; i++)
+        {
+            var r = sequenceIndicators[i];
+            if (r == null) continue;
+            _sequenceIndicatorMaterials[i] = r.material;
+        }
+    }
+
+    private void ResetSequenceIndicators()
+    {
+        if (_sequenceIndicatorMaterials == null) return;
+        for (int i = 0; i < _sequenceIndicatorMaterials.Length; i++)
+            SetMaterialColor(_sequenceIndicatorMaterials[i], sequenceOffColor);
+    }
+
+    private void RefreshSequenceIndicators()
+    {
+        if (_sequenceIndicatorMaterials == null) return;
+
+        int totalIndicators = _sequenceIndicatorMaterials.Length;
+        for (int i = 0; i < totalIndicators; i++)
+        {
+            bool isCompletedStep = i < _progress;
+            Color c = isCompletedStep ? GetStepColor(i) : sequenceOffColor;
+            SetMaterialColor(_sequenceIndicatorMaterials[i], c);
+        }
+    }
+
+    private Color GetStepColor(int stepIndex)
+    {
+        if (sequenceStepColors == null || sequenceStepColors.Length == 0)
+            return sequenceOffColor;
+        int idx = Mathf.Clamp(stepIndex, 0, sequenceStepColors.Length - 1);
+        return sequenceStepColors[idx];
+    }
+
+    private static void SetMaterialColor(Material mat, Color color)
+    {
+        if (mat == null) return;
+        if (mat.HasProperty("_BaseColor"))
+            mat.SetColor("_BaseColor", color);
+        else
+            mat.color = color;
+
+        if (mat.HasProperty("_EmissionColor"))
+            mat.SetColor("_EmissionColor", color);
     }
 
     private void ApplyPianoSuccessVisual()
