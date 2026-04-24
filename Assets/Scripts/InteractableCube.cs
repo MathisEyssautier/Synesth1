@@ -17,7 +17,7 @@ public class InteractableCube : MonoBehaviour
     [Header("Emission")]
     [SerializeField] private Renderer cubeRenderer;
     [SerializeField] private Color emissionColor = Color.red;
-    [SerializeField] private float emissionIntensity = 3f;  // intensitù quand le son joue
+    [SerializeField] private float emissionIntensity = 3f;  // intensit? quand le son joue
     [SerializeField] private float fadeDuration = 0.5f;
 
     private EventInstance cubeSound;
@@ -34,18 +34,24 @@ public class InteractableCube : MonoBehaviour
         grabInteractable.selectExited.AddListener(OnReleased);
         grabInteractable.activated.AddListener(OnTriggerPressed);
 
-        // Crùe une instance du material pour ne pas modifier le material partagù
+        // Cr?e une instance du material pour ne pas modifier le material partag?
         cubeMaterial = cubeRenderer.material;
         cubeMaterial.EnableKeyword("_EMISSION");
-        SetEmission(0f); // ùteint au dùpart
+        SetEmission(0f); // ?teint au d?part
     }
 
     void OnEnable()
     {
+        if (cubeEventRef.IsNull)
+        {
+            isSoundPlaying = false;
+            return;
+        }
+
         cubeSound = RuntimeManager.CreateInstance(cubeEventRef);
         RuntimeManager.AttachInstanceToGameObject(cubeSound, gameObject);
 
-        // Lance le son et l'ùmission dùs que le cube apparaùt
+        // Lance le son et l'?mission d?s que le cube appara?t
         cubeSound.start();
         isSoundPlaying = true;
         AnimateEmission(emissionIntensity);
@@ -57,6 +63,16 @@ public class InteractableCube : MonoBehaviour
 
     private void OnTriggerPressed(ActivateEventArgs args)
     {
+        if (cubeEventRef.IsNull || !cubeSound.isValid())
+        {
+            if (!_hasBeenDeactivatedOnce)
+            {
+                _hasBeenDeactivatedOnce = true;
+                OnFirstDeactivated?.Invoke(this);
+            }
+            return;
+        }
+
         if (isSoundPlaying)
         {
             cubeSound.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
@@ -86,7 +102,7 @@ public class InteractableCube : MonoBehaviour
 
     private IEnumerator FadeEmission(float targetIntensity)
     {
-        // Rùcupùre l'intensitù actuelle depuis le material
+        // R?cup?re l'intensit? actuelle depuis le material
         Color currentEmission = cubeMaterial.GetColor("_EmissionColor");
         float currentIntensity = currentEmission.maxColorComponent;
 
@@ -105,14 +121,17 @@ public class InteractableCube : MonoBehaviour
 
     private void SetEmission(float intensity)
     {
-        // HDR color : on multiplie la couleur de base par l'intensitù
+        // HDR color : on multiplie la couleur de base par l'intensit?
         cubeMaterial.SetColor("_EmissionColor", emissionColor * intensity);
     }
 
     void OnDisable()
     {
-        cubeSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        cubeSound.release();
+        if (cubeSound.isValid())
+        {
+            cubeSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            cubeSound.release();
+        }
     }
 
     void OnDestroy()

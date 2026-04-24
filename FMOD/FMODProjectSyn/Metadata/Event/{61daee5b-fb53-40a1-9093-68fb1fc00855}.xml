@@ -33,7 +33,7 @@
 			<destination>{d1c996c0-64df-4e7d-bf0b-b2ae6a6991c7}</destination>
 		</relationship>
 		<relationship name="banks">
-			<destination>{a2730d7f-cc94-4df3-84af-9f5d87b3d103}</destination>
+			<destination>{19b5d41f-b1d9-4a21-95f7-49b6bf529021}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{9968e625-38f0-464a-abac-c96a8407ac9e}">
@@ -157,7 +157,7 @@
 	</object>
 	<object class="NamedMarker" id="{8db22e26-8564-4425-9baa-e7ecd32a5d60}">
 		<property name="position">
-			<value>25.5</value>
+			<value>23</value>
 		</property>
 		<property name="name">
 			<value>sub_end</value>

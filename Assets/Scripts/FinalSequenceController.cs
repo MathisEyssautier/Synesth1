@@ -97,6 +97,7 @@ public class FinalSequenceController : MonoBehaviour
             _masterBus.getVolume(out _masterInitialVolume);
 
         CacheObjectBuses();
+        SyncFaderHapticTargetsWithWinCondition();
 
         // Optional convenience: use one same collider for blocking+trigger.
         if (exitTriggerCollider == null && exitBlockerAndTriggerCollider != null)
@@ -135,6 +136,24 @@ public class FinalSequenceController : MonoBehaviour
                 StartCoroutine(RunOutsideFinalSequence());
             _wasInsideExitTrigger = inside;
         }
+    }
+
+    private void OnValidate()
+    {
+        SyncFaderHapticTargetsWithWinCondition();
+    }
+
+    private void SyncFaderHapticTargetsWithWinCondition()
+    {
+        SyncSingleFaderHaptics(redFader);
+        SyncSingleFaderHaptics(greenFader);
+        SyncSingleFaderHaptics(blueFader);
+    }
+
+    private static void SyncSingleFaderHaptics(FaderTarget target)
+    {
+        if (target == null || target.fader == null) return;
+        target.fader.ConfigureTargetHaptics(target.targetValue, target.tolerance);
     }
 
     private void CacheObjectBuses()
@@ -505,19 +524,6 @@ public class FinalSequenceController : MonoBehaviour
     {
         if (er.IsNull) return;
 
-        if (!string.IsNullOrEmpty(er.Path))
-        {
-            try
-            {
-                RuntimeManager.PlayOneShot(er.Path, position);
-                return;
-            }
-            catch
-            {
-                // fallback GUID
-            }
-        }
-
         try
         {
             RuntimeManager.PlayOneShot(er, position);
@@ -557,17 +563,21 @@ public class FinalSequenceController : MonoBehaviour
     {
         _modulationEnabled = false;
 
-        if (_masterBus.isValid())
+        var fmodReady = RuntimeManager.IsInitialized;
+
+        if (fmodReady && _masterBus.isValid())
             _masterBus.setVolume(_masterInitialVolume);
 
-        for (int i = 0; i < _objectBuses.Count; i++)
+        // Ne pas appeler getChannelGroup ici : à l'arrêt du Play / déchargement FMOD, le studio peut être
+        // déjà déchargé (ERR_STUDIO_NOT_LOADED) alors que IsInitialized reste vrai un instant.
+        if (fmodReady)
         {
-            Bus bus = _objectBuses[i];
-            if (!bus.isValid()) continue;
-            bus.setVolume(1f);
-            bus.getChannelGroup(out ChannelGroup group);
-            if (group.hasHandle())
-                group.setPan(0f);
+            for (int i = 0; i < _objectBuses.Count; i++)
+            {
+                Bus bus = _objectBuses[i];
+                if (!bus.isValid()) continue;
+                bus.setVolume(1f);
+            }
         }
 
         if (renderersToModulate != null && _rendererBaseColors != null)
@@ -590,7 +600,7 @@ public class FinalSequenceController : MonoBehaviour
             }
         }
 
-        if (_outsideFinalMusicInstance.isValid())
+        if (fmodReady && _outsideFinalMusicInstance.isValid())
         {
             _outsideFinalMusicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             _outsideFinalMusicInstance.release();

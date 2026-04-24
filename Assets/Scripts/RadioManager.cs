@@ -250,29 +250,14 @@ public class RadioManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// FMOD Unity résout souvent EventReference par GUID uniquement. Si le GUID en scène est périmé / copié,
-    /// le mauvais event est joué malgré le bon Path dans l’inspecteur. On privilégie donc le Path.
-    /// </summary>
+    /// <summary>Création d'instance FMOD compatible desktop + Android.</summary>
     private static EventInstance CreateFmodInstance(EventReference er)
     {
         if (er.IsNull) return default;
 
-        if (!string.IsNullOrEmpty(er.Path))
-        {
-            try
-            {
-                return RuntimeManager.CreateInstance(er.Path);
-            }
-            catch
-            {
-                // Path affiché mais banque / event invalide : repli sur GUID.
-            }
-        }
-
         try
         {
-            return RuntimeManager.CreateInstance(er.Guid);
+            return RuntimeManager.CreateInstance(er);
         }
         catch
         {
@@ -283,19 +268,6 @@ public class RadioManager : MonoBehaviour
     private static void PlayOneShotFmod(EventReference er, Vector3 position)
     {
         if (er.IsNull) return;
-
-        if (!string.IsNullOrEmpty(er.Path))
-        {
-            try
-            {
-                RuntimeManager.PlayOneShot(er.Path, position);
-                return;
-            }
-            catch
-            {
-                //
-            }
-        }
 
         try
         {
@@ -446,8 +418,6 @@ public class RadioManager : MonoBehaviour
     private static bool MemeEventReference(EventReference a, EventReference b)
     {
         if (a.IsNull || b.IsNull) return false;
-        if (!string.IsNullOrEmpty(a.Path) && !string.IsNullOrEmpty(b.Path))
-            return a.Path == b.Path;
         return a.Guid.Equals(b.Guid);
     }
 

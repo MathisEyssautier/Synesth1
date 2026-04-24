@@ -33,6 +33,13 @@ public class FaderController : MonoBehaviour
     private IXRSelectInteractor _activeInteractor;
     private bool _wasInsideTarget;
 
+    public void ConfigureTargetHaptics(float desiredTargetValue, float desiredTolerance)
+    {
+        targetValue = Mathf.Clamp01(desiredTargetValue);
+        targetTolerance = Mathf.Clamp(desiredTolerance, 0.001f, 0.2f);
+        _wasInsideTarget = Mathf.Abs(value - targetValue) <= targetTolerance;
+    }
+
     void Awake()
     {
         _grab = GetComponent<XRGrabInteractable>();
