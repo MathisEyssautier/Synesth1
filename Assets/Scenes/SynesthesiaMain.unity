@@ -1190,6 +1190,7 @@ MonoBehaviour:
   lightIntensityRange: {x: 0.1, y: 2.2}
   targetRefreshThreshold: 0.02
   exitBlockerAndTriggerCollider: {fileID: 257021013}
+  houseBoundsTriggerCollider: {fileID: 243537423}
   exitTriggerCollider: {fileID: 0}
   playerHead: {fileID: 441087513}
   playerRigRoot: {fileID: 441087510}
@@ -1238,6 +1239,10 @@ MonoBehaviour:
       Data3: 406582171
       Data4: -26054369
     Path: event:/VoixOffs/Therapiste/QuandPreteSors
+  exitDoorHandlesToEnableAfterFinalVoice:
+  - {fileID: 186502981}
+  - {fileID: 355784965}
+  hideExitHandlesUntilFinalVoice: 1
 --- !u!1 &103956010
 GameObject:
   m_ObjectHideFlags: 0
@@ -3345,6 +3350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 243537422}
+  - component: {fileID: 243537423}
   m_Layer: 0
   m_Name: -- ROOM_1--
   m_TagString: Untagged
@@ -3378,6 +3384,27 @@ Transform:
   - {fileID: 1337883049}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &243537423
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243537421}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 17.372309, y: 6.5227003, z: 11.939651}
+  m_Center: {x: -0.44016552, y: -2.7613502, z: -1.1964698}
 --- !u!1 &248738815
 GameObject:
   m_ObjectHideFlags: 0
@@ -6625,6 +6652,9 @@ MonoBehaviour:
   fallbackRightRotationOffsetEuler: {x: 0, y: -45, z: 0}
   fallbackHoverHapticsAmplitude: 0.15
   fallbackHoverHapticsDuration: 0.025
+  fallbackRightControllerRotationOffsetEuler: {x: -45, y: 0, z: 0}
+  fallbackTeleportCommitThreshold: 0.7
+  fallbackTeleportReleaseThreshold: 0.25
 --- !u!1 &402279470
 GameObject:
   m_ObjectHideFlags: 0
@@ -11817,6 +11847,7 @@ MonoBehaviour:
   playerHeightStep: 0.03
   minPlayerHeightOffset: -0.35
   maxPlayerHeightOffset: 0.35
+  restartConfirmWindowSeconds: 1.2
 --- !u!1 &787091879
 GameObject:
   m_ObjectHideFlags: 0
@@ -19099,7 +19130,7 @@ RectTransform:
   m_GameObject: {fileID: 1228200786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1825056084}
@@ -29740,6 +29771,8 @@ MonoBehaviour:
   behavioursToDisableUntilPiano:
   - {fileID: 2139057726}
   explorationNarrative: {fileID: 1819657607}
+  lockPlayerMovementUntilIntroReveal: 1
+  locomotionManager: {fileID: 0}
 --- !u!114 &1819657607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42887,6 +42920,7 @@ GameObject:
   - component: {fileID: 2447009351583574335}
   - component: {fileID: 437255174380215797}
   - component: {fileID: 5860995877818454492}
+  - component: {fileID: 5860995877818454493}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -55901,6 +55935,89 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8228781567581644346, guid: 2404dab7da56b4647951a333f792e6da, type: 3}
+--- !u!114 &5860995877818454493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094610554161069088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f6bf3d943ac7945842268c9ef1dca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationArea
+  m_InteractionManager: {fileID: 0}
+  m_Colliders: []
+  m_InteractionLayers:
+    m_Bits: 2147483648
+  m_DistanceCalculationMode: 1
+  m_SelectMode: 1
+  m_FocusMode: 1
+  m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
+  m_FirstHoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastHoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_SelectExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstFocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastFocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FocusExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  m_StartingHoverFilters: []
+  m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
+  m_AutoFindParentInteractableInHierarchy: 0
+  m_ParentInteractableObject: {fileID: 0}
+  m_TeleportationProvider: {fileID: 0}
+  m_MatchOrientation: 0
+  m_MatchDirectionalInput: 1
+  m_TeleportTrigger: 0
+  m_FilterSelectionByHitNormal: 0
+  m_UpNormalToleranceDegrees: 30
+  m_Teleporting:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5868630422187973529
 GameObject:
   m_ObjectHideFlags: 0
@@ -59001,7 +59118,7 @@ Transform:
   m_GameObject: {fileID: 2222335069079767713}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.5833296, z: -0, w: 0.81223553}
-  m_LocalPosition: {x: 15.641, y: -4.4236097, z: 4.14875}
+  m_LocalPosition: {x: 15.641, y: -4.434, z: 4.14875}
   m_LocalScale: {x: 0.50503, y: 0.50503, z: 0.4936799}
   m_ConstrainProportionsScale: 0
   m_Children:

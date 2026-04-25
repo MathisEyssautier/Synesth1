@@ -10,6 +10,7 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
@@ -53,10 +54,11 @@ public class LocomotionManager : MonoBehaviour
     [SerializeField] private float fallbackSnapCooldown = 0.22f;
     [SerializeField] private float fallbackSelectPressThreshold = 0.55f;
     [SerializeField] private float fallbackSelectReleaseThreshold = 0.35f;
-    [SerializeField] private Vector3 fallbackLeftRotationOffsetEuler = new Vector3(0f, -45f, 0f);
-    [SerializeField] private Vector3 fallbackRightRotationOffsetEuler = new Vector3(0f, -45f, 0f);
+    [SerializeField] private Vector3 fallbackLeftRotationOffsetEuler = Vector3.zero;
+    [SerializeField] private Vector3 fallbackRightRotationOffsetEuler = Vector3.zero;
     [SerializeField] private float fallbackHoverHapticsAmplitude = 0.15f;
     [SerializeField] private float fallbackHoverHapticsDuration = 0.025f;
+    [SerializeField] private Vector3 fallbackRightControllerRotationOffsetEuler = Vector3.zero;
 
     private LocomotionMode _currentMode;
     private Transform _defaultForwardSource;
@@ -85,6 +87,15 @@ public class LocomotionManager : MonoBehaviour
     private bool _rightFallbackActivateHeld;
     private int _leftHoveredSelectableCount;
     private int _rightHoveredSelectableCount;
+    private XRBaseInteractor _teleportSelectInteractor;
+    [SerializeField] private float fallbackTeleportCommitThreshold = 0.7f;
+    [SerializeField] private float fallbackTeleportReleaseThreshold = 0.25f;
+    private bool _legacyTeleportAimHeld;
+    private bool _legacyTeleportRayVisible;
+    private bool _legacyOffsetsRuntimeZeroed;
+    private bool _legacyTiltCalibrationCaptured;
+    private Vector2 _leftTiltReferenceXZ;
+    private Vector2 _rightTiltReferenceXZ;
     public bool IsForceDisabled => _forceDisabled;
 
     void Start()
@@ -163,13 +174,13 @@ public class LocomotionManager : MonoBehaviour
 
             case LocomotionMode.Teleport:
                 if (teleportationObject != null) teleportationObject.SetActive(true);
-                SetTeleportInteractorsActive(true);
+                SetTeleportInteractorsActive(!_legacyFallbackActive);
                 if (turnObject != null) turnObject.SetActive(_snapTurnEnabled);
                 break;
 
             case LocomotionMode.TeleportBlink:
                 if (teleportationObject != null) teleportationObject.SetActive(true);
-                SetTeleportInteractorsActive(true);
+                SetTeleportInteractorsActive(!_legacyFallbackActive);
                 if (turnObject != null) turnObject.SetActive(_snapTurnEnabled);
                 if (teleportationProvider != null)
                     teleportationProvider.locomotionStateChanged += OnTeleportStateChanged;
@@ -211,6 +222,9 @@ public class LocomotionManager : MonoBehaviour
     private void SetTeleportInteractorsActive(bool active)
     {
         if (teleportInteractorRight != null) teleportInteractorRight.SetActive(active);
+        _legacyTeleportRayVisible = active;
+        if (!active)
+            _legacyTeleportAimHeld = false;
     }
 
     private IEnumerator BlinkEffect()
@@ -260,6 +274,23 @@ public class LocomotionManager : MonoBehaviour
         {
             _legacyFallbackStateApplied = _legacyFallbackActive;
             SetTrackedPoseDriversEnabled(!_legacyFallbackActive);
+            ApplyCurrentModeState();
+            if (_legacyFallbackActive)
+            {
+                _legacyOffsetsRuntimeZeroed = false;
+                _legacyTiltCalibrationCaptured = false;
+                _leftTiltReferenceXZ = Vector2.zero;
+                _rightTiltReferenceXZ = Vector2.zero;
+            }
+        }
+
+        if (_legacyFallbackActive && !_legacyOffsetsRuntimeZeroed)
+        {
+            // Force-zero runtime offsets to ignore stale serialized values from scene/prefab.
+            fallbackLeftRotationOffsetEuler = Vector3.zero;
+            fallbackRightRotationOffsetEuler = Vector3.zero;
+            fallbackRightControllerRotationOffsetEuler = Vector3.zero;
+            _legacyOffsetsRuntimeZeroed = true;
         }
 
         if (_legacyFallbackActive && !_legacyFallbackLogDone)
@@ -274,22 +305,43 @@ public class LocomotionManager : MonoBehaviour
         if (!_legacyFallbackActive)
             return;
 
-        if (_leftControllerTransform != null &&
-            TryGetNodePose(XRNode.LeftHand, out Vector3 leftPos, out Quaternion leftRot, out bool hasLeftPos, out bool hasLeftRot))
+        Vector3 leftPos = Vector3.zero;
+        Quaternion leftRot = Quaternion.identity;
+        bool hasLeftPos = false;
+        bool hasLeftRot = false;
+        bool hasLeftPose = _leftControllerTransform != null &&
+            TryGetNodePose(XRNode.LeftHand, out leftPos, out leftRot, out hasLeftPos, out hasLeftRot);
+
+        Vector3 rightPos = Vector3.zero;
+        Quaternion rightRot = Quaternion.identity;
+        bool hasRightPos = false;
+        bool hasRightRot = false;
+        bool hasRightPose = _rightControllerTransform != null &&
+            TryGetNodePose(XRNode.RightHand, out rightPos, out rightRot, out hasRightPos, out hasRightRot);
+
+        if (!_legacyTiltCalibrationCaptured && hasLeftPose && hasRightPose && hasLeftRot && hasRightRot)
+        {
+            _leftTiltReferenceXZ = ReadTiltXZ(leftRot);
+            _rightTiltReferenceXZ = ReadTiltXZ(rightRot);
+            _legacyTiltCalibrationCaptured = true;
+        }
+
+        if (hasLeftPose)
         {
             if (!_leftControllerTransform.gameObject.activeSelf)
                 _leftControllerTransform.gameObject.SetActive(true);
             if (hasLeftPos) _leftControllerTransform.localPosition = leftPos;
-            if (hasLeftRot) _leftControllerTransform.localRotation = leftRot;
+            if (hasLeftRot)
+                _leftControllerTransform.localRotation = ApplyTiltCalibration(leftRot, _leftTiltReferenceXZ, _legacyTiltCalibrationCaptured);
         }
 
-        if (_rightControllerTransform != null &&
-            TryGetNodePose(XRNode.RightHand, out Vector3 rightPos, out Quaternion rightRot, out bool hasRightPos, out bool hasRightRot))
+        if (hasRightPose)
         {
             if (!_rightControllerTransform.gameObject.activeSelf)
                 _rightControllerTransform.gameObject.SetActive(true);
             if (hasRightPos) _rightControllerTransform.localPosition = rightPos;
-            if (hasRightRot) _rightControllerTransform.localRotation = rightRot;
+            if (hasRightRot)
+                _rightControllerTransform.localRotation = ApplyTiltCalibration(rightRot, _rightTiltReferenceXZ, _legacyTiltCalibrationCaptured);
         }
 
         ApplyControllerVisualRotationOffsets();
@@ -301,7 +353,11 @@ public class LocomotionManager : MonoBehaviour
             return;
 
         if (_currentMode != LocomotionMode.LinearSnapTurn && _currentMode != LocomotionMode.LinearGaze)
+        {
+            if (_currentMode == LocomotionMode.Teleport || _currentMode == LocomotionMode.TeleportBlink)
+                ApplyLegacyTeleportFallback();
             return;
+        }
 
         if (moveObject == null || !moveObject.activeInHierarchy || _rigRoot == null)
             return;
@@ -352,6 +408,86 @@ public class LocomotionManager : MonoBehaviour
         float angle = snapTurnProvider != null ? snapTurnProvider.turnAmount : 45f;
         _rigRoot.Rotate(0f, Mathf.Sign(rightAxis.x) * angle, 0f, Space.World);
         _nextFallbackSnapTime = Time.unscaledTime + fallbackSnapCooldown;
+    }
+
+    private void ApplyLegacyTeleportFallback()
+    {
+        if (teleportationObject == null || !teleportationObject.activeInHierarchy)
+            return;
+        if (_teleportSelectInteractor == null)
+            _teleportSelectInteractor = teleportInteractorRight != null
+                ? teleportInteractorRight.GetComponentInChildren<XRBaseInteractor>(true)
+                : null;
+        if (_teleportSelectInteractor == null)
+            return;
+
+        if (!TryReadStick(XRNode.RightHand, out Vector2 rightAxis))
+            rightAxis = Vector2.zero;
+
+        bool pressedForward = rightAxis.y >= fallbackTeleportCommitThreshold;
+        bool released = rightAxis.y <= fallbackTeleportReleaseThreshold;
+
+        if (pressedForward)
+        {
+            _legacyTeleportAimHeld = true;
+            if (!_legacyTeleportRayVisible)
+                SetTeleportInteractorsActive(true);
+            return;
+        }
+
+        if (_legacyTeleportAimHeld && released)
+        {
+            _legacyTeleportAimHeld = false;
+            TryCommitLegacyTeleportOnHoveredTarget();
+            if (_legacyTeleportRayVisible)
+                SetTeleportInteractorsActive(false);
+            return;
+        }
+
+        if (_legacyTeleportRayVisible)
+            SetTeleportInteractorsActive(false);
+
+        // Keep snap turn available in teleport mode when not actively aiming teleport.
+        if (!_snapTurnEnabled || turnObject == null || !turnObject.activeInHierarchy)
+            return;
+        if (Time.unscaledTime < _nextFallbackSnapTime)
+            return;
+        if (Mathf.Abs(rightAxis.x) < fallbackSnapThreshold)
+            return;
+
+        float angle = snapTurnProvider != null ? snapTurnProvider.turnAmount : 45f;
+        _rigRoot.Rotate(0f, Mathf.Sign(rightAxis.x) * angle, 0f, Space.World);
+        _nextFallbackSnapTime = Time.unscaledTime + fallbackSnapCooldown;
+    }
+
+    private void TryCommitLegacyTeleportOnHoveredTarget()
+    {
+        var interactor = _teleportSelectInteractor;
+        if (interactor == null)
+            return;
+        var mgr = interactor.interactionManager;
+        if (mgr == null)
+            return;
+
+        var hovered = interactor.interactablesHovered;
+        if (hovered == null || hovered.Count == 0)
+            return;
+
+        IXRSelectInteractable target = null;
+        for (int i = 0; i < hovered.Count; i++)
+        {
+            if (hovered[i] is IXRSelectInteractable selectable)
+            {
+                target = selectable;
+                break;
+            }
+        }
+
+        if (target == null)
+            return;
+
+        mgr.SelectEnter(interactor, target);
+        mgr.SelectExit(interactor, target);
     }
 
     private void ApplyLegacyGrabFallback()
@@ -536,13 +672,15 @@ public class LocomotionManager : MonoBehaviour
             _leftSelectInteractor = FindSelectInteractorOnController(_leftControllerTransform);
         if (_rightSelectInteractor == null)
             _rightSelectInteractor = FindSelectInteractorOnController(_rightControllerTransform);
+        if (_teleportSelectInteractor == null && teleportInteractorRight != null)
+            _teleportSelectInteractor = teleportInteractorRight.GetComponentInChildren<XRBaseInteractor>(true);
     }
 
     private void ApplyControllerVisualRotationOffsets()
     {
-        // Keep a fixed visual correction for Quest Link fallback.
-        // This avoids relying on serialized offsets that may differ per scene instance.
-        Quaternion forcedVisualOffset = Quaternion.Euler(-45f, 0f, 0f);
+        // Keep visual corrections configurable per hand for Quest Link fallback.
+        Quaternion leftVisualOffset = Quaternion.Euler(fallbackLeftRotationOffsetEuler);
+        Quaternion rightVisualOffset = Quaternion.Euler(fallbackRightRotationOffsetEuler);
 
         if (_leftControllerVisualTransform == null && _leftControllerTransform != null)
         {
@@ -561,14 +699,14 @@ public class LocomotionManager : MonoBehaviour
         if (_leftControllerVisualTransform != null)
         {
             _leftControllerVisualTransform.localRotation = _legacyFallbackActive
-                ? _leftVisualBaseLocalRotation * forcedVisualOffset
+                ? _leftVisualBaseLocalRotation * leftVisualOffset
                 : _leftVisualBaseLocalRotation;
         }
 
         if (_rightControllerVisualTransform != null)
         {
             _rightControllerVisualTransform.localRotation = _legacyFallbackActive
-                ? _rightVisualBaseLocalRotation * forcedVisualOffset
+                ? _rightVisualBaseLocalRotation * rightVisualOffset
                 : _rightVisualBaseLocalRotation;
         }
     }
@@ -754,13 +892,41 @@ public class LocomotionManager : MonoBehaviour
         if (!hasPosition)
             hasPosition = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.devicePosition, out localPosition);
 
-        hasRotation = device.TryGetFeatureValue(gripRotationUsage, out localRotation);
+        // For Quest Link fallback, prioritize deviceRotation to better match real controller posture.
+        // grip/pointer rotations can include controller-model ergonomic offsets and look "tilted" in-game.
+        hasRotation = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.deviceRotation, out localRotation);
         if (!hasRotation)
             hasRotation = device.TryGetFeatureValue(pointerRotationUsage, out localRotation);
         if (!hasRotation)
-            hasRotation = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.deviceRotation, out localRotation);
+            hasRotation = device.TryGetFeatureValue(gripRotationUsage, out localRotation);
 
         return hasPosition || hasRotation;
+    }
+
+    private static Vector2 ReadTiltXZ(Quaternion q)
+    {
+        Vector3 e = q.eulerAngles;
+        return new Vector2(NormalizeAngle(e.x), NormalizeAngle(e.z));
+    }
+
+    private static Quaternion ApplyTiltCalibration(Quaternion raw, Vector2 tiltRefXZ, bool hasCalibration)
+    {
+        if (!hasCalibration)
+            return raw;
+
+        Vector3 e = raw.eulerAngles;
+        float x = NormalizeAngle(e.x) - tiltRefXZ.x;
+        float y = NormalizeAngle(e.y); // keep yaw raw to avoid drift while physically turning
+        float z = NormalizeAngle(e.z) - tiltRefXZ.y;
+        return Quaternion.Euler(x, y, z);
+    }
+
+    private static float NormalizeAngle(float angle)
+    {
+        angle %= 360f;
+        if (angle > 180f) angle -= 360f;
+        if (angle < -180f) angle += 360f;
+        return angle;
     }
 
     private static bool HasInputSystemXrControllers()
