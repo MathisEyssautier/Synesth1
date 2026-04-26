@@ -20176,8 +20176,8 @@ MonoBehaviour:
   railHalfLength: 0.35
   value: 1
   enableTargetHaptics: 1
-  targetValue: 0.5
-  targetTolerance: 0.03
+  targetValue: 0.25
+  targetTolerance: 0.1
   hapticAmplitude: 0.75
   hapticDuration: 0.06
 --- !u!1 &1307418249
@@ -28895,7 +28895,9 @@ MonoBehaviour:
     Path: 
   pianoDirectionalLight: {fileID: 299639868}
   pianoDirectionalTargetIntensity: 10
-  pianoDirectionalFadeDuration: 1.2
+  introWindowLightBlocker: {fileID: 0}
+  introBlockerTravelUpDistance: 2
+  introBlockerTravelDuration: 1.2
   rotatePianoLightWhenRoomTurnsOn: 1
   pianoLightRotationAfterPiano: {x: 21, y: 532, z: 40}
   pianoLightRotationDuration: 1.2
@@ -29047,8 +29049,8 @@ MonoBehaviour:
   railHalfLength: 0.35
   value: 1
   enableTargetHaptics: 1
-  targetValue: 0.5
-  targetTolerance: 0.03
+  targetValue: 1
+  targetTolerance: 0.1
   hapticAmplitude: 0.75
   hapticDuration: 0.06
 --- !u!114 &1838902009
@@ -31760,7 +31762,7 @@ MonoBehaviour:
   value: 1
   enableTargetHaptics: 1
   targetValue: 0.5
-  targetTolerance: 0.03
+  targetTolerance: 0.1
   hapticAmplitude: 0.75
   hapticDuration: 0.06
 --- !u!114 &2008411766

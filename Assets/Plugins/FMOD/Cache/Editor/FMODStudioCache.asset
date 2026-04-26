@@ -366,7 +366,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/VoixBank.bank
   Name: VoixBank
   StudioPath: bank:/VoixBank
-  lastModified: 639126465030894900
+  lastModified: 639128276166763534
   FileSizes:
   - Name: Desktop
     Value: 26064384
@@ -1162,7 +1162,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639126465029965228
+  lastModified: 639128276165830267
   FileSizes:
   - Name: Desktop
     Value: 1892
@@ -1451,7 +1451,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 5397838995440337538}
   cacheVersion: 131858
-  cacheTime: 639126465030894900
+  cacheTime: 639128276166763534
   SerializableEventsDict:
   - key: event:/FinalMusic
     index: 0
@@ -2600,7 +2600,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639126465029940109
+  lastModified: 639128276165808890
   FileSizes:
   - Name: Desktop
     Value: 100209664
@@ -2649,7 +2649,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639126465029980254
+  lastModified: 639128276165842418
   FileSizes:
   - Name: Desktop
     Value: 5822
