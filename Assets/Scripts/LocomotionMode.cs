@@ -48,6 +48,8 @@ public class LocomotionManager : MonoBehaviour
 
     [Header("Quest Link fallback (legacy XR nodes)")]
     [SerializeField] private bool enableLegacyXrFallback = true;
+    [Tooltip("Laisse le tracking natif XRI gérer la pose des contrôleurs. Si les contrôleurs restent au sol, désactive cette option pour forcer le fallback pose legacy brut.")]
+    [SerializeField] private bool preferNativeControllerTracking = false;
     [SerializeField] private float fallbackMoveSpeed = 2.5f;
     [SerializeField] private float fallbackMoveDeadzone = 0.15f;
     [SerializeField] private float fallbackSnapThreshold = 0.7f;
@@ -59,6 +61,14 @@ public class LocomotionManager : MonoBehaviour
     [SerializeField] private float fallbackHoverHapticsAmplitude = 0.15f;
     [SerializeField] private float fallbackHoverHapticsDuration = 0.025f;
     [SerializeField] private Vector3 fallbackRightControllerRotationOffsetEuler = Vector3.zero;
+    [SerializeField] private Vector3 fallbackTeleportInteractorRotationOffsetEuler = new Vector3(45f, 0f, 0f);
+    [Header("Quest Link visual model correction (child under *Controller Visual)")]
+    [SerializeField] private string fallbackControllerModelChildName = "UniversalController";
+    [SerializeField] private Vector3 fallbackLeftModelRotationOffsetEuler = Vector3.zero;
+    [SerializeField] private Vector3 fallbackRightModelRotationOffsetEuler = Vector3.zero;
+    [Header("Quest Link teleport ray angle override (optional)")]
+    [Tooltip("Si assigné, cet objet reçoit directement l'offset d'angle du rayon (plus fiable que la détection auto).")]
+    [SerializeField] private Transform fallbackTeleportRayAngleTargetOverride;
 
     private LocomotionMode _currentMode;
     private Transform _defaultForwardSource;
@@ -68,10 +78,19 @@ public class LocomotionManager : MonoBehaviour
     private CharacterController _rigCharacterController;
     private Transform _leftControllerTransform;
     private Transform _rightControllerTransform;
+    private Quaternion _teleportInteractorBaseLocalRotation = Quaternion.identity;
+    private bool _teleportInteractorBaseRotationCaptured;
+    private Transform[] _teleportRayRotationTargets = new Transform[0];
+    private Quaternion[] _teleportRayBaseLocalRotations = new Quaternion[0];
+    private bool _teleportRayTargetsCached;
     private Transform _leftControllerVisualTransform;
     private Transform _rightControllerVisualTransform;
+    private Transform _leftControllerModelTransform;
+    private Transform _rightControllerModelTransform;
     private Quaternion _leftVisualBaseLocalRotation = Quaternion.identity;
     private Quaternion _rightVisualBaseLocalRotation = Quaternion.identity;
+    private Quaternion _leftModelBaseLocalRotation = Quaternion.identity;
+    private Quaternion _rightModelBaseLocalRotation = Quaternion.identity;
     private Behaviour[] _trackedPoseDrivers = new Behaviour[0];
     private bool _legacyFallbackActive;
     private bool _legacyFallbackStateApplied;
@@ -92,10 +111,6 @@ public class LocomotionManager : MonoBehaviour
     [SerializeField] private float fallbackTeleportReleaseThreshold = 0.25f;
     private bool _legacyTeleportAimHeld;
     private bool _legacyTeleportRayVisible;
-    private bool _legacyOffsetsRuntimeZeroed;
-    private bool _legacyTiltCalibrationCaptured;
-    private Vector2 _leftTiltReferenceXZ;
-    private Vector2 _rightTiltReferenceXZ;
     public bool IsForceDisabled => _forceDisabled;
 
     void Start()
@@ -118,11 +133,13 @@ public class LocomotionManager : MonoBehaviour
         UpdateLegacyFallbackState();
         ApplyLegacyLocomotionFallback();
         ApplyLegacyGrabFallback();
+        ApplyTeleportRayRotationOffset();
     }
 
     private void LateUpdate()
     {
         ApplyLegacyTrackingFallback();
+        ApplyTeleportRayRotationOffset();
     }
 
     public void SetMode(LocomotionMode mode)
@@ -221,7 +238,16 @@ public class LocomotionManager : MonoBehaviour
 
     private void SetTeleportInteractorsActive(bool active)
     {
-        if (teleportInteractorRight != null) teleportInteractorRight.SetActive(active);
+        if (teleportInteractorRight != null)
+        {
+            if (!_teleportInteractorBaseRotationCaptured)
+            {
+                _teleportInteractorBaseLocalRotation = teleportInteractorRight.transform.localRotation;
+                _teleportInteractorBaseRotationCaptured = true;
+            }
+
+            teleportInteractorRight.SetActive(active);
+        }
         _legacyTeleportRayVisible = active;
         if (!active)
             _legacyTeleportAimHeld = false;
@@ -273,24 +299,14 @@ public class LocomotionManager : MonoBehaviour
         if (_legacyFallbackStateApplied != _legacyFallbackActive)
         {
             _legacyFallbackStateApplied = _legacyFallbackActive;
-            SetTrackedPoseDriversEnabled(!_legacyFallbackActive);
+            // Use native tracked pose only when legacy fallback isn't active.
+            // If legacy fallback is active (Quest Link edge-case), we must disable TPD and drive pose manually.
+            bool enableTrackedPoseDrivers = !_legacyFallbackActive;
+            SetTrackedPoseDriversEnabled(enableTrackedPoseDrivers);
             ApplyCurrentModeState();
             if (_legacyFallbackActive)
             {
-                _legacyOffsetsRuntimeZeroed = false;
-                _legacyTiltCalibrationCaptured = false;
-                _leftTiltReferenceXZ = Vector2.zero;
-                _rightTiltReferenceXZ = Vector2.zero;
             }
-        }
-
-        if (_legacyFallbackActive && !_legacyOffsetsRuntimeZeroed)
-        {
-            // Force-zero runtime offsets to ignore stale serialized values from scene/prefab.
-            fallbackLeftRotationOffsetEuler = Vector3.zero;
-            fallbackRightRotationOffsetEuler = Vector3.zero;
-            fallbackRightControllerRotationOffsetEuler = Vector3.zero;
-            _legacyOffsetsRuntimeZeroed = true;
         }
 
         if (_legacyFallbackActive && !_legacyFallbackLogDone)
@@ -319,20 +335,13 @@ public class LocomotionManager : MonoBehaviour
         bool hasRightPose = _rightControllerTransform != null &&
             TryGetNodePose(XRNode.RightHand, out rightPos, out rightRot, out hasRightPos, out hasRightRot);
 
-        if (!_legacyTiltCalibrationCaptured && hasLeftPose && hasRightPose && hasLeftRot && hasRightRot)
-        {
-            _leftTiltReferenceXZ = ReadTiltXZ(leftRot);
-            _rightTiltReferenceXZ = ReadTiltXZ(rightRot);
-            _legacyTiltCalibrationCaptured = true;
-        }
-
         if (hasLeftPose)
         {
             if (!_leftControllerTransform.gameObject.activeSelf)
                 _leftControllerTransform.gameObject.SetActive(true);
             if (hasLeftPos) _leftControllerTransform.localPosition = leftPos;
             if (hasLeftRot)
-                _leftControllerTransform.localRotation = ApplyTiltCalibration(leftRot, _leftTiltReferenceXZ, _legacyTiltCalibrationCaptured);
+                _leftControllerTransform.localRotation = leftRot;
         }
 
         if (hasRightPose)
@@ -341,7 +350,7 @@ public class LocomotionManager : MonoBehaviour
                 _rightControllerTransform.gameObject.SetActive(true);
             if (hasRightPos) _rightControllerTransform.localPosition = rightPos;
             if (hasRightRot)
-                _rightControllerTransform.localRotation = ApplyTiltCalibration(rightRot, _rightTiltReferenceXZ, _legacyTiltCalibrationCaptured);
+                _rightControllerTransform.localRotation = rightRot;
         }
 
         ApplyControllerVisualRotationOffsets();
@@ -667,6 +676,18 @@ public class LocomotionManager : MonoBehaviour
             _leftVisualBaseLocalRotation = _leftControllerVisualTransform.localRotation;
         if (_rightControllerVisualTransform != null)
             _rightVisualBaseLocalRotation = _rightControllerVisualTransform.localRotation;
+        if (_leftControllerVisualTransform != null)
+        {
+            _leftControllerModelTransform = FindChildByName(_leftControllerVisualTransform, fallbackControllerModelChildName);
+            if (_leftControllerModelTransform != null)
+                _leftModelBaseLocalRotation = _leftControllerModelTransform.localRotation;
+        }
+        if (_rightControllerVisualTransform != null)
+        {
+            _rightControllerModelTransform = FindChildByName(_rightControllerVisualTransform, fallbackControllerModelChildName);
+            if (_rightControllerModelTransform != null)
+                _rightModelBaseLocalRotation = _rightControllerModelTransform.localRotation;
+        }
 
         if (_leftSelectInteractor == null)
             _leftSelectInteractor = FindSelectInteractorOnController(_leftControllerTransform);
@@ -674,19 +695,98 @@ public class LocomotionManager : MonoBehaviour
             _rightSelectInteractor = FindSelectInteractorOnController(_rightControllerTransform);
         if (_teleportSelectInteractor == null && teleportInteractorRight != null)
             _teleportSelectInteractor = teleportInteractorRight.GetComponentInChildren<XRBaseInteractor>(true);
+
+        CacheTeleportRayRotationTargets();
+    }
+
+    private void CacheTeleportRayRotationTargets()
+    {
+        if (fallbackTeleportRayAngleTargetOverride != null)
+        {
+            _teleportRayRotationTargets = new[] { fallbackTeleportRayAngleTargetOverride };
+            _teleportRayBaseLocalRotations = new[] { fallbackTeleportRayAngleTargetOverride.localRotation };
+            _teleportRayTargetsCached = true;
+            return;
+        }
+
+        var list = new List<Transform>();
+        void AddIfValid(Transform t)
+        {
+            if (t == null) return;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i] == t) return;
+            }
+            list.Add(t);
+        }
+
+        if (teleportInteractorRight != null)
+        {
+            AddIfValid(teleportInteractorRight.transform);
+            AddIfValid(FindChildByName(teleportInteractorRight.transform, "Teleport Interactor"));
+
+            // Most reliable: ray angle comes from XRRayInteractor ray origin.
+            var rayInteractors = teleportInteractorRight.GetComponentsInChildren<XRRayInteractor>(true);
+            for (int i = 0; i < rayInteractors.Length; i++)
+            {
+                var ray = rayInteractors[i];
+                if (ray == null) continue;
+                AddIfValid(ray.rayOriginTransform != null ? ray.rayOriginTransform : ray.transform);
+            }
+        }
+
+        if (_rigRoot != null)
+        {
+            AddIfValid(FindChildByName(_rigRoot, "Right Controller Teleport Stabilized"));
+            AddIfValid(FindChildByName(_rigRoot, "[Right CurveInteractionCaster] Stabilized"));
+            AddIfValid(FindChildByName(_rigRoot, "Right CurveInteractionCaster Stabilized"));
+        }
+
+        _teleportRayRotationTargets = list.ToArray();
+        _teleportRayBaseLocalRotations = new Quaternion[_teleportRayRotationTargets.Length];
+        for (int i = 0; i < _teleportRayRotationTargets.Length; i++)
+            _teleportRayBaseLocalRotations[i] = _teleportRayRotationTargets[i].localRotation;
+        _teleportRayTargetsCached = true;
+    }
+
+    private void ApplyTeleportRayRotationOffset()
+    {
+        if (!_teleportRayTargetsCached)
+            CacheTeleportRayRotationTargets();
+        if (_teleportRayRotationTargets == null || _teleportRayRotationTargets.Length == 0)
+            return;
+
+        bool shouldApply = _legacyFallbackActive &&
+            (_currentMode == LocomotionMode.Teleport || _currentMode == LocomotionMode.TeleportBlink);
+        Quaternion offset = Quaternion.Euler(fallbackTeleportInteractorRotationOffsetEuler);
+
+        for (int i = 0; i < _teleportRayRotationTargets.Length; i++)
+        {
+            var t = _teleportRayRotationTargets[i];
+            if (t == null) continue;
+            Quaternion baseRot = i < _teleportRayBaseLocalRotations.Length ? _teleportRayBaseLocalRotations[i] : t.localRotation;
+            t.localRotation = shouldApply ? baseRot * offset : baseRot;
+        }
     }
 
     private void ApplyControllerVisualRotationOffsets()
     {
-        // Keep visual corrections configurable per hand for Quest Link fallback.
-        Quaternion leftVisualOffset = Quaternion.Euler(fallbackLeftRotationOffsetEuler);
-        Quaternion rightVisualOffset = Quaternion.Euler(fallbackRightRotationOffsetEuler);
+        // Hard-neutral fallback visuals: force 0/0/0 local rotations in fallback mode.
+        // This avoids hidden prefab base rotations (e.g. 315 Y / -180 X) while debugging alignment.
+        Quaternion neutral = Quaternion.identity;
+        Quaternion modelYaw180 = Quaternion.Euler(-45f, 180f, 0f);
 
         if (_leftControllerVisualTransform == null && _leftControllerTransform != null)
         {
             _leftControllerVisualTransform = FindChildByName(_leftControllerTransform, "Left Controller Visual");
             if (_leftControllerVisualTransform != null)
                 _leftVisualBaseLocalRotation = _leftControllerVisualTransform.localRotation;
+            if (_leftControllerVisualTransform != null)
+            {
+                _leftControllerModelTransform = FindChildByName(_leftControllerVisualTransform, fallbackControllerModelChildName);
+                if (_leftControllerModelTransform != null)
+                    _leftModelBaseLocalRotation = _leftControllerModelTransform.localRotation;
+            }
         }
 
         if (_rightControllerVisualTransform == null && _rightControllerTransform != null)
@@ -694,20 +794,40 @@ public class LocomotionManager : MonoBehaviour
             _rightControllerVisualTransform = FindChildByName(_rightControllerTransform, "Right Controller Visual");
             if (_rightControllerVisualTransform != null)
                 _rightVisualBaseLocalRotation = _rightControllerVisualTransform.localRotation;
+            if (_rightControllerVisualTransform != null)
+            {
+                _rightControllerModelTransform = FindChildByName(_rightControllerVisualTransform, fallbackControllerModelChildName);
+                if (_rightControllerModelTransform != null)
+                    _rightModelBaseLocalRotation = _rightControllerModelTransform.localRotation;
+            }
         }
 
         if (_leftControllerVisualTransform != null)
         {
             _leftControllerVisualTransform.localRotation = _legacyFallbackActive
-                ? _leftVisualBaseLocalRotation * leftVisualOffset
+                ? neutral
                 : _leftVisualBaseLocalRotation;
         }
 
         if (_rightControllerVisualTransform != null)
         {
             _rightControllerVisualTransform.localRotation = _legacyFallbackActive
-                ? _rightVisualBaseLocalRotation * rightVisualOffset
+                ? neutral
                 : _rightVisualBaseLocalRotation;
+        }
+
+        if (_leftControllerModelTransform != null)
+        {
+            _leftControllerModelTransform.localRotation = _legacyFallbackActive
+                ? modelYaw180
+                : _leftModelBaseLocalRotation;
+        }
+
+        if (_rightControllerModelTransform != null)
+        {
+            _rightControllerModelTransform.localRotation = _legacyFallbackActive
+                ? modelYaw180
+                : _rightModelBaseLocalRotation;
         }
     }
 
@@ -892,41 +1012,15 @@ public class LocomotionManager : MonoBehaviour
         if (!hasPosition)
             hasPosition = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.devicePosition, out localPosition);
 
-        // For Quest Link fallback, prioritize deviceRotation to better match real controller posture.
-        // grip/pointer rotations can include controller-model ergonomic offsets and look "tilted" in-game.
-        hasRotation = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.deviceRotation, out localRotation);
+        // For fallback orientation, prefer gripRotation (controller-in-hand pose) first.
+        // deviceRotation can be in a different reference basis on some Link runtimes.
+        hasRotation = device.TryGetFeatureValue(gripRotationUsage, out localRotation);
+        if (!hasRotation)
+            hasRotation = device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.deviceRotation, out localRotation);
         if (!hasRotation)
             hasRotation = device.TryGetFeatureValue(pointerRotationUsage, out localRotation);
-        if (!hasRotation)
-            hasRotation = device.TryGetFeatureValue(gripRotationUsage, out localRotation);
 
         return hasPosition || hasRotation;
-    }
-
-    private static Vector2 ReadTiltXZ(Quaternion q)
-    {
-        Vector3 e = q.eulerAngles;
-        return new Vector2(NormalizeAngle(e.x), NormalizeAngle(e.z));
-    }
-
-    private static Quaternion ApplyTiltCalibration(Quaternion raw, Vector2 tiltRefXZ, bool hasCalibration)
-    {
-        if (!hasCalibration)
-            return raw;
-
-        Vector3 e = raw.eulerAngles;
-        float x = NormalizeAngle(e.x) - tiltRefXZ.x;
-        float y = NormalizeAngle(e.y); // keep yaw raw to avoid drift while physically turning
-        float z = NormalizeAngle(e.z) - tiltRefXZ.y;
-        return Quaternion.Euler(x, y, z);
-    }
-
-    private static float NormalizeAngle(float angle)
-    {
-        angle %= 360f;
-        if (angle > 180f) angle -= 360f;
-        if (angle < -180f) angle += 360f;
-        return angle;
     }
 
     private static bool HasInputSystemXrControllers()
