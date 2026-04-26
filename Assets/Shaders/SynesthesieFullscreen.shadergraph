@@ -264,6 +264,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "2cc284d9ec3943b581a3cc8b5feb052c"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "69f73b0306744b388d18a870aa8ec026"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "32d430ea5362448ab373579eacf101c0"
                 },
                 "m_SlotId": 2
@@ -326,20 +340,6 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "69f73b0306744b388d18a870aa8ec026"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "5b8b0512cbb3481bbf95185e3e2f9726"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
                     "m_Id": "9e6fca3b1fbc4a81b92785bf25d2db81"
                 },
                 "m_SlotId": 0
@@ -385,20 +385,6 @@
                     "m_Id": "4e87c22cd90645e48b23b26969cc055d"
                 },
                 "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "9e6fca3b1fbc4a81b92785bf25d2db81"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "2cc284d9ec3943b581a3cc8b5feb052c"
-                },
-                "m_SlotId": 0
             }
         },
         {
@@ -831,6 +817,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "cc690c5922e743b589d1cdb83b1b6063"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "d2b8924c7add4de5911e781f74f0fe76"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "2cc284d9ec3943b581a3cc8b5feb052c"
                 },
                 "m_SlotId": 0
             }
@@ -2303,10 +2303,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 2379.0,
-            "y": -457.0,
+            "x": 2359.000244140625,
+            "y": -431.0000305175781,
             "width": 208.0,
-            "height": 360.0
+            "height": 360.00006103515627
         }
     },
     "m_Slots": [
@@ -2533,7 +2533,7 @@
     "m_ObjectId": "412c958dff7d44128a35b67f55e43189",
     "m_Title": "vignette",
     "m_Position": {
-        "x": 154.0,
+        "x": 154.00006103515626,
         "y": -1092.0
     }
 }
@@ -7582,7 +7582,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Alpha",
     "m_StageCapability": 2,
-    "m_Value": 0.0,
+    "m_Value": 0.5,
     "m_DefaultValue": 1.0,
     "m_Labels": [],
     "m_LiteralMode": false
