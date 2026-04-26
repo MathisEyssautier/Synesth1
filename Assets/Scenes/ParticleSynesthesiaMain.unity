@@ -1741,11 +1741,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   cubeEventRef:
     Guid:
-      Data1: 1243800018
-      Data2: 1325981244
-      Data3: 1898979245
-      Data4: 971152147
-    Path: event:/FloatingObject
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   cubeRenderer: {fileID: 122789891}
   emissionColor: {r: 1, g: 1, b: 1, a: 1}
   emissionIntensity: 10

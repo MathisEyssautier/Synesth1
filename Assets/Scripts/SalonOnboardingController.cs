@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -13,6 +14,7 @@ public class SalonOnboardingController : MonoBehaviour
     private enum Phase
     {
         IntroFirstLine,
+        WaitIntroVoiceStopAfterSubEnd,
         WaitLaisseLineEnd,
         WaitIpodGrab,
         WaitIpodOff,
@@ -48,7 +50,10 @@ public class SalonOnboardingController : MonoBehaviour
     [Header("Lighting progression")]
     [SerializeField] private Light pianoDirectionalLight;
     [SerializeField] private float pianoDirectionalTargetIntensity = 10f;
-    [SerializeField] private float pianoDirectionalFadeDuration = 1.2f;
+    [Header("Intro light reveal (cube blocker)")]
+    [SerializeField] private Transform introWindowLightBlocker;
+    [SerializeField] private float introBlockerTravelUpDistance = 2f;
+    [SerializeField] private float introBlockerTravelDuration = 1.2f;
     [SerializeField] private bool rotatePianoLightWhenRoomTurnsOn = true;
     [SerializeField] private Vector3 pianoLightRotationAfterPiano = new Vector3(21f, 532f, 40f);
     [SerializeField] private float pianoLightRotationDuration = 1.2f;
@@ -58,6 +63,8 @@ public class SalonOnboardingController : MonoBehaviour
     [Header("Piano interaction gate")]
     [SerializeField] private PianoKey[] pianoKeys;
     [SerializeField] private bool autoDiscoverScenePianoKeys = true;
+    [Tooltip("Boules de séquence piano : révélées en même temps que l'iPod (EnableIpod). Laisser vide si pas utilisé.")]
+    [SerializeField] private PianoPuzzleManager pianoPuzzleManager;
 
     [Header("Objects to reveal after first piano note")]
     [SerializeField] private GameObject[] objectsToActivateAfterPiano;
@@ -67,6 +74,11 @@ public class SalonOnboardingController : MonoBehaviour
 
     [Header("Exploration narrative (timers indices piano)")]
     [SerializeField] private SalonExplorationNarrative explorationNarrative;
+    
+    [Header("Locomotion lock (intro)")]
+    [Tooltip("Si activé: bloque le déplacement jusqu'à la fin de NayaTuPeuxGarder (au même moment que le reveal lumière).")]
+    [SerializeField] private bool lockPlayerMovementUntilIntroReveal = true;
+    [SerializeField] private LocomotionManager locomotionManager;
 
     private Phase _phase = Phase.IntroFirstLine;
     private int _introLinesRemaining = 1;
@@ -75,6 +87,8 @@ public class SalonOnboardingController : MonoBehaviour
     private bool _otherLightsFadeStarted;
     private PianoKey[] _resolvedPianoKeys;
     private bool _ipodGrabLineQueued;
+    private bool _introRevealTriggered;
+    private bool _movementUnlocked;
 
     private void Awake()
     {
@@ -84,7 +98,7 @@ public class SalonOnboardingController : MonoBehaviour
         {
             if (!pianoDirectionalLight.gameObject.activeSelf)
                 pianoDirectionalLight.gameObject.SetActive(true);
-            pianoDirectionalLight.intensity = 0f;
+            pianoDirectionalLight.intensity = pianoDirectionalTargetIntensity;
         }
 
         CacheAndTurnOffOtherLights();
@@ -97,6 +111,16 @@ public class SalonOnboardingController : MonoBehaviour
         SetPianoInteractable(false);
         SetObjectsActive(objectsToActivateAfterPiano, false);
         SetBehavioursEnabled(behavioursToDisableUntilPiano, false);
+
+        if (lockPlayerMovementUntilIntroReveal && locomotionManager != null)
+        {
+            locomotionManager.SetForceDisabled(true);
+            _movementUnlocked = false;
+        }
+        else
+        {
+            _movementUnlocked = true;
+        }
     }
 
     private void Start()
@@ -111,7 +135,7 @@ public class SalonOnboardingController : MonoBehaviour
     {
         float d = Mathf.Max(0f, delayBeforeFirstIntroLineSeconds);
         if (d > 0f)
-            yield return new WaitForSeconds(d);
+            yield return new WaitForSecondsRealtime(d);
 
         if (subtitleManager == null)
             yield break;
@@ -122,6 +146,7 @@ public class SalonOnboardingController : MonoBehaviour
     private void OnEnable()
     {
         SubtitleManager.OnVoiceEnded += OnVoiceEnded;
+        SubtitleManager.OnSubtitleMarker += OnSubtitleMarker;
         GrabbableMusicObject.OnStateChanged += OnMusicObjectStateChanged;
         PianoKey.OnAnyKeyPressed += OnAnyPianoKeyPressed;
 
@@ -132,6 +157,7 @@ public class SalonOnboardingController : MonoBehaviour
     private void OnDisable()
     {
         SubtitleManager.OnVoiceEnded -= OnVoiceEnded;
+        SubtitleManager.OnSubtitleMarker -= OnSubtitleMarker;
         GrabbableMusicObject.OnStateChanged -= OnMusicObjectStateChanged;
         PianoKey.OnAnyKeyPressed -= OnAnyPianoKeyPressed;
 
@@ -152,6 +178,18 @@ public class SalonOnboardingController : MonoBehaviour
         _phase = Phase.WaitIpodOff;
     }
 
+    private void OnSubtitleMarker(string markerName)
+    {
+        if (_phase != Phase.IntroFirstLine) return;
+        if (_introRevealTriggered) return;
+        if (!IsEndSubtitleMarker(markerName)) return;
+
+        TriggerIntroRevealAndQueueLaisse();
+        // On attend encore le STOP FMOD du 1er event avant de considérer
+        // qu'on est réellement en attente de la ligne suivante.
+        _phase = Phase.WaitIntroVoiceStopAfterSubEnd;
+    }
+
     private void OnVoiceEnded()
     {
         if (_phase == Phase.IntroFirstLine)
@@ -160,12 +198,15 @@ public class SalonOnboardingController : MonoBehaviour
             if (_introLinesRemaining > 0)
                 return;
 
-            StartCoroutine(FadeLightIntensity(pianoDirectionalLight, 0f, pianoDirectionalTargetIntensity, pianoDirectionalFadeDuration));
-            EnableIpod();
+            // Fallback si l'event n'avait pas de marqueur sub_end.
+            TriggerIntroRevealAndQueueLaisse();
             _phase = Phase.WaitLaisseLineEnd;
+            return;
+        }
 
-            if (subtitleManager != null && !voTherapeuteLaisseToiGuiderPar.IsNull)
-                subtitleManager.EnqueueSubtitledLine(voTherapeuteLaisseToiGuiderPar);
+        if (_phase == Phase.WaitIntroVoiceStopAfterSubEnd)
+        {
+            _phase = Phase.WaitLaisseLineEnd;
             return;
         }
 
@@ -249,6 +290,27 @@ public class SalonOnboardingController : MonoBehaviour
             ipodMusicObject.enabled = true;
         if (ipodGrab != null)
             ipodGrab.enabled = true;
+
+        pianoPuzzleManager?.RevealSequenceIndicators();
+    }
+
+    private void TriggerIntroRevealAndQueueLaisse()
+    {
+        if (_introRevealTriggered) return;
+        _introRevealTriggered = true;
+
+        if (!_movementUnlocked && locomotionManager != null)
+        {
+            locomotionManager.SetForceDisabled(false);
+            _movementUnlocked = true;
+        }
+
+        if (introWindowLightBlocker != null)
+            StartCoroutine(MoveBlockerUpThenHide(introWindowLightBlocker, introBlockerTravelUpDistance, introBlockerTravelDuration));
+
+        EnableIpod();
+        if (subtitleManager != null && !voTherapeuteLaisseToiGuiderPar.IsNull)
+            subtitleManager.EnqueueSubtitledLine(voTherapeuteLaisseToiGuiderPar);
     }
 
     private void SetPianoInteractable(bool interactable)
@@ -327,19 +389,35 @@ public class SalonOnboardingController : MonoBehaviour
         }
     }
 
-    private static IEnumerator FadeLightIntensity(Light lightRef, float from, float to, float duration)
+    private static bool IsEndSubtitleMarker(string markerName)
     {
-        if (lightRef == null) yield break;
+        if (string.IsNullOrEmpty(markerName))
+            return false;
+        string t = markerName.Trim().TrimStart('\uFEFF');
+        if (string.Equals(t, "sub_end", StringComparison.OrdinalIgnoreCase))
+            return true;
+        if (string.Equals(t, "sub end", StringComparison.OrdinalIgnoreCase))
+            return true;
+        return false;
+    }
+
+    private static IEnumerator MoveBlockerUpThenHide(Transform blocker, float travelUpDistance, float duration)
+    {
+        if (blocker == null) yield break;
+
+        Vector3 startPos = blocker.position;
+        Vector3 targetPos = startPos + Vector3.up * travelUpDistance;
         float d = Mathf.Max(0.01f, duration);
         float t = 0f;
-        lightRef.intensity = from;
         while (t < d)
         {
             t += Time.deltaTime;
-            lightRef.intensity = Mathf.Lerp(from, to, Mathf.Clamp01(t / d));
+            blocker.position = Vector3.Lerp(startPos, targetPos, Mathf.Clamp01(t / d));
             yield return null;
         }
-        lightRef.intensity = to;
+
+        blocker.position = targetPos;
+        blocker.gameObject.SetActive(false);
     }
 
     private static IEnumerator RotateLightTo(Transform tr, Vector3 targetEuler, float duration)

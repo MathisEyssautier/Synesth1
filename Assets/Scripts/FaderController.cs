@@ -33,6 +33,13 @@ public class FaderController : MonoBehaviour
     private IXRSelectInteractor _activeInteractor;
     private bool _wasInsideTarget;
 
+    public void ConfigureTargetHaptics(float desiredTargetValue, float desiredTolerance)
+    {
+        targetValue = Mathf.Clamp01(desiredTargetValue);
+        targetTolerance = Mathf.Clamp(desiredTolerance, 0.001f, 0.2f);
+        _wasInsideTarget = Mathf.Abs(value - targetValue) <= targetTolerance;
+    }
+
     void Awake()
     {
         _grab = GetComponent<XRGrabInteractable>();
@@ -131,13 +138,17 @@ public class FaderController : MonoBehaviour
         float dur = Mathf.Max(0.01f, duration);
 
         if (_activeInteractor is XRBaseInputInteractor inputInteractor)
-        {
             inputInteractor.SendHapticImpulse(amp, dur);
-            return;
-        }
 
         Transform t = _activeInteractor != null ? _activeInteractor.transform : null;
-        if (t == null) return;
+        if (t == null)
+        {
+            // Last resort: try both hands to avoid silent failure on fallback runtimes.
+            if (TrySendToNode(XRNode.LeftHand, amp, dur))
+                return;
+            TrySendToNode(XRNode.RightHand, amp, dur);
+            return;
+        }
 
         if (NameLooksLeft(t))
         {
@@ -148,22 +159,37 @@ public class FaderController : MonoBehaviour
         if (NameLooksRight(t))
         {
             TrySendToNode(XRNode.RightHand, amp, dur);
+            return;
         }
+
+        if (TrySendToNode(XRNode.LeftHand, amp, dur))
+            return;
+        TrySendToNode(XRNode.RightHand, amp, dur);
     }
 
     private static bool NameLooksLeft(Transform t)
     {
         if (t == null) return false;
-        if (t.name.Contains("Left Controller")) return true;
-        if (t.parent != null && t.parent.name.Contains("Left Controller")) return true;
+        if (ContainsInHierarchy(t, "Left Controller")) return true;
         return false;
     }
 
     private static bool NameLooksRight(Transform t)
     {
         if (t == null) return false;
-        if (t.name.Contains("Right Controller")) return true;
-        if (t.parent != null && t.parent.name.Contains("Right Controller")) return true;
+        if (ContainsInHierarchy(t, "Right Controller")) return true;
+        return false;
+    }
+
+    private static bool ContainsInHierarchy(Transform t, string token)
+    {
+        Transform current = t;
+        while (current != null)
+        {
+            if (current.name.Contains(token))
+                return true;
+            current = current.parent;
+        }
         return false;
     }
 

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{bb873b13-0129-4341-94cc-42f8e9955fbd}">
 		<property name="assetPath">
-			<value>Big Poppa (2007 Remaster).mp3</value>
+			<value>Songs/Big Poppa (2007 Remaster).mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

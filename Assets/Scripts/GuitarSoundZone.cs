@@ -8,6 +8,7 @@ public class GuitarSoundZone : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private GuitarCapoCrankController capoCrankController;
     [SerializeField] private GuitarAssemblyManager guitarAssemblyManager;
+    [SerializeField] private PrismFacetPuzzleController prismFacetPuzzleController;
 
     [Header("Trigger")]
     [SerializeField] private string handTag = "PlayerHand";
@@ -25,6 +26,9 @@ public class GuitarSoundZone : MonoBehaviour
     {
         var col = GetComponent<Collider>();
         col.isTrigger = true;
+
+        if (prismFacetPuzzleController != null && capoCrankController != null)
+            prismFacetPuzzleController.SetGuitarCapoForSolve(capoCrankController);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,6 +36,9 @@ public class GuitarSoundZone : MonoBehaviour
         if (!other.CompareTag(handTag)) return;
         if (Time.time < _nextAllowedTime) return;
         _nextAllowedTime = Time.time + triggerCooldown;
+
+        if (capoCrankController != null && capoCrankController.IsSolved)
+            return;
 
         bool stringsReady = guitarAssemblyManager != null && guitarAssemblyManager.AreAllStringsPlaced;
         if (!stringsReady)
@@ -52,9 +59,12 @@ public class GuitarSoundZone : MonoBehaviour
                 RuntimeManager.PlayOneShotAttached(evt, gameObject);
         }
 
-        // Déblocage final uniquement si 6 cordes montées ET capot au cran cible.
-        if (capoCrankController != null && capoCrankController.IsOnTargetCrankEvenIfLocked)
-            capoCrankController.TrySolveFromSoundZone();
+        // Nouveau puzzle: l'accord joué fait avancer la facette correspondant au cran capot.
+        if (prismFacetPuzzleController != null)
+        {
+            prismFacetPuzzleController.PlayChordMaterialFlashForCapoIndex(crankIndex);
+            prismFacetPuzzleController.AdvanceFacetFromCapoIndex(crankIndex);
+        }
     }
 }
 

@@ -4,6 +4,9 @@ using FMOD;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class FinalSequenceController : MonoBehaviour
 {
@@ -46,6 +49,9 @@ public class FinalSequenceController : MonoBehaviour
 
     [Header("Exit unlock + final outside sequence")]
     [SerializeField] private Collider exitBlockerAndTriggerCollider;
+    [Tooltip("Grand trigger englobant toute la maison. La sortie est détectée quand la tête du joueur n'est plus dedans.")]
+    [SerializeField] private Collider houseBoundsTriggerCollider;
+    [Tooltip("Legacy/fallback: trigger de sortie local (si houseBoundsTriggerCollider n'est pas assigné).")]
     [SerializeField] private Collider exitTriggerCollider;
     [SerializeField] private Transform playerHead;
     [SerializeField] private Transform playerRigRoot;
@@ -70,6 +76,11 @@ public class FinalSequenceController : MonoBehaviour
     [SerializeField] private EventReference voTherapeuteCestNormalController;
     [SerializeField] private EventReference voTherapeuteQuandPreteSors;
 
+    [Header("Porte sortie (déblocage après dernière voix)")]
+    [Tooltip("Poignées/objets XR de la porte à activer uniquement après la fin de 'QuandPreteSors'.")]
+    [SerializeField] private GameObject[] exitDoorHandlesToEnableAfterFinalVoice;
+    [SerializeField] private bool hideExitHandlesUntilFinalVoice = true;
+
     private bool _started;
     private bool _modulationEnabled;
     private float _stableTimer;
@@ -89,6 +100,9 @@ public class FinalSequenceController : MonoBehaviour
     private bool _wasInsideExitTrigger;
     private bool _outsideSequenceStarted;
     private EventInstance _outsideFinalMusicInstance;
+    private static EventInstance s_outsideFinalMusicInstanceGlobal;
+    private bool _waitingForFinalDialogueEndToUnlockExit;
+    private int _finalDialogueVoicesRemaining;
 
     private void Awake()
     {
@@ -97,10 +111,34 @@ public class FinalSequenceController : MonoBehaviour
             _masterBus.getVolume(out _masterInitialVolume);
 
         CacheObjectBuses();
+        SyncFaderHapticTargetsWithWinCondition();
 
         // Optional convenience: use one same collider for blocking+trigger.
         if (exitTriggerCollider == null && exitBlockerAndTriggerCollider != null)
             exitTriggerCollider = exitBlockerAndTriggerCollider;
+
+        if (hideExitHandlesUntilFinalVoice)
+            SetExitHandlesActive(false);
+    }
+
+    private void OnEnable()
+    {
+        SubtitleManager.OnVoiceEnded += OnSubtitleVoiceEnded;
+    }
+
+    private void OnSubtitleVoiceEnded()
+    {
+        if (!_waitingForFinalDialogueEndToUnlockExit)
+            return;
+        if (_finalDialogueVoicesRemaining <= 0)
+            return;
+
+        _finalDialogueVoicesRemaining--;
+        if (_finalDialogueVoicesRemaining <= 0)
+        {
+            _waitingForFinalDialogueEndToUnlockExit = false;
+            EnableExitAfterFinalVoice();
+        }
     }
 
     private void Update()
@@ -128,13 +166,45 @@ public class FinalSequenceController : MonoBehaviour
             UpdateVisualModulation(Time.deltaTime);
         }
 
-        if (_watchForExitTrigger && !_outsideSequenceStarted && exitTriggerCollider != null && playerHead != null)
+        if (_watchForExitTrigger && !_outsideSequenceStarted && playerHead != null)
         {
-            bool inside = exitTriggerCollider.bounds.Contains(playerHead.position);
-            if (!_wasInsideExitTrigger && inside)
-                StartCoroutine(RunOutsideFinalSequence());
+            var monitored = houseBoundsTriggerCollider != null ? houseBoundsTriggerCollider : exitTriggerCollider;
+            if (monitored == null)
+                return;
+
+            bool inside = monitored.bounds.Contains(playerHead.position);
+            if (houseBoundsTriggerCollider != null)
+            {
+                // Nouveau comportement: on déclenche quand le joueur sort du volume de la maison.
+                if (_wasInsideExitTrigger && !inside)
+                    StartCoroutine(RunOutsideFinalSequence());
+            }
+            else
+            {
+                // Fallback legacy: on déclenche quand il entre dans le trigger de sortie local.
+                if (!_wasInsideExitTrigger && inside)
+                    StartCoroutine(RunOutsideFinalSequence());
+            }
             _wasInsideExitTrigger = inside;
         }
+    }
+
+    private void OnValidate()
+    {
+        SyncFaderHapticTargetsWithWinCondition();
+    }
+
+    private void SyncFaderHapticTargetsWithWinCondition()
+    {
+        SyncSingleFaderHaptics(redFader);
+        SyncSingleFaderHaptics(greenFader);
+        SyncSingleFaderHaptics(blueFader);
+    }
+
+    private static void SyncSingleFaderHaptics(FaderTarget target)
+    {
+        if (target == null || target.fader == null) return;
+        target.fader.ConfigureTargetHaptics(target.targetValue, target.tolerance);
     }
 
     private void CacheObjectBuses()
@@ -280,7 +350,6 @@ public class FinalSequenceController : MonoBehaviour
 
         // 4) Start continuous pan/volume modulation on object buses.
         _modulationEnabled = true;
-        UnlockExitForPlayer();
     }
 
     private IEnumerator PlayDelayedFinalDialogueRoutine()
@@ -289,13 +358,51 @@ public class FinalSequenceController : MonoBehaviour
         if (d > 0f)
             yield return new WaitForSeconds(d);
 
-        if (subtitleManager == null) yield break;
+        if (subtitleManager == null)
+        {
+            EnableExitAfterFinalVoice();
+            yield break;
+        }
+
+        _finalDialogueVoicesRemaining = 0;
         if (!voNayaJeComprendsPas.IsNull)
+        {
             subtitleManager.EnqueueSubtitledLine(voNayaJeComprendsPas);
+            _finalDialogueVoicesRemaining++;
+        }
         if (!voTherapeuteCestNormalController.IsNull)
+        {
             subtitleManager.EnqueueSubtitledLine(voTherapeuteCestNormalController);
+            _finalDialogueVoicesRemaining++;
+        }
         if (!voTherapeuteQuandPreteSors.IsNull)
+        {
             subtitleManager.EnqueueSubtitledLine(voTherapeuteQuandPreteSors);
+            _finalDialogueVoicesRemaining++;
+        }
+
+        if (_finalDialogueVoicesRemaining > 0)
+            _waitingForFinalDialogueEndToUnlockExit = true;
+        else
+            EnableExitAfterFinalVoice();
+    }
+
+    private void EnableExitAfterFinalVoice()
+    {
+        SetExitHandlesActive(true);
+        UnlockExitForPlayer();
+    }
+
+    private void SetExitHandlesActive(bool active)
+    {
+        if (exitDoorHandlesToEnableAfterFinalVoice == null)
+            return;
+        for (int i = 0; i < exitDoorHandlesToEnableAfterFinalVoice.Length; i++)
+        {
+            var go = exitDoorHandlesToEnableAfterFinalVoice[i];
+            if (go != null)
+                go.SetActive(active);
+        }
     }
 
     private void UnlockExitForPlayer()
@@ -304,10 +411,11 @@ public class FinalSequenceController : MonoBehaviour
         if (col != null)
             col.isTrigger = true;
 
-        if (playerHead != null && col != null)
-            _wasInsideExitTrigger = col.bounds.Contains(playerHead.position);
+        var monitored = houseBoundsTriggerCollider != null ? houseBoundsTriggerCollider : exitTriggerCollider;
+        if (playerHead != null && monitored != null)
+            _wasInsideExitTrigger = monitored.bounds.Contains(playerHead.position);
         else
-            _wasInsideExitTrigger = false;
+            _wasInsideExitTrigger = houseBoundsTriggerCollider != null;
 
         _watchForExitTrigger = true;
     }
@@ -327,6 +435,7 @@ public class FinalSequenceController : MonoBehaviour
         _modulationEnabled = true;
 
         DisableLocomotionForOutside();
+        ReleaseHeldGrabObjectsBeforeOutsideTeleport();
         TeleportOutside();
         StartOutsideFinalMusic();
 
@@ -505,19 +614,6 @@ public class FinalSequenceController : MonoBehaviour
     {
         if (er.IsNull) return;
 
-        if (!string.IsNullOrEmpty(er.Path))
-        {
-            try
-            {
-                RuntimeManager.PlayOneShot(er.Path, position);
-                return;
-            }
-            catch
-            {
-                // fallback GUID
-            }
-        }
-
         try
         {
             RuntimeManager.PlayOneShot(er, position);
@@ -533,9 +629,48 @@ public class FinalSequenceController : MonoBehaviour
         if (outsideFinalMusicEvent.IsNull) return;
 
         _outsideFinalMusicInstance = RuntimeManager.CreateInstance(outsideFinalMusicEvent);
+        s_outsideFinalMusicInstanceGlobal = _outsideFinalMusicInstance;
         _outsideFinalMusicInstance.setVolume(0f);
         _outsideFinalMusicInstance.start();
         StartCoroutine(FadeOutsideFinalMusicIn());
+    }
+
+    public static void StopOutsideFinalMusicIfPlaying()
+    {
+        if (!RuntimeManager.IsInitialized)
+            return;
+
+        if (s_outsideFinalMusicInstanceGlobal.isValid())
+        {
+            s_outsideFinalMusicInstanceGlobal.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            s_outsideFinalMusicInstanceGlobal.release();
+            s_outsideFinalMusicInstanceGlobal.clearHandle();
+        }
+    }
+
+    private void ReleaseHeldGrabObjectsBeforeOutsideTeleport()
+    {
+        var grabbables = FindObjectsByType<XRGrabInteractable>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        for (int i = 0; i < grabbables.Length; i++)
+        {
+            var grab = grabbables[i];
+            if (grab == null) continue;
+            var mgr = grab.interactionManager;
+            var selecting = grab.interactorsSelecting;
+            if (mgr == null || selecting == null || selecting.Count == 0)
+                continue;
+
+            var snapshot = new IXRSelectInteractor[selecting.Count];
+            for (int s = 0; s < selecting.Count; s++)
+                snapshot[s] = selecting[s];
+
+            for (int s = snapshot.Length - 1; s >= 0; s--)
+            {
+                var interactor = snapshot[s];
+                if (interactor == null) continue;
+                mgr.SelectExit(interactor, grab);
+            }
+        }
     }
 
     private IEnumerator FadeOutsideFinalMusicIn()
@@ -555,19 +690,24 @@ public class FinalSequenceController : MonoBehaviour
 
     private void OnDisable()
     {
+        SubtitleManager.OnVoiceEnded -= OnSubtitleVoiceEnded;
         _modulationEnabled = false;
 
-        if (_masterBus.isValid())
+        var fmodReady = RuntimeManager.IsInitialized;
+
+        if (fmodReady && _masterBus.isValid())
             _masterBus.setVolume(_masterInitialVolume);
 
-        for (int i = 0; i < _objectBuses.Count; i++)
+        // Ne pas appeler getChannelGroup ici : à l'arrêt du Play / déchargement FMOD, le studio peut être
+        // déjà déchargé (ERR_STUDIO_NOT_LOADED) alors que IsInitialized reste vrai un instant.
+        if (fmodReady)
         {
-            Bus bus = _objectBuses[i];
-            if (!bus.isValid()) continue;
-            bus.setVolume(1f);
-            bus.getChannelGroup(out ChannelGroup group);
-            if (group.hasHandle())
-                group.setPan(0f);
+            for (int i = 0; i < _objectBuses.Count; i++)
+            {
+                Bus bus = _objectBuses[i];
+                if (!bus.isValid()) continue;
+                bus.setVolume(1f);
+            }
         }
 
         if (renderersToModulate != null && _rendererBaseColors != null)
@@ -590,12 +730,14 @@ public class FinalSequenceController : MonoBehaviour
             }
         }
 
-        if (_outsideFinalMusicInstance.isValid())
+        if (fmodReady && _outsideFinalMusicInstance.isValid())
         {
             _outsideFinalMusicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             _outsideFinalMusicInstance.release();
             _outsideFinalMusicInstance.clearHandle();
         }
+        if (s_outsideFinalMusicInstanceGlobal.isValid())
+            s_outsideFinalMusicInstanceGlobal.clearHandle();
     }
 
     private static Color ReadMaterialColor(Material mat)
