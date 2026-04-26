@@ -63,6 +63,8 @@ public class SalonOnboardingController : MonoBehaviour
     [Header("Piano interaction gate")]
     [SerializeField] private PianoKey[] pianoKeys;
     [SerializeField] private bool autoDiscoverScenePianoKeys = true;
+    [Tooltip("Boules de séquence piano : révélées en même temps que l'iPod (EnableIpod). Laisser vide si pas utilisé.")]
+    [SerializeField] private PianoPuzzleManager pianoPuzzleManager;
 
     [Header("Objects to reveal after first piano note")]
     [SerializeField] private GameObject[] objectsToActivateAfterPiano;
@@ -72,6 +74,11 @@ public class SalonOnboardingController : MonoBehaviour
 
     [Header("Exploration narrative (timers indices piano)")]
     [SerializeField] private SalonExplorationNarrative explorationNarrative;
+    
+    [Header("Locomotion lock (intro)")]
+    [Tooltip("Si activé: bloque le déplacement jusqu'à la fin de NayaTuPeuxGarder (au même moment que le reveal lumière).")]
+    [SerializeField] private bool lockPlayerMovementUntilIntroReveal = true;
+    [SerializeField] private LocomotionManager locomotionManager;
 
     private Phase _phase = Phase.IntroFirstLine;
     private int _introLinesRemaining = 1;
@@ -81,6 +88,7 @@ public class SalonOnboardingController : MonoBehaviour
     private PianoKey[] _resolvedPianoKeys;
     private bool _ipodGrabLineQueued;
     private bool _introRevealTriggered;
+    private bool _movementUnlocked;
 
     private void Awake()
     {
@@ -103,6 +111,16 @@ public class SalonOnboardingController : MonoBehaviour
         SetPianoInteractable(false);
         SetObjectsActive(objectsToActivateAfterPiano, false);
         SetBehavioursEnabled(behavioursToDisableUntilPiano, false);
+
+        if (lockPlayerMovementUntilIntroReveal && locomotionManager != null)
+        {
+            locomotionManager.SetForceDisabled(true);
+            _movementUnlocked = false;
+        }
+        else
+        {
+            _movementUnlocked = true;
+        }
     }
 
     private void Start()
@@ -272,12 +290,20 @@ public class SalonOnboardingController : MonoBehaviour
             ipodMusicObject.enabled = true;
         if (ipodGrab != null)
             ipodGrab.enabled = true;
+
+        pianoPuzzleManager?.RevealSequenceIndicators();
     }
 
     private void TriggerIntroRevealAndQueueLaisse()
     {
         if (_introRevealTriggered) return;
         _introRevealTriggered = true;
+
+        if (!_movementUnlocked && locomotionManager != null)
+        {
+            locomotionManager.SetForceDisabled(false);
+            _movementUnlocked = true;
+        }
 
         if (introWindowLightBlocker != null)
             StartCoroutine(MoveBlockerUpThenHide(introWindowLightBlocker, introBlockerTravelUpDistance, introBlockerTravelDuration));

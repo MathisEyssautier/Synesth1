@@ -145,7 +145,7 @@ MonoBehaviour:
     x: -1172
     y: -133
     width: 2540
-    height: 3029
+    height: 3042
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,6 +198,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615047}
   - {fileID: 8926484042661615054}
   - {fileID: 8926484042661615059}
+  - {fileID: 8926484042661615141}
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
@@ -206,22 +207,6 @@ MonoBehaviour:
   m_ParameterInfo:
   - name: LeftWaveform
     path: LeftWaveform
-    tooltip: 
-    space: -1
-    spaceable: 0
-    sheetType: m_NamedObject
-    realType: Texture2D
-    defaultValue:
-      m_Type:
-        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
-    min: -Infinity
-    max: Infinity
-    enumValues: []
-    descendantCount: 0
-  - name: RightWaveform
-    path: RightWaveform
     tooltip: 
     space: -1
     spaceable: 0
@@ -264,6 +249,22 @@ MonoBehaviour:
         m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
       m_SerializableObject: 1024
+    min: -Infinity
+    max: Infinity
+    enumValues: []
+    descendantCount: 0
+  - name: RightWaveform
+    path: RightWaveform
+    tooltip: 
+    space: -1
+    spaceable: 0
+    sheetType: m_NamedObject
+    realType: Texture2D
+    defaultValue:
+      m_Type:
+        m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"276d9e395ae18fe40a9b4988549f2349","type":3}}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -791,17 +792,13 @@ MonoBehaviour:
   m_Tooltip: 
   m_Nodes:
   - m_Id: 0
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614596}
-      inputSlot: {fileID: 0}
+    linkedSlots: []
     position: {x: -740, y: 326}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
   - m_Id: 3
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614596}
-      inputSlot: {fileID: 0}
+    linkedSlots: []
     position: {x: -742, y: 741}
     expandedSlots: []
     expanded: 0
@@ -863,7 +860,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614598}
   m_ExposedName: SampleCount
   m_Exposed: 1
-  m_Order: 2
+  m_Order: 1
   m_Category: 
   m_Min:
     m_Type:
@@ -879,21 +876,13 @@ MonoBehaviour:
   m_Tooltip: 
   m_Nodes:
   - m_Id: 2
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614598}
-      inputSlot: {fileID: 0}
-    - outputSlot: {fileID: 8926484042661614598}
-      inputSlot: {fileID: 0}
+    linkedSlots: []
     position: {x: -781, y: 449}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
   - m_Id: 3
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614598}
-      inputSlot: {fileID: 0}
-    - outputSlot: {fileID: 8926484042661614598}
-      inputSlot: {fileID: 0}
+    linkedSlots: []
     position: {x: -837, y: 864}
     expandedSlots: []
     expanded: 0
@@ -955,7 +944,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614600}
   m_ExposedName: TextureWidth
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 2
   m_Category: 
   m_Min:
     m_Type:
@@ -979,21 +968,13 @@ MonoBehaviour:
     expanded: 0
     supecollapsed: 0
   - m_Id: 1
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614600}
-      inputSlot: {fileID: 0}
-    - outputSlot: {fileID: 8926484042661614600}
-      inputSlot: {fileID: 0}
+    linkedSlots: []
     position: {x: -775, y: 410}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
   - m_Id: 8
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614600}
-      inputSlot: {fileID: 0}
-    - outputSlot: {fileID: 8926484042661614600}
-      inputSlot: {fileID: 0}
+    linkedSlots: []
     position: {x: -831, y: 825}
     expandedSlots: []
     expanded: 0
@@ -1254,7 +1235,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614685}
   m_ExposedName: RightWaveform
   m_Exposed: 1
-  m_Order: 1
+  m_Order: 3
   m_Category: 
   m_Min:
     m_Type:
@@ -1270,17 +1251,13 @@ MonoBehaviour:
   m_Tooltip: 
   m_Nodes:
   - m_Id: 2
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614685}
-      inputSlot: {fileID: 0}
+    linkedSlots: []
     position: {x: -769, y: 551}
     expandedSlots: []
     expanded: 0
     supecollapsed: 0
   - m_Id: 4
-    linkedSlots:
-    - outputSlot: {fileID: 8926484042661614685}
-      inputSlot: {fileID: 0}
+    linkedSlots: []
     position: {x: -744, y: 974}
     expandedSlots: []
     expanded: 0
@@ -9574,6 +9551,102 @@ MonoBehaviour:
     m_Space: -1
   m_Property:
     name: Level
+    m_serializedType:
+      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+  m_Direction: 1
+  m_LinkedSlots: []
+--- !u!114 &8926484042661615141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dce580c03fa4404bb6d87662050fbf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VisualEffectGraph.Editor::UnityEditor.VFX.Operator.CustomHLSL
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 114350483966674976}
+  m_Children: []
+  m_UIPosition: {x: 875.34265, y: 1390.25}
+  m_UICollapsed: 0
+  m_UISuperCollapsed: 0
+  m_InputSlots:
+  - {fileID: 8926484042661615142}
+  m_OutputSlots:
+  - {fileID: 8926484042661615143}
+  m_OperatorName: Custom HLSL
+  m_HLSLCode: "float FloatFunction(in float value)\n{\n  return value;\n}"
+  m_ShaderFile: {fileID: 0}
+  m_AvailableFunctions:
+    selection: FloatFunction
+    selectedIndex: 0
+--- !u!114 &8926484042661615142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VisualEffectGraph.Editor::UnityEditor.VFX.VFXSlotFloat
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661615142}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615141}
+    m_Value:
+      m_Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 
+    m_Space: -1
+  m_Property:
+    name: value
+    m_serializedType:
+      m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+  m_Direction: 0
+  m_LinkedSlots: []
+--- !u!114 &8926484042661615143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f780aa281814f9842a7c076d436932e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.VisualEffectGraph.Editor::UnityEditor.VFX.VFXSlotFloat
+  m_UIIgnoredErrors: []
+  m_Parent: {fileID: 0}
+  m_Children: []
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
+  m_MasterSlot: {fileID: 8926484042661615143}
+  m_MasterData:
+    m_Owner: {fileID: 8926484042661615141}
+    m_Value:
+      m_Type:
+        m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 
+    m_Space: -1
+  m_Property:
+    name: out
     m_serializedType:
       m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089

@@ -166,7 +166,7 @@
 			<value>3</value>
 		</property>
 		<property name="name">
-			<value>end_sub</value>
+			<value>sub_end</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{f8a71596-7e82-4f4b-ae21-96b6fcb7898d}</destination>
