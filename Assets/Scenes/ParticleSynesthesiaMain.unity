@@ -1048,6 +1048,14 @@ MonoBehaviour:
     Path: event:/PianoCompletion
   pianoSuccessSoundOrigin: {fileID: 1004123190}
   radioManager: {fileID: 313657686}
+  sequenceIndicators: []
+  sequenceStepColors:
+  - {r: 1, g: 0.92, b: 0.2, a: 1}
+  - {r: 0.25, g: 0.55, b: 1, a: 1}
+  - {r: 1, g: 0.35, b: 0.8, a: 1}
+  - {r: 1, g: 0.25, b: 0.25, a: 1}
+  sequenceOffColor: {r: 1, g: 1, b: 1, a: 1}
+  hideSequenceIndicatorsUntilIpodReveal: 1
   resetOnMistake: 1
   onPuzzleSolved:
     m_PersistentCalls:
@@ -1413,6 +1421,7 @@ MonoBehaviour:
   lightIntensityRange: {x: 0.1, y: 2.2}
   targetRefreshThreshold: 0.02
   exitBlockerAndTriggerCollider: {fileID: 257021013}
+  houseBoundsTriggerCollider: {fileID: 0}
   exitTriggerCollider: {fileID: 0}
   playerHead: {fileID: 441087513}
   playerRigRoot: {fileID: 441087510}
@@ -1461,6 +1470,8 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  exitDoorHandlesToEnableAfterFinalVoice: []
+  hideExitHandlesUntilFinalVoice: 1
 --- !u!1 &103552180
 GameObject:
   m_ObjectHideFlags: 0
@@ -6673,6 +6684,26 @@ MonoBehaviour:
   xrCamera: {fileID: 441087513}
   fadeCanvasGroup: {fileID: 1338495529}
   blinkDuration: 0.15
+  enableLegacyXrFallback: 1
+  preferNativeControllerTracking: 0
+  fallbackMoveSpeed: 2.5
+  fallbackMoveDeadzone: 0.15
+  fallbackSnapThreshold: 0.7
+  fallbackSnapCooldown: 0.22
+  fallbackSelectPressThreshold: 0.55
+  fallbackSelectReleaseThreshold: 0.35
+  fallbackLeftRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackRightRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackHoverHapticsAmplitude: 0.15
+  fallbackHoverHapticsDuration: 0.025
+  fallbackRightControllerRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackTeleportInteractorRotationOffsetEuler: {x: 45, y: 0, z: 0}
+  fallbackControllerModelChildName: UniversalController
+  fallbackLeftModelRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackRightModelRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackTeleportRayAngleTargetOverride: {fileID: 0}
+  fallbackTeleportCommitThreshold: 0.7
+  fallbackTeleportReleaseThreshold: 0.25
 --- !u!1 &402279470
 GameObject:
   m_ObjectHideFlags: 0
@@ -10407,6 +10438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GuitarSoundZone
   capoCrankController: {fileID: 1010465077}
   guitarAssemblyManager: {fileID: 0}
+  prismFacetPuzzleController: {fileID: 0}
   handTag: PlayerHand
   triggerCooldown: 0.5
   wrongEvent:
@@ -11621,6 +11653,7 @@ MonoBehaviour:
   playerHeightStep: 0.03
   minPlayerHeightOffset: -0.35
   maxPlayerHeightOffset: 0.35
+  restartConfirmWindowSeconds: 1.2
 --- !u!1 &787091879
 GameObject:
   m_ObjectHideFlags: 0
@@ -14738,7 +14771,6 @@ MonoBehaviour:
   - {fileID: 346570162}
   - {fileID: 2082523678}
   - {fileID: 1018147081}
-  targetCrankIndex: 3
   startCrankIndex: 0
   capoRenderer: {fileID: 1010465072}
   emissionIntensity: 5
@@ -25989,6 +26021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GuitarSoundZone
   capoCrankController: {fileID: 5605554354709227366}
   guitarAssemblyManager: {fileID: 1041920800}
+  prismFacetPuzzleController: {fileID: 0}
   handTag: PlayerHand
   triggerCooldown: 0.5
   wrongEvent:
@@ -28844,55 +28877,55 @@ MonoBehaviour:
   delayBeforeFirstIntroLineSeconds: 5
   voNayaTuPeuxGarder:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1641737819
+      Data2: 1084357459
+      Data3: -77032560
+      Data4: 1426636831
+    Path: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
   voTherapeuteLaisseToiGuiderPar:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1521320842
+      Data2: 1273675021
+      Data3: 464167833
+      Data4: -15982010
+    Path: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
   ipodMusicObject: {fileID: 7006277426748370361}
   ipodGrab: {fileID: 7006277426748370358}
   voTherapeuteTuEsDansTonMonde:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -217621700
+      Data2: 1074009549
+      Data3: -1903509093
+      Data4: -777003331
+    Path: event:/VoixOffs/Therapiste/TuEsDansTonMonde
   voTherapeuteSuperNaya:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 593878738
+      Data2: 1265536016
+      Data3: -1496029043
+      Data4: -1645498975
+    Path: event:/VoixOffs/Therapiste/SuperNaya
   voNayaAhCestLePiano:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1617585852
+      Data2: 1246317502
+      Data3: 1772712106
+      Data4: -404521762
+    Path: event:/VoixOffs/Naya/AhCestLePiano
   voNayaWowLesSensations:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1001866083
+      Data2: 1220510640
+      Data3: -884923982
+      Data4: -1113883607
+    Path: event:/VoixOffs/Naya/WowLesSensations
   voTherapeuteExploreEtTuAuras:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1261732101
+      Data2: 1291221039
+      Data3: -114466389
+      Data4: 196489357
+    Path: event:/VoixOffs/Therapiste/ExploreEtTuAuras
   pianoDirectionalLight: {fileID: 299639868}
   pianoDirectionalTargetIntensity: 10
   introWindowLightBlocker: {fileID: 0}
@@ -28913,12 +28946,15 @@ MonoBehaviour:
   - {fileID: 1752235525}
   - {fileID: 1427787566}
   autoDiscoverScenePianoKeys: 1
+  pianoPuzzleManager: {fileID: 37110170}
   objectsToActivateAfterPiano:
   - {fileID: 4230198831188735823}
   - {fileID: 1605989411}
   behavioursToDisableUntilPiano:
   - {fileID: 2139057726}
   explorationNarrative: {fileID: 0}
+  lockPlayerMovementUntilIntroReveal: 1
+  locomotionManager: {fileID: 400608675}
 --- !u!1 &1825056083
 GameObject:
   m_ObjectHideFlags: 0
@@ -50172,7 +50208,6 @@ MonoBehaviour:
   - {fileID: 834799315}
   - {fileID: 288616932}
   - {fileID: 1481872196}
-  targetCrankIndex: 3
   startCrankIndex: 0
   capoRenderer: {fileID: 8448778280721077824}
   emissionIntensity: 5

@@ -1,7 +1,8 @@
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
-using System.Collections;
+using System;
+using System.Reflection;
 
 public class FMODMeteringSource : MonoBehaviour
 {
@@ -10,86 +11,130 @@ public class FMODMeteringSource : MonoBehaviour
     [SerializeField] private MonoBehaviour eventProvider;
 
     private EventInstance _eventInstance;
+    private bool _meterReady;
+    private bool _missingProviderLogged;
+    private bool _missingEventInstanceLogged;
 
     private FMOD.DSP _dsp;
     private FMOD.DSP_METERING_INFO _inputInfo;
     private FMOD.DSP_METERING_INFO _outputInfo;
     private FMOD.Studio.PLAYBACK_STATE _playbackState;
 
-    private Coroutine _meterCoroutine;
-
     public float MeterLeft  { get; private set; }
     public float MeterRight { get; private set; }
 
-    void OnEnable()
+    private void OnEnable()
     {
-        _meterCoroutine = StartCoroutine(WaitForInstanceThenSetup());
+        _eventInstance.clearHandle();
+        _meterReady = false;
+        _missingProviderLogged = false;
+        _missingEventInstanceLogged = false;
+        MeterLeft = 0f;
+        MeterRight = 0f;
     }
 
-    IEnumerator WaitForInstanceThenSetup()
+    private void OnDisable()
     {
-        // Attendre que le provider soit assigné et l'instance valide
-        while (!_eventInstance.isValid())
+        if (_dsp.hasHandle())
         {
-            TryGetEventInstance();
-            yield return null;
+            _dsp.clearHandle();
         }
-
-        yield return SetupMetering();
-    }
-    void OnDisable()
-    {
-        if (_meterCoroutine != null)
-        {
-            StopCoroutine(_meterCoroutine);
-            _meterCoroutine = null;
-        }
+        _meterReady = false;
+        MeterLeft = 0f;
+        MeterRight = 0f;
     }
 
-    void TryGetEventInstance()
+    private bool TryResolveEventInstance(out EventInstance resolved)
     {
+        resolved = default;
+
         if (eventProvider == null)
         {
-            Debug.LogWarning("[FMODMeteringSource] Aucun provider assigné.");
-            return;
+            if (!_missingProviderLogged)
+            {
+                Debug.LogWarning("[FMODMeteringSource] Aucun provider assigné.");
+                _missingProviderLogged = true;
+            }
+            return false;
         }
 
-        // 🔥 Ici on récupère dynamiquement la propriété EventInstance
-        var prop = eventProvider.GetType().GetProperty("EventInstance");
+        _missingProviderLogged = false;
+        Type type = eventProvider.GetType();
+        const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
-        if (prop != null)
+        var prop = type.GetProperty("EventInstance", flags);
+        if (prop != null && prop.PropertyType == typeof(EventInstance))
         {
-            _eventInstance = (EventInstance)prop.GetValue(eventProvider);
-
+            resolved = (EventInstance)prop.GetValue(eventProvider);
+            _missingEventInstanceLogged = false;
+            return true;
         }
-        else
+
+        var field = type.GetField("EventInstance", flags);
+        if (field != null && field.FieldType == typeof(EventInstance))
+        {
+            resolved = (EventInstance)field.GetValue(eventProvider);
+            _missingEventInstanceLogged = false;
+            return true;
+        }
+
+        var method = type.GetMethod("GetEventInstance", flags, null, System.Type.EmptyTypes, null);
+        if (method != null && method.ReturnType == typeof(EventInstance))
+        {
+            resolved = (EventInstance)method.Invoke(eventProvider, null);
+            _missingEventInstanceLogged = false;
+            return true;
+        }
+
+        if (!_missingEventInstanceLogged)
         {
             Debug.LogError("[FMODMeteringSource] Le provider n'expose pas EventInstance.");
+            _missingEventInstanceLogged = true;
         }
+        return false;
     }
 
-    IEnumerator SetupMetering()
+    private void EnsureMeterSetupIfNeeded()
     {
-        do
-        {
-            _eventInstance.getPlaybackState(out _playbackState);
-            yield return null;
-        }
-        while (_playbackState != PLAYBACK_STATE.PLAYING);
+        if (_meterReady || !_eventInstance.isValid())
+            return;
 
-        _eventInstance.getChannelGroup(out FMOD.ChannelGroup channelGroup);
+        if (_eventInstance.getPlaybackState(out _playbackState) != FMOD.RESULT.OK)
+            return;
+        if (_playbackState != PLAYBACK_STATE.PLAYING)
+            return;
 
-        channelGroup.getDSP(
-            FMOD.CHANNELCONTROL_DSP_INDEX.FADER,
-            out _dsp
-        );
+        if (_eventInstance.getChannelGroup(out FMOD.ChannelGroup channelGroup) != FMOD.RESULT.OK)
+            return;
+        if (channelGroup.getDSP(FMOD.CHANNELCONTROL_DSP_INDEX.FADER, out _dsp) != FMOD.RESULT.OK)
+            return;
 
         _dsp.setMeteringEnabled(true, true);
+        _meterReady = _dsp.hasHandle();
     }
 
     private void Update()
     {
-        if (!_eventInstance.isValid()) return;
+        if (!TryResolveEventInstance(out EventInstance resolved) || !resolved.isValid())
+        {
+            _meterReady = false;
+            _eventInstance.clearHandle();
+            MeterLeft = 0f;
+            MeterRight = 0f;
+            return;
+        }
+
+        if (!_eventInstance.isValid() || !_eventInstance.Equals(resolved))
+        {
+            _eventInstance = resolved;
+            _meterReady = false;
+            if (_dsp.hasHandle())
+                _dsp.clearHandle();
+        }
+
+        EnsureMeterSetupIfNeeded();
+        if (!_meterReady || !_eventInstance.isValid())
+            return;
 
         _eventInstance.getPlaybackState(out _playbackState);
 
@@ -99,8 +144,11 @@ public class FMODMeteringSource : MonoBehaviour
 
             MeterLeft  = _outputInfo.rmslevel[0];
             MeterRight = _outputInfo.rmslevel[1];
-            Debug.Log($"FMOD L: {MeterLeft:F4} | R: {MeterRight:F4}");
-
+        }
+        else
+        {
+            MeterLeft = 0f;
+            MeterRight = 0f;
         }
     }
 }

@@ -27,17 +27,38 @@ public class FaderController : MonoBehaviour
     [Range(0f, 1f)] [SerializeField] private float hapticAmplitude = 0.75f;
     [SerializeField] private float hapticDuration = 0.06f;
 
+    [Header("Feedback visuel cible")]
+    [SerializeField] private bool enableTargetVisualFeedback = true;
+    [Tooltip("Renderer à teinter (si vide, premier Renderer trouvé sous ce fader).")]
+    [SerializeField] private Renderer targetFeedbackRenderer;
+    [Tooltip("Base de teinte quand on est loin de la cible.")]
+    [SerializeField] private Color feedbackBaseColor = Color.white;
+    [Tooltip("Couleur dédiée à ce fader uniquement (ex: vert pour le fader vert).")]
+    [SerializeField] private Color targetFeedbackColor = Color.green;
+    [Tooltip("Distance (en valeur de fader 0..1) à partir de laquelle le feedback commence à devenir visible.")]
+    [Range(0.01f, 1f)] [SerializeField] private float visualFeedbackRange = 0.25f;
+    [Range(0f, 5f)] [SerializeField] private float visualEmissionIntensity = 1.2f;
+
     private XRGrabInteractable _grab;
     private bool _isGrabbed = false;
     private float _lockedLocalY;
     private IXRSelectInteractor _activeInteractor;
     private bool _wasInsideTarget;
+    private Material _feedbackMaterial;
+    private Color _feedbackBaseCapturedColor = Color.white;
+    private bool _isBroken;
+
+    public void SetBrokenState(bool broken)
+    {
+        _isBroken = broken;
+    }
 
     public void ConfigureTargetHaptics(float desiredTargetValue, float desiredTolerance)
     {
         targetValue = Mathf.Clamp01(desiredTargetValue);
         targetTolerance = Mathf.Clamp(desiredTolerance, 0.001f, 0.2f);
         _wasInsideTarget = Mathf.Abs(value - targetValue) <= targetTolerance;
+        UpdateTargetVisualFeedback();
     }
 
     void Awake()
@@ -49,6 +70,8 @@ public class FaderController : MonoBehaviour
         _grab.selectExited.AddListener(OnReleased);
 
         _lockedLocalY = faderBase.InverseTransformPoint(transform.position).y;
+
+        ResolveFeedbackRendererAndMaterial();
     }
 
     private void OnEnable()
@@ -57,6 +80,7 @@ public class FaderController : MonoBehaviour
         // pour éviter d'avoir une piste muette tant qu'on ne l'a pas grab.
         ConstrainToRail();
         ApplyValueToMusic();
+        UpdateTargetVisualFeedback();
     }
 
     void Update()
@@ -74,6 +98,7 @@ public class FaderController : MonoBehaviour
         value = Mathf.InverseLerp(-railHalfLength, railHalfLength, localPos.x);
 
         UpdateTargetHaptics();
+        UpdateTargetVisualFeedback();
         ApplyValueToMusic();
     }
 
@@ -85,10 +110,12 @@ public class FaderController : MonoBehaviour
         localPos.x = Mathf.Clamp(localPos.x, -railHalfLength, railHalfLength);
         transform.position = faderBase.TransformPoint(localPos);
         value = Mathf.InverseLerp(-railHalfLength, railHalfLength, localPos.x);
+        UpdateTargetVisualFeedback();
     }
 
     private void ApplyValueToMusic()
     {
+        if (_isBroken) return;
         if (musicManager == null) return;
 
         switch (faderType)
@@ -119,10 +146,12 @@ public class FaderController : MonoBehaviour
         _wasInsideTarget = false;
         ConstrainToRail();
         ApplyValueToMusic();
+        UpdateTargetVisualFeedback();
     }
 
     private void UpdateTargetHaptics()
     {
+        if (_isBroken) return;
         if (!enableTargetHaptics || !_isGrabbed) return;
 
         bool inside = Mathf.Abs(value - targetValue) <= targetTolerance;
@@ -201,4 +230,55 @@ public class FaderController : MonoBehaviour
         if (!caps.supportsImpulse || caps.numChannels <= 0) return false;
         return device.SendHapticImpulse(0u, amp, dur);
     }
+
+    private void ResolveFeedbackRendererAndMaterial()
+    {
+        if (targetFeedbackRenderer == null)
+            targetFeedbackRenderer = GetComponentInChildren<Renderer>(true);
+        if (targetFeedbackRenderer == null)
+            return;
+
+        _feedbackMaterial = targetFeedbackRenderer.material;
+        if (_feedbackMaterial == null)
+            return;
+
+        if (_feedbackMaterial.HasProperty("_BaseColor"))
+            _feedbackBaseCapturedColor = _feedbackMaterial.GetColor("_BaseColor");
+        else
+            _feedbackBaseCapturedColor = _feedbackMaterial.color;
+    }
+
+    private void UpdateTargetVisualFeedback()
+    {
+        if (_isBroken)
+            return;
+        if (!enableTargetVisualFeedback)
+            return;
+        if (_feedbackMaterial == null)
+            ResolveFeedbackRendererAndMaterial();
+        if (_feedbackMaterial == null)
+            return;
+
+        float distance = Mathf.Abs(value - targetValue);
+        float range = Mathf.Max(targetTolerance, visualFeedbackRange);
+        float t = 1f - Mathf.Clamp01(distance / range);
+        Color targetColor = targetFeedbackColor;
+        Color baseColor = feedbackBaseColor;
+
+        if (baseColor == default)
+            baseColor = _feedbackBaseCapturedColor;
+
+        Color c = Color.Lerp(baseColor, targetColor, t);
+        if (_feedbackMaterial.HasProperty("_BaseColor"))
+            _feedbackMaterial.SetColor("_BaseColor", c);
+        else
+            _feedbackMaterial.color = c;
+
+        if (_feedbackMaterial.HasProperty("_EmissionColor"))
+        {
+            _feedbackMaterial.EnableKeyword("_EMISSION");
+            _feedbackMaterial.SetColor("_EmissionColor", c * (t * visualEmissionIntensity));
+        }
+    }
+
 }

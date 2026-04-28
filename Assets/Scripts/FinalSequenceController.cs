@@ -151,6 +151,7 @@ public class FinalSequenceController : MonoBehaviour
                 if (_stableTimer >= requiredStableTime)
                 {
                     _started = true;
+                    SetFadersBrokenState(true);
                     StartCoroutine(RunFinalAudioSequence());
                 }
             }
@@ -199,6 +200,19 @@ public class FinalSequenceController : MonoBehaviour
         SyncSingleFaderHaptics(redFader);
         SyncSingleFaderHaptics(greenFader);
         SyncSingleFaderHaptics(blueFader);
+    }
+
+    private void SetFadersBrokenState(bool broken)
+    {
+        SetSingleFaderBrokenState(redFader, broken);
+        SetSingleFaderBrokenState(greenFader, broken);
+        SetSingleFaderBrokenState(blueFader, broken);
+    }
+
+    private static void SetSingleFaderBrokenState(FaderTarget target, bool broken)
+    {
+        if (target == null || target.fader == null) return;
+        target.fader.SetBrokenState(broken);
     }
 
     private static void SyncSingleFaderHaptics(FaderTarget target)

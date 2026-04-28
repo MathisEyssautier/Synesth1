@@ -127,7 +127,7 @@
 			<value>0</value>
 		</property>
 		<property name="name">
-			<value>C'est normal Naya,</value>
+			<value>C'est normal Naïa,</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{bccc5243-4ebd-43a3-93e8-6152f9f3d132}</destination>

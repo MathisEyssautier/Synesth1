@@ -15,6 +15,8 @@ public class UnlockPlacementSocket : MonoBehaviour
     [Header("Unlock requirement (optional)")]
     [SerializeField] private ShellPuzzleManager requiredShellPuzzle;
     [SerializeField] private GuitarCapoCrankController requiredGuitarPuzzle;
+    [Tooltip("VFX à activer quand la socket est débloquée, puis à couper quand l'objet est posé (ex: Visual Effect K7 / Visual Effect Guitar).")]
+    [SerializeField] private GameObject unlockReadyVisualEffect;
 
     [Header("On placed")]
     [Tooltip("Fader/objet à activer quand le bon objet est déposé.")]
@@ -44,12 +46,26 @@ public class UnlockPlacementSocket : MonoBehaviour
     [SerializeField] private UnityEvent onObjectPlaced;
 
     private bool _filled;
+    private bool _unlockReadyVisualWasActive;
 
     private void Awake()
     {
         var col = GetComponent<Collider>();
         col.isTrigger = true;
         if (snapPoint == null) snapPoint = transform;
+
+        UpdateUnlockReadyVisual(force: true);
+    }
+
+    private void Update()
+    {
+        if (_filled)
+        {
+            UpdateUnlockReadyVisual(force: false);
+            return;
+        }
+
+        UpdateUnlockReadyVisual(force: false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -92,6 +108,7 @@ public class UnlockPlacementSocket : MonoBehaviour
     private void PlaceExpectedObject()
     {
         _filled = true;
+        UpdateUnlockReadyVisual(force: true);
 
         if (expectedObjectRoot != null && snapPoint != null)
         {
@@ -221,6 +238,19 @@ public class UnlockPlacementSocket : MonoBehaviour
         }
 
         onObjectPlaced?.Invoke();
+    }
+
+    private void UpdateUnlockReadyVisual(bool force)
+    {
+        if (unlockReadyVisualEffect == null)
+            return;
+
+        bool shouldBeActive = !_filled && IsRequirementMet();
+        if (!force && shouldBeActive == _unlockReadyVisualWasActive)
+            return;
+
+        unlockReadyVisualEffect.SetActive(shouldBeActive);
+        _unlockReadyVisualWasActive = shouldBeActive;
     }
 
     private bool IsExpectedObjectHeld()
