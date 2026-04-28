@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 7416536dbe0334cfd888dd1beb75a9fb, type: 2}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -807,7 +807,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &34116326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1048,6 +1048,14 @@ MonoBehaviour:
     Path: event:/PianoCompletion
   pianoSuccessSoundOrigin: {fileID: 1004123190}
   radioManager: {fileID: 313657686}
+  sequenceIndicators: []
+  sequenceStepColors:
+  - {r: 1, g: 0.92, b: 0.2, a: 1}
+  - {r: 0.25, g: 0.55, b: 1, a: 1}
+  - {r: 1, g: 0.35, b: 0.8, a: 1}
+  - {r: 1, g: 0.25, b: 0.25, a: 1}
+  sequenceOffColor: {r: 1, g: 1, b: 1, a: 1}
+  hideSequenceIndicatorsUntilIpodReveal: 1
   resetOnMistake: 1
   onPuzzleSolved:
     m_PersistentCalls:
@@ -1413,6 +1421,7 @@ MonoBehaviour:
   lightIntensityRange: {x: 0.1, y: 2.2}
   targetRefreshThreshold: 0.02
   exitBlockerAndTriggerCollider: {fileID: 257021013}
+  houseBoundsTriggerCollider: {fileID: 0}
   exitTriggerCollider: {fileID: 0}
   playerHead: {fileID: 441087513}
   playerRigRoot: {fileID: 441087510}
@@ -1461,6 +1470,8 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  exitDoorHandlesToEnableAfterFinalVoice: []
+  hideExitHandlesUntilFinalVoice: 1
 --- !u!1 &103552180
 GameObject:
   m_ObjectHideFlags: 0
@@ -6374,6 +6385,99 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392810395}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &394755232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 394755235}
+  - component: {fileID: 394755234}
+  - component: {fileID: 394755233}
+  m_Layer: 0
+  m_Name: DEMO_Terrain_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!154 &394755233
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394755232}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_TerrainData: {fileID: 15600000, guid: 79ec0914eade9954aabdc4401978e424, type: 2}
+  m_EnableTreeColliders: 1
+--- !u!218 &394755234
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394755232}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: 79ec0914eade9954aabdc4401978e424, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 22
+  m_DetailObjectDensity: 0.79
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMinimumLODSimplification: 0
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_StaticShadowCaster: 0
+  m_IgnoreQualitySettings: 0
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ReceiveGI: 1
+  m_ScaleInLightmap: 0.0256
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
+  m_EnableHeightmapRayTracing: 1
+  m_EnableTreesAndDetailsRayTracing: 0
+  m_TreeMotionVectorModeOverride: 3
+--- !u!4 &394755235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394755232}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -55, y: -280.01, z: -52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &399085614
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6597,6 +6701,26 @@ MonoBehaviour:
   xrCamera: {fileID: 441087513}
   fadeCanvasGroup: {fileID: 1338495529}
   blinkDuration: 0.15
+  enableLegacyXrFallback: 1
+  preferNativeControllerTracking: 0
+  fallbackMoveSpeed: 2.5
+  fallbackMoveDeadzone: 0.15
+  fallbackSnapThreshold: 0.7
+  fallbackSnapCooldown: 0.22
+  fallbackSelectPressThreshold: 0.55
+  fallbackSelectReleaseThreshold: 0.35
+  fallbackLeftRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackRightRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackHoverHapticsAmplitude: 0.15
+  fallbackHoverHapticsDuration: 0.025
+  fallbackRightControllerRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackTeleportInteractorRotationOffsetEuler: {x: 45, y: 0, z: 0}
+  fallbackControllerModelChildName: UniversalController
+  fallbackLeftModelRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackRightModelRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackTeleportRayAngleTargetOverride: {fileID: 0}
+  fallbackTeleportCommitThreshold: 0.7
+  fallbackTeleportReleaseThreshold: 0.25
 --- !u!1 &402279470
 GameObject:
   m_ObjectHideFlags: 0
@@ -10409,6 +10533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GuitarSoundZone
   capoCrankController: {fileID: 1010465077}
   guitarAssemblyManager: {fileID: 0}
+  prismFacetPuzzleController: {fileID: 0}
   handTag: PlayerHand
   triggerCooldown: 0.5
   wrongEvent:
@@ -11735,6 +11860,7 @@ MonoBehaviour:
   playerHeightStep: 0.03
   minPlayerHeightOffset: -0.35
   maxPlayerHeightOffset: 0.35
+  restartConfirmWindowSeconds: 1.2
 --- !u!1 &787091879
 GameObject:
   m_ObjectHideFlags: 0
@@ -14851,7 +14977,6 @@ MonoBehaviour:
   - {fileID: 346570162}
   - {fileID: 2082523678}
   - {fileID: 1018147081}
-  targetCrankIndex: 3
   startCrankIndex: 0
   capoRenderer: {fileID: 1010465072}
   emissionIntensity: 5
@@ -19046,7 +19171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1249617918
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24088,7 +24213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 14.83, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5999756, y: -170.92508}
+  m_AnchoredPosition: {x: 0.5999756, y: -170.92511}
   m_SizeDelta: {x: -499.99994, y: -544.44995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514419964
@@ -24171,6 +24296,54 @@ Transform:
   - {fileID: 37110169}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1537796871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1537796872}
+  - component: {fileID: 1537796873}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1537796872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537796871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5818087039869276102}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1537796873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537796871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8703c0dae0a2c4ea44a87852eed458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleVFXAmplitude
+  musicSource: {fileID: 0}
+  vfxPropertyName: Amplitude
+  smoothing: 0.1
+  amplitudeScale: 1
 --- !u!1 &1543562161
 GameObject:
   m_ObjectHideFlags: 0
@@ -26175,6 +26348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GuitarSoundZone
   capoCrankController: {fileID: 5605554354709227366}
   guitarAssemblyManager: {fileID: 1041920800}
+  prismFacetPuzzleController: {fileID: 0}
   handTag: PlayerHand
   triggerCooldown: 0.5
   wrongEvent:
@@ -28963,11 +29137,14 @@ MonoBehaviour:
   - {fileID: 1752235525}
   - {fileID: 1427787566}
   autoDiscoverScenePianoKeys: 1
+  pianoPuzzleManager: {fileID: 0}
   objectsToActivateAfterPiano:
   - {fileID: 4230198831188735823}
   behavioursToDisableUntilPiano:
   - {fileID: 2139057726}
   explorationNarrative: {fileID: 1819657607}
+  lockPlayerMovementUntilIntroReveal: 1
+  locomotionManager: {fileID: 0}
 --- !u!114 &1819657607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50043,7 +50220,6 @@ MonoBehaviour:
   - {fileID: 834799315}
   - {fileID: 288616932}
   - {fileID: 1481872196}
-  targetCrankIndex: 3
   startCrankIndex: 0
   capoRenderer: {fileID: 8448778280721077824}
   emissionIntensity: 5
@@ -50347,6 +50523,7 @@ Transform:
   m_Children:
   - {fileID: 3582428661899242185}
   - {fileID: 4430827925263758750}
+  - {fileID: 1537796872}
   m_Father: {fileID: 813840218}
   m_LocalEulerAnglesHint: {x: 0, y: -26.866, z: 0}
 --- !u!4 &5849968126100500225
@@ -52176,6 +52353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5818087039869276102}
   - component: {fileID: 6626536655883212157}
+  - component: {fileID: 6626536655883212158}
   m_Layer: 0
   m_Name: Speaker
   m_TagString: Untagged
@@ -52202,6 +52380,19 @@ MonoBehaviour:
       Data3: 1560406438
       Data4: 733602536
     Path: event:/MusicMix
+--- !u!114 &6626536655883212158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626536655883212156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdceaf04c5ed4d4aa4b56fc7157dda1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FMODMeteringSource
+  eventProvider: {fileID: 6626536655883212157}
 --- !u!33 &6650928093623041679
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -53188,6 +53379,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5259086429456820325}
   m_Mesh: {fileID: -973569249364512678, guid: 7ef7d76c079646b46884036f422468e4, type: 3}
+--- !u!1001 &7106867072773914832
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2229639027299403267, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: musicSource
+      value: 
+      objectReference: {fileID: 6626536655883212158}
+    - target: {fileID: 5408792548464213025, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408792548464213025, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
+      value: 
+      objectReference: {fileID: 4300002, guid: abc00000000009837664281818310354, type: 3}
+    - target: {fileID: 6000886251158732408, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.556
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000886251158732408, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.567
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000886251158732408, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000886251158732408, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000886251158732408, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000886251158732408, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000886251158732408, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000886251158732408, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000886251158732408, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000886251158732408, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170574099095469586, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
+      propertyPath: m_Name
+      value: CinematiqueObject
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dfe0184631065514ea3ab785d6d86fe0, type: 3}
 --- !u!23 &7107899873426052570
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -60589,3 +60849,5 @@ SceneRoots:
   - {fileID: 698583255}
   - {fileID: 689093910}
   - {fileID: 705703045}
+  - {fileID: 394755235}
+  - {fileID: 7106867072773914832}
