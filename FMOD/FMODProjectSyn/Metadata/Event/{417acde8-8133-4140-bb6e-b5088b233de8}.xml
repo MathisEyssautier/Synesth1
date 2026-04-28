@@ -169,7 +169,7 @@
 			<value>0.97126847290640395</value>
 		</property>
 		<property name="name">
-			<value>de souffler Naya,</value>
+			<value>de souffler Naïa,</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{cb51ec75-3a26-4dff-b783-952bd22d18ea}</destination>

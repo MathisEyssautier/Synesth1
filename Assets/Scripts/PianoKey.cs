@@ -46,8 +46,10 @@ public class PianoKey : MonoBehaviour
     private Collider _keyCollider;
     private readonly Collider[] _overlapResults = new Collider[16];
     private const float MinPressCooldown = 1f;
+    private EventInstance _lastEventInstance;
 
     public int KeyId => keyId;
+    public EventInstance EventInstance => _lastEventInstance;
 
     private void Awake()
     {
@@ -166,6 +168,7 @@ public class PianoKey : MonoBehaviour
         if (!noteEvent.IsNull)
         {
             var inst = RuntimeManager.CreateInstance(noteEvent);
+            _lastEventInstance = inst;
             inst.setVolume(volume);
             // Évite le warning FMOD "set3DAttributes" : on attache l'instance au GameObject.
             RuntimeManager.AttachInstanceToGameObject(inst, gameObject);

@@ -9,6 +9,7 @@ public class MusicManagerScript : MonoBehaviour
 
     private EventInstance _musicInstance;
     private bool _initialized = false;
+    public EventInstance EventInstance => _musicInstance;
 
     private float _violonsVolume = 0f;
     private float _guitarVolume = 0f;
