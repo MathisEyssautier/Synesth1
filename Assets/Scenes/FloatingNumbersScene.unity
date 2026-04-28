@@ -20180,79 +20180,6 @@ MonoBehaviour:
   targetTolerance: 0.03
   hapticAmplitude: 0.75
   hapticDuration: 0.06
---- !u!1001 &1304314026
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.41664
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.41664
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.41664
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.281
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.016
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.57
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9855054
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.1696444
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -19.534
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_Name
-      value: TungTungTungSahur
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1c911e5cbab5d7044be98258031ed5f3, type: 3}
 --- !u!1 &1307418249
 GameObject:
   m_ObjectHideFlags: 0
@@ -23975,7 +23902,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 14.83, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5999756, y: -170.92503}
+  m_AnchoredPosition: {x: 0.5999756, y: -170.92502}
   m_SizeDelta: {x: -499.99994, y: -544.44995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514419964
@@ -60897,6 +60824,5 @@ SceneRoots:
   - {fileID: 243537422}
   - {fileID: 1139429030}
   - {fileID: 1759310597}
-  - {fileID: 1304314026}
   - {fileID: 2086398967}
   - {fileID: 1853944269}

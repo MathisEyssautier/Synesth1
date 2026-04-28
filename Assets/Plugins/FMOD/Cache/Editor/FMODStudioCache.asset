@@ -1174,7 +1174,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 334917041600772616}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
