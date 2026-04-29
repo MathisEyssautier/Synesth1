@@ -448,9 +448,9 @@ MonoBehaviour:
   uiBounds:
     serializedVersion: 2
     x: -728
-    y: -1469
+    y: -1468
     width: 3341
-    height: 4535
+    height: 4531
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1137,7 +1137,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":-938521090852414663,"guid":"1861ee8c598c57a4aa81c86f3324429d","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":4300002,"guid":"abc00000000002255944232475449868","type":3}}'
     m_Space: -1
   m_Property:
     name: mesh
@@ -2017,7 +2017,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":-938521090852414663,"guid":"1861ee8c598c57a4aa81c86f3324429d","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":4300002,"guid":"abc00000000002255944232475449868","type":3}}'
     m_Space: -1
   m_Property:
     name: 
@@ -2110,7 +2110,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":-938521090852414663,"guid":"1861ee8c598c57a4aa81c86f3324429d","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":4300002,"guid":"abc00000000002255944232475449868","type":3}}'
     m_Space: -1
   m_Property:
     name: mesh
