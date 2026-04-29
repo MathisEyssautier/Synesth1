@@ -233,6 +233,8 @@ public class FaderController : MonoBehaviour
 
     private void ResolveFeedbackRendererAndMaterial()
     {
+        if (!Application.isPlaying)
+            return;
         if (targetFeedbackRenderer == null)
             targetFeedbackRenderer = GetComponentInChildren<Renderer>(true);
         if (targetFeedbackRenderer == null)
@@ -250,6 +252,8 @@ public class FaderController : MonoBehaviour
 
     private void UpdateTargetVisualFeedback()
     {
+        if (!Application.isPlaying)
+            return;
         if (_isBroken)
             return;
         if (!enableTargetVisualFeedback)

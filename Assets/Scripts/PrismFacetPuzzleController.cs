@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using FMODUnity;
+using FMOD.Studio;
 
 public class PrismFacetPuzzleController : MonoBehaviour
 {
@@ -31,6 +33,14 @@ public class PrismFacetPuzzleController : MonoBehaviour
     [Header("Mouvement")]
     [SerializeField] private float facetMoveDuration = 0.45f;
 
+    [Header("Audio FMOD (facettes)")]
+    [SerializeField] private EventReference prismFacetReadyEvent;
+    [SerializeField] private EventReference prismFacetMoveWhooshEvent;
+    [SerializeField] private bool overrideReadySpatialFromScript = false;
+    [Range(0f, 1f)] [SerializeField] private float prismFacetReadyVolume = 0.2f;
+    [SerializeField] private float prismFacetReadyMinDistance = 0.5f;
+    [SerializeField] private float prismFacetReadyMaxDistance = 1f;
+
     [Header("Flash à chaque accord (matériaux)")]
     [Tooltip("Matériau blanc (partagé en source). Une copie est créée à l'exécution. Si vide, clone du 1er matériau de facette teint en blanc.")]
     [SerializeField] private Material whiteChordFlashMaterial;
@@ -55,6 +65,10 @@ public class PrismFacetPuzzleController : MonoBehaviour
     private GuitarCapoCrankController _guitarCapoRegistered;
     private Material _flashMatWhiteInstance;
     private Material _flashMatCapoInstance;
+    private bool _facetAudioEnabled;
+    private EventInstance[] _facetReadyInstances;
+    private EventInstance _activeMoveWhooshInstance;
+    private int _activeMoveWhooshFacetIndex = -1;
 
     public bool IsSolved => _solved;
 
@@ -75,6 +89,7 @@ public class PrismFacetPuzzleController : MonoBehaviour
         int count = facetTracks != null ? facetTracks.Length : 0;
         _facetPositions = new int[Mathf.Max(0, count)];
         _facetMoveCoroutines = new Coroutine[count];
+        _facetReadyInstances = new EventInstance[count];
         _solved = false;
 
         CacheFacetRendererMaterialBackups();
@@ -87,6 +102,18 @@ public class PrismFacetPuzzleController : MonoBehaviour
         }
 
         SetRebuiltPrismActive(false);
+    }
+
+    private void OnDisable()
+    {
+        StopFacetReadyAudio();
+        StopActiveMoveWhoosh();
+    }
+
+    private void Update()
+    {
+        ReconcileFacetReadyAudioInstances();
+        RefreshFacetAudio3DAttributes();
     }
 
     /// <summary>
@@ -116,6 +143,7 @@ public class PrismFacetPuzzleController : MonoBehaviour
             return;
 
         _facetPositions[capoIndex] = (_facetPositions[capoIndex] + 1) % 5;
+        PlayMoveWhooshOnFacet(capoIndex);
 
         if (_facetMoveCoroutines != null && capoIndex < _facetMoveCoroutines.Length && _facetMoveCoroutines[capoIndex] != null)
         {
@@ -124,6 +152,20 @@ public class PrismFacetPuzzleController : MonoBehaviour
         }
 
         _facetMoveCoroutines[capoIndex] = StartCoroutine(MoveFacetRoutine(capoIndex));
+    }
+
+    public void SetFacetAudioEnabled(bool enabled)
+    {
+        if (_solved)
+            enabled = false;
+        if (_facetAudioEnabled == enabled)
+            return;
+
+        _facetAudioEnabled = enabled;
+        if (_facetAudioEnabled)
+            StartFacetReadyAudio();
+        else
+            StopFacetReadyAudio();
     }
 
     private void CacheFacetRendererMaterialBackups()
@@ -386,6 +428,8 @@ public class PrismFacetPuzzleController : MonoBehaviour
             return;
 
         _solved = true;
+        SetFacetAudioEnabled(false);
+        StopActiveMoveWhoosh();
 
         if (_facetMoveCoroutines != null)
         {
@@ -416,6 +460,155 @@ public class PrismFacetPuzzleController : MonoBehaviour
         onPrismSolved?.Invoke();
 
         ResolvedGuitarCapo?.TrySolveFromPrismPuzzle();
+    }
+
+    private void StartFacetReadyAudio()
+    {
+        if (prismFacetReadyEvent.IsNull || !RuntimeManager.IsInitialized || facetTracks == null)
+            return;
+
+        if (_facetReadyInstances == null || _facetReadyInstances.Length != facetTracks.Length)
+            _facetReadyInstances = new EventInstance[facetTracks.Length];
+
+        for (int i = 0; i < facetTracks.Length; i++)
+        {
+            var track = facetTracks[i];
+            if (track == null || track.facetTransform == null || !track.facetTransform.gameObject.activeInHierarchy)
+                continue;
+            if (_facetReadyInstances[i].isValid())
+                continue;
+
+            var inst = RuntimeManager.CreateInstance(prismFacetReadyEvent);
+            RuntimeManager.AttachInstanceToGameObject(inst, track.facetTransform.gameObject);
+            inst.set3DAttributes(RuntimeUtils.To3DAttributes(track.facetTransform));
+            ApplyReadyInstanceSpatialSettings(inst);
+            inst.start();
+            _facetReadyInstances[i] = inst;
+        }
+    }
+
+    private void ReconcileFacetReadyAudioInstances()
+    {
+        if (!_facetAudioEnabled || prismFacetReadyEvent.IsNull || !RuntimeManager.IsInitialized || facetTracks == null)
+            return;
+
+        if (_facetReadyInstances == null || _facetReadyInstances.Length != facetTracks.Length)
+            _facetReadyInstances = new EventInstance[facetTracks.Length];
+
+        for (int i = 0; i < facetTracks.Length; i++)
+        {
+            var track = facetTracks[i];
+            bool shouldPlay = track != null &&
+                              track.facetTransform != null &&
+                              track.facetTransform.gameObject.activeInHierarchy;
+            bool isPlaying = _facetReadyInstances[i].isValid();
+
+            if (shouldPlay && !isPlaying)
+            {
+                var inst = RuntimeManager.CreateInstance(prismFacetReadyEvent);
+                RuntimeManager.AttachInstanceToGameObject(inst, track.facetTransform.gameObject);
+                inst.set3DAttributes(RuntimeUtils.To3DAttributes(track.facetTransform));
+                ApplyReadyInstanceSpatialSettings(inst);
+                inst.start();
+                _facetReadyInstances[i] = inst;
+            }
+            else if (!shouldPlay && isPlaying)
+            {
+                _facetReadyInstances[i].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                _facetReadyInstances[i].release();
+                _facetReadyInstances[i].clearHandle();
+            }
+        }
+    }
+
+    private void StopFacetReadyAudio()
+    {
+        if (_facetReadyInstances == null)
+            return;
+
+        for (int i = 0; i < _facetReadyInstances.Length; i++)
+        {
+            if (!_facetReadyInstances[i].isValid())
+                continue;
+            _facetReadyInstances[i].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            _facetReadyInstances[i].release();
+            _facetReadyInstances[i].clearHandle();
+        }
+    }
+
+    private void PlayMoveWhooshOnFacet(int facetIndex)
+    {
+        if (prismFacetMoveWhooshEvent.IsNull || !RuntimeManager.IsInitialized || facetTracks == null)
+            return;
+        if (facetIndex < 0 || facetIndex >= facetTracks.Length)
+            return;
+
+        var track = facetTracks[facetIndex];
+        if (track == null || track.facetTransform == null)
+            return;
+
+        StopActiveMoveWhoosh();
+        _activeMoveWhooshInstance = RuntimeManager.CreateInstance(prismFacetMoveWhooshEvent);
+        _activeMoveWhooshFacetIndex = facetIndex;
+        RuntimeManager.AttachInstanceToGameObject(_activeMoveWhooshInstance, track.facetTransform.gameObject);
+        _activeMoveWhooshInstance.set3DAttributes(RuntimeUtils.To3DAttributes(track.facetTransform));
+        _activeMoveWhooshInstance.start();
+    }
+
+    private void StopActiveMoveWhoosh()
+    {
+        if (!_activeMoveWhooshInstance.isValid())
+            return;
+        _activeMoveWhooshInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        _activeMoveWhooshInstance.release();
+        _activeMoveWhooshInstance.clearHandle();
+        _activeMoveWhooshFacetIndex = -1;
+    }
+
+    private void RefreshFacetAudio3DAttributes()
+    {
+        if (!RuntimeManager.IsInitialized || facetTracks == null)
+            return;
+
+        if (_facetReadyInstances != null)
+        {
+            int n = Mathf.Min(_facetReadyInstances.Length, facetTracks.Length);
+            for (int i = 0; i < n; i++)
+            {
+                if (!_facetReadyInstances[i].isValid())
+                    continue;
+                var track = facetTracks[i];
+                if (track == null || track.facetTransform == null)
+                    continue;
+                _facetReadyInstances[i].set3DAttributes(RuntimeUtils.To3DAttributes(track.facetTransform));
+            }
+        }
+
+        if (_activeMoveWhooshInstance.isValid())
+        {
+            if (_activeMoveWhooshFacetIndex >= 0 && _activeMoveWhooshFacetIndex < facetTracks.Length)
+            {
+                var track = facetTracks[_activeMoveWhooshFacetIndex];
+                if (track != null && track.facetTransform != null)
+                    _activeMoveWhooshInstance.set3DAttributes(RuntimeUtils.To3DAttributes(track.facetTransform));
+            }
+        }
+    }
+
+    private void ApplyReadyInstanceSpatialSettings(EventInstance inst)
+    {
+        if (!inst.isValid())
+            return;
+
+        if (!overrideReadySpatialFromScript)
+            return;
+
+        float minDist = Mathf.Max(0.01f, prismFacetReadyMinDistance);
+        float maxDist = Mathf.Max(minDist + 0.01f, prismFacetReadyMaxDistance);
+
+        inst.setVolume(Mathf.Clamp01(prismFacetReadyVolume));
+        inst.setProperty(EVENT_PROPERTY.MINIMUM_DISTANCE, minDist);
+        inst.setProperty(EVENT_PROPERTY.MAXIMUM_DISTANCE, maxDist);
     }
 
     private void SetRebuiltPrismActive(bool active)

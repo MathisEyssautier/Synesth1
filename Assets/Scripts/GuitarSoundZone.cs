@@ -22,6 +22,14 @@ public class GuitarSoundZone : MonoBehaviour
 
     private float _nextAllowedTime = 0f;
 
+    private void Update()
+    {
+        if (prismFacetPuzzleController == null)
+            return;
+        bool stringsReady = guitarAssemblyManager != null && guitarAssemblyManager.AreAllStringsPlaced;
+        prismFacetPuzzleController.SetFacetAudioEnabled(stringsReady);
+    }
+
     private void Awake()
     {
         var col = GetComponent<Collider>();

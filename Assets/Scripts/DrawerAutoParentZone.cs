@@ -20,6 +20,7 @@ public class DrawerAutoParentZone : MonoBehaviour
     [Header("Filter")]
     [SerializeField] private LayerMask allowedLayers = ~0;
     [SerializeField] private string ignoreTag = "PlayerHand";
+    [SerializeField] private bool requireGrabInteractable = true;
 
     [Header("Behavior")]
     [SerializeField] private bool onlyWhenNotHeld = true;
@@ -142,6 +143,15 @@ public class DrawerAutoParentZone : MonoBehaviour
         if (other == null) return null;
         if (!string.IsNullOrEmpty(ignoreTag) && other.CompareTag(ignoreTag)) return null;
         if (((1 << other.gameObject.layer) & allowedLayers.value) == 0) return null;
+        if (drawerParent != null && other.transform.IsChildOf(drawerParent)) return null;
+        if (other.transform.IsChildOf(transform)) return null;
+
+        XRGrabInteractable grab = other.GetComponentInParent<XRGrabInteractable>();
+        if (requireGrabInteractable && grab == null)
+            return null;
+
+        if (grab != null)
+            return grab.transform;
 
         Rigidbody rb = other.attachedRigidbody;
         return rb != null ? rb.transform : other.transform;

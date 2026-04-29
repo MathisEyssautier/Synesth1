@@ -402,6 +402,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 11558
+--- !u!114 &-7246631028920450686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PrismFull
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/PrismFull
+  Guid:
+    Data1: -565221606
+    Data2: 1241215274
+    Data3: -196460137
+    Data4: 510505813
+  Banks:
+  - {fileID: 334917041600772616}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 13800
 --- !u!114 &-6766999916158536269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1126,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4700
+--- !u!114 &-1155495305727260169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Twinkle
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Twinkle
+  Guid:
+    Data1: 1831750910
+    Data2: 1214621123
+    Data3: 2032009147
+    Data4: 1247950929
+  Banks:
+  - {fileID: 334917041600772616}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6465
 --- !u!114 &-907395494655012342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,6 +1456,9 @@ MonoBehaviour:
   - {fileID: -8448917278185435740}
   - {fileID: 127355407251819469}
   - {fileID: 7322053775599387256}
+  - {fileID: -7246631028920450686}
+  - {fileID: 7864116664530450300}
+  - {fileID: -1155495305727260169}
   EditorParameters:
   - {fileID: 1609086805843980587}
   MasterBanks:
@@ -1409,7 +1466,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 6441697395575966903}
   cacheVersion: 131858
-  cacheTime: 639129835251747787
+  cacheTime: 639130898793424708
   SerializableEventsDict:
   - key: event:/FinalMusic
     index: 0
@@ -1601,6 +1658,12 @@ MonoBehaviour:
     index: 93
   - key: event:/InputSpaceMusic
     index: 94
+  - key: event:/PrismFull
+    index: 95
+  - key: event:/MagicWoosh
+    index: 96
+  - key: event:/Twinkle
+    index: 97
 --- !u!114 &127355407251819469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1643,12 +1706,12 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Mobile/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639129835245730168
+  lastModified: 639130898793424708
   FileSizes:
   - Name: Desktop
     Value: 100209664
   - Name: Mobile
-    Value: 55028096
+    Value: 56819456
   Exists: 1
 --- !u!114 &456257785526060768
 MonoBehaviour:
@@ -1905,7 +1968,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Mobile/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639122954860950408
+  lastModified: 639130825141330828
   FileSizes:
   - Name: Desktop
     Value: 1892
@@ -2704,12 +2767,12 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Mobile/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639122954860985262
+  lastModified: 639130825141376050
   FileSizes:
   - Name: Desktop
-    Value: 5822
+    Value: 5950
   - Name: Mobile
-    Value: 5822
+    Value: 5950
   Exists: 1
 --- !u!114 &6569349338946783950
 MonoBehaviour:
@@ -2981,6 +3044,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4383
+--- !u!114 &7864116664530450300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MagicWoosh
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/MagicWoosh
+  Guid:
+    Data1: 1184108930
+    Data2: 1252015789
+    Data3: -121779544
+    Data4: -803835363
+  Banks:
+  - {fileID: 334917041600772616}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2600
 --- !u!114 &8312378695253022431
 MonoBehaviour:
   m_ObjectHideFlags: 0
