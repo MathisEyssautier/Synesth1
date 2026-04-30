@@ -620,7 +620,7 @@ MonoBehaviour:
   - {fileID: 3171349849462833139}
   MinDistance: 1
   MaxDistance: 20
-  Length: 66638
+  Length: 55000
 --- !u!114 &-5767782280017893243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,7 +1017,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 33888
+  Length: 54850
 --- !u!114 &-2145308522839866828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 334917041600772616}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -1466,7 +1466,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 6441697395575966903}
   cacheVersion: 131858
-  cacheTime: 639130898793424708
+  cacheTime: 639131735705699976
   SerializableEventsDict:
   - key: event:/FinalMusic
     index: 0
@@ -1706,12 +1706,12 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Mobile/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639130898793424708
+  lastModified: 639131735705699976
   FileSizes:
   - Name: Desktop
     Value: 100209664
   - Name: Mobile
-    Value: 56819456
+    Value: 55391456
   Exists: 1
 --- !u!114 &456257785526060768
 MonoBehaviour:
