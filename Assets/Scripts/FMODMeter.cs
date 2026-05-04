@@ -7,7 +7,7 @@ using System.Reflection;
 public class FMODMeteringSource : MonoBehaviour
 {
     [Header("Source")]
-    [Tooltip("Script qui fournit un EventInstance")]
+    [Tooltip("Script avec propriété, champ ou méthode GetEventInstance() → EventInstance (ex. GrabbableMusicObject, GuitarSoundZone, StudioEventEmitter FMOD).")]
     [SerializeField] private MonoBehaviour eventProvider;
 
     private EventInstance _eventInstance;
@@ -88,11 +88,31 @@ public class FMODMeteringSource : MonoBehaviour
 
         if (!_missingEventInstanceLogged)
         {
-            Debug.LogError("[FMODMeteringSource] Le provider n'expose pas EventInstance.");
+            string sceneName = gameObject.scene.IsValid() ? gameObject.scene.name : "?";
+            string prov = eventProvider != null
+                ? $"'{eventProvider.gameObject.name}' ({type.Name})"
+                : "null";
+            Debug.LogWarning(
+                $"[FMODMeteringSource] Sur '{gameObject.name}' (scène « {sceneName} ») : le provider {prov} n'expose pas EventInstance " +
+                "(propriété/champ public ou GetEventInstance() sans param). Corrige la référence ou retire ce composant.",
+                this);
             _missingEventInstanceLogged = true;
         }
         return false;
     }
+
+#if UNITY_EDITOR
+    [System.NonSerialized] private MonoBehaviour _editorLastProviderForLogReset;
+
+    private void OnValidate()
+    {
+        if (eventProvider != _editorLastProviderForLogReset)
+        {
+            _missingEventInstanceLogged = false;
+            _editorLastProviderForLogReset = eventProvider;
+        }
+    }
+#endif
 
     private void EnsureMeterSetupIfNeeded()
     {

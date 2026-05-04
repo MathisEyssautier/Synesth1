@@ -24,6 +24,10 @@ public class FinalSequenceController : MonoBehaviour
     [SerializeField] private FaderTarget blueFader = new FaderTarget { targetValue = 1f, tolerance = 0.05f };
     [SerializeField] private float requiredStableTime = 0.35f;
 
+    [Header("Table de mix — spot (optionnel)")]
+    [Tooltip("S’allume uniquement quand les trois faders (red/green/blue) sont actifs dans la hiérarchie.")]
+    [SerializeField] private Light mixTableFaderSpotlight;
+
     [Header("Final mix behavior")]
     [SerializeField] private float masterFadeOutDuration = 1.5f;
     [SerializeField] private float fadersRiseDuration = 2f;
@@ -143,6 +147,8 @@ public class FinalSequenceController : MonoBehaviour
 
     private void Update()
     {
+        UpdateMixTableFaderSpotlight();
+
         if (!_started)
         {
             if (AreAllFadersActiveAndMatching())
@@ -344,6 +350,26 @@ public class FinalSequenceController : MonoBehaviour
         if (target == null || target.fader == null) return false;
         if (!target.fader.gameObject.activeInHierarchy) return false;
         return Mathf.Abs(target.fader.value - target.targetValue) <= target.tolerance;
+    }
+
+    private void UpdateMixTableFaderSpotlight()
+    {
+        if (mixTableFaderSpotlight == null)
+            return;
+
+        bool allFadersVisible = AreAllFaderRootsActiveInHierarchy(redFader, greenFader, blueFader);
+        if (mixTableFaderSpotlight.enabled != allFadersVisible)
+            mixTableFaderSpotlight.enabled = allFadersVisible;
+    }
+
+    private static bool AreAllFaderRootsActiveInHierarchy(FaderTarget a, FaderTarget b, FaderTarget c)
+    {
+        return IsFaderRootActive(a) && IsFaderRootActive(b) && IsFaderRootActive(c);
+    }
+
+    private static bool IsFaderRootActive(FaderTarget target)
+    {
+        return target != null && target.fader != null && target.fader.gameObject.activeInHierarchy;
     }
 
     private IEnumerator RunFinalAudioSequence()

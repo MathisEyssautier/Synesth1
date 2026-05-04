@@ -5,6 +5,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using FMODUnity;
+using FMOD.Studio;
 
 public class GuitarCapoCrankController : MonoBehaviour
 {
@@ -48,6 +49,14 @@ public class GuitarCapoCrankController : MonoBehaviour
     [Header("Narration")]
     [SerializeField] private UnityEvent onChordSolved;
 
+    [Header("Post-prisme (boucle jusqu’au dépôt socket)")]
+    [Tooltip("Event FMOD en boucle (timeline/boucle côté Studio) dès que le prisme est complété ; arrêt via UnlockPlacementSocket (requiredGuitarPuzzle) ou StopPostPrismCompletionLoop().")]
+    [SerializeField] private EventReference postPrismCompletionLoopEvent;
+    [Tooltip("Suivi 3D de la boucle ; vide = même objet que la guitare XR.")]
+    [SerializeField] private Transform postPrismLoopAttachOverride;
+    [Tooltip("Particules / VFX : activé en même temps que la boucle FMOD post-prisme ; désactivé à l’arrêt (socket) ou OnDisable.")]
+    [SerializeField] private GameObject postPrismLoopParticlesRoot;
+
     private XRGrabInteractable _guitar;
     private int _currentIndex;
     private bool _guitarHeld;
@@ -61,6 +70,14 @@ public class GuitarCapoCrankController : MonoBehaviour
     [SerializeField] private float indexTriggerThreshold = 0.65f;
     private bool _leftTriggerWasDown;
     private bool _rightTriggerWasDown;
+
+    private EventInstance _postPrismLoopInstance;
+
+    /// <summary>
+    /// Instance FMOD de la boucle post-prisme (<c>BoucleGuitare</c> / <see cref="postPrismCompletionLoopEvent"/>),
+    /// valide du démarrage de la boucle jusqu’à <see cref="StopPostPrismCompletionLoop"/>. Pour <see cref="FMODMeteringSource"/>.
+    /// </summary>
+    public EventInstance EventInstance => _postPrismLoopInstance;
 
     private void Awake()
     {
@@ -89,6 +106,8 @@ public class GuitarCapoCrankController : MonoBehaviour
         int maxIndex = Mathf.Max(0, len - 1);
         _currentIndex = Mathf.Clamp(startCrankIndex, 0, maxIndex);
         ApplyIndex(_currentIndex, instant: true);
+
+        SetPostPrismLoopParticlesActive(false);
     }
 
     /// <summary>
@@ -127,6 +146,13 @@ public class GuitarCapoCrankController : MonoBehaviour
             _guitar.selectEntered.RemoveListener(OnGuitarGrabbed);
             _guitar.selectExited.RemoveListener(OnGuitarReleased);
         }
+
+        StopPostPrismCompletionLoop();
+    }
+
+    private void OnDestroy()
+    {
+        StopPostPrismCompletionLoop();
     }
 
     private void Update()
@@ -182,7 +208,10 @@ public class GuitarCapoCrankController : MonoBehaviour
     public void TrySolveFromPrismPuzzle()
     {
         // La résolution peut arriver à la fin d'une anim : la main n'est pas forcément sur la guitare.
-        TrySolveInternal(bypassGuitarHeldCheck: true);
+        if (!TrySolveInternal(bypassGuitarHeldCheck: true))
+            return;
+
+        StartPostPrismCompletionLoopIfConfigured();
     }
 
     public void TrySolveFromSoundZone()
@@ -191,14 +220,61 @@ public class GuitarCapoCrankController : MonoBehaviour
         TrySolveInternal(bypassGuitarHeldCheck: false);
     }
 
-    private void TrySolveInternal(bool bypassGuitarHeldCheck)
+    /// <summary>
+    /// Appelé quand la guitare est posée sur sa socket (ex. <see cref="UnlockPlacementSocket"/>).
+    /// </summary>
+    public void StopPostPrismCompletionLoop()
+    {
+        SetPostPrismLoopParticlesActive(false);
+
+        if (!_postPrismLoopInstance.isValid())
+            return;
+
+        _postPrismLoopInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        _postPrismLoopInstance.release();
+        _postPrismLoopInstance.clearHandle();
+    }
+
+    private void StartPostPrismCompletionLoopIfConfigured()
+    {
+        StopPostPrismCompletionLoop();
+        if (postPrismCompletionLoopEvent.IsNull || !RuntimeManager.IsInitialized)
+            return;
+
+        _postPrismLoopInstance = RuntimeManager.CreateInstance(postPrismCompletionLoopEvent);
+        GameObject attach = ResolvePostPrismLoopAttachGameObject();
+        if (attach != null)
+            RuntimeManager.AttachInstanceToGameObject(_postPrismLoopInstance, attach);
+        _postPrismLoopInstance.start();
+        SetPostPrismLoopParticlesActive(true);
+    }
+
+    private void SetPostPrismLoopParticlesActive(bool active)
+    {
+        if (postPrismLoopParticlesRoot == null)
+            return;
+        if (postPrismLoopParticlesRoot.activeSelf != active)
+            postPrismLoopParticlesRoot.SetActive(active);
+    }
+
+    private GameObject ResolvePostPrismLoopAttachGameObject()
+    {
+        if (postPrismLoopAttachOverride != null)
+            return postPrismLoopAttachOverride.gameObject;
+        if (_guitar != null)
+            return _guitar.gameObject;
+        return gameObject;
+    }
+
+    /// <returns><see langword="true"/> si la résolution a été appliquée (première fois).</returns>
+    private bool TrySolveInternal(bool bypassGuitarHeldCheck)
     {
         if (_solved)
-            return;
+            return false;
 
         bool allowed = bypassGuitarHeldCheck || (!onlyAdvanceWhenGuitarHeld || _guitarHeld);
         if (!allowed)
-            return;
+            return false;
 
         _solved = true;
         if (lockAfterSuccess) _locked = true;
@@ -206,6 +282,7 @@ public class GuitarCapoCrankController : MonoBehaviour
             thirdFaderToActivate.SetActive(true);
         PlaySuccessBodyFlash();
         onChordSolved?.Invoke();
+        return true;
     }
 
     private void OnValidate()

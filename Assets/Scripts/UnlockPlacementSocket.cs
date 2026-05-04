@@ -14,6 +14,7 @@ public class UnlockPlacementSocket : MonoBehaviour
 
     [Header("Unlock requirement (optional)")]
     [SerializeField] private ShellPuzzleManager requiredShellPuzzle;
+    [Tooltip("Déblocage dépôt + arrêt de la boucle FMOD post-prisme sur la guitare (voir GuitarCapoCrankController).")]
     [SerializeField] private GuitarCapoCrankController requiredGuitarPuzzle;
     [Tooltip("VFX à activer quand la socket est débloquée, puis à couper quand l'objet est posé (ex: Visual Effect K7 / Visual Effect Guitar).")]
     [SerializeField] private GameObject unlockReadyVisualEffect;
@@ -177,6 +178,9 @@ public class UnlockPlacementSocket : MonoBehaviour
 
         if (shellPuzzleAudioToStop != null)
             shellPuzzleAudioToStop.StopRewardLoopAudio();
+
+        if (requiredGuitarPuzzle != null)
+            requiredGuitarPuzzle.StopPostPrismCompletionLoop();
 
         if (placedObjectRenderer != null)
         {

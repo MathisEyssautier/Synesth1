@@ -1,5 +1,6 @@
 using UnityEngine;
 using FMODUnity;
+using FMOD.Studio;
 using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(Collider))]
@@ -20,7 +21,50 @@ public class GuitarSoundZone : MonoBehaviour
     [Tooltip("Sons par cran de capo (index 0..4 -> crank1..crank5).")]
     [SerializeField] private EventReference[] crankEvents = new EventReference[5];
 
+    [Header("Effets par cran de capo")]
+    [Tooltip("5 GameObjects (ex. enfants avec particules / VFX) : index = position du capo (0..4). Un seul actif ; tous désactivés si cordes pas montées ou énigme guitare résolue.")]
+    [SerializeField] private GameObject[] capoPositionEffectRoots = new GameObject[5];
+
     private float _nextAllowedTime = 0f;
+    private int _capoParticlesShownIndex = int.MinValue;
+
+    /// <summary>
+    /// Instance FMOD de l’accord (ou du « wrong ») en cours — pour <see cref="FMODMeteringSource"/> / particules.
+    /// </summary>
+    public EventInstance EventInstance => _activeChordInstance;
+
+    private EventInstance _activeChordInstance;
+
+    private void OnDisable()
+    {
+        StopActiveChordInstance();
+    }
+
+    private void OnDestroy()
+    {
+        StopActiveChordInstance();
+    }
+
+    private void StopActiveChordInstance()
+    {
+        if (!_activeChordInstance.isValid())
+            return;
+
+        _activeChordInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        _activeChordInstance.release();
+        _activeChordInstance.clearHandle();
+    }
+
+    private void PlayChordEventAttached(EventReference evt)
+    {
+        StopActiveChordInstance();
+        if (evt.IsNull || !RuntimeManager.IsInitialized)
+            return;
+
+        _activeChordInstance = RuntimeManager.CreateInstance(evt);
+        RuntimeManager.AttachInstanceToGameObject(_activeChordInstance, gameObject);
+        _activeChordInstance.start();
+    }
 
     private void Update()
     {
@@ -28,6 +72,47 @@ public class GuitarSoundZone : MonoBehaviour
             return;
         bool stringsReady = guitarAssemblyManager != null && guitarAssemblyManager.AreAllStringsPlaced;
         prismFacetPuzzleController.SetFacetAudioEnabled(stringsReady);
+
+        SyncCapoPositionParticles(stringsReady);
+    }
+
+    private void SyncCapoPositionParticles(bool stringsReady)
+    {
+        if (capoPositionEffectRoots == null || capoPositionEffectRoots.Length == 0)
+            return;
+        if (capoCrankController == null)
+            return;
+
+        if (!stringsReady || capoCrankController.IsSolved)
+        {
+            if (_capoParticlesShownIndex != int.MinValue)
+            {
+                ApplyCapoEffectActiveIndex(-1);
+                _capoParticlesShownIndex = int.MinValue;
+            }
+            return;
+        }
+
+        int idx = Mathf.Clamp(capoCrankController.CurrentCrankIndex, 0, capoPositionEffectRoots.Length - 1);
+        if (idx == _capoParticlesShownIndex)
+            return;
+
+        ApplyCapoEffectActiveIndex(idx);
+        _capoParticlesShownIndex = idx;
+    }
+
+    private void ApplyCapoEffectActiveIndex(int activeIndex)
+    {
+        for (int i = 0; i < capoPositionEffectRoots.Length; i++)
+        {
+            var root = capoPositionEffectRoots[i];
+            if (root == null)
+                continue;
+
+            bool on = activeIndex >= 0 && i == activeIndex;
+            if (root.activeSelf != on)
+                root.SetActive(on);
+        }
     }
 
     private void Awake()
@@ -37,6 +122,9 @@ public class GuitarSoundZone : MonoBehaviour
 
         if (prismFacetPuzzleController != null && capoCrankController != null)
             prismFacetPuzzleController.SetGuitarCapoForSolve(capoCrankController);
+
+        ApplyCapoEffectActiveIndex(-1);
+        _capoParticlesShownIndex = int.MinValue;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,8 +139,7 @@ public class GuitarSoundZone : MonoBehaviour
         bool stringsReady = guitarAssemblyManager != null && guitarAssemblyManager.AreAllStringsPlaced;
         if (!stringsReady)
         {
-            if (!wrongEvent.IsNull)
-                RuntimeManager.PlayOneShotAttached(wrongEvent, gameObject);
+            PlayChordEventAttached(wrongEvent);
             return;
         }
 
@@ -63,8 +150,7 @@ public class GuitarSoundZone : MonoBehaviour
         if (crankEvents != null && crankIndex >= 0 && crankIndex < crankEvents.Length)
         {
             var evt = crankEvents[crankIndex];
-            if (!evt.IsNull)
-                RuntimeManager.PlayOneShotAttached(evt, gameObject);
+            PlayChordEventAttached(evt);
         }
 
         // Nouveau puzzle: l'accord joué fait avancer la facette correspondant au cran capot.

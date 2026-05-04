@@ -28,6 +28,8 @@ public class ShellPuzzleManager : MonoBehaviour
     [SerializeField] private EventReference rewardContinuousLoop;
     [SerializeField] private Transform rewardAudioOrigin;
     [SerializeField] private bool makeRewardGrabbable = true;
+    [Tooltip("Particules / VFX sur le lecteur cassette : activé avec la boucle rewardContinuousLoop ; coupé avec StopRewardLoopAudio().")]
+    [SerializeField] private GameObject rewardContinuousLoopParticlesRoot;
 
     [Header("Cassette (son + grab)")]
     [Tooltip("Le lecteur cassette (le mesh indiqué par blackCubeRenderer) est en mode statique au début.")]
@@ -48,6 +50,13 @@ public class ShellPuzzleManager : MonoBehaviour
     private bool _solved = false;
     public bool IsSolved => _solved;
 
+    /// <summary>
+    /// Instance de la boucle <see cref="rewardContinuousLoop"/> après résolution du puzzle ; pour <see cref="FMODMeteringSource"/>.
+    /// Invalide tant que le puzzle n’est pas résolu ou après <see cref="StopRewardLoopAudio"/>.
+    /// </summary>
+    public EventInstance EventInstance => _rewardLoopInstanceForMeter;
+
+    private EventInstance _rewardLoopInstanceForMeter;
     private FmodAttachedEventCleanup _rewardLoopCleanup;
 
     private XRGrabInteractable _cassetteGrab;
@@ -80,6 +89,8 @@ public class ShellPuzzleManager : MonoBehaviour
 
         if (cassetteSpotlightOnSolve != null)
             cassetteSpotlightOnSolve.SetActive(false);
+
+        SetRewardContinuousLoopParticlesActive(false);
 
         InitCassetteRefs();
 
@@ -185,6 +196,9 @@ public class ShellPuzzleManager : MonoBehaviour
             _rewardLoopCleanup.TakeOwnership(loopInst);
 
             loopInst.start();
+
+            _rewardLoopInstanceForMeter = loopInst;
+            SetRewardContinuousLoopParticlesActive(true);
         }
 
         // 4) Cassette devient grabable
@@ -295,10 +309,24 @@ public class ShellPuzzleManager : MonoBehaviour
 
     public void StopRewardLoopAudio()
     {
-        if (_rewardLoopCleanup == null) return;
+        SetRewardContinuousLoopParticlesActive(false);
 
-        _rewardLoopCleanup.StopAndRelease();
-        _rewardLoopCleanup = null;
+        if (_rewardLoopCleanup != null)
+        {
+            _rewardLoopCleanup.StopAndRelease();
+            _rewardLoopCleanup = null;
+        }
+
+        if (_rewardLoopInstanceForMeter.isValid())
+            _rewardLoopInstanceForMeter.clearHandle();
+    }
+
+    private void SetRewardContinuousLoopParticlesActive(bool active)
+    {
+        if (rewardContinuousLoopParticlesRoot == null)
+            return;
+        if (rewardContinuousLoopParticlesRoot.activeSelf != active)
+            rewardContinuousLoopParticlesRoot.SetActive(active);
     }
 }
 

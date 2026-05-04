@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using FMODUnity;
+using FMOD.Studio;
 
 [RequireComponent(typeof(XRGrabInteractable))]
 public class GuitarStringFeedback : MonoBehaviour
@@ -36,6 +37,45 @@ public class GuitarStringFeedback : MonoBehaviour
     private Coroutine _feedbackRoutine;
     private bool _placedOnGuitar;
 
+    /// <summary>Pour <see cref="FMODMeteringSource"/> / particules sur la même corde.</summary>
+    public EventInstance EventInstance => _activeStringInstance;
+
+    private EventInstance _activeStringInstance;
+
+    private void OnDisable()
+    {
+        StopActiveStringInstance();
+    }
+
+    private void OnDestroy()
+    {
+        if (_grab != null)
+            _grab.activated.RemoveListener(OnActivated);
+
+        StopActiveStringInstance();
+    }
+
+    private void StopActiveStringInstance()
+    {
+        if (!_activeStringInstance.isValid())
+            return;
+
+        _activeStringInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        _activeStringInstance.release();
+        _activeStringInstance.clearHandle();
+    }
+
+    private void PlayStringEventAttached()
+    {
+        StopActiveStringInstance();
+        if (stringEvent.IsNull || !RuntimeManager.IsInitialized)
+            return;
+
+        _activeStringInstance = RuntimeManager.CreateInstance(stringEvent);
+        RuntimeManager.AttachInstanceToGameObject(_activeStringInstance, gameObject);
+        _activeStringInstance.start();
+    }
+
     private void Awake()
     {
         _grab = GetComponent<XRGrabInteractable>();
@@ -64,12 +104,9 @@ public class GuitarStringFeedback : MonoBehaviour
 
         if (canvasRoot != null)
             canvasRoot.SetActive(false);
-    }
 
-    private void OnDestroy()
-    {
-        if (_grab != null)
-            _grab.activated.RemoveListener(OnActivated);
+        if (vfxAmplitude == null)
+            vfxAmplitude = GetComponentInChildren<ParticleVFXAmplitude>(true);
     }
 
     private void OnActivated(ActivateEventArgs args)
@@ -78,8 +115,7 @@ public class GuitarStringFeedback : MonoBehaviour
         if (_placedOnGuitar) return;
         if (_grab == null || !_grab.isSelected) return;
 
-        if (!stringEvent.IsNull)
-            RuntimeManager.PlayOneShotAttached(stringEvent, gameObject);
+        PlayStringEventAttached();
 
         if (_feedbackRoutine != null)
             StopCoroutine(_feedbackRoutine);

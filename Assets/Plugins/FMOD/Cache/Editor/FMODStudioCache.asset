@@ -1,32 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9104967333613536898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Room3/PhoneRing2
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Room3/PhoneRing2
-  Guid:
-    Data1: 1238797482
-    Data2: 1132506270
-    Data3: -338647623
-    Data4: 1173924455
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2883
 --- !u!114 &-9101548941606183047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,7 +27,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6600
---- !u!114 &-8846986063681576935
+--- !u!114 &-8736988558872701858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,24 +37,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MagicWoosh
+  m_Name: event:/NotesCubes/ECube5
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/MagicWoosh
+  Path: event:/NotesCubes/ECube5
   Guid:
-    Data1: 1184108930
-    Data2: 1252015789
-    Data3: -121779544
-    Data4: -803835363
+    Data1: 1995216655
+    Data2: 1179824714
+    Data3: -943602034
+    Data4: 1720771872
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2600
---- !u!114 &-8677756497920067532
+  Length: 5000
+--- !u!114 &-8719649393132501962
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,21 +63,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MelodyInstruments/CurrentInstrument
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: CurrentInstrument
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3745317172
-    data2: 45435856
-  Type: 1
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LightSwitch
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/LightSwitch
+  Guid:
+    Data1: 1634457111
+    Data2: 1338709014
+    Data3: -537548399
+    Data4: -1235109563
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 221
 --- !u!114 &-8603407485609593779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +162,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2500
---- !u!114 &-7801239585752959540
+--- !u!114 &-8209027683900610774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,41 +172,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano7
+  m_Name: event:/SodadeRadio
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano7
+  Path: event:/SodadeRadio
   Guid:
-    Data1: -1493441130
-    Data2: 1160810973
-    Data3: 1810398386
-    Data4: 1152609177
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1401
---- !u!114 &-7698698955613963722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Voicemail
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Voicemail
-  Guid:
-    Data1: 1099004271
-    Data2: 1155031755
-    Data3: 1166013834
-    Data4: 1278869781
+    Data1: 1905198240
+    Data2: 1216706782
+    Data3: -380757352
+    Data4: 784234028
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 1
@@ -239,7 +188,61 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 6000
+  Length: 290000
+--- !u!114 &-7781004452490614093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MagicWoosh
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/MagicWoosh
+  Guid:
+    Data1: 1184108930
+    Data2: 1252015789
+    Data3: -121779544
+    Data4: -803835363
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2600
+--- !u!114 &-7680793322787291329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/ReD
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/ReD
+  Guid:
+    Data1: -410942733
+    Data2: 1227478554
+    Data3: -239675713
+    Data4: -404635069
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2812
 --- !u!114 &-7676137977196367674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,60 +351,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5147
---- !u!114 &-7465451147603275315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano10
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano10
-  Guid:
-    Data1: -1818214950
-    Data2: 1191399928
-    Data3: -1393997634
-    Data4: -640166684
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1446
---- !u!114 &-7363808168415377048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ShellEvents/CicadaShell
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/ShellEvents/CicadaShell
-  Guid:
-    Data1: 1375167066
-    Data2: 1337064788
-    Data3: -1496784753
-    Data4: 1465792612
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 24565
 --- !u!114 &-7308959077799264840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +378,87 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 11558
+--- !u!114 &-6903094237600227482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano10
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano10
+  Guid:
+    Data1: -1818214950
+    Data2: 1191399928
+    Data3: -1393997634
+    Data4: -640166684
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1446
+--- !u!114 &-6844096104836604896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MusiqueStartFond
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/MusiqueStartFond
+  Guid:
+    Data1: -53404689
+    Data2: 1230439184
+    Data3: -654359627
+    Data4: 424061248
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 82300
+--- !u!114 &-6779071937397516689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Room3/WrongChordGuitar
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/Room3/WrongChordGuitar
+  Guid:
+    Data1: -1535318680
+    Data2: 1170312455
+    Data3: -1543295
+    Data4: 696466343
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3428
 --- !u!114 &-6766999916158536269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +486,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5571
---- !u!114 &-6646322383562296876
+--- !u!114 &-6569848885081305390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -466,14 +496,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RadioHumming
+  m_Name: event:/DoorClose
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/RadioHumming
+  Path: event:/DoorClose
   Guid:
-    Data1: 1679673778
-    Data2: 1291173890
-    Data3: -1970789200
-    Data4: 1244107025
+    Data1: 1503420625
+    Data2: 1266374623
+    Data3: 1577420186
+    Data4: -1831112700
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
+--- !u!114 &-6531637235132272138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ShellEvents/WindShell
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/ShellEvents/WindShell
+  Guid:
+    Data1: -522991016
+    Data2: 1307909193
+    Data3: 460977026
+    Data4: -776251879
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 1
@@ -482,8 +539,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 22507
---- !u!114 &-6426667553187393706
+  Length: 47156
+--- !u!114 &-6168311155535905544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -493,14 +550,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ShellEvents/SeaShell
+  m_Name: event:/BoucleGuitare
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/ShellEvents/SeaShell
+  Path: event:/BoucleGuitare
   Guid:
-    Data1: 516840418
-    Data2: 1305254481
-    Data3: -2059617385
-    Data4: -174501040
+    Data1: -149235113
+    Data2: 1188264180
+    Data3: -1498107221
+    Data4: 1258462488
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 1
@@ -509,8 +566,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 263750
---- !u!114 &-6392509012190596532
+  Length: 63624
+--- !u!114 &-5383615140306712833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -520,14 +577,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/Accord4Good
+  m_Name: event:/NotesPiano2/NotePiano7
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/Accord4Good
+  Path: event:/NotesPiano2/NotePiano7
   Guid:
-    Data1: 1184647587
-    Data2: 1191234397
-    Data3: 1624722332
-    Data4: -1566728209
+    Data1: -1493441130
+    Data2: 1160810973
+    Data3: 1810398386
+    Data4: 1152609177
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 0
@@ -536,8 +593,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2793
---- !u!114 &-6371944064033464368
+  Length: 1401
+--- !u!114 &-5189614530732342150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -547,161 +604,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano2
+  m_Name: event:/Room3/PhoneRing2
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano2
+  Path: event:/Room3/PhoneRing2
   Guid:
-    Data1: -1853002653
-    Data2: 1320873511
-    Data3: 482376089
-    Data4: -2118546354
+    Data1: 1238797482
+    Data2: 1132506270
+    Data3: -338647623
+    Data4: 1173924455
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1544
---- !u!114 &-6358801703781537802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RadioOn
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/RadioOn
-  Guid:
-    Data1: -2023247581
-    Data2: 1151541498
-    Data3: -314029647
-    Data4: 213612731
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 548
---- !u!114 &-6250097070318483043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MusicMix
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/MusicMix
-  Guid:
-    Data1: -2104285395
-    Data2: 1084456860
-    Data3: 1560406438
-    Data4: 733602536
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 4088198008432035236}
-  - {fileID: -5010106462078593534}
-  - {fileID: 3171349849462833139}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 55000
---- !u!114 &-6079689154916943467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PrismFull
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/PrismFull
-  Guid:
-    Data1: -565221606
-    Data2: 1241215274
-    Data3: -196460137
-    Data4: 510505813
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 13800
---- !u!114 &-5673640982501810266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/LightSwitch
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/LightSwitch
-  Guid:
-    Data1: 1634457111
-    Data2: 1338709014
-    Data3: -537548399
-    Data4: -1235109563
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 221
---- !u!114 &-5128702406746921386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano5
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano5
-  Guid:
-    Data1: 708545167
-    Data2: 1312658338
-    Data3: 1340323223
-    Data4: 1871048279
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1763
+  Length: 2883
 --- !u!114 &-5100606814044877414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,7 +648,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1260
---- !u!114 &-5010106462078593534
+--- !u!114 &-4989616054822801028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -738,21 +657,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MusicMix/BassVolume
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: BassVolume
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3568124258
-    data2: 1255992070
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano/EPianoDo
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano/EPianoDo
+  Guid:
+    Data1: 284727079
+    Data2: 1333661139
+    Data3: -1636089977
+    Data4: 525422071
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2750
 --- !u!114 &-4979669193442122845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,7 +702,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2350
---- !u!114 &-4511483141225805932
+--- !u!114 &-4429550449295325725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -790,41 +712,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BiggieVinyl
+  m_Name: event:/NotesPiano2/NotePiano5
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/BiggieVinyl
+  Path: event:/NotesPiano2/NotePiano5
   Guid:
-    Data1: -161719709
-    Data2: 1260369684
-    Data3: 723816125
-    Data4: 1774483584
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 249939
---- !u!114 &-4331263716081722501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/MiE1
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/MiE1
-  Guid:
-    Data1: -1525430737
-    Data2: 1110171129
-    Data3: -971257665
-    Data4: -50358967
+    Data1: 708545167
+    Data2: 1312658338
+    Data3: 1340323223
+    Data4: 1871048279
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 0
@@ -833,8 +728,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2793
---- !u!114 &-4216751420501687317
+  Length: 1763
+--- !u!114 &-4123714819143521247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -844,14 +739,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/HymneALAmourRadio
+  m_Name: event:/ShellEvents/SeaShell
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/HymneALAmourRadio
+  Path: event:/ShellEvents/SeaShell
   Guid:
-    Data1: 627625692
-    Data2: 1091828045
-    Data3: 655567548
-    Data4: -220662874
+    Data1: 516840418
+    Data2: 1305254481
+    Data3: -2059617385
+    Data4: -174501040
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 1
@@ -860,7 +755,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 205875
+  Length: 263750
 --- !u!114 &-3894852873759349188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -888,7 +783,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3900
---- !u!114 &-3554597854276996934
+--- !u!114 &-3797233085602207416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -898,14 +793,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/SiB
+  m_Name: event:/NotesPiano/EPianoSol
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/SiB
+  Path: event:/NotesPiano/EPianoSol
   Guid:
-    Data1: 1800305797
-    Data2: 1228798481
-    Data3: 1535488439
-    Data4: 2003325028
+    Data1: 169717590
+    Data2: 1192591165
+    Data3: -1803724381
+    Data4: 638615725
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 0
@@ -914,8 +809,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2793
---- !u!114 &-3344626775433415727
+  Length: 2879
+--- !u!114 &-3473493805475467272
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -925,14 +820,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/AccordNeutre
+  m_Name: event:/NotesGuitare/LaA
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/AccordNeutre
+  Path: event:/NotesGuitare/LaA
   Guid:
-    Data1: -956761748
-    Data2: 1190357716
-    Data3: 1182418852
-    Data4: -997403296
+    Data1: -714198239
+    Data2: 1243062915
+    Data3: -2024534126
+    Data4: -926885794
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 0
@@ -941,8 +836,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2793
---- !u!114 &-2607807766153929177
+  Length: 2817
+--- !u!114 &-3296578607182033889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -952,23 +847,104 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ShellEvents/WindShell
+  m_Name: event:/Voicemail
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/ShellEvents/WindShell
+  Path: event:/Voicemail
   Guid:
-    Data1: -522991016
-    Data2: 1307909193
-    Data3: 460977026
-    Data4: -776251879
+    Data1: 1099004271
+    Data2: 1155031755
+    Data3: 1166013834
+    Data4: 1278869781
   Banks:
   - {fileID: 5679093789021855148}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 47156
+  Length: 9777
+--- !u!114 &-3044531181474936275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano6
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano6
+  Guid:
+    Data1: -707342059
+    Data2: 1193013366
+    Data3: 68045728
+    Data4: -497311433
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1441
+--- !u!114 &-3038274258378472671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano/EPianoRe
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano/EPianoRe
+  Guid:
+    Data1: 1755382827
+    Data2: 1279327854
+    Data3: 1702537395
+    Data4: 1832075939
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2767
+--- !u!114 &-2755711926844111370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano8
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano8
+  Guid:
+    Data1: 1864353345
+    Data2: 1078953299
+    Data3: 552247191
+    Data4: 2095288305
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1437
 --- !u!114 &-2528326251480024894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,33 +972,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2400
---- !u!114 &-2354513440052630334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/DrumsLoopRadio
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/DrumsLoopRadio
-  Guid:
-    Data1: 1736375454
-    Data2: 1323731813
-    Data3: 1107453351
-    Data4: 809727430
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 54850
 --- !u!114 &-2145308522839866828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1049,61 +998,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 15828
---- !u!114 &-2131425456284728809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano3
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano3
-  Guid:
-    Data1: -371482238
-    Data2: 1294964196
-    Data3: 1811548059
-    Data4: 1462580157
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1375
---- !u!114 &-2080269273140904492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/DoorClose
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/DoorClose
-  Guid:
-    Data1: 1503420625
-    Data2: 1266374623
-    Data3: 1577420186
-    Data4: -1831112700
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1000
+  Length: 49302
 --- !u!114 &-1533764841269862209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1146,14 +1041,14 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/VoixBank.bank
   Name: VoixBank
   StudioPath: bank:/VoixBank
-  lastModified: 639133445647062614
+  lastModified: 639135002414402322
   FileSizes:
   - Name: Desktop
-    Value: 26064384
+    Value: 27682592
   - Name: Mobile
     Value: 13509280
   Exists: 1
---- !u!114 &-907395494655012342
+--- !u!114 &-1050660732316532777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1163,14 +1058,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/ShellEvents/BirdsShell
+  m_Name: event:/RadioHumming
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/ShellEvents/BirdsShell
+  Path: event:/RadioHumming
   Guid:
-    Data1: 732418501
-    Data2: 1130440168
-    Data3: 1474243465
-    Data4: 2000221785
+    Data1: 1679673778
+    Data2: 1291173890
+    Data3: -1970789200
+    Data4: 1244107025
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 1
@@ -1179,8 +1074,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 20000
---- !u!114 &-646251701444693710
+  Length: 22507
+--- !u!114 &-1010074052700188546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1190,24 +1085,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/Accord3
+  m_Name: event:/Room3/CleanChordGuitar
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/Accord3
+  Path: event:/Room3/CleanChordGuitar
   Guid:
-    Data1: -746138944
-    Data2: 1085338760
-    Data3: 1781193402
-    Data4: 1955459472
+    Data1: -1235276205
+    Data2: 1198847065
+    Data3: 59952296
+    Data4: -602516071
   Banks:
   - {fileID: 5679093789021855148}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2831
---- !u!114 &-428125702668999622
+  Length: 9500
+--- !u!114 &-634567972735564114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1217,14 +1112,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/Accord5
+  m_Name: event:/PianoCompletion
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/Accord5
+  Path: event:/PianoCompletion
   Guid:
-    Data1: -1731211502
-    Data2: 1249615787
-    Data3: 1694305181
-    Data4: -2120949265
+    Data1: 453739466
+    Data2: 1143545139
+    Data3: 2003314085
+    Data4: 1403652900
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 0
@@ -1233,7 +1128,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2774
+  Length: 3079
+--- !u!114 &-459451169732792258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/HymneALAmourRadio
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/HymneALAmourRadio
+  Guid:
+    Data1: 627625692
+    Data2: 1091828045
+    Data3: 655567548
+    Data4: -220662874
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 205875
 --- !u!114 &-367790549299036395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,61 +1210,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 27611
---- !u!114 &-202495888257621609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano/EPianoSol
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano/EPianoSol
-  Guid:
-    Data1: 169717590
-    Data2: 1192591165
-    Data3: -1803724381
-    Data4: 638615725
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2879
---- !u!114 &-186681074306420127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MelodyInstruments
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/MelodyInstruments
-  Guid:
-    Data1: -873141106
-    Data2: 1156080571
-    Data3: -1173471339
-    Data4: 1821694507
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -8677756497920067532}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 26666
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1361,60 +1228,6 @@ MonoBehaviour:
   - {fileID: 3648395072459672418}
   - {fileID: -1071410960595064020}
   EditorEvents:
-  - {fileID: 4619742602065421848}
-  - {fileID: 3493907382532315885}
-  - {fileID: 5100627047634411666}
-  - {fileID: -428125702668999622}
-  - {fileID: 2218061163448764549}
-  - {fileID: -5673640982501810266}
-  - {fileID: 3402640554717221085}
-  - {fileID: 4106410941303936660}
-  - {fileID: -6358801703781537802}
-  - {fileID: 7656267669554782003}
-  - {fileID: 456257785526060768}
-  - {fileID: 3560704417651451682}
-  - {fileID: -6250097070318483043}
-  - {fileID: -4331263716081722501}
-  - {fileID: 8342771114222531247}
-  - {fileID: 4954529853328961441}
-  - {fileID: 4307086407061451238}
-  - {fileID: -202495888257621609}
-  - {fileID: -2607807766153929177}
-  - {fileID: -7363808168415377048}
-  - {fileID: -4511483141225805932}
-  - {fileID: -6371944064033464368}
-  - {fileID: 7312865777171095843}
-  - {fileID: -3344626775433415727}
-  - {fileID: -7698698955613963722}
-  - {fileID: -2131425456284728809}
-  - {fileID: -3554597854276996934}
-  - {fileID: 5305533051285844376}
-  - {fileID: -186681074306420127}
-  - {fileID: -5128702406746921386}
-  - {fileID: -7801239585752959540}
-  - {fileID: -2354513440052630334}
-  - {fileID: 626318313735064479}
-  - {fileID: 6927601263674075430}
-  - {fileID: -6392509012190596532}
-  - {fileID: -9104967333613536898}
-  - {fileID: -6646322383562296876}
-  - {fileID: -646251701444693710}
-  - {fileID: -907395494655012342}
-  - {fileID: 2388343510336709976}
-  - {fileID: 6964769251158059518}
-  - {fileID: 2881006050120841919}
-  - {fileID: 4029971460564862450}
-  - {fileID: -2080269273140904492}
-  - {fileID: 4885802309375244562}
-  - {fileID: 7465851718976124694}
-  - {fileID: 6569349338946783950}
-  - {fileID: -7465451147603275315}
-  - {fileID: -4216751420501687317}
-  - {fileID: 5855216095661208236}
-  - {fileID: -6426667553187393706}
-  - {fileID: 3147834669598796596}
-  - {fileID: 8493877408420615732}
-  - {fileID: 6666971961917099891}
   - {fileID: -5100606814044877414}
   - {fileID: 5977049628811880051}
   - {fileID: -7676137977196367674}
@@ -1456,9 +1269,64 @@ MonoBehaviour:
   - {fileID: -8448917278185435740}
   - {fileID: 127355407251819469}
   - {fileID: 7322053775599387256}
-  - {fileID: -6079689154916943467}
-  - {fileID: -8846986063681576935}
-  - {fileID: 8367183125338014485}
+  - {fileID: 4679522972751965081}
+  - {fileID: -8736988558872701858}
+  - {fileID: 4071542801886387616}
+  - {fileID: 4671591560403736714}
+  - {fileID: -3044531181474936275}
+  - {fileID: -8719649393132501962}
+  - {fileID: 9185753966903091}
+  - {fileID: 4705501898194593472}
+  - {fileID: -3473493805475467272}
+  - {fileID: 6904812704724028337}
+  - {fileID: -4989616054822801028}
+  - {fileID: 713573174671379050}
+  - {fileID: -3038274258378472671}
+  - {fileID: 4377135666910481761}
+  - {fileID: 4287914767846117653}
+  - {fileID: 5360859830994905257}
+  - {fileID: -2755711926844111370}
+  - {fileID: -1010074052700188546}
+  - {fileID: -3797233085602207416}
+  - {fileID: -6531637235132272138}
+  - {fileID: 4736975038182938468}
+  - {fileID: 3402471770419219183}
+  - {fileID: 557297917198186030}
+  - {fileID: -6779071937397516689}
+  - {fileID: 2445823850751323970}
+  - {fileID: -3296578607182033889}
+  - {fileID: -7781004452490614093}
+  - {fileID: 4385166715268164801}
+  - {fileID: 4099924881425791802}
+  - {fileID: 2389611841720387176}
+  - {fileID: 7042862937845880471}
+  - {fileID: -4429550449295325725}
+  - {fileID: -5383615140306712833}
+  - {fileID: 624928505919476927}
+  - {fileID: -8209027683900610774}
+  - {fileID: 4478157487294363095}
+  - {fileID: 1992145554153891297}
+  - {fileID: -5189614530732342150}
+  - {fileID: -1050660732316532777}
+  - {fileID: 5178880731688165848}
+  - {fileID: 231119066085610880}
+  - {fileID: 7289376699045627917}
+  - {fileID: -634567972735564114}
+  - {fileID: 5182122301149456882}
+  - {fileID: 1764678186137441079}
+  - {fileID: -6569848885081305390}
+  - {fileID: 818271116846166440}
+  - {fileID: 1424098778438377976}
+  - {fileID: 7931245305510330179}
+  - {fileID: -6903094237600227482}
+  - {fileID: -459451169732792258}
+  - {fileID: 553609968619032443}
+  - {fileID: -4123714819143521247}
+  - {fileID: 8763329599253302346}
+  - {fileID: -6844096104836604896}
+  - {fileID: -7680793322787291329}
+  - {fileID: 8681699755599478896}
+  - {fileID: -6168311155535905544}
   EditorParameters:
   - {fileID: 1609086805843980587}
   MasterBanks:
@@ -1466,204 +1334,233 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 8107624429480853897}
   cacheVersion: 131858
-  cacheTime: 639133445647062614
+  cacheTime: 639135114614859969
   SerializableEventsDict:
-  - key: event:/FinalMusic
-    index: 0
-  - key: event:/NotesCubes/ECube5
-    index: 1
-  - key: event:/NotesPiano2/NotePiano9
-    index: 2
-  - key: event:/NotesGuitare/Accord5
-    index: 3
-  - key: event:/NotesPiano2/NotePiano6
-    index: 4
-  - key: event:/LightSwitch
-    index: 5
-  - key: event:/DoorOpening
-    index: 6
-  - key: event:/NotesGuitare/LaA
-    index: 7
-  - key: event:/RadioOn
-    index: 8
-  - key: event:/NotesPiano/EPianoDo
-    index: 9
-  - key: event:/NotesPiano2/NotePiano4
-    index: 10
-  - key: event:/NotesPiano/EPianoRe
-    index: 11
-  - key: event:/MusicMix
-    index: 12
-  - key: event:/NotesGuitare/MiE1
-    index: 13
-  - key: event:/NotesPiano/EPianoFa
-    index: 14
-  - key: event:/NotesPiano2/NotePiano8
-    index: 15
-  - key: event:/Room3/CleanChordGuitar
-    index: 16
-  - key: event:/NotesPiano/EPianoSol
-    index: 17
-  - key: event:/ShellEvents/WindShell
-    index: 18
-  - key: event:/ShellEvents/CicadaShell
-    index: 19
-  - key: event:/BiggieVinyl
-    index: 20
-  - key: event:/NotesPiano2/NotePiano2
-    index: 21
-  - key: event:/Room3/WrongChordGuitar
-    index: 22
-  - key: event:/NotesGuitare/AccordNeutre
-    index: 23
-  - key: event:/Voicemail
-    index: 24
-  - key: event:/NotesPiano2/NotePiano3
-    index: 25
-  - key: event:/NotesGuitare/SiB
-    index: 26
-  - key: event:/MusicBox
-    index: 27
-  - key: event:/MelodyInstruments
-    index: 28
-  - key: event:/NotesPiano2/NotePiano5
-    index: 29
-  - key: event:/NotesPiano2/NotePiano7
-    index: 30
-  - key: event:/DrumsLoopRadio
-    index: 31
-  - key: event:/SodadeRadio
-    index: 32
-  - key: event:/NotesGuitare/Accord1
-    index: 33
-  - key: event:/NotesGuitare/Accord4Good
-    index: 34
-  - key: event:/Room3/PhoneRing2
-    index: 35
-  - key: event:/RadioHumming
-    index: 36
-  - key: event:/NotesGuitare/Accord3
-    index: 37
-  - key: event:/ShellEvents/BirdsShell
-    index: 38
-  - key: event:/LonelyDayIPOD
-    index: 39
-  - key: event:/PianoCompletion
-    index: 40
-  - key: event:/NotesPiano2/NotePiano1
-    index: 41
-  - key: event:/NotesPiano/EPianoMi
-    index: 42
-  - key: event:/DoorClose
-    index: 43
-  - key: event:/NotesGuitare/MiE2
-    index: 44
-  - key: event:/NotesGuitare/SolG
-    index: 45
-  - key: event:/NotesPiano2/NotePiano11
-    index: 46
-  - key: event:/NotesPiano2/NotePiano10
-    index: 47
-  - key: event:/HymneALAmourRadio
-    index: 48
-  - key: event:/NotesGuitare/Accord2
-    index: 49
-  - key: event:/ShellEvents/SeaShell
-    index: 50
-  - key: event:/RewindClic
-    index: 51
-  - key: event:/MusiqueStartFond
-    index: 52
-  - key: event:/NotesGuitare/ReD
-    index: 53
   - key: event:/VoixOffs/Therapiste/AQuoiCaTaFaitPenser
-    index: 54
+    index: 0
   - key: event:/VoixOffs/Therapiste/ExploreEtTuAuras
-    index: 55
+    index: 1
   - key: event:/VoixOffs/Therapiste/ParfaitK7
-    index: 56
+    index: 2
   - key: event:/VoixOffs/Naya/OuiJespere
-    index: 57
+    index: 3
   - key: event:/VoixOffs/Therapiste/BienJoueTuFaisDesProgres
-    index: 58
+    index: 4
   - key: event:/VoixOffs/Naya/CesDisquesMesParents
-    index: 59
+    index: 5
   - key: event:/VoixOffs/Naya/CePianoEst
-    index: 60
+    index: 6
   - key: event:/VoixOffs/Naya/JeMeSouviensDe
-    index: 61
+    index: 7
   - key: event:/VoixOffs/Therapiste/LeTempsPasse
-    index: 62
+    index: 8
   - key: event:/VoixOffs/Naya/JaimaisTellementEcouter
-    index: 63
+    index: 9
   - key: event:/VoixOffs/Therapiste/TuEsDansTonMonde
-    index: 64
+    index: 10
   - key: event:/VoixOffs/Naya/AhCestLePiano
-    index: 65
+    index: 11
   - key: event:/VoixOffs/Therapiste/CestNormalController
-    index: 66
+    index: 12
   - key: event:/VoixOffs/Naya/OhCestLaCuisine
-    index: 67
+    index: 13
   - key: event:/VoixOffs/Therapiste/NayaTuPeuxGarder
-    index: 68
+    index: 14
   - key: event:/VoixOffs/Naya/IlManquaitMonAssiette
-    index: 69
+    index: 15
   - key: event:/VoixOffs/Therapiste/EtLaTuViensDeRajouter
-    index: 70
+    index: 16
   - key: event:/VocalParents
-    index: 71
+    index: 17
   - key: event:/VoixOffs/Therapiste/LaisseToiGuiderPar
-    index: 72
+    index: 18
   - key: event:/VoixOffs/Naya/C'estLaRadioQui
-    index: 73
+    index: 19
   - key: event:/VoixOffs/Naya/CeCollierMaMere
-    index: 74
+    index: 20
   - key: event:/VoixOffs/Naya/OhTiensJeReconnais
-    index: 75
+    index: 21
   - key: event:/VoixOffs/Therapiste/TyEsPresqueEquilibre
-    index: 76
+    index: 22
   - key: event:/VoixOffs/Naya/OuiCestVraiNumeros
-    index: 77
+    index: 23
   - key: event:/VoixOffs/Naya/WowLesSensations
-    index: 78
+    index: 24
   - key: event:/VoixOffs/Therapiste/JeVaisCompter
-    index: 79
+    index: 25
   - key: event:/VoixOffs/Therapiste/QuandPreteSors
-    index: 80
+    index: 26
   - key: event:/VoixOffs/Therapiste/CestPresqueTermine
-    index: 81
+    index: 27
   - key: event:/VoixOffs/Naya/JeComprendsPas
-    index: 82
+    index: 28
   - key: event:/VoixOffs/Naya/JeMeSuisToujoursDit
-    index: 83
+    index: 29
   - key: event:/VoixOffs/Therapiste/TuNesPasFigee
-    index: 84
+    index: 30
   - key: event:/VoixOffs/Naya/OkJeSuisPrete
-    index: 85
+    index: 31
   - key: event:/VoixOffs/Therapiste/DisMoiEstceQueTu
-    index: 86
+    index: 32
   - key: event:/VoixOffs/Therapiste/ParfaitGuitare
-    index: 87
+    index: 33
   - key: event:/VoixOffs/Therapiste/SuperNaya
-    index: 88
+    index: 34
   - key: event:/Sigh
-    index: 89
+    index: 35
   - key: event:/VoixOffs/Therapiste/SiTuAsBesoinDeSouffler
-    index: 90
+    index: 36
   - key: event:/VoixOffs/Naya/CetteGuitareMaToujours
-    index: 91
+    index: 37
   - key: event:/VoixOffs/Naya/TousCesSonsCest
-    index: 92
+    index: 38
   - key: event:/VoixOffs/Naya/IlMeSembleQueNumeros
-    index: 93
+    index: 39
   - key: event:/InputSpaceMusic
-    index: 94
+    index: 40
+  - key: event:/FinalMusic
+    index: 41
+  - key: event:/NotesCubes/ECube5
+    index: 42
+  - key: event:/NotesPiano2/NotePiano9
+    index: 43
+  - key: event:/NotesGuitare/Accord5
+    index: 44
+  - key: event:/NotesPiano2/NotePiano6
+    index: 45
+  - key: event:/LightSwitch
+    index: 46
   - key: event:/PrismFull
-    index: 95
+    index: 47
+  - key: event:/DoorOpening
+    index: 48
+  - key: event:/NotesGuitare/LaA
+    index: 49
+  - key: event:/RadioOn
+    index: 50
+  - key: event:/NotesPiano/EPianoDo
+    index: 51
+  - key: event:/NotesPiano2/NotePiano4
+    index: 52
+  - key: event:/NotesPiano/EPianoRe
+    index: 53
+  - key: event:/MusicMix
+    index: 54
+  - key: event:/NotesGuitare/MiE1
+    index: 55
+  - key: event:/NotesPiano/EPianoFa
+    index: 56
+  - key: event:/NotesPiano2/NotePiano8
+    index: 57
+  - key: event:/Room3/CleanChordGuitar
+    index: 58
+  - key: event:/NotesPiano/EPianoSol
+    index: 59
+  - key: event:/ShellEvents/WindShell
+    index: 60
+  - key: event:/ShellEvents/CicadaShell
+    index: 61
+  - key: event:/BiggieVinyl
+    index: 62
+  - key: event:/NotesPiano2/NotePiano2
+    index: 63
+  - key: event:/Room3/WrongChordGuitar
+    index: 64
+  - key: event:/NotesGuitare/AccordNeutre
+    index: 65
+  - key: event:/Voicemail
+    index: 66
   - key: event:/MagicWoosh
+    index: 67
+  - key: event:/NotesPiano2/NotePiano3
+    index: 68
+  - key: event:/NotesGuitare/SiB
+    index: 69
+  - key: event:/MusicBox
+    index: 70
+  - key: event:/MelodyInstruments
+    index: 71
+  - key: event:/NotesPiano2/NotePiano5
+    index: 72
+  - key: event:/NotesPiano2/NotePiano7
+    index: 73
+  - key: event:/DrumsLoopRadio
+    index: 74
+  - key: event:/SodadeRadio
+    index: 75
+  - key: event:/NotesGuitare/Accord1
+    index: 76
+  - key: event:/NotesGuitare/Accord4Good
+    index: 77
+  - key: event:/Room3/PhoneRing2
+    index: 78
+  - key: event:/RadioHumming
+    index: 79
+  - key: event:/NotesGuitare/Accord3
+    index: 80
+  - key: event:/ShellEvents/BirdsShell
+    index: 81
+  - key: event:/LonelyDayIPOD
+    index: 82
+  - key: event:/PianoCompletion
+    index: 83
+  - key: event:/NotesPiano2/NotePiano1
+    index: 84
+  - key: event:/NotesPiano/EPianoMi
+    index: 85
+  - key: event:/DoorClose
+    index: 86
+  - key: event:/NotesGuitare/MiE2
+    index: 87
+  - key: event:/NotesGuitare/SolG
+    index: 88
+  - key: event:/NotesPiano2/NotePiano11
+    index: 89
+  - key: event:/NotesPiano2/NotePiano10
+    index: 90
+  - key: event:/HymneALAmourRadio
+    index: 91
+  - key: event:/NotesGuitare/Accord2
+    index: 92
+  - key: event:/ShellEvents/SeaShell
+    index: 93
+  - key: event:/RewindClic
+    index: 94
+  - key: event:/MusiqueStartFond
+    index: 95
+  - key: event:/NotesGuitare/ReD
     index: 96
   - key: event:/Twinkle
     index: 97
+  - key: event:/BoucleGuitare
+    index: 98
+--- !u!114 &9185753966903091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PrismFull
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/PrismFull
+  Guid:
+    Data1: -565221606
+    Data2: 1241215274
+    Data3: -196460137
+    Data4: 510505813
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 13800
 --- !u!114 &127355407251819469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1691,7 +1588,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3550
---- !u!114 &456257785526060768
+--- !u!114 &231119066085610880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1701,41 +1598,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano4
+  m_Name: event:/ShellEvents/BirdsShell
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano4
+  Path: event:/ShellEvents/BirdsShell
   Guid:
-    Data1: -956980441
-    Data2: 1283149430
-    Data3: 1112455327
-    Data4: -1363484977
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1535
---- !u!114 &626318313735064479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SodadeRadio
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/SodadeRadio
-  Guid:
-    Data1: 1905198240
-    Data2: 1216706782
-    Data3: -380757352
-    Data4: 784234028
+    Data1: 732418501
+    Data2: 1130440168
+    Data3: 1474243465
+    Data4: 2000221785
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 1
@@ -1744,7 +1614,88 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 290000
+  Length: 20000
+--- !u!114 &553609968619032443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/Accord2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/Accord2
+  Guid:
+    Data1: 486369761
+    Data2: 1076889677
+    Data3: -592597881
+    Data4: 2102441105
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2807
+--- !u!114 &557297917198186030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano2
+  Guid:
+    Data1: -1853002653
+    Data2: 1320873511
+    Data3: 482376089
+    Data4: -2118546354
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1544
+--- !u!114 &624928505919476927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DrumsLoopRadio
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DrumsLoopRadio
+  Guid:
+    Data1: 1736375454
+    Data2: 1323731813
+    Data3: 1107453351
+    Data4: 809727430
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 54850
 --- !u!114 &643708526169436094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1772,6 +1723,87 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3250
+--- !u!114 &713573174671379050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano4
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano4
+  Guid:
+    Data1: -956980441
+    Data2: 1283149430
+    Data3: 1112455327
+    Data4: -1363484977
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1535
+--- !u!114 &818271116846166440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/MiE2
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/MiE2
+  Guid:
+    Data1: -1608556075
+    Data2: 1082148990
+    Data3: -1294891093
+    Data4: 1752605638
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
+--- !u!114 &1424098778438377976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/SolG
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/SolG
+  Guid:
+    Data1: 1146171862
+    Data2: 1285989096
+    Data3: -1988125254
+    Data4: -1281353714
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
 --- !u!114 &1609086805843980587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1796,6 +1828,33 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &1764678186137441079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano/EPianoMi
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano/EPianoMi
+  Guid:
+    Data1: 236576208
+    Data2: 1159278569
+    Data3: -302823018
+    Data4: 1491437611
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2665
 --- !u!114 &1853671190425232942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1850,6 +1909,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6083
+--- !u!114 &1992145554153891297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/Accord4Good
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/Accord4Good
+  Guid:
+    Data1: 1184647587
+    Data2: 1191234397
+    Data3: 1624722332
+    Data4: -1566728209
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
 --- !u!114 &2074275914908661649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1877,7 +1963,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2800
---- !u!114 &2218061163448764549
+--- !u!114 &2389611841720387176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1887,41 +1973,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano6
+  m_Name: event:/MusicBox
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano6
+  Path: event:/MusicBox
   Guid:
-    Data1: -707342059
-    Data2: 1193013366
-    Data3: 68045728
-    Data4: -497311433
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1441
---- !u!114 &2388343510336709976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/LonelyDayIPOD
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/LonelyDayIPOD
-  Guid:
-    Data1: 935017928
-    Data2: 1182852487
-    Data3: 1982473357
-    Data4: 1257707208
+    Data1: 757438350
+    Data2: 1262089174
+    Data3: -1294635345
+    Data4: 800823322
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 1
@@ -1930,7 +1989,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 110107
+  Length: 58047
+--- !u!114 &2445823850751323970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/AccordNeutre
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/AccordNeutre
+  Guid:
+    Data1: -956761748
+    Data2: 1190357716
+    Data3: 1182418852
+    Data4: -997403296
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
 --- !u!114 &2831363980572060349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1958,7 +2044,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4806
---- !u!114 &2881006050120841919
+--- !u!114 &3402471770419219183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1968,101 +2054,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano1
+  m_Name: event:/BiggieVinyl
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano1
+  Path: event:/BiggieVinyl
   Guid:
-    Data1: -1607676464
-    Data2: 1083415314
-    Data3: 2003028667
-    Data4: 161805046
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1562
---- !u!114 &3147834669598796596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RewindClic
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/RewindClic
-  Guid:
-    Data1: -525159449
-    Data2: 1302290736
-    Data3: 1078304903
-    Data4: -1733720035
+    Data1: -161719709
+    Data2: 1260369684
+    Data3: 723816125
+    Data4: 1774483584
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2350
---- !u!114 &3171349849462833139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MusicMix/GuitarVolume
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: GuitarVolume
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 574505299
-    data2: 1924609172
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
---- !u!114 &3402640554717221085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/DoorOpening
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/DoorOpening
-  Guid:
-    Data1: -2013703904
-    Data2: 1245085483
-    Data3: -133938272
-    Data4: -1593670620
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1790
+  Length: 249939
 --- !u!114 &3426447634561116514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2117,60 +2125,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4188
---- !u!114 &3493907382532315885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesCubes/ECube5
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesCubes/ECube5
-  Guid:
-    Data1: 1995216655
-    Data2: 1179824714
-    Data3: -943602034
-    Data4: 1720771872
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5000
---- !u!114 &3560704417651451682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano/EPianoRe
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano/EPianoRe
-  Guid:
-    Data1: 1755382827
-    Data2: 1279327854
-    Data3: 1702537395
-    Data4: 1832075939
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2767
 --- !u!114 &3648395072459672418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2186,41 +2140,14 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639133445569566889
+  lastModified: 639135109634681877
   FileSizes:
   - Name: Desktop
     Value: 1892
   - Name: Mobile
     Value: 1892
   Exists: 1
---- !u!114 &4029971460564862450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano/EPianoMi
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano/EPianoMi
-  Guid:
-    Data1: 236576208
-    Data2: 1159278569
-    Data3: -302823018
-    Data4: 1491437611
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2665
---- !u!114 &4088198008432035236
+--- !u!114 &3920309568644786680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2230,21 +2157,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MusicMix/ViolonsVolume
+  m_Name: parameter:/MelodyInstruments/CurrentInstrument
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
-  Name: ViolonsVolume
+  Name: CurrentInstrument
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 2908202438
-    data2: 3755917448
-  Type: 0
+    data1: 3745317172
+    data2: 45435856
+  Type: 1
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &4106410941303936660
+--- !u!114 &4071542801886387616
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2254,14 +2181,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/LaA
+  m_Name: event:/NotesPiano2/NotePiano9
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/LaA
+  Path: event:/NotesPiano2/NotePiano9
   Guid:
-    Data1: -714198239
-    Data2: 1243062915
-    Data3: -2024534126
-    Data4: -926885794
+    Data1: -1693021422
+    Data2: 1155528440
+    Data3: 689673093
+    Data4: -1893296456
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 0
@@ -2270,8 +2197,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2817
---- !u!114 &4307086407061451238
+  Length: 1294
+--- !u!114 &4099924881425791802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2281,23 +2208,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Room3/CleanChordGuitar
+  m_Name: event:/NotesGuitare/SiB
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Room3/CleanChordGuitar
+  Path: event:/NotesGuitare/SiB
   Guid:
-    Data1: -1235276205
-    Data2: 1198847065
-    Data3: 59952296
-    Data4: -602516071
+    Data1: 1800305797
+    Data2: 1228798481
+    Data3: 1535488439
+    Data4: 2003325028
   Banks:
   - {fileID: 5679093789021855148}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 9500
+  Length: 2793
+--- !u!114 &4287914767846117653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/MiE1
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/MiE1
+  Guid:
+    Data1: -1525430737
+    Data2: 1110171129
+    Data3: -971257665
+    Data4: -50358967
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2793
 --- !u!114 &4372740020665086405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2325,6 +2279,90 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3250
+--- !u!114 &4377135666910481761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MusicMix
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/MusicMix
+  Guid:
+    Data1: -2104285395
+    Data2: 1084456860
+    Data3: 1560406438
+    Data4: 733602536
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 4866868555470724488}
+  - {fileID: 7371155577789179644}
+  - {fileID: 5305320107369539384}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 55000
+--- !u!114 &4385166715268164801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano3
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano3
+  Guid:
+    Data1: -371482238
+    Data2: 1294964196
+    Data3: 1811548059
+    Data4: 1462580157
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1375
+--- !u!114 &4478157487294363095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/Accord1
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/Accord1
+  Guid:
+    Data1: -177146463
+    Data2: 1249839191
+    Data3: 1817380285
+    Data4: 390080765
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2802
 --- !u!114 &4542448933897033730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2352,7 +2390,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5725
---- !u!114 &4619742602065421848
+--- !u!114 &4671591560403736714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesGuitare/Accord5
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesGuitare/Accord5
+  Guid:
+    Data1: -1731211502
+    Data2: 1249615787
+    Data3: 1694305181
+    Data4: -2120949265
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2774
+--- !u!114 &4679522972751965081
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2378,7 +2443,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 226272
+  Length: 178294
 --- !u!114 &4700941151613915406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2406,6 +2471,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 7921
+--- !u!114 &4705501898194593472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorOpening
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DoorOpening
+  Guid:
+    Data1: -2013703904
+    Data2: 1245085483
+    Data3: -133938272
+    Data4: -1593670620
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1790
 --- !u!114 &4730797290117550452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2433,7 +2525,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1340
---- !u!114 &4885802309375244562
+--- !u!114 &4736975038182938468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2443,24 +2535,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/MiE2
+  m_Name: event:/ShellEvents/CicadaShell
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/MiE2
+  Path: event:/ShellEvents/CicadaShell
   Guid:
-    Data1: -1608556075
-    Data2: 1082148990
-    Data3: -1294891093
-    Data4: 1752605638
+    Data1: 1375167066
+    Data2: 1337064788
+    Data3: -1496784753
+    Data4: 1465792612
   Banks:
   - {fileID: 5679093789021855148}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2793
---- !u!114 &4954529853328961441
+  Length: 24565
+--- !u!114 &4866868555470724488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2469,24 +2561,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano8
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano8
-  Guid:
-    Data1: 1864353345
-    Data2: 1078953299
-    Data3: 552247191
-    Data4: 2095288305
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1437
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicMix/ViolonsVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: ViolonsVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2908202438
+    data2: 3755917448
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &5064003221121285261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2514,7 +2603,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3800
---- !u!114 &5100627047634411666
+--- !u!114 &5178880731688165848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2524,14 +2613,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano9
+  m_Name: event:/NotesGuitare/Accord3
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano9
+  Path: event:/NotesGuitare/Accord3
   Guid:
-    Data1: -1693021422
-    Data2: 1155528440
-    Data3: 689673093
-    Data4: -1893296456
+    Data1: -746138944
+    Data2: 1085338760
+    Data3: 1781193402
+    Data4: 1955459472
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 0
@@ -2540,7 +2629,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1294
+  Length: 2831
+--- !u!114 &5182122301149456882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano1
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano1
+  Guid:
+    Data1: -1607676464
+    Data2: 1083415314
+    Data3: 2003028667
+    Data4: 161805046
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1562
 --- !u!114 &5252107658049937893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2568,7 +2684,31 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8000
---- !u!114 &5305533051285844376
+--- !u!114 &5305320107369539384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicMix/GuitarVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: GuitarVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 574505299
+    data2: 1924609172
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &5360859830994905257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2578,23 +2718,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MusicBox
+  m_Name: event:/NotesPiano/EPianoFa
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/MusicBox
+  Path: event:/NotesPiano/EPianoFa
   Guid:
-    Data1: 757438350
-    Data2: 1262089174
-    Data3: -1294635345
-    Data4: 800823322
+    Data1: 1534494001
+    Data2: 1301129466
+    Data3: 590225040
+    Data4: -1309443553
   Banks:
   - {fileID: 5679093789021855148}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 58047
+  Length: 2691
 --- !u!114 &5679093789021855148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2610,10 +2750,10 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639133445569346043
+  lastModified: 639135114614859969
   FileSizes:
   - Name: Desktop
-    Value: 100872896
+    Value: 97901664
   - Name: Mobile
     Value: 55391456
   Exists: 1
@@ -2644,33 +2784,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3150
---- !u!114 &5855216095661208236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/Accord2
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/Accord2
-  Guid:
-    Data1: 486369761
-    Data2: 1076889677
-    Data3: -592597881
-    Data4: 2102441105
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2807
 --- !u!114 &5890322003260462676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2752,7 +2865,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3855
---- !u!114 &6569349338946783950
+--- !u!114 &6904812704724028337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2762,14 +2875,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano2/NotePiano11
+  m_Name: event:/RadioOn
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano2/NotePiano11
+  Path: event:/RadioOn
   Guid:
-    Data1: -1517348905
-    Data2: 1238945228
-    Data3: 751711892
-    Data4: -1486381905
+    Data1: -2023247581
+    Data2: 1151541498
+    Data3: -314029647
+    Data4: 213612731
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 0
@@ -2778,8 +2891,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1468
---- !u!114 &6666971961917099891
+  Length: 548
+--- !u!114 &7042862937845880471
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2789,24 +2902,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/ReD
+  m_Name: event:/MelodyInstruments
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/ReD
+  Path: event:/MelodyInstruments
   Guid:
-    Data1: -410942733
-    Data2: 1227478554
-    Data3: -239675713
-    Data4: -404635069
+    Data1: -873141106
+    Data2: 1156080571
+    Data3: -1173471339
+    Data4: 1821694507
   Banks:
   - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 3920309568644786680}
   MinDistance: 1
   MaxDistance: 20
-  Length: 2812
---- !u!114 &6927601263674075430
+  Length: 26666
+--- !u!114 &7289376699045627917
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2816,50 +2930,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/Accord1
+  m_Name: event:/LonelyDayIPOD
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/Accord1
+  Path: event:/LonelyDayIPOD
   Guid:
-    Data1: -177146463
-    Data2: 1249839191
-    Data3: 1817380285
-    Data4: 390080765
+    Data1: 935017928
+    Data2: 1182852487
+    Data3: 1982473357
+    Data4: 1257707208
   Banks:
   - {fileID: 5679093789021855148}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2802
---- !u!114 &6964769251158059518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PianoCompletion
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/PianoCompletion
-  Guid:
-    Data1: 453739466
-    Data2: 1143545139
-    Data3: 2003314085
-    Data4: 1403652900
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3079
+  Length: 110107
 --- !u!114 &7290661474649547748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2887,33 +2974,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8500
---- !u!114 &7312865777171095843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Room3/WrongChordGuitar
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/Room3/WrongChordGuitar
-  Guid:
-    Data1: -1535318680
-    Data2: 1170312455
-    Data3: -1543295
-    Data4: 696466343
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3428
 --- !u!114 &7322053775599387256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2941,7 +3001,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &7465851718976124694
+--- !u!114 &7371155577789179644
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2950,51 +3010,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesGuitare/SolG
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesGuitare/SolG
-  Guid:
-    Data1: 1146171862
-    Data2: 1285989096
-    Data3: -1988125254
-    Data4: -1281353714
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2793
---- !u!114 &7656267669554782003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano/EPianoDo
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano/EPianoDo
-  Guid:
-    Data1: 284727079
-    Data2: 1333661139
-    Data3: -1636089977
-    Data4: 525422071
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2750
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MusicMix/BassVolume
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorParamRef
+  Name: BassVolume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3568124258
+    data2: 1255992070
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &7684117568668836782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3022,6 +3052,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4383
+--- !u!114 &7931245305510330179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano11
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano11
+  Guid:
+    Data1: -1517348905
+    Data2: 1238945228
+    Data3: 751711892
+    Data4: -1486381905
+  Banks:
+  - {fileID: 5679093789021855148}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1468
 --- !u!114 &8107624429480853897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3037,12 +3094,12 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639133445569582065
+  lastModified: 639135109634707182
   FileSizes:
   - Name: Desktop
-    Value: 5950
+    Value: 6006
   - Name: Mobile
-    Value: 5950
+    Value: 6006
   Exists: 1
 --- !u!114 &8312378695253022431
 MonoBehaviour:
@@ -3071,34 +3128,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4146
---- !u!114 &8342771114222531247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/NotesPiano/EPianoFa
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/NotesPiano/EPianoFa
-  Guid:
-    Data1: 1534494001
-    Data2: 1301129466
-    Data3: 590225040
-    Data4: -1309443553
-  Banks:
-  - {fileID: 5679093789021855148}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2691
---- !u!114 &8367183125338014485
+--- !u!114 &8681699755599478896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3125,7 +3155,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6465
---- !u!114 &8493877408420615732
+--- !u!114 &8763329599253302346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3135,23 +3165,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MusiqueStartFond
+  m_Name: event:/RewindClic
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/MusiqueStartFond
+  Path: event:/RewindClic
   Guid:
-    Data1: -53404689
-    Data2: 1230439184
-    Data3: -654359627
-    Data4: 424061248
+    Data1: -525159449
+    Data2: 1302290736
+    Data3: 1078304903
+    Data4: -1733720035
   Banks:
   - {fileID: 5679093789021855148}
   IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
+  Is3D: 1
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 82300
+  Length: 2350
 --- !u!114 &8961867959227021342
 MonoBehaviour:
   m_ObjectHideFlags: 0
