@@ -40,9 +40,19 @@ public class PotardController : MonoBehaviour
     private float _angleMainPrecedent;
     private float _accumulateurDelta = 0f;
     private Quaternion _rotationBaseLocale;
+    private Vector3 _grabReferenceVector;
+    private Vector3 _grabAxis;
+    private bool _grabReferenceValid;
+    private Transform _initialParent;
+    private int _initialSiblingIndex;
 
     private XRGrabInteractable _grabInteractable;
     private Rigidbody _rb;
+    [Header("XR Grab behavior")]
+    [Tooltip("Empêche le snap de rotation du XRGrabInteractable au grab (ex: offset visuel -90°).")]
+    [SerializeField] private bool disableXrTrackRotation = true;
+    [Tooltip("Réapplique la rotation discrète du cran en continu pendant le grab pour éviter toute rotation parasite injectée par XRI.")]
+    [SerializeField] private bool lockRotationEveryFrameWhileGrabbed = true;
 
     public int CranActuel => _cranActuel;
     public bool EstSurA => _cranActuel == cranPositionA;
@@ -55,6 +65,18 @@ public class PotardController : MonoBehaviour
     {
         _grabInteractable = GetComponent<XRGrabInteractable>();
         _rb = GetComponent<Rigidbody>();
+
+        if (_grabInteractable != null)
+        {
+            // Le potard est piloté par nos crans :
+            // on évite tout déplacement/rotation/reparenting injecté par XRI au grab.
+            _grabInteractable.trackPosition = false;
+            if (disableXrTrackRotation)
+                _grabInteractable.trackRotation = false;
+            _grabInteractable.useDynamicAttach = false;
+            _grabInteractable.retainTransformParent = true;
+            _grabInteractable.throwOnDetach = false;
+        }
     }
 
     /// <summary>Désactive la saisie XR (grab) sans retirer le script.</summary>
@@ -79,10 +101,13 @@ public class PotardController : MonoBehaviour
 
     private void Start()
     {
+        _initialParent = transform.parent;
+        _initialSiblingIndex = transform.GetSiblingIndex();
+
         _rotationBaseLocale = Quaternion.Euler(
             transform.localEulerAngles.x,
-            0f,
-            transform.localEulerAngles.z
+            transform.localEulerAngles.y,
+            0f
         );
         _rb.constraints = RigidbodyConstraints.FreezeAll;
         int max = Mathf.Max(0, nombreCrans - 1);
@@ -107,7 +132,8 @@ public class PotardController : MonoBehaviour
     {
         _estSaisi = true;
         _interactorCourant = args.interactorObject;
-        _angleMainPrecedent = GetAngleController(_interactorCourant);
+        InitGrabReference(_interactorCourant);
+        _angleMainPrecedent = GetAngleControllerAroundPotardAxis(_interactorCourant);
         _accumulateurDelta = 0f;
     }
 
@@ -116,19 +142,22 @@ public class PotardController : MonoBehaviour
         _estSaisi = false;
         _interactorCourant = null;
         _accumulateurDelta = 0f;
+        _grabReferenceValid = false;
 
         _rb.constraints = RigidbodyConstraints.FreezeAll;
         _rb.linearVelocity = Vector3.zero;
         _rb.angularVelocity = Vector3.zero;
 
+        RestoreOriginalParentIfNeeded();
         AppliquerRotationCran(_cranActuel);
     }
 
     private void Update()
     {
         if (!_estSaisi || _interactorCourant == null) return;
+        if (!_grabReferenceValid) return;
 
-        float angleActuel = GetAngleController(_interactorCourant);
+        float angleActuel = GetAngleControllerAroundPotardAxis(_interactorCourant);
         float delta = Mathf.DeltaAngle(_angleMainPrecedent, angleActuel);
         _angleMainPrecedent = angleActuel;
 
@@ -144,6 +173,26 @@ public class PotardController : MonoBehaviour
             _accumulateurDelta += seuilDegresCran;
             ChangerCran(-1);
         }
+
+        RestoreOriginalParentIfNeeded();
+
+        // Certains setups XRI continuent d'injecter une rotation de grab
+        // (offset visuel, ex. Y = -90) même si trackRotation est désactivé.
+        // On force donc la pose exacte du cran courant à chaque frame.
+        if (lockRotationEveryFrameWhileGrabbed)
+            AppliquerRotationCran(_cranActuel);
+    }
+
+    private void RestoreOriginalParentIfNeeded()
+    {
+        if (_initialParent == null)
+            return;
+
+        if (transform.parent != _initialParent)
+            transform.SetParent(_initialParent, true);
+
+        if (transform.GetSiblingIndex() != _initialSiblingIndex)
+            transform.SetSiblingIndex(_initialSiblingIndex);
     }
 
     private void ChangerCran(int direction)
@@ -170,8 +219,8 @@ public class PotardController : MonoBehaviour
     private void AppliquerRotationCran(int cran)
     {
         float degresParCran = 360f / nombreCrans;
-        float angleY = cran * degresParCran;
-        transform.localRotation = _rotationBaseLocale * Quaternion.Euler(0f, angleY, 0f);
+        float angleZ = cran * degresParCran;
+        transform.localRotation = _rotationBaseLocale * Quaternion.Euler(0f, 0f, angleZ);
     }
 
     private void MettreAJourCouleur()
@@ -186,20 +235,58 @@ public class PotardController : MonoBehaviour
         cubeIndicateur.material.color = cible;
     }
 
-    // Lit le "roll" du controller, c'est-a-dire la rotation autour de son axe forward
-    // Beaucoup plus direct et sensible que de projeter le vecteur up
-    private float GetAngleController(IXRSelectInteractor interactor)
+    private void InitGrabReference(IXRSelectInteractor interactor)
     {
-        Quaternion rotController = interactor.GetAttachTransform(_grabInteractable).rotation;
+        _grabAxis = transform.forward.normalized;
+        _grabReferenceValid = false;
+        _grabReferenceVector = Vector3.forward;
 
-        // On extrait le vecteur right du controller et on le projette
-        // dans le plan perpendiculaire au forward du controller
-        // pour isoler uniquement le roll (twist de la main)
-        Vector3 rightController = rotController * Vector3.right;
-        Vector3 upController = rotController * Vector3.up;
+        if (interactor == null) return;
 
-        // Angle du vecteur right autour de l'axe forward world (Z)
-        return Mathf.Atan2(upController.x, upController.y) * Mathf.Rad2Deg;
+        Transform attach = interactor.GetAttachTransform(_grabInteractable);
+        if (attach == null) return;
+
+        if (TryGetProjectedControllerVector(attach, _grabAxis, out Vector3 projected))
+        {
+            _grabReferenceVector = projected;
+            _grabReferenceValid = true;
+        }
+    }
+
+    // Angle signé du controller autour de l'axe du potard, relativement à l'orientation de la main au moment du grab.
+    private float GetAngleControllerAroundPotardAxis(IXRSelectInteractor interactor)
+    {
+        if (interactor == null || !_grabReferenceValid) return 0f;
+
+        Transform attach = interactor.GetAttachTransform(_grabInteractable);
+        if (attach == null) return _angleMainPrecedent;
+
+        if (!TryGetProjectedControllerVector(attach, _grabAxis, out Vector3 currentProjected))
+            return _angleMainPrecedent;
+
+        return Vector3.SignedAngle(_grabReferenceVector, currentProjected, _grabAxis);
+    }
+
+    private static bool TryGetProjectedControllerVector(Transform attach, Vector3 axis, out Vector3 projected)
+    {
+        projected = Vector3.zero;
+        if (attach == null) return false;
+
+        Vector3 forwardProjected = Vector3.ProjectOnPlane(attach.forward, axis);
+        if (forwardProjected.sqrMagnitude > 1e-6f)
+        {
+            projected = forwardProjected.normalized;
+            return true;
+        }
+
+        Vector3 rightProjected = Vector3.ProjectOnPlane(attach.right, axis);
+        if (rightProjected.sqrMagnitude > 1e-6f)
+        {
+            projected = rightProjected.normalized;
+            return true;
+        }
+
+        return false;
     }
 
     private void EnvoyerHapticsCran()

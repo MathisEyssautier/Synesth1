@@ -41,11 +41,19 @@ public class RadioManager : MonoBehaviour
     [Header("Audio radio (boucle + chaînes AA / BB)")]
     [Tooltip("Grésillement / fond : volume 1 en neutre, volume 0 en AA ou BB.")]
     [SerializeField] private EventReference sonBoucleRadio;
-    [Tooltip("Chaîne AA : démarre au déblocage à volume 0, passe à 1 uniquement en alignement AA.")]
+    [Tooltip("Son AA joué en one-shot à l'entrée en alignement AA.")]
     [SerializeField] private EventReference sonChaineAA;
-    [Tooltip("Chaîne BB : idem pour BB.")]
+    [Tooltip("Son BB joué en one-shot à l'entrée en alignement BB.")]
     [SerializeField] private EventReference sonChaineBB;
     [SerializeField] private Transform origineSonBoucleRadio;
+
+    [Header("Particules par état radio")]
+    [Tooltip("Actif uniquement en AA (porte A ouverte).")]
+    [SerializeField] private GameObject particlesEtatAA;
+    [Tooltip("Actif uniquement en BB (porte B ouverte).")]
+    [SerializeField] private GameObject particlesEtatBB;
+    [Tooltip("Actif pour toutes les autres positions (Aucun).")]
+    [SerializeField] private GameObject particlesEtatAucun;
 
     [Header("Emission portes")]
     public Color couleurPorteAinactive = new Color(0.05f, 0.2f, 0.05f);
@@ -70,12 +78,37 @@ public class RadioManager : MonoBehaviour
     private EtatAlignement _etatCourant = EtatAlignement.Aucun;
     private bool _radioDebloquee;
     private bool _isStandby;
+    public bool IsRadioUnlocked => _radioDebloquee;
+    public bool IsStandby => _isStandby;
 
     private EventInstance _instBoucle;
     private EventInstance _instAA;
     private EventInstance _instBB;
     private EventInstance _instExclusiveOverride;
     private Coroutine _restoreRadioAfterOverrideRoutine;
+
+    /// <summary>
+    /// Instance FMOD représentative de l'état radio courant (Aucun/AA/BB) pour FMODMeteringSource.
+    /// Si un override exclusif est en cours, il est prioritaire.
+    /// </summary>
+    public EventInstance EventInstance
+    {
+        get
+        {
+            if (_instExclusiveOverride.isValid())
+                return _instExclusiveOverride;
+
+            switch (_etatCourant)
+            {
+                case EtatAlignement.AA:
+                    return _instAA;
+                case EtatAlignement.BB:
+                    return _instBB;
+                default:
+                    return _instBoucle;
+            }
+        }
+    }
 
     private Transform OrigineAudio => origineSonBoucleRadio != null ? origineSonBoucleRadio : transform;
 
@@ -98,6 +131,7 @@ public class RadioManager : MonoBehaviour
         BlockerPorte(porteB);
         SetEmissionPorte(rendererPorteA, couleurPorteAinactive);
         SetEmissionPorte(rendererPorteB, couleurPorteBinactive);
+        ApplyParticlesForEtat(_etatCourant);
     }
 
     /// <summary>
@@ -179,6 +213,7 @@ public class RadioManager : MonoBehaviour
         EtatAlignement lu = LireEtatDepuisPotards();
         AppliquerVolumesRadio(lu);
         _etatCourant = lu;
+        ApplyParticlesForEtat(_etatCourant);
         RefreshPotardInteractivity();
 
         if (!sonDeblocageRadio.IsNull && !MemeEventReference(sonDeblocageRadio, sonBoucleRadio))
@@ -229,25 +264,8 @@ public class RadioManager : MonoBehaviour
             }
         }
 
-        if (!sonChaineAA.IsNull)
-        {
-            _instAA = CreateFmodInstance(sonChaineAA);
-            if (_instAA.isValid())
-            {
-                RuntimeManager.AttachInstanceToGameObject(_instAA, go);
-                _instAA.start();
-            }
-        }
-
-        if (!sonChaineBB.IsNull)
-        {
-            _instBB = CreateFmodInstance(sonChaineBB);
-            if (_instBB.isValid())
-            {
-                RuntimeManager.AttachInstanceToGameObject(_instBB, go);
-                _instBB.start();
-            }
-        }
+        // AA/BB sont désormais des one-shots joués lors d'une entrée d'état,
+        // donc pas d'instances persistantes à créer ici.
     }
 
     /// <summary>Création d'instance FMOD compatible desktop + Android.</summary>
@@ -280,8 +298,8 @@ public class RadioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Neutre : boucle 1, AA 0, BB 0. AA : boucle 0, AA 1, BB 0. BB : boucle 0, AA 0, BB 1.
-    /// Aucun stop : les timelines continuent en arrière-plan à volume 0.
+    /// Neutre : boucle 1. AA/BB : boucle 0.
+    /// Les sons AA/BB sont joués en one-shot à l'entrée d'alignement.
     /// </summary>
     private void AppliquerVolumesRadio(EtatAlignement etat)
     {
@@ -295,19 +313,11 @@ public class RadioManager : MonoBehaviour
 
         if (_instBoucle.isValid())
             _instBoucle.setVolume(etat == EtatAlignement.Aucun ? 1f : 0f);
-
-        if (_instAA.isValid())
-            _instAA.setVolume(etat == EtatAlignement.AA ? 1f : 0f);
-
-        if (_instBB.isValid())
-            _instBB.setVolume(etat == EtatAlignement.BB ? 1f : 0f);
     }
 
     private void ForceMuteAllRadioAudio()
     {
         if (_instBoucle.isValid()) _instBoucle.setVolume(0f);
-        if (_instAA.isValid()) _instAA.setVolume(0f);
-        if (_instBB.isValid()) _instBB.setVolume(0f);
     }
 
     private void AppliquerCouleurPartieRadio(Color couleur)
@@ -358,6 +368,7 @@ public class RadioManager : MonoBehaviour
 
         _etatCourant = nouvelEtat;
         AppliquerVolumesRadio(nouvelEtat);
+        ApplyParticlesForEtat(nouvelEtat);
 
         bool entreeAA = nouvelEtat == EtatAlignement.AA && etatAvant != EtatAlignement.AA;
         bool entreeBB = nouvelEtat == EtatAlignement.BB && etatAvant != EtatAlignement.BB;
@@ -367,6 +378,7 @@ public class RadioManager : MonoBehaviour
             DebloquetEtEntrouvrir(porteA);
             SetEmissionPorte(rendererPorteA, couleurPorteAactive);
             if (entreeAA) JouerSonOuverturePorte(porteA);
+            if (entreeAA) JouerSonEtatRadioOneShot(sonChaineAA);
             OnAlignementAA?.Invoke();
         }
         else if (nouvelEtat == EtatAlignement.BB)
@@ -374,8 +386,30 @@ public class RadioManager : MonoBehaviour
             DebloquetEtEntrouvrir(porteB);
             SetEmissionPorte(rendererPorteB, couleurPorteBactive);
             if (entreeBB) JouerSonOuverturePorte(porteB);
+            if (entreeBB) JouerSonEtatRadioOneShot(sonChaineBB);
             OnAlignementBB?.Invoke();
         }
+    }
+
+    private void JouerSonEtatRadioOneShot(EventReference evt)
+    {
+        if (evt.IsNull) return;
+        Vector3 pos = OrigineAudio.position;
+        PlayOneShotFmod(evt, pos);
+    }
+
+    private void ApplyParticlesForEtat(EtatAlignement etat)
+    {
+        SetParticleState(particlesEtatAA, etat == EtatAlignement.AA);
+        SetParticleState(particlesEtatBB, etat == EtatAlignement.BB);
+        SetParticleState(particlesEtatAucun, etat == EtatAlignement.Aucun);
+    }
+
+    private static void SetParticleState(GameObject go, bool active)
+    {
+        if (go == null) return;
+        if (go.activeSelf != active)
+            go.SetActive(active);
     }
 
     private void JouerSonOuverturePorte(DoorController porte)

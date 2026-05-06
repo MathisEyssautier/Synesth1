@@ -62,7 +62,7 @@
 	<object class="MarkerTrack" id="{42201184-62bb-4fa9-a32a-c4f1229d4a0a}" />
 	<object class="GroupTrack" id="{986d8ba0-8cb3-4002-a86d-bd25348b6447}">
 		<relationship name="modules">
-			<destination>{4984cf6f-5258-49e6-a71d-91864f7af83a}</destination>
+			<destination>{ed5fb229-be18-44af-a1a4-da1ee178a45b}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{983874a1-af8a-42c0-9cc9-fa891c886513}</destination>
@@ -70,13 +70,12 @@
 	</object>
 	<object class="Timeline" id="{d1c996c0-64df-4e7d-bf0b-b2ae6a6991c7}">
 		<relationship name="modules">
-			<destination>{4984cf6f-5258-49e6-a71d-91864f7af83a}</destination>
+			<destination>{ed5fb229-be18-44af-a1a4-da1ee178a45b}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{ff9a763b-fb92-4093-8508-48d6d7e5614c}</destination>
 			<destination>{4af78663-aeae-4924-8d48-0f393837d86d}</destination>
 			<destination>{8db22e26-8564-4425-9baa-e7ecd32a5d60}</destination>
-			<destination>{30a4b8a0-1a0e-4413-bf81-51a3e02389c2}</destination>
 			<destination>{2d7aa5a1-e022-4e3e-a38b-83e6478cc8c3}</destination>
 			<destination>{9dbfff67-400e-440e-8782-503334a49920}</destination>
 			<destination>{31f1a274-5de1-4b74-8e7b-13861f55b405}</destination>
@@ -102,12 +101,12 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{d46cbc55-8c8b-4a22-ac32-eaaa36cfcd46}" />
-	<object class="SingleSound" id="{4984cf6f-5258-49e6-a71d-91864f7af83a}">
+	<object class="SingleSound" id="{ed5fb229-be18-44af-a1a4-da1ee178a45b}">
 		<property name="length">
-			<value>27.611609977324264</value>
+			<value>27.52231292517007</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{9adc6d83-e3f4-4a25-ad9b-1ef3f96bce8a}</destination>
+			<destination>{d8b29ceb-f773-4d21-9156-5e734a26d666}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{983874a1-af8a-42c0-9cc9-fa891c886513}">
@@ -129,10 +128,10 @@
 	</object>
 	<object class="NamedMarker" id="{ff9a763b-fb92-4093-8508-48d6d7e5614c}">
 		<property name="position">
-			<value>2.9485254940071259</value>
+			<value>1.5</value>
 		</property>
 		<property name="name">
-			<value>Naïa,</value>
+			<value>Naïa !</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{d1c996c0-64df-4e7d-bf0b-b2ae6a6991c7}</destination>
@@ -143,7 +142,7 @@
 	</object>
 	<object class="NamedMarker" id="{4af78663-aeae-4924-8d48-0f393837d86d}">
 		<property name="position">
-			<value>8.5</value>
+			<value>7</value>
 		</property>
 		<property name="name">
 			<value>Tu peux garder les yeux fermés.</value>
@@ -169,23 +168,9 @@
 			<destination>{42201184-62bb-4fa9-a32a-c4f1229d4a0a}</destination>
 		</relationship>
 	</object>
-	<object class="NamedMarker" id="{30a4b8a0-1a0e-4413-bf81-51a3e02389c2}">
-		<property name="position">
-			<value>6.5481937796358434</value>
-		</property>
-		<property name="name">
-			<value>tu m'entends ?</value>
-		</property>
-		<relationship name="timeline">
-			<destination>{d1c996c0-64df-4e7d-bf0b-b2ae6a6991c7}</destination>
-		</relationship>
-		<relationship name="markerTrack">
-			<destination>{fce2110e-3d27-43da-89f4-6df689d7b373}</destination>
-		</relationship>
-	</object>
 	<object class="NamedMarker" id="{2d7aa5a1-e022-4e3e-a38b-83e6478cc8c3}">
 		<property name="position">
-			<value>10.713585219575702</value>
+			<value>8.9000000000000004</value>
 		</property>
 		<property name="name">
 			<value>Je suis prête.</value>
@@ -199,7 +184,7 @@
 	</object>
 	<object class="NamedMarker" id="{9dbfff67-400e-440e-8782-503334a49920}">
 		<property name="position">
-			<value>12.109960932211159</value>
+			<value>10.800000000000001</value>
 		</property>
 		<property name="name">
 			<value>Je vais compter jusqu'à 3.</value>
@@ -213,7 +198,7 @@
 	</object>
 	<object class="NamedMarker" id="{31f1a274-5de1-4b74-8e7b-13861f55b405}">
 		<property name="position">
-			<value>14.145777588059483</value>
+			<value>12.9</value>
 		</property>
 		<property name="name">
 			<value>Laisse-toi aller.</value>
@@ -227,7 +212,7 @@
 	</object>
 	<object class="NamedMarker" id="{39a55226-a1c4-415f-b04f-f8cb8a7dd22d}">
 		<property name="position">
-			<value>16</value>
+			<value>14.700000000000001</value>
 		</property>
 		<property name="name">
 			<value>1,</value>
@@ -241,7 +226,7 @@
 	</object>
 	<object class="NamedMarker" id="{7ac0fb08-e67e-40b2-900a-3244e3e93aa2}">
 		<property name="position">
-			<value>18.427288905513688</value>
+			<value>17.199999999999999</value>
 		</property>
 		<property name="name">
 			<value>2,</value>

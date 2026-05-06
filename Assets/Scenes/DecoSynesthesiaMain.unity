@@ -1234,6 +1234,14 @@ MonoBehaviour:
     Path: event:/PianoCompletion
   pianoSuccessSoundOrigin: {fileID: 1004123190}
   radioManager: {fileID: 313657686}
+  sequenceIndicators: []
+  sequenceStepColors:
+  - {r: 1, g: 0.92, b: 0.2, a: 1}
+  - {r: 0.25, g: 0.55, b: 1, a: 1}
+  - {r: 1, g: 0.35, b: 0.8, a: 1}
+  - {r: 1, g: 0.25, b: 0.25, a: 1}
+  sequenceOffColor: {r: 1, g: 1, b: 1, a: 1}
+  hideSequenceIndicatorsUntilIpodReveal: 1
   resetOnMistake: 1
   onPuzzleSolved:
     m_PersistentCalls:
@@ -1978,6 +1986,7 @@ MonoBehaviour:
     targetValue: 1
     tolerance: 0.1
   requiredStableTime: 0.5
+  mixTableFaderSpotlight: {fileID: 0}
   masterFadeOutDuration: 3
   fadersRiseDuration: 2
   masterFadeInDuration: 3
@@ -2047,6 +2056,7 @@ MonoBehaviour:
   lightIntensityRange: {x: 0.1, y: 2.2}
   targetRefreshThreshold: 0.02
   exitBlockerAndTriggerCollider: {fileID: 257021013}
+  houseBoundsTriggerCollider: {fileID: 0}
   exitTriggerCollider: {fileID: 0}
   playerHead: {fileID: 441087513}
   playerRigRoot: {fileID: 441087510}
@@ -2095,6 +2105,8 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  exitDoorHandlesToEnableAfterFinalVoice: []
+  hideExitHandlesUntilFinalVoice: 1
 --- !u!1 &103552180
 GameObject:
   m_ObjectHideFlags: 0
@@ -7136,6 +7148,9 @@ MonoBehaviour:
       Data4: -220662874
     Path: event:/HymneALAmourRadio
   origineSonBoucleRadio: {fileID: 313657685}
+  particlesEtatAA: {fileID: 0}
+  particlesEtatBB: {fileID: 0}
+  particlesEtatAucun: {fileID: 0}
   couleurPorteAinactive: {r: 0.05, g: 0.2, b: 0.05, a: 1}
   couleurPorteAactive: {r: 0, g: 1, b: 0, a: 1}
   couleurPorteBinactive: {r: 0.2, g: 0.05, b: 0.05, a: 1}
@@ -8814,6 +8829,26 @@ MonoBehaviour:
   xrCamera: {fileID: 441087513}
   fadeCanvasGroup: {fileID: 1338495529}
   blinkDuration: 0.15
+  enableLegacyXrFallback: 1
+  preferNativeControllerTracking: 0
+  fallbackMoveSpeed: 2.5
+  fallbackMoveDeadzone: 0.15
+  fallbackSnapThreshold: 0.7
+  fallbackSnapCooldown: 0.22
+  fallbackSelectPressThreshold: 0.55
+  fallbackSelectReleaseThreshold: 0.35
+  fallbackLeftRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackRightRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackHoverHapticsAmplitude: 0.15
+  fallbackHoverHapticsDuration: 0.025
+  fallbackRightControllerRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackTeleportInteractorRotationOffsetEuler: {x: 45, y: 0, z: 0}
+  fallbackControllerModelChildName: UniversalController
+  fallbackLeftModelRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackRightModelRotationOffsetEuler: {x: 0, y: 0, z: 0}
+  fallbackTeleportRayAngleTargetOverride: {fileID: 0}
+  fallbackTeleportCommitThreshold: 0.7
+  fallbackTeleportReleaseThreshold: 0.25
 --- !u!1 &402279470
 GameObject:
   m_ObjectHideFlags: 0
@@ -9620,6 +9655,99 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f365cf844c03449bc8973eead2c3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &456776635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456776638}
+  - component: {fileID: 456776637}
+  - component: {fileID: 456776636}
+  m_Layer: 0
+  m_Name: Terrain_(-103.70, -279.11, -291.30)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!154 &456776636
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456776635}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_TerrainData: {fileID: 15600000, guid: 4c0a918b9af18c34199879c1593d63d0, type: 2}
+  m_EnableTreeColliders: 1
+--- !u!218 &456776637
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456776635}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: 4c0a918b9af18c34199879c1593d63d0, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 22
+  m_DetailObjectDensity: 0.79
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMinimumLODSimplification: 0
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_StaticShadowCaster: 0
+  m_IgnoreQualitySettings: 0
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ReceiveGI: 1
+  m_ScaleInLightmap: 0.128
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
+  m_EnableHeightmapRayTracing: 1
+  m_EnableTreesAndDetailsRayTracing: 0
+  m_TreeMotionVectorModeOverride: 3
+--- !u!4 &456776638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456776635}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -103.7, y: -279.11, z: -291.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &462939224
 GameObject:
   m_ObjectHideFlags: 0
@@ -13890,6 +14018,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 375
   ignoreTag: PlayerHand
+  requireGrabInteractable: 1
   onlyWhenNotHeld: 1
   restoreOriginalParentOnExit: 1
 --- !u!65 &676312029
@@ -14452,6 +14581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GuitarSoundZone
   capoCrankController: {fileID: 1010465077}
   guitarAssemblyManager: {fileID: 0}
+  prismFacetPuzzleController: {fileID: 0}
   handTag: PlayerHand
   triggerCooldown: 0.5
   wrongEvent:
@@ -14492,6 +14622,12 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  capoPositionEffectRoots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!65 &700603449
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15593,8 +15729,8 @@ Transform:
   m_GameObject: {fileID: 752322717}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.833, y: 1.62, z: -0.186}
-  m_LocalScale: {x: 6.25, y: 7.4, z: 4.57}
+  m_LocalPosition: {x: -10.894, y: 1.62, z: -0.36248}
+  m_LocalScale: {x: 4.539239, y: 7.4, z: 2.8282816}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -16184,6 +16320,7 @@ MonoBehaviour:
   playerHeightStep: 0.03
   minPlayerHeightOffset: -0.35
   maxPlayerHeightOffset: 0.35
+  restartConfirmWindowSeconds: 1.2
 --- !u!1 &787091879
 GameObject:
   m_ObjectHideFlags: 0
@@ -20677,7 +20814,6 @@ MonoBehaviour:
   - {fileID: 346570162}
   - {fileID: 2082523678}
   - {fileID: 1018147081}
-  targetCrankIndex: 3
   startCrankIndex: 0
   capoRenderer: {fileID: 1010465072}
   emissionIntensity: 5
@@ -20700,6 +20836,15 @@ MonoBehaviour:
   onChordSolved:
     m_PersistentCalls:
       m_Calls: []
+  postPrismCompletionLoopEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  postPrismLoopAttachOverride: {fileID: 0}
+  postPrismLoopParticlesRoot: {fileID: 0}
   indexTriggerThreshold: 0.65
 --- !u!1 &1012046001
 GameObject:
@@ -25413,8 +25558,8 @@ Transform:
   m_GameObject: {fileID: 1232698268}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.833, y: 1.62, z: -6.228}
-  m_LocalScale: {x: 6.25, y: 7.4, z: 4.57}
+  m_LocalPosition: {x: -10.79, y: 1.62, z: -6.215}
+  m_LocalScale: {x: 4.62, y: 7.4, z: 2.8791}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -27263,6 +27408,12 @@ MonoBehaviour:
   targetTolerance: 0.1
   hapticAmplitude: 0.75
   hapticDuration: 0.06
+  enableTargetVisualFeedback: 1
+  targetFeedbackRenderer: {fileID: 0}
+  feedbackBaseColor: {r: 1, g: 1, b: 1, a: 1}
+  targetFeedbackColor: {r: 0, g: 1, b: 0, a: 1}
+  visualFeedbackRange: 0.25
+  visualEmissionIntensity: 1.2
 --- !u!1001 &1304314026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35052,6 +35203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GuitarSoundZone
   capoCrankController: {fileID: 5605554354709227366}
   guitarAssemblyManager: {fileID: 1041920800}
+  prismFacetPuzzleController: {fileID: 0}
   handTag: PlayerHand
   triggerCooldown: 0.5
   wrongEvent:
@@ -35092,6 +35244,12 @@ MonoBehaviour:
       Data3: 1694305181
       Data4: -2120949265
     Path: event:/NotesGuitare/Accord5
+  capoPositionEffectRoots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!65 &1653254164
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37307,6 +37465,7 @@ MonoBehaviour:
     Path: event:/DrumsLoopRadio
   rewardAudioOrigin: {fileID: 4091491999835018476}
   makeRewardGrabbable: 1
+  rewardContinuousLoopParticlesRoot: {fileID: 0}
   disableCassetteGrabOnStart: 1
   disableCassetteHapticsOnSolve: 1
   setRewardInactiveOnStart: 1
@@ -38809,12 +38968,15 @@ MonoBehaviour:
   - {fileID: 1752235525}
   - {fileID: 1427787566}
   autoDiscoverScenePianoKeys: 1
+  pianoPuzzleManager: {fileID: 0}
   objectsToActivateAfterPiano:
   - {fileID: 4230198831188735823}
   - {fileID: 1605989411}
   behavioursToDisableUntilPiano:
   - {fileID: 2139057726}
   explorationNarrative: {fileID: 0}
+  lockPlayerMovementUntilIntroReveal: 1
+  locomotionManager: {fileID: 0}
 --- !u!1001 &1820996418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39197,6 +39359,12 @@ MonoBehaviour:
   targetTolerance: 0.1
   hapticAmplitude: 0.75
   hapticDuration: 0.06
+  enableTargetVisualFeedback: 1
+  targetFeedbackRenderer: {fileID: 0}
+  feedbackBaseColor: {r: 1, g: 1, b: 1, a: 1}
+  targetFeedbackColor: {r: 0, g: 1, b: 0, a: 1}
+  visualFeedbackRange: 0.25
+  visualEmissionIntensity: 1.2
 --- !u!114 &1838902009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42814,6 +42982,12 @@ MonoBehaviour:
   targetTolerance: 0.1
   hapticAmplitude: 0.75
   hapticDuration: 0.06
+  enableTargetVisualFeedback: 1
+  targetFeedbackRenderer: {fileID: 0}
+  feedbackBaseColor: {r: 1, g: 1, b: 1, a: 1}
+  targetFeedbackColor: {r: 0, g: 1, b: 0, a: 1}
+  visualFeedbackRange: 0.25
+  visualEmissionIntensity: 1.2
 --- !u!114 &2008411766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44602,8 +44776,8 @@ Transform:
   m_GameObject: {fileID: 2068690734}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.68, y: 1.62, z: -3.57}
-  m_LocalScale: {x: 6.25, y: 7.4, z: 4.57}
+  m_LocalPosition: {x: -3.7109, y: 1.62, z: -3.5489}
+  m_LocalScale: {x: 4.503375, y: 7.4, z: 3.6545835}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -47142,6 +47316,7 @@ MonoBehaviour:
   snapPoint: {fileID: 1385678095}
   requiredShellPuzzle: {fileID: 0}
   requiredGuitarPuzzle: {fileID: 5605554354709227366}
+  unlockReadyVisualEffect: {fileID: 0}
   faderToActivate: {fileID: 911932564}
   requireObjectReleased: 1
   disableGrabAfterPlaced: 1
@@ -59915,6 +60090,7 @@ MonoBehaviour:
   snapPoint: {fileID: 1325544210}
   requiredShellPuzzle: {fileID: 1752026538}
   requiredGuitarPuzzle: {fileID: 0}
+  unlockReadyVisualEffect: {fileID: 0}
   faderToActivate: {fileID: 1484924397}
   requireObjectReleased: 1
   disableGrabAfterPlaced: 1
@@ -60560,10 +60736,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9858a7477bcbd564ebad90d672925c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawerGrab
+  drawerTransform: {fileID: 0}
   maxPullDistance: 0.5
   overrideGrabTracking: 1
   smoothTime: 0.02
   invertDirection: 0
+  localSlideAxis: {x: 0, y: 0, z: 1}
+  lockAncestorChainWhileGrabbed: 1
 --- !u!114 &5184362017519389428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62047,7 +62226,6 @@ MonoBehaviour:
   - {fileID: 834799315}
   - {fileID: 288616932}
   - {fileID: 1481872196}
-  targetCrankIndex: 3
   startCrankIndex: 0
   capoRenderer: {fileID: 8448778280721077824}
   emissionIntensity: 5
@@ -62070,6 +62248,15 @@ MonoBehaviour:
   onChordSolved:
     m_PersistentCalls:
       m_Calls: []
+  postPrismCompletionLoopEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  postPrismLoopAttachOverride: {fileID: 0}
+  postPrismLoopParticlesRoot: {fileID: 0}
   indexTriggerThreshold: 0.65
 --- !u!23 &5639301586567720614
 MeshRenderer:
@@ -72344,3 +72531,4 @@ SceneRoots:
   - {fileID: 752322720}
   - {fileID: 1232698271}
   - {fileID: 2068690737}
+  - {fileID: 456776638}

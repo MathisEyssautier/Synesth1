@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -12,11 +11,13 @@ public class RadioStandbyButton : MonoBehaviour
     [SerializeField] private float cooldown = 0.2f;
 
     [Header("Button Animation")]
-    [SerializeField] private float pressDepth = 0.01f;
+    [Tooltip("Profondeur (Y) quand la radio est allumée.")]
+    [SerializeField] private float onPressedDepth = 0.01f;
+    [Tooltip("Profondeur (Y) quand la radio est en veille (OFF).")]
+    [SerializeField] private float offPressedDepth = 0.02f;
     [SerializeField] private float pressSpeed = 12f;
 
     private float _nextTime;
-    private bool _isAnimating;
     private Vector3 _initialLocalPos;
 
     private void Awake()
@@ -34,29 +35,24 @@ public class RadioStandbyButton : MonoBehaviour
 
         _nextTime = Time.time + cooldown;
         radioManager.ToggleStandby();
-
-        if (!_isAnimating)
-            StartCoroutine(PressAnimation());
     }
 
-    private IEnumerator PressAnimation()
+    private void Update()
     {
-        _isAnimating = true;
-        Vector3 pressed = _initialLocalPos - new Vector3(0f, pressDepth, 0f);
+        Vector3 target = GetTargetLocalPosition();
+        transform.localPosition = Vector3.Lerp(transform.localPosition, target, Time.deltaTime * pressSpeed);
+    }
 
-        while (Vector3.Distance(transform.localPosition, pressed) > 0.001f)
-        {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, pressed, Time.deltaTime * pressSpeed);
-            yield return null;
-        }
+    private Vector3 GetTargetLocalPosition()
+    {
+        if (radioManager == null)
+            return _initialLocalPos;
 
-        while (Vector3.Distance(transform.localPosition, _initialLocalPos) > 0.001f)
-        {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, _initialLocalPos, Time.deltaTime * pressSpeed);
-            yield return null;
-        }
+        // Avant résolution piano : bouton en position haute.
+        if (!radioManager.IsRadioUnlocked)
+            return _initialLocalPos;
 
-        transform.localPosition = _initialLocalPos;
-        _isAnimating = false;
+        float depth = radioManager.IsStandby ? offPressedDepth : onPressedDepth;
+        return _initialLocalPos - new Vector3(0f, depth, 0f);
     }
 }
