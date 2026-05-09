@@ -1230,10 +1230,10 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/VoixBank.bank
   Name: VoixBank
   StudioPath: bank:/VoixBank
-  lastModified: 639136083084384114
+  lastModified: 639138546383156510
   FileSizes:
   - Name: Desktop
-    Value: 33500160
+    Value: 33459392
   - Name: Mobile
     Value: 13509280
   Exists: 1
@@ -1371,7 +1371,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 205875
+  Length: 161209
 --- !u!114 &-367790549299036395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1557,6 +1557,7 @@ MonoBehaviour:
   - {fileID: -7116662620896727167}
   - {fileID: 5346750909714791544}
   - {fileID: -4976970393768108708}
+  - {fileID: 8914602754533894329}
   EditorParameters:
   - {fileID: 1609086805843980587}
   MasterBanks:
@@ -1564,7 +1565,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 8107624429480853897}
   cacheVersion: 131858
-  cacheTime: 639136083084384114
+  cacheTime: 639138546383156510
   SerializableEventsDict:
   - key: event:/VoixOffs/Therapiste/AQuoiCaTaFaitPenser
     index: 0
@@ -1792,6 +1793,8 @@ MonoBehaviour:
     index: 111
   - key: event:/VoixOffs/Naya/NarraMetro
     index: 112
+  - key: event:/VoixOffs/Naya/WowAccordsGuitare
+    index: 113
 --- !u!114 &9185753966903091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2398,7 +2401,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639136077331302805
+  lastModified: 639138518369464373
   FileSizes:
   - Name: Desktop
     Value: 1892
@@ -3035,10 +3038,10 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639135114614859969
+  lastModified: 639137637064405063
   FileSizes:
   - Name: Desktop
-    Value: 97901664
+    Value: 98831520
   - Name: Mobile
     Value: 55391456
   Exists: 1
@@ -3439,12 +3442,12 @@ MonoBehaviour:
   Banks:
   - {fileID: -1071410960595064020}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 22459
+  Length: 22290
 --- !u!114 &8107624429480853897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3460,12 +3463,12 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639136077331337959
+  lastModified: 639138518369484286
   FileSizes:
   - Name: Desktop
-    Value: 6658
+    Value: 6716
   - Name: Mobile
-    Value: 6658
+    Value: 6716
   Exists: 1
 --- !u!114 &8312378695253022431
 MonoBehaviour:
@@ -3575,6 +3578,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2350
+--- !u!114 &8914602754533894329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VoixOffs/Naya/WowAccordsGuitare
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/VoixOffs/Naya/WowAccordsGuitare
+  Guid:
+    Data1: 798729101
+    Data2: 1201443399
+    Data3: 1424734900
+    Data4: 1806765679
+  Banks:
+  - {fileID: -1071410960595064020}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2900
 --- !u!114 &8961867959227021342
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@
 			<value>NarraMessageTatie</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9b0f1e09-7d2b-43b1-bc97-de5df3246661}</destination>
@@ -60,7 +60,7 @@
 	<object class="MarkerTrack" id="{b0bcb862-77ce-4d8a-8529-3232b5ec7d5b}" />
 	<object class="GroupTrack" id="{e609f643-be5b-44fe-aac2-3d7b96a2b309}">
 		<relationship name="modules">
-			<destination>{cc9555ab-063a-46ba-b339-eeef38fbee95}</destination>
+			<destination>{b59b14af-14ea-4ca9-a66e-52b8f71e9e58}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{867911a0-fcea-417f-834d-b1541ad53301}</destination>
@@ -68,7 +68,7 @@
 	</object>
 	<object class="Timeline" id="{77e43d89-3015-46f6-a119-bfe8e141e783}">
 		<relationship name="modules">
-			<destination>{cc9555ab-063a-46ba-b339-eeef38fbee95}</destination>
+			<destination>{b59b14af-14ea-4ca9-a66e-52b8f71e9e58}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{4141bf9d-3bc6-48b1-ac81-13feda9cf208}">
@@ -88,15 +88,18 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{c5459e67-2fdc-433b-994a-a019acd302fb}" />
-	<object class="SingleSound" id="{cc9555ab-063a-46ba-b339-eeef38fbee95}">
+	<object class="SingleSound" id="{b59b14af-14ea-4ca9-a66e-52b8f71e9e58}">
 		<property name="length">
-			<value>22.459818594104309</value>
+			<value>22.290181405895691</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{9a26a5ff-da6f-4bc0-8e82-5af9b86e00d4}</destination>
+			<destination>{72198bbc-b39e-4663-b509-8a1f3f49f860}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{867911a0-fcea-417f-834d-b1541ad53301}">
+		<property name="volume">
+			<value>-5.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -113,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{7ac917ff-f6c6-47d9-921c-b211668a822f}">
 		<relationship name="effects">
 			<destination>{2f98df11-475b-4239-b7f8-9a63ddff2dbe}</destination>
+			<destination>{1fc6c510-60af-4f44-bde6-77b94f3e2f67}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b95f8d57-5dab-4e35-89d6-1b470263316c}" />
@@ -124,5 +128,13 @@
 	</object>
 	<object class="MixerBusPanner" id="{325ffe7a-baca-4985-b565-60b91e21ce35}" />
 	<object class="MixerBusFader" id="{2f98df11-475b-4239-b7f8-9a63ddff2dbe}" />
+	<object class="SpatialiserEffect" id="{1fc6c510-60af-4f44-bde6-77b94f3e2f67}">
+		<property name="maximumDistance">
+			<value>5.80000019</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{1e8a4422-36a4-49f7-ac80-2f0f317ffdaf}" />
 </objects>

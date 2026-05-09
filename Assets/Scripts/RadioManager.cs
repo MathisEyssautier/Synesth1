@@ -78,8 +78,14 @@ public class RadioManager : MonoBehaviour
     private EtatAlignement _etatCourant = EtatAlignement.Aucun;
     private bool _radioDebloquee;
     private bool _isStandby;
+    private bool _exclusiveRadioPlaying;
     public bool IsRadioUnlocked => _radioDebloquee;
     public bool IsStandby => _isStandby;
+    /// <summary>
+    /// Vrai pendant la lecture d'un event exclusif (ex. vocal parents). Pendant cette période,
+    /// le bouton standby est verrouillé et la radio est forcée allumée.
+    /// </summary>
+    public bool IsExclusiveRadioPlaying => _exclusiveRadioPlaying;
 
     private EventInstance _instBoucle;
     private EventInstance _instAA;
@@ -153,8 +159,23 @@ public class RadioManager : MonoBehaviour
         LibererSiValide(ref _instBB);
         LibererSiValide(ref _instExclusiveOverride);
 
+        // Si la radio était en veille, on la rallume automatiquement pour que le vocal ait du sens.
+        // On ne recrée pas les boucles puisqu'elles sont remplacées par l'override exclusif.
+        if (_isStandby)
+        {
+            _isStandby = false;
+            AppliquerCouleurPartieRadio(GetCurrentRadioColor());
+        }
+
+        _exclusiveRadioPlaying = true;
+        RefreshPotardInteractivity();
+
         _instExclusiveOverride = CreateFmodInstance(eventReference);
-        if (!_instExclusiveOverride.isValid()) return;
+        if (!_instExclusiveOverride.isValid())
+        {
+            _exclusiveRadioPlaying = false;
+            return;
+        }
 
         GameObject go = OrigineAudio.gameObject;
         RuntimeManager.AttachInstanceToGameObject(_instExclusiveOverride, go);
@@ -175,6 +196,8 @@ public class RadioManager : MonoBehaviour
 
         LibererSiValide(ref _instExclusiveOverride);
         _restoreRadioAfterOverrideRoutine = null;
+        _exclusiveRadioPlaying = false;
+        RefreshPotardInteractivity();
 
         onExclusiveRadioPlaybackEnded?.Invoke();
 
@@ -203,6 +226,10 @@ public class RadioManager : MonoBehaviour
     /// <summary>Appelé par PianoPuzzleManager quand la séquence piano est réussie.</summary>
     public void UnlockAfterPianoSuccess()
     {
+        // La radio s'allume automatiquement à la résolution du piano :
+        // un éventuel toggle accidentel du bouton avant la résolution est annulé.
+        _isStandby = false;
+
         potard1?.SetInteractable(true);
         potard2?.SetInteractable(true);
         AppliquerCouleurPartieRadio(couleurRadioDebloquee);
@@ -230,9 +257,12 @@ public class RadioManager : MonoBehaviour
 
     public void SetStandby(bool standby)
     {
+        // Pendant la lecture exclusive (vocal parents…), la radio est verrouillée allumée.
+        if (_exclusiveRadioPlaying && standby) return;
         if (_isStandby == standby) return;
         _isStandby = standby;
         RefreshPotardInteractivity();
+        AppliquerCouleurPartieRadio(GetCurrentRadioColor());
 
         // Ne touche ni aux portes, ni à l'état logique des crans.
         if (_isStandby)
@@ -243,6 +273,12 @@ public class RadioManager : MonoBehaviour
         {
             AppliquerVolumesRadio(_etatCourant);
         }
+    }
+
+    private Color GetCurrentRadioColor()
+    {
+        if (!_radioDebloquee) return couleurRadioVerrouillee;
+        return _isStandby ? couleurRadioVerrouillee : couleurRadioDebloquee;
     }
 
     private void CreerEtDemarrerToutesLesInstancesRadio()
@@ -373,12 +409,19 @@ public class RadioManager : MonoBehaviour
         bool entreeAA = nouvelEtat == EtatAlignement.AA && etatAvant != EtatAlignement.AA;
         bool entreeBB = nouvelEtat == EtatAlignement.BB && etatAvant != EtatAlignement.BB;
 
+        // Si on quitte AA ou BB (ou on en change), on coupe immédiatement
+        // l'event correspondant pour retourner au grésillement.
+        if (etatAvant == EtatAlignement.AA && nouvelEtat != EtatAlignement.AA)
+            LibererSiValide(ref _instAA);
+        if (etatAvant == EtatAlignement.BB && nouvelEtat != EtatAlignement.BB)
+            LibererSiValide(ref _instBB);
+
         if (nouvelEtat == EtatAlignement.AA)
         {
             DebloquetEtEntrouvrir(porteA);
             SetEmissionPorte(rendererPorteA, couleurPorteAactive);
             if (entreeAA) JouerSonOuverturePorte(porteA);
-            if (entreeAA) JouerSonEtatRadioOneShot(sonChaineAA);
+            if (entreeAA) DemarrerSonEtatRadio(sonChaineAA, ref _instAA);
             OnAlignementAA?.Invoke();
         }
         else if (nouvelEtat == EtatAlignement.BB)
@@ -386,16 +429,22 @@ public class RadioManager : MonoBehaviour
             DebloquetEtEntrouvrir(porteB);
             SetEmissionPorte(rendererPorteB, couleurPorteBactive);
             if (entreeBB) JouerSonOuverturePorte(porteB);
-            if (entreeBB) JouerSonEtatRadioOneShot(sonChaineBB);
+            if (entreeBB) DemarrerSonEtatRadio(sonChaineBB, ref _instBB);
             OnAlignementBB?.Invoke();
         }
     }
 
-    private void JouerSonEtatRadioOneShot(EventReference evt)
+    private void DemarrerSonEtatRadio(EventReference evt, ref EventInstance instance)
     {
+        // Crée et démarre une instance attachée à la radio. Stoppable quand on quitte l'état.
+        LibererSiValide(ref instance);
         if (evt.IsNull) return;
-        Vector3 pos = OrigineAudio.position;
-        PlayOneShotFmod(evt, pos);
+
+        instance = CreateFmodInstance(evt);
+        if (!instance.isValid()) return;
+
+        RuntimeManager.AttachInstanceToGameObject(instance, OrigineAudio.gameObject);
+        instance.start();
     }
 
     private void ApplyParticlesForEtat(EtatAlignement etat)
@@ -499,7 +548,9 @@ public class RadioManager : MonoBehaviour
 
     private void RefreshPotardInteractivity()
     {
-        if (_isStandby)
+        // Pendant la lecture d'un event exclusif (ex. vocal parents), les potards sont verrouillés
+        // pour empêcher l'ouverture/fermeture de portes pendant le vocal.
+        if (_isStandby || _exclusiveRadioPlaying)
         {
             potard1?.SetInteractable(false);
             potard2?.SetInteractable(false);

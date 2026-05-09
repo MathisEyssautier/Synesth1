@@ -10,6 +10,8 @@ public class GuitarSoundZone : MonoBehaviour
     [SerializeField] private GuitarCapoCrankController capoCrankController;
     [SerializeField] private GuitarAssemblyManager guitarAssemblyManager;
     [SerializeField] private PrismFacetPuzzleController prismFacetPuzzleController;
+    [Tooltip("Optionnel : pour déclencher la voix off « premier accord joué après les cordes posées ». Si non assigné, recherché automatiquement dans la scène.")]
+    [SerializeField] private SalonExplorationNarrative salonExplorationNarrative;
 
     [Header("Trigger")]
     [SerializeField] private string handTag = "PlayerHand";
@@ -152,6 +154,18 @@ public class GuitarSoundZone : MonoBehaviour
             var evt = crankEvents[crankIndex];
             PlayChordEventAttached(evt);
         }
+
+        if (salonExplorationNarrative == null)
+        {
+#if UNITY_2023_1_OR_NEWER
+            salonExplorationNarrative = FindFirstObjectByType<SalonExplorationNarrative>(FindObjectsInactive.Include);
+#else
+            salonExplorationNarrative = FindObjectOfType<SalonExplorationNarrative>(true);
+#endif
+        }
+
+        if (salonExplorationNarrative != null)
+            salonExplorationNarrative.NotifyFirstGuitarChordPlayed();
 
         // Nouveau puzzle: l'accord joué fait avancer la facette correspondant au cran capot.
         if (prismFacetPuzzleController != null)

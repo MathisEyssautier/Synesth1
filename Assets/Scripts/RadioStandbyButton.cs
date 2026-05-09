@@ -33,6 +33,12 @@ public class RadioStandbyButton : MonoBehaviour
         if (Time.time < _nextTime) return;
         if (radioManager == null) return;
 
+        // Avant la résolution du piano, le bouton est inerte : on n'autorise pas le standby.
+        if (!radioManager.IsRadioUnlocked) return;
+
+        // Pendant la lecture du vocal exclusif (parents), la radio est verrouillée allumée.
+        if (radioManager.IsExclusiveRadioPlaying) return;
+
         _nextTime = Time.time + cooldown;
         radioManager.ToggleStandby();
     }

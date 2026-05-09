@@ -32049,6 +32049,8 @@ MonoBehaviour:
   couleurNeutre: {r: 1, g: 1, b: 1, a: 1}
   couleurA: {r: 0, g: 1, b: 0, a: 1}
   couleurB: {r: 1, g: 0, b: 0, a: 1}
+  disableXrTrackRotation: 1
+  lockRotationEveryFrameWhileGrabbed: 1
 --- !u!114 &1506186681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32414,7 +32416,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 14.83, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5999756, y: -170.92503}
+  m_AnchoredPosition: {x: 0.5999756, y: -170.92505}
   m_SizeDelta: {x: -499.99994, y: -544.44995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514419964
@@ -33015,7 +33017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1561635182
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35820,7 +35822,8 @@ MonoBehaviour:
   radioManager: {fileID: 313657686}
   handTag: PlayerHand
   cooldown: 0.2
-  pressDepth: 0.01
+  onPressedDepth: 0.01
+  offPressedDepth: 0.02
   pressSpeed: 12
 --- !u!1 &1675638610
 GameObject:
@@ -45987,6 +45990,8 @@ MonoBehaviour:
   couleurNeutre: {r: 1, g: 1, b: 1, a: 1}
   couleurA: {r: 0, g: 1, b: 0, a: 1}
   couleurB: {r: 1, g: 0, b: 0, a: 1}
+  disableXrTrackRotation: 1
+  lockRotationEveryFrameWhileGrabbed: 1
 --- !u!114 &2143680684
 MonoBehaviour:
   m_ObjectHideFlags: 0

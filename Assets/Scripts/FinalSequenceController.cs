@@ -33,6 +33,10 @@ public class FinalSequenceController : MonoBehaviour
     [SerializeField] private float fadersRiseDuration = 2f;
     [SerializeField] private float masterFadeInDuration = 1.5f;
 
+    [Header("GameObjects à activer au lancement de la séquence finale")]
+    [Tooltip("Liste de GameObjects activés (SetActive(true)) au moment où les trois faders sont au bon niveau et que la séquence finale démarre.")]
+    [SerializeField] private GameObject[] gameObjectsToActivateOnFinalSequenceStart;
+
     [Header("Object audio modulation (bus)")]
     [Tooltip("Buses des sons d'objets à moduler (pan + volume). Ex: bus:/SFX/Objects")]
     [SerializeField] private string[] objectAudioBusPaths;
@@ -50,6 +54,16 @@ public class FinalSequenceController : MonoBehaviour
     [SerializeField] private float lightIntensityLerpSpeed = 2.5f;
     [SerializeField] private Vector2 lightIntensityRange = new Vector2(0.6f, 2.2f);
     [SerializeField] private float targetRefreshThreshold = 0.02f;
+
+    [Header("Color modulation tuning (less psychedelic)")]
+    [Tooltip("Plage de saturation des couleurs aléatoires. Baisse pour rendre la modulation plus douce.")]
+    [SerializeField] private Vector2 colorSaturationRange = new Vector2(0.2f, 0.45f);
+    [Tooltip("Plage de luminosité (Value) des couleurs aléatoires.")]
+    [SerializeField] private Vector2 colorValueRange = new Vector2(0.7f, 1f);
+    [Tooltip("Force du mélange entre la couleur de base de l'objet et la couleur aléatoire (0 = pas de variation, 1 = couleur aléatoire pure).")]
+    [Range(0f, 1f)] [SerializeField] private float rendererColorMixStrength = 0.35f;
+    [Tooltip("Force du mélange pour les lumières (1 = couleur aléatoire pure).")]
+    [Range(0f, 1f)] [SerializeField] private float lightColorMixStrength = 0.5f;
 
     [Header("Exit unlock + final outside sequence")]
     [SerializeField] private Collider exitBlockerAndTriggerCollider;
@@ -158,6 +172,7 @@ public class FinalSequenceController : MonoBehaviour
                 {
                     _started = true;
                     SetFadersBrokenState(true);
+                    ActivateFinalSequenceGameObjects();
                     StartCoroutine(RunFinalAudioSequence());
                 }
             }
@@ -277,7 +292,7 @@ public class FinalSequenceController : MonoBehaviour
                 Material mat = r.material;
                 Color current = ReadMaterialColor(mat);
                 if (ColorDistanceSqr(current, _rendererTargetColors[i]) <= targetRefreshThreshold * targetRefreshThreshold)
-                    _rendererTargetColors[i] = RandomColor();
+                    _rendererTargetColors[i] = ComputeRendererTargetColor(_rendererBaseColors[i]);
 
                 Color next = Color.Lerp(current, _rendererTargetColors[i], deltaTime * colorLerpSpeed);
                 WriteMaterialColor(mat, next);
@@ -296,7 +311,7 @@ public class FinalSequenceController : MonoBehaviour
                 if (l == null) continue;
 
                 if (ColorDistanceSqr(l.color, _lightTargetColors[i]) <= targetRefreshThreshold * targetRefreshThreshold)
-                    _lightTargetColors[i] = RandomColor();
+                    _lightTargetColors[i] = ComputeLightTargetColor(l.color);
 
                 if (Mathf.Abs(l.intensity - _lightTargetIntensities[i]) <= targetRefreshThreshold)
                     _lightTargetIntensities[i] = Random.Range(minI, maxI);
@@ -320,7 +335,7 @@ public class FinalSequenceController : MonoBehaviour
             if (r == null) continue;
             Color c = ReadMaterialColor(r.material);
             _rendererBaseColors[i] = c;
-            _rendererTargetColors[i] = RandomColor();
+            _rendererTargetColors[i] = ComputeRendererTargetColor(c);
         }
     }
 
@@ -339,10 +354,33 @@ public class FinalSequenceController : MonoBehaviour
         {
             var l = lightsToModulate[i];
             if (l == null) continue;
-            _lightTargetColors[i] = RandomColor();
+            _lightTargetColors[i] = ComputeLightTargetColor(l.color);
             _lightBaseIntensities[i] = l.intensity;
             _lightTargetIntensities[i] = Random.Range(minI, maxI);
         }
+    }
+
+    private Color ComputeRendererTargetColor(Color baseColor)
+    {
+        Color random = SampleRandomColor();
+        Color blended = Color.Lerp(baseColor, random, Mathf.Clamp01(rendererColorMixStrength));
+        blended.a = baseColor.a;
+        return blended;
+    }
+
+    private Color ComputeLightTargetColor(Color currentColor)
+    {
+        Color random = SampleRandomColor();
+        return Color.Lerp(currentColor, random, Mathf.Clamp01(lightColorMixStrength));
+    }
+
+    private Color SampleRandomColor()
+    {
+        float sMin = Mathf.Clamp01(Mathf.Min(colorSaturationRange.x, colorSaturationRange.y));
+        float sMax = Mathf.Clamp01(Mathf.Max(colorSaturationRange.x, colorSaturationRange.y));
+        float vMin = Mathf.Clamp01(Mathf.Min(colorValueRange.x, colorValueRange.y));
+        float vMax = Mathf.Clamp01(Mathf.Max(colorValueRange.x, colorValueRange.y));
+        return Random.ColorHSV(0f, 1f, sMin, sMax, vMin, vMax);
     }
 
     private static bool IsFaderTargetReached(FaderTarget target)
@@ -358,6 +396,12 @@ public class FinalSequenceController : MonoBehaviour
             return;
 
         bool allFadersVisible = AreAllFaderRootsActiveInHierarchy(redFader, greenFader, blueFader);
+
+        // On synchronise à la fois le GameObject (SetActive) et le composant (enabled)
+        // pour que la spot s'allume même si elle a été désactivée au niveau du GameObject.
+        var lightGo = mixTableFaderSpotlight.gameObject;
+        if (lightGo.activeSelf != allFadersVisible)
+            lightGo.SetActive(allFadersVisible);
         if (mixTableFaderSpotlight.enabled != allFadersVisible)
             mixTableFaderSpotlight.enabled = allFadersVisible;
     }
@@ -370,6 +414,17 @@ public class FinalSequenceController : MonoBehaviour
     private static bool IsFaderRootActive(FaderTarget target)
     {
         return target != null && target.fader != null && target.fader.gameObject.activeInHierarchy;
+    }
+
+    private void ActivateFinalSequenceGameObjects()
+    {
+        if (gameObjectsToActivateOnFinalSequenceStart == null) return;
+        for (int i = 0; i < gameObjectsToActivateOnFinalSequenceStart.Length; i++)
+        {
+            var go = gameObjectsToActivateOnFinalSequenceStart[i];
+            if (go == null) continue;
+            if (!go.activeSelf) go.SetActive(true);
+        }
     }
 
     private IEnumerator RunFinalAudioSequence()
@@ -814,8 +869,4 @@ public class FinalSequenceController : MonoBehaviour
         return dr * dr + dg * dg + db * db + da * da;
     }
 
-    private static Color RandomColor()
-    {
-        return Random.ColorHSV(0f, 1f, 0.65f, 1f, 0.75f, 1f);
-    }
 }

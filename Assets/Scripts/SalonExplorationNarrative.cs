@@ -57,10 +57,18 @@ public class SalonExplorationNarrative : MonoBehaviour
 
     [Header("Guitare")]
     [SerializeField] private EventReference voTherapeuteCestPresqueTermine;
+    [Tooltip("Première ligne jouée la 1re fois qu'un accord est joué après l'assemblage des 6 cordes.")]
+    [SerializeField] private EventReference voGuitarFirstChordLine1;
+    [Tooltip("Deuxième ligne enchaînée juste après la première, à la 1re fois qu'un accord est joué après l'assemblage des 6 cordes.")]
+    [SerializeField] private EventReference voGuitarFirstChordLine2;
     [SerializeField] private EventReference voTherapeuteParfaitGuitare;
     [SerializeField] private EventReference voTherapeuteEtLaTuViensDeRajouter;
     [SerializeField] private EventReference voNayaCetteGuitareMaToujours;
     [SerializeField] private EventReference voTherapeuteTuNesPasFigee;
+
+    [Header("Bureau — Post-FX hallucinations (Volume URP)")]
+    [Tooltip("Driver du Volume URP du bureau. Activé en même temps que la voix off des cordes posées, désactivé en même temps que la voix off de prisme résolu.")]
+    [SerializeField] private OfficeChromaticAberrationDriver officePostFxDriver;
 
     [Header("Trois faders actifs — son radio (pas une voix off)")]
     [SerializeField] private GameObject faderViolons;
@@ -88,6 +96,7 @@ public class SalonExplorationNarrative : MonoBehaviour
     private bool _officeEntered;
     private bool _shellPuzzleVoDone;
     private bool _guitarStringsVoDone;
+    private bool _guitarFirstChordVoDone;
     private bool _guitarSolvedVoDone;
     private bool _guitarPlacedVoDone;
     private bool _threeFadersVoDone;
@@ -230,6 +239,21 @@ public class SalonExplorationNarrative : MonoBehaviour
         if (_guitarStringsVoDone) return;
         _guitarStringsVoDone = true;
         EnqueueSub(voTherapeuteCestPresqueTermine);
+
+        if (officePostFxDriver != null)
+            officePostFxDriver.EnableEffect();
+    }
+
+    /// <summary>
+    /// À appeler la première fois qu'un accord est joué après que toutes les cordes
+    /// de guitare ont été montées. Enchaîne deux lignes de dialogue.
+    /// </summary>
+    public void NotifyFirstGuitarChordPlayed()
+    {
+        if (_guitarFirstChordVoDone) return;
+        _guitarFirstChordVoDone = true;
+        EnqueueSub(voGuitarFirstChordLine1);
+        EnqueueSub(voGuitarFirstChordLine2);
     }
 
     public void NotifyGuitarChordSolved()
@@ -237,6 +261,9 @@ public class SalonExplorationNarrative : MonoBehaviour
         if (_guitarSolvedVoDone) return;
         _guitarSolvedVoDone = true;
         EnqueueSub(voTherapeuteParfaitGuitare);
+
+        if (officePostFxDriver != null)
+            officePostFxDriver.DisableEffect();
     }
 
     public void NotifyGuitarPlacedOnStand()

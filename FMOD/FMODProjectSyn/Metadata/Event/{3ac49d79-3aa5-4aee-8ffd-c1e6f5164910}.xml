@@ -163,7 +163,7 @@
 			<value>4.5</value>
 		</property>
 		<property name="name">
-			<value>sub_end.</value>
+			<value>sub_end</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{9d968104-f6df-4bbf-adcc-783e47872210}</destination>
