@@ -25,14 +25,21 @@ public class ParticleVFXAmplitude : MonoBehaviour
     [Tooltip("Multiplicateur appliqué avant d'envoyer la valeur au VFX.")]
     [SerializeField] private float amplitudeScale = 1f;
 
-    [Tooltip("Valeur max envoyée au VFX (metering FMOD peut dépasser 1000). 0 = pas de plafond.")]
-    [SerializeField] private float maxAmplitudeOutput = 20f;
+    [Tooltip("Valeur max envoyée au VFX. ATTENTION : dans Particles.vfx la formule est Amplitude*180000 = SpawnRate, et la capacité est 2000 particules / lifetime ~0.4s = ~5000 part/s max. Donc Amplitude max sûre ≈ 0.03. Au-delà, le système overflow et NE RENDS RIEN. 0 = pas de plafond.")]
+    [SerializeField] private float maxAmplitudeOutput = 0.05f;
 
     [Header("Idle (ex. coquillages)")]
     [Tooltip("Ajouté à l'amplitude mesurée : particules légères même quand le metering FMOD est à 0 (objet pas à l'oreille ou event très faible).")]
     [SerializeField] private float baselineAmplitude = 0f;
 
-    // Tous les VFX graphs dans les enfants (les 3 systèmes de particules)
+    [Header("DIAGNOSTIC BUILD (à désactiver en prod)")]
+    [Tooltip("DEBUG: si activé, ignore le FMOD metering et envoie cette valeur fixe au VFX. Utile pour tester si le VFX rend bien sur Quest même sans metering FMOD. ATTENTION : utiliser une PETITE valeur (~0.02), sinon le spawn rate VFX overflow et plus rien ne rend !")]
+    [SerializeField] private bool forceFixedAmplitudeForBuildTest = false;
+    [Tooltip("Valeur d'amplitude forcée. ATTENTION : Particles.vfx fait SpawnRate = Amplitude * 180000. Avec capacité 2000 / lifetime 0.4s, max sûre ≈ 0.02-0.03. NE PAS METTRE 5 ou 10 — overflow garanti et 0 particule rendue.")]
+    [SerializeField] private float forcedAmplitudeValue = 0.02f;
+    [Tooltip("DEBUG: active des Debug.Log pour voir dans adb logcat ce qui se passe.")]
+    [SerializeField] private bool verboseDiagnosticLogs = false;
+
     private VisualEffect[] _vfxGraphs;
     private float _smoothedAmplitude;
     private Coroutine _pulseRoutine;
@@ -52,7 +59,22 @@ public class ParticleVFXAmplitude : MonoBehaviour
         if (_vfxGraphs == null || _vfxGraphs.Length == 0)
             Debug.LogWarning($"[ParticleVFXAmplitude] Aucun VisualEffect trouvé dans les enfants de {gameObject.name}.");
         else
-            Debug.Log($"[ParticleVFXAmplitude] {_vfxGraphs.Length} VFX graph(s) détectés.");
+            Debug.Log($"[ParticleVFXAmplitude] {_vfxGraphs.Length} VFX graph(s) détectés sur {gameObject.name}.");
+
+        if (verboseDiagnosticLogs)
+        {
+            Debug.Log($"[ParticleVFXAmplitudeDIAG] {gameObject.name}: forceFixedAmplitudeForBuildTest={forceFixedAmplitudeForBuildTest}, forcedAmplitudeValue={forcedAmplitudeValue}, vfxGraphsCount={(_vfxGraphs != null ? _vfxGraphs.Length : 0)}, propertyName=\"{vfxPropertyName}\"");
+            if (_vfxGraphs != null)
+            {
+                for (int i = 0; i < _vfxGraphs.Length; i++)
+                {
+                    var v = _vfxGraphs[i];
+                    if (v == null) continue;
+                    bool hasProp = v.HasFloat(vfxPropertyName);
+                    Debug.Log($"[ParticleVFXAmplitudeDIAG]  - VFX[{i}] '{v.gameObject.name}' (active={v.gameObject.activeInHierarchy}, enabled={v.enabled}, hasFloatProperty={hasProp}, visualEffectAsset={v.visualEffectAsset?.name})");
+                }
+            }
+        }
     }
 
     private void CacheVfxGraphs()
@@ -71,11 +93,16 @@ public class ParticleVFXAmplitude : MonoBehaviour
         if (_vfxGraphs == null || _vfxGraphs.Length == 0)
             return;
 
+        if (forceFixedAmplitudeForBuildTest)
+        {
+            PushAmplitudeToVfx(forcedAmplitudeValue);
+            return;
+        }
+
         float rawAmplitude = 0f;
         if (musicSource != null)
             rawAmplitude = (musicSource.MeterLeft + musicSource.MeterRight) * 0.5f;
 
-        // Lissage exponentiel
         _smoothedAmplitude = Mathf.Lerp(rawAmplitude, _smoothedAmplitude, smoothing);
 
         float finalValue = (_smoothedAmplitude + baselineAmplitude) * amplitudeScale;
@@ -89,10 +116,19 @@ public class ParticleVFXAmplitude : MonoBehaviour
         if (maxAmplitudeOutput > 0f)
             value = Mathf.Clamp(value, 0f, maxAmplitudeOutput);
 
+        int pushed = 0;
         foreach (VisualEffect vfx in _vfxGraphs)
         {
             if (vfx != null && vfx.HasFloat(vfxPropertyName))
+            {
                 vfx.SetFloat(vfxPropertyName, value);
+                pushed++;
+            }
+        }
+
+        if (verboseDiagnosticLogs && Time.frameCount % 120 == 0)
+        {
+            Debug.Log($"[ParticleVFXAmplitudeDIAG] {gameObject.name} push amplitude={value:F2} to {pushed}/{(_vfxGraphs != null ? _vfxGraphs.Length : 0)} VFX (frame {Time.frameCount})");
         }
     }
 

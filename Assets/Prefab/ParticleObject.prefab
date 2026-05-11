@@ -66,11 +66,11 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 3.2111173, y: 1.7200788, z: 0.18493344, w: 1}
-        m_Name: Highlight
-        m_Overridden: 1
       - m_Value: {x: 0.01, y: 0.05, z: 0.1, w: 0.6}
         m_Name: Scale
+        m_Overridden: 1
+      - m_Value: {x: 0.17726962, y: 1, z: 0.17254901, w: 1}
+        m_Name: Color
         m_Overridden: 1
     m_Uint:
       m_Array: []
@@ -81,39 +81,7 @@ VisualEffect:
     m_AnimationCurve:
       m_Array: []
     m_Gradient:
-      m_Array:
-      - m_Value:
-          serializedVersion: 2
-          key0: {r: 0, g: 0.53450066, b: 2.1076236, a: 1}
-          key1: {r: 0.47297674, g: 0.6093339, b: 1.2379143, a: 1}
-          key2: {r: 0, g: 0, b: 0, a: 0}
-          key3: {r: 0, g: 0, b: 0, a: 0}
-          key4: {r: 0, g: 0, b: 0, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 65535
-          ctime2: 0
-          ctime3: 0
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 65535
-          atime2: 0
-          atime3: 0
-          atime4: 0
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_ColorSpace: 1
-          m_NumColorKeys: 2
-          m_NumAlphaKeys: 2
-        m_Name: Base Color
-        m_Overridden: 1
+      m_Array: []
     m_NamedObject:
       m_Array: []
     m_Bool:
@@ -234,10 +202,7 @@ VisualEffect:
       - m_Value: {x: 0.01, y: 0.05, z: 0.1, w: 0.6}
         m_Name: Scale
         m_Overridden: 1
-      - m_Value: {x: 0.21542363, y: 0.9716981, z: 0.65442914, w: 1}
-        m_Name: Highlight
-        m_Overridden: 1
-      - m_Value: {x: 0.07075471, y: 0.14433523, z: 1, w: 0}
+      - m_Value: {x: 0.17726962, y: 1, z: 0.17254901, w: 1}
         m_Name: Color
         m_Overridden: 1
     m_Uint:
@@ -249,39 +214,7 @@ VisualEffect:
     m_AnimationCurve:
       m_Array: []
     m_Gradient:
-      m_Array:
-      - m_Value:
-          serializedVersion: 2
-          key0: {r: 0, g: 0.3712566, b: 2.1076236, a: 1}
-          key1: {r: 0.43109855, g: 0.63686275, b: 1.4506809, a: 1}
-          key2: {r: 0, g: 0, b: 0, a: 0}
-          key3: {r: 0, g: 0, b: 0, a: 0}
-          key4: {r: 0, g: 0, b: 0, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 65535
-          ctime2: 0
-          ctime3: 0
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 65535
-          atime2: 0
-          atime3: 0
-          atime4: 0
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_ColorSpace: 1
-          m_NumColorKeys: 2
-          m_NumAlphaKeys: 2
-        m_Name: Base Color
-        m_Overridden: 1
+      m_Array: []
     m_NamedObject:
       m_Array: []
     m_Bool:
@@ -399,11 +332,11 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.18493344, y: 0.9739483, z: 3.2111173, w: 1}
-        m_Name: Highlight
-        m_Overridden: 1
       - m_Value: {x: 0.05, y: 0.1, z: 0.5, w: 1.2}
         m_Name: Scale
+        m_Overridden: 1
+      - m_Value: {x: 0.17726962, y: 1, z: 0.17254901, w: 1}
+        m_Name: Color
         m_Overridden: 1
     m_Uint:
       m_Array: []
@@ -414,39 +347,7 @@ VisualEffect:
     m_AnimationCurve:
       m_Array: []
     m_Gradient:
-      m_Array:
-      - m_Value:
-          serializedVersion: 2
-          key0: {r: 0, g: 0.27394307, b: 2.1076236, a: 1}
-          key1: {r: 0.46458283, g: 0.78122663, b: 1.4700234, a: 1}
-          key2: {r: 0, g: 0, b: 0, a: 0}
-          key3: {r: 0, g: 0, b: 0, a: 0}
-          key4: {r: 0, g: 0, b: 0, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 65535
-          ctime2: 0
-          ctime3: 0
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 65535
-          atime2: 0
-          atime3: 0
-          atime4: 0
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_ColorSpace: 1
-          m_NumColorKeys: 2
-          m_NumAlphaKeys: 2
-        m_Name: Base Color
-        m_Overridden: 1
+      m_Array: []
     m_NamedObject:
       m_Array: []
     m_Bool:
@@ -549,3 +450,8 @@ MonoBehaviour:
   vfxPropertyName: Amplitude
   smoothing: 0.1
   amplitudeScale: 50
+  maxAmplitudeOutput: 0.05
+  baselineAmplitude: 0
+  forceFixedAmplitudeForBuildTest: 0
+  forcedAmplitudeValue: 0.02
+  verboseDiagnosticLogs: 0
