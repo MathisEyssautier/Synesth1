@@ -17,6 +17,11 @@ public class GrabbableMusicObject : MonoBehaviour
 
     [Header("Visual")]
     [SerializeField] private Renderer targetRenderer;
+    [Tooltip("Mode SWAP : si défini, le material à cet index du targetRenderer est remplacé par onMaterial quand l'objet est activé, et restauré quand désactivé. Mode TEINTE (fallback) : si onMaterial est vide, applique seulement onColor et l'émission sur le material existant.")]
+    [SerializeField] private Material onMaterial;
+    [Tooltip("Index du material à swap dans le Renderer (utile si le Renderer a plusieurs materials).")]
+    [SerializeField] private int materialIndexToSwap = 0;
+    [Tooltip("Utilisé uniquement en mode TEINTE (quand onMaterial est vide).")]
     [SerializeField] private Color onColor = Color.magenta;
     [SerializeField] private bool useEmission = true;
     [SerializeField] private float emissionOnIntensity = 2f;
@@ -32,6 +37,10 @@ public class GrabbableMusicObject : MonoBehaviour
     public EventInstance EventInstance => _eventInstance;
     private Material _materialInstance;
     private Color _baseColor = Color.white;
+
+    private bool _useMaterialSwap;
+    private Material _offMaterial;
+
     private bool _isOn = false;
     public bool IsOn => _isOn;
 
@@ -48,10 +57,22 @@ public class GrabbableMusicObject : MonoBehaviour
 
         if (targetRenderer != null)
         {
-            _materialInstance = targetRenderer.material;
-            _baseColor = _materialInstance.color;
-            if (useEmission)
-                _materialInstance.EnableKeyword("_EMISSION");
+            _useMaterialSwap = onMaterial != null;
+
+            if (_useMaterialSwap)
+            {
+                Material[] shared = targetRenderer.sharedMaterials;
+                int safeIndex = Mathf.Clamp(materialIndexToSwap, 0, shared.Length - 1);
+                materialIndexToSwap = safeIndex;
+                _offMaterial = shared[safeIndex];
+            }
+            else
+            {
+                _materialInstance = targetRenderer.material;
+                _baseColor = _materialInstance.color;
+                if (useEmission)
+                    _materialInstance.EnableKeyword("_EMISSION");
+            }
         }
     }
 
@@ -100,7 +121,16 @@ public class GrabbableMusicObject : MonoBehaviour
         if (canvasRoot != null)
             canvasRoot.SetActive(_isOn);
 
-        if (_materialInstance != null)
+        if (_useMaterialSwap && targetRenderer != null && _offMaterial != null)
+        {
+            Material[] mats = targetRenderer.sharedMaterials;
+            if (materialIndexToSwap >= 0 && materialIndexToSwap < mats.Length)
+            {
+                mats[materialIndexToSwap] = _isOn ? onMaterial : _offMaterial;
+                targetRenderer.sharedMaterials = mats;
+            }
+        }
+        else if (_materialInstance != null)
         {
             Color c = _isOn ? onColor : _baseColor;
             if (_materialInstance.HasProperty("_BaseColor"))

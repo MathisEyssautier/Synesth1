@@ -17,18 +17,28 @@ public class TurntableDisc : MonoBehaviour
     [Header("Visual")]
     [SerializeField] private Renderer discRenderer;
     [SerializeField] private GameObject numberCanvasRoot;
+    [Tooltip("Mode SWAP : si défini, le material à cet index du discRenderer est remplacé par onMaterial quand le disque joue, et restauré quand on stop. Mode TEINTE (fallback) : si onMaterial est vide, applique seulement onColor et l'émission.")]
+    [SerializeField] private Material onMaterial;
+    [Tooltip("Index du material à swap dans le Renderer (utile si le Renderer a plusieurs materials).")]
+    [SerializeField] private int materialIndexToSwap = 0;
+    [Tooltip("Utilisé uniquement en mode TEINTE (quand onMaterial est vide).")]
     [SerializeField] private Color onColor = Color.magenta;
     [SerializeField] private float emissionOnIntensity = 2f;
     [SerializeField] private float emissionOffIntensity = 0f;
 
     [Header("Spin")]
     [SerializeField] private float spinSpeedDegPerSec = 180f;
+    [Tooltip("Axe local autour duquel le disque tourne en lecture. Par défaut Y (haut). Mets Z (0,0,1) si ton modèle 3D est orienté avec l'axe disque sur Z.")]
+    [SerializeField] private Vector3 spinAxis = Vector3.up;
 
     private XRGrabInteractable _grab;
     private Rigidbody _rb;
     private EventInstance _eventInstance;
     public EventInstance EventInstance => _eventInstance;
     private Material _mat;
+
+    private bool _useMaterialSwap;
+    private Material _offMaterial;
 
     private Color _baseColor = Color.white;
     private bool _isPlaying = false;
@@ -57,9 +67,21 @@ public class TurntableDisc : MonoBehaviour
 
         if (discRenderer != null)
         {
-            _mat = discRenderer.material;
-            _baseColor = _mat.color;
-            _mat.EnableKeyword("_EMISSION");
+            _useMaterialSwap = onMaterial != null;
+
+            if (_useMaterialSwap)
+            {
+                Material[] shared = discRenderer.sharedMaterials;
+                int safeIndex = Mathf.Clamp(materialIndexToSwap, 0, shared.Length - 1);
+                materialIndexToSwap = safeIndex;
+                _offMaterial = shared[safeIndex];
+            }
+            else
+            {
+                _mat = discRenderer.material;
+                _baseColor = _mat.color;
+                _mat.EnableKeyword("_EMISSION");
+            }
         }
 
         _grab.selectEntered.AddListener(OnGrabbed);
@@ -97,7 +119,7 @@ public class TurntableDisc : MonoBehaviour
     private void Update()
     {
         if (_isPlaying)
-            transform.Rotate(0f, 0f, spinSpeedDegPerSec * Time.deltaTime, Space.Self);
+            transform.Rotate(spinAxis * (spinSpeedDegPerSec * Time.deltaTime), Space.Self);
     }
 
     private void OnGrabbed(SelectEnterEventArgs args)
@@ -170,7 +192,16 @@ public class TurntableDisc : MonoBehaviour
         if (numberCanvasRoot != null)
             numberCanvasRoot.SetActive(play);
 
-        if (_mat != null)
+        if (_useMaterialSwap && discRenderer != null && _offMaterial != null)
+        {
+            Material[] mats = discRenderer.sharedMaterials;
+            if (materialIndexToSwap >= 0 && materialIndexToSwap < mats.Length)
+            {
+                mats[materialIndexToSwap] = play ? onMaterial : _offMaterial;
+                discRenderer.sharedMaterials = mats;
+            }
+        }
+        else if (_mat != null)
         {
             Color c = play ? onColor : _baseColor;
             _mat.color = c;

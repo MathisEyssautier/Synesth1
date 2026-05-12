@@ -9,6 +9,12 @@ public class GuitarAssemblyManager : MonoBehaviour
     [Header("Narration")]
     [SerializeField] private UnityEvent onAllStringsPlaced;
 
+    [Header("Demo build (TEMP - décocher pour build normal)")]
+    [Tooltip("Si activé : toutes les cordes sont automatiquement placées sur la guitare au démarrage. Pour la version démo 5 minutes uniquement.")]
+    [SerializeField] private bool demoAutoPlaceAllStringsOnStart = false;
+    [Tooltip("Optionnel : pickups de cordes (les versions à grab) à désactiver quand on auto-place. Laisse vide si non utilisé.")]
+    [SerializeField] private GameObject[] demoPickupStringsToHide;
+
     private bool[] _placed;
     private int _placedCount;
     private bool _allStringsEventFired;
@@ -26,6 +32,27 @@ public class GuitarAssemblyManager : MonoBehaviour
         {
             if (guitarStringVisuals[i] != null)
                 guitarStringVisuals[i].SetActive(false);
+        }
+    }
+
+    private void Start()
+    {
+        if (demoAutoPlaceAllStringsOnStart)
+            DemoAutoPlaceAllStrings();
+    }
+
+    private void DemoAutoPlaceAllStrings()
+    {
+        if (_placed == null) return;
+
+        _allStringsEventFired = true;
+
+        for (int i = 0; i < _placed.Length; i++)
+        {
+            GameObject pickup = (demoPickupStringsToHide != null && i < demoPickupStringsToHide.Length)
+                ? demoPickupStringsToHide[i]
+                : null;
+            TryPlaceString(i, pickup);
         }
     }
 

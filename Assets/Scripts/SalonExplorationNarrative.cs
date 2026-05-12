@@ -81,6 +81,10 @@ public class SalonExplorationNarrative : MonoBehaviour
     [SerializeField] private EventReference voNayaJeMeSuisToujoursDit;
     [SerializeField] private EventReference voTherapeuteTyEsPresqueEquilibre;
 
+    [Header("Demo build (TEMP - décocher pour build normal)")]
+    [Tooltip("Si activé : aucun vocal ni event radio ne se déclenche quand les 3 faders sont actifs. Pour la version démo 5 minutes uniquement.")]
+    [SerializeField] private bool demoSkipThreeFadersNarration = false;
+
     private bool _postParentsVoQueued;
 
     private bool _explorationStarted;
@@ -283,6 +287,9 @@ public class SalonExplorationNarrative : MonoBehaviour
             return;
 
         _threeFadersVoDone = true;
+
+        if (demoSkipThreeFadersNarration)
+            return;
 
         _postParentsVoQueued = false;
         if (_radioAfterNarrationRoutine != null)

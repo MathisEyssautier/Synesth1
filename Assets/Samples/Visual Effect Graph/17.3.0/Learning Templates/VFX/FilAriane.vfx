@@ -141,10 +141,10 @@ MonoBehaviour:
   - title: Noise Position
     position:
       serializedVersion: 2
-      x: -1471
-      y: 1963
-      width: 1662
-      height: 555
+      x: -1470
+      y: 1962
+      width: 1664
+      height: 552
     contents:
     - model: {fileID: 8926484042661615401}
       id: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
       x: -1445
       y: 2022
       width: 348
-      height: 221
+      height: 222
     contents: "Turbulence is frequently used to get organic motion. But it\u2019s
       usually easier to control the particle\u2019s movement and behavior by directly
       setting the position instead of using forces.\r\n\r\nTo do so, in the output,
@@ -402,9 +402,9 @@ MonoBehaviour:
   uiBounds:
     serializedVersion: 2
     x: -1470
-    y: -1012
-    width: 3121
-    height: 3909
+    y: -1014
+    width: 3122
+    height: 3910
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: CustomMulti
+  m_Name: FilAriane
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -547,7 +547,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CustomMulti
+  m_Name: FilAriane
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -1164,7 +1164,7 @@ MonoBehaviour:
       slotIndex: 0
   m_OutputFlowSlot:
   - link: []
-  blendMode: 1
+  blendMode: 0
   cullMode: 0
   zWriteMode: 0
   zTestMode: 0
@@ -1601,7 +1601,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: True
+      m_SerializableObject: False
     m_Space: -1
   m_Property:
     name: _vfx_enabled
@@ -1798,7 +1798,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: True
+      m_SerializableObject: False
     m_Space: -1
   m_Property:
     name: _vfx_enabled
@@ -2672,7 +2672,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: True
+      m_SerializableObject: False
     m_Space: -1
   m_Property:
     name: _vfx_enabled
@@ -3962,7 +3962,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -513, y: 2219}
+  m_UIPosition: {x: -484, y: 2226}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
