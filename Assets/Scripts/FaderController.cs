@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -12,7 +12,7 @@ public class FaderController : MonoBehaviour
     public FaderType faderType;
     public MusicManagerScript musicManager;
 
-    [Header("RÈfÈrences")]
+    [Header("R¬ùf¬ùrences")]
     public Transform faderBase;
     public float railHalfLength = 0.30f;
 
@@ -29,13 +29,16 @@ public class FaderController : MonoBehaviour
 
     [Header("Feedback visuel cible")]
     [SerializeField] private bool enableTargetVisualFeedback = true;
-    [Tooltip("Renderer ‡ teinter (si vide, premier Renderer trouvÈ sous ce fader).")]
+    [Tooltip("Si d¬ùfini (ou trouv¬ù sur un parent) : la teinte ¬ù proche de la cible ¬ù n¬ùest active que quand les trois faders du groupe sont actifs.")]
+    [SerializeField] private FinalSequenceController finalSequenceController;
+    [SerializeField] private bool gateTargetVisualFeedbackUntilAllFadersActive = true;
+    [Tooltip("Renderer ¬ù teinter (si vide, premier Renderer trouv¬ù sous ce fader).")]
     [SerializeField] private Renderer targetFeedbackRenderer;
     [Tooltip("Base de teinte quand on est loin de la cible.")]
     [SerializeField] private Color feedbackBaseColor = Color.white;
-    [Tooltip("Couleur dÈdiÈe ‡ ce fader uniquement (ex: vert pour le fader vert).")]
+    [Tooltip("Couleur d¬ùdi¬ùe ¬ù ce fader uniquement (ex: vert pour le fader vert).")]
     [SerializeField] private Color targetFeedbackColor = Color.green;
-    [Tooltip("Distance (en valeur de fader 0..1) ‡ partir de laquelle le feedback commence ‡ devenir visible.")]
+    [Tooltip("Distance (en valeur de fader 0..1) ¬ù partir de laquelle le feedback commence ¬ù devenir visible.")]
     [Range(0.01f, 1f)] [SerializeField] private float visualFeedbackRange = 0.25f;
     [Range(0f, 5f)] [SerializeField] private float visualEmissionIntensity = 1.2f;
 
@@ -71,13 +74,18 @@ public class FaderController : MonoBehaviour
 
         _lockedLocalY = faderBase.InverseTransformPoint(transform.position).y;
 
+        if (finalSequenceController == null)
+            finalSequenceController = FindFirstObjectByType<FinalSequenceController>();
+
         ResolveFeedbackRendererAndMaterial();
     }
 
+    public void RefreshTargetVisualFeedback() => UpdateTargetVisualFeedback();
+
     private void OnEnable()
     {
-        // Quand le fader apparaÓt (SetActive true), on pousse tout de suite sa valeur vers FMOD
-        // pour Èviter d'avoir une piste muette tant qu'on ne l'a pas grab.
+        // Quand le fader appara¬ùt (SetActive true), on pousse tout de suite sa valeur vers FMOD
+        // pour ¬ùviter d'avoir une piste muette tant qu'on ne l'a pas grab.
         ConstrainToRail();
         ApplyValueToMusic();
         UpdateTargetVisualFeedback();
@@ -250,6 +258,35 @@ public class FaderController : MonoBehaviour
             _feedbackBaseCapturedColor = _feedbackMaterial.color;
     }
 
+    private bool ShouldApplyTargetVisualFeedback()
+    {
+        if (!gateTargetVisualFeedbackUntilAllFadersActive)
+            return true;
+        if (finalSequenceController == null)
+            finalSequenceController = FindFirstObjectByType<FinalSequenceController>();
+        if (finalSequenceController == null)
+            return false;
+        return finalSequenceController.AreAllMixFadersActiveInHierarchy;
+    }
+
+    private void RestoreTargetVisualBaseColor()
+    {
+        if (_feedbackMaterial == null)
+            return;
+
+        Color baseColor = feedbackBaseColor;
+        if (baseColor == default)
+            baseColor = _feedbackBaseCapturedColor;
+
+        if (_feedbackMaterial.HasProperty("_BaseColor"))
+            _feedbackMaterial.SetColor("_BaseColor", baseColor);
+        else
+            _feedbackMaterial.color = baseColor;
+
+        if (_feedbackMaterial.HasProperty("_EmissionColor"))
+            _feedbackMaterial.SetColor("_EmissionColor", Color.black);
+    }
+
     private void UpdateTargetVisualFeedback()
     {
         if (!Application.isPlaying)
@@ -262,6 +299,12 @@ public class FaderController : MonoBehaviour
             ResolveFeedbackRendererAndMaterial();
         if (_feedbackMaterial == null)
             return;
+
+        if (!ShouldApplyTargetVisualFeedback())
+        {
+            RestoreTargetVisualBaseColor();
+            return;
+        }
 
         float distance = Mathf.Abs(value - targetValue);
         float range = Mathf.Max(targetTolerance, visualFeedbackRange);

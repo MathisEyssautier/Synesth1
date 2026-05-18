@@ -36,8 +36,11 @@ public class GuitarCapoCrankController : MonoBehaviour
     [SerializeField] private bool activateFaderOnSolve = false;
 
     [Header("Success visual")]
-    [Tooltip("Renderer du body de guitare (ex: enfant 'GuitarBody') à teinter en jaune à la réussite.")]
+    [Tooltip("Renderer du body de guitare (ex: enfant 'GuitarBody') à teinter en jaune à la réussite, ou à équiper du shader ci-dessous.")]
     [SerializeField] private Renderer guitarBodyRenderer;
+    [Tooltip("Si défini : remplace le material sur le body à la réussite du prisme (Success = faux jusqu'à la socket). Sinon : flash jaune sur le material actuel.")]
+    [SerializeField] private Material guitarBodyShaderMaterial;
+    [SerializeField] private int guitarBodyShaderMaterialIndex = 0;
     [SerializeField] private Color successBodyColor = Color.yellow;
     [SerializeField] private Color successFlashColor = new Color(1f, 1f, 0.35f);
     [SerializeField] private float successFlashDuration = 0.25f;
@@ -280,7 +283,16 @@ public class GuitarCapoCrankController : MonoBehaviour
         if (lockAfterSuccess) _locked = true;
         if (activateFaderOnSolve && thirdFaderToActivate != null)
             thirdFaderToActivate.SetActive(true);
-        PlaySuccessBodyFlash();
+        if (guitarBodyShaderMaterial != null && guitarBodyRenderer != null)
+        {
+            ShaderGraphSuccessUtility.ApplySharedMaterialWithSuccess(
+                guitarBodyRenderer,
+                guitarBodyShaderMaterialIndex,
+                guitarBodyShaderMaterial,
+                false);
+        }
+        else
+            PlaySuccessBodyFlash();
         onChordSolved?.Invoke();
         return true;
     }

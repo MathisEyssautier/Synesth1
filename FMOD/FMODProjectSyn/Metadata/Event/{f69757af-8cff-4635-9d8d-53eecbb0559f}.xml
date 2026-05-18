@@ -124,7 +124,7 @@
 			<value>0</value>
 		</property>
 		<property name="name">
-			<value>Tu n'est pas figée.</value>
+			<value>Tu n'es pas figée.</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{9a19cbc9-61c9-414d-9ed3-56a20827cc48}</destination>

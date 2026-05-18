@@ -13,10 +13,22 @@ public class PotardController : MonoBehaviour
 {
     [Header("Crans")]
     public int nombreCrans = 12;
-    [Tooltip("Degres de rotation de main necessaires pour avancer d'un cran")]
-    public float seuilDegresCran = 8f;
+    [Tooltip("Degrès de rotation poignet pour valider un cran logique (haptique + index). Plus bas = cran plus facile. La rotation visuelle inter-crans suit l'angle entre deux crans si « suivi visuel » est actif.")]
+    public float seuilDegresCran = 10f;
     [Tooltip("Cran logique au Start (0 = premier cran). À ajuster si la pose du mesh en scène ne correspond pas à l'index 0.")]
     [SerializeField] private int cranIndexDepart = 0;
+
+    [Header("Stabilité (VR)")]
+    [Tooltip("Inverse le sens horaire / antihoraire si la main tourne dans le mauvais sens.")]
+    [SerializeField] private bool invertRotationDirection = false;
+    [Tooltip("Multiplicateur sur l'angle poignet mesuré avant seuil (gestes naturels : 1,15–1,35 souvent plus confortable).")]
+    [SerializeField] private float wristRotationGain = 1.2f;
+    [Tooltip("Plafonne l'écart d'angle main (°) par frame — évite les sauts de plusieurs crans (glitch tracking). 0 = pas de plafond (recommandé pour un suivi fluide).")]
+    [SerializeField] private float maxHandAngleDeltaPerFrame = 0f;
+    [Tooltip("Nombre max de crans par frame (recommandé : 1).")]
+    [SerializeField] private int maxCransParFrame = 1;
+    [Tooltip("Entre deux clics : fait tourner le mesh au prorata du poignet (même rythme que le geste). Désactiver pour pose fixe stricte seulement sur les crans.")]
+    [SerializeField] private bool smoothVisualBetweenStepsWhileGrabbed = true;
 
     [Header("Positions valides (index de cran, 0 a nombreCrans-1)")]
     public int cranPositionA = 3;
@@ -37,12 +49,11 @@ public class PotardController : MonoBehaviour
     private int _cranActuel = 0;
     private bool _estSaisi = false;
     private IXRSelectInteractor _interactorCourant;
-    private float _angleMainPrecedent;
     private float _accumulateurDelta = 0f;
     private Quaternion _rotationBaseLocale;
-    private Vector3 _grabReferenceVector;
     private Vector3 _grabAxis;
     private bool _grabReferenceValid;
+    private Quaternion _attachRotationPrecedente;
     private Transform _initialParent;
     private int _initialSiblingIndex;
 
@@ -133,7 +144,6 @@ public class PotardController : MonoBehaviour
         _estSaisi = true;
         _interactorCourant = args.interactorObject;
         InitGrabReference(_interactorCourant);
-        _angleMainPrecedent = GetAngleControllerAroundPotardAxis(_interactorCourant);
         _accumulateurDelta = 0f;
     }
 
@@ -157,30 +167,50 @@ public class PotardController : MonoBehaviour
         if (!_estSaisi || _interactorCourant == null) return;
         if (!_grabReferenceValid) return;
 
-        float angleActuel = GetAngleControllerAroundPotardAxis(_interactorCourant);
-        float delta = Mathf.DeltaAngle(_angleMainPrecedent, angleActuel);
-        _angleMainPrecedent = angleActuel;
+        float delta = ComputeSignedGrabTwistDeltaThisFrame();
+
+        if (invertRotationDirection)
+            delta = -delta;
+
+        if (wristRotationGain > 0f && !Mathf.Approximately(wristRotationGain, 1f))
+            delta *= wristRotationGain;
+
+        if (maxHandAngleDeltaPerFrame > 0.01f)
+            delta = Mathf.Clamp(delta, -maxHandAngleDeltaPerFrame, maxHandAngleDeltaPerFrame);
 
         _accumulateurDelta += delta;
 
-        while (_accumulateurDelta >= seuilDegresCran)
+        int ticksLeft = Mathf.Max(1, maxCransParFrame);
+        while (ticksLeft > 0)
         {
-            _accumulateurDelta -= seuilDegresCran;
-            ChangerCran(1);
-        }
-        while (_accumulateurDelta <= -seuilDegresCran)
-        {
-            _accumulateurDelta += seuilDegresCran;
-            ChangerCran(-1);
+            if (_accumulateurDelta >= seuilDegresCran)
+            {
+                _accumulateurDelta -= seuilDegresCran;
+                ChangerCran(1);
+                ticksLeft--;
+            }
+            else if (_accumulateurDelta <= -seuilDegresCran)
+            {
+                _accumulateurDelta += seuilDegresCran;
+                ChangerCran(-1);
+                ticksLeft--;
+            }
+            else
+                break;
         }
 
         RestoreOriginalParentIfNeeded();
 
         // Certains setups XRI continuent d'injecter une rotation de grab
         // (offset visuel, ex. Y = -90) même si trackRotation est désactivé.
-        // On force donc la pose exacte du cran courant à chaque frame.
+        // Pose du mesh : discrète ou suivi fluide entre crans selon l'accumulateur.
         if (lockRotationEveryFrameWhileGrabbed)
-            AppliquerRotationCran(_cranActuel);
+        {
+            if (smoothVisualBetweenStepsWhileGrabbed)
+                AppliquerRotationCranAvecFraction(_cranActuel, _accumulateurDelta);
+            else
+                AppliquerRotationCran(_cranActuel);
+        }
     }
 
     private void RestoreOriginalParentIfNeeded()
@@ -199,7 +229,6 @@ public class PotardController : MonoBehaviour
     {
         _cranActuel = (_cranActuel + direction + nombreCrans) % nombreCrans;
 
-        AppliquerRotationCran(_cranActuel);
         OnCranChange?.Invoke(_cranActuel);
         EnvoyerHapticsCran();
         MettreAJourCouleur();
@@ -218,8 +247,21 @@ public class PotardController : MonoBehaviour
 
     private void AppliquerRotationCran(int cran)
     {
-        float degresParCran = 360f / nombreCrans;
+        float degresParCran = 360f / Mathf.Max(1, nombreCrans);
         float angleZ = cran * degresParCran;
+        transform.localRotation = _rotationBaseLocale * Quaternion.Euler(0f, 0f, angleZ);
+    }
+
+    /// <summary>
+    /// Rotation Z : cran logique + une fraction (accumulateur / seuil) pour coller au geste entre deux détentes.
+    /// </summary>
+    private void AppliquerRotationCranAvecFraction(int cran, float accumulateurDegres)
+    {
+        int n = Mathf.Max(1, nombreCrans);
+        float degresParCran = 360f / n;
+        float seuil = Mathf.Max(0.001f, seuilDegresCran);
+        float frac = Mathf.Clamp(accumulateurDegres / seuil, -1f, 1f);
+        float angleZ = cran * degresParCran + frac * degresParCran;
         transform.localRotation = _rotationBaseLocale * Quaternion.Euler(0f, 0f, angleZ);
     }
 
@@ -237,56 +279,62 @@ public class PotardController : MonoBehaviour
 
     private void InitGrabReference(IXRSelectInteractor interactor)
     {
+        // Axe de rotation du potard (local Z = forward) : invariant en monde quand on ne fait que tourner le cran.
         _grabAxis = transform.forward.normalized;
         _grabReferenceValid = false;
-        _grabReferenceVector = Vector3.forward;
 
         if (interactor == null) return;
 
         Transform attach = interactor.GetAttachTransform(_grabInteractable);
         if (attach == null) return;
 
-        if (TryGetProjectedControllerVector(attach, _grabAxis, out Vector3 projected))
-        {
-            _grabReferenceVector = projected;
-            _grabReferenceValid = true;
-        }
+        _attachRotationPrecedente = attach.rotation;
+        _grabReferenceValid = true;
     }
 
-    // Angle signé du controller autour de l'axe du potard, relativement à l'orientation de la main au moment du grab.
-    private float GetAngleControllerAroundPotardAxis(IXRSelectInteractor interactor)
+    /// <summary>
+    /// Delta d'orientation de la main frame à frame, projeté (twist) sur l'axe du potard.
+    /// Évite SignedAngle sur forward projeté et ToAngleAxis bruités quand la main s'incline.
+    /// </summary>
+    private float ComputeSignedGrabTwistDeltaThisFrame()
     {
-        if (interactor == null || !_grabReferenceValid) return 0f;
+        if (_interactorCourant == null || !_grabReferenceValid) return 0f;
 
-        Transform attach = interactor.GetAttachTransform(_grabInteractable);
-        if (attach == null) return _angleMainPrecedent;
+        Transform attach = _interactorCourant.GetAttachTransform(_grabInteractable);
+        if (attach == null) return 0f;
 
-        if (!TryGetProjectedControllerVector(attach, _grabAxis, out Vector3 currentProjected))
-            return _angleMainPrecedent;
+        Quaternion current = attach.rotation;
+        Quaternion dq = Quaternion.Inverse(_attachRotationPrecedente) * current;
+        _attachRotationPrecedente = current;
 
-        return Vector3.SignedAngle(_grabReferenceVector, currentProjected, _grabAxis);
+        return SignedTwistAngleDegrees(dq, _grabAxis);
     }
 
-    private static bool TryGetProjectedControllerVector(Transform attach, Vector3 axis, out Vector3 projected)
+    /// <summary>Extrait la composante &quot;vrille&quot; (twist) d'un quaternion autour d'un axe unitaire, en degrés signés.</summary>
+    private static float SignedTwistAngleDegrees(Quaternion q, Vector3 twistAxis)
     {
-        projected = Vector3.zero;
-        if (attach == null) return false;
+        twistAxis = twistAxis.normalized;
+        q = q.normalized;
 
-        Vector3 forwardProjected = Vector3.ProjectOnPlane(attach.forward, axis);
-        if (forwardProjected.sqrMagnitude > 1e-6f)
-        {
-            projected = forwardProjected.normalized;
-            return true;
-        }
+        Vector3 p = new Vector3(q.x, q.y, q.z);
+        float proj = Vector3.Dot(p, twistAxis);
+        Quaternion twist = new Quaternion(twistAxis.x * proj, twistAxis.y * proj, twistAxis.z * proj, q.w);
+        float len = twist.x * twist.x + twist.y * twist.y + twist.z * twist.z + twist.w * twist.w;
+        if (len < 1e-12f)
+            return 0f;
 
-        Vector3 rightProjected = Vector3.ProjectOnPlane(attach.right, axis);
-        if (rightProjected.sqrMagnitude > 1e-6f)
-        {
-            projected = rightProjected.normalized;
-            return true;
-        }
+        len = Mathf.Sqrt(len);
+        twist.x /= len;
+        twist.y /= len;
+        twist.z /= len;
+        twist.w /= len;
 
-        return false;
+        float angleRad = 2f * Mathf.Acos(Mathf.Clamp(twist.w, -1f, 1f));
+        if (angleRad < 1e-6f)
+            return 0f;
+
+        Vector3 im = new Vector3(twist.x, twist.y, twist.z);
+        return angleRad * Mathf.Rad2Deg * Mathf.Sign(Vector3.Dot(im, twistAxis));
     }
 
     private void EnvoyerHapticsCran()

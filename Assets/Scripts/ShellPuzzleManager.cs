@@ -76,6 +76,15 @@ public class ShellPuzzleManager : MonoBehaviour
     [Tooltip("Spotlight (GameObject avec Light ou parent) activée quand le lecteur cassette est débloqué.")]
     [SerializeField] private GameObject cassetteSpotlightOnSolve;
 
+    [Header("Cassette — mesh « body » (shader K7 après déverrouillage)")]
+    [Tooltip("Swap de material uniquement au Solve() des coquillages (pas avant). Renderer du corps ou laisser vide pour chercher l'enfant « body ».")]
+    [SerializeField] private Renderer cassetteBodyShaderRenderer;
+    [Tooltip("Ex. K7ShaderColor : Success reste faux jusqu'au dépôt sur la socket (UnlockPlacementSocket).")]
+    [SerializeField] private Material cassetteBodyShaderMaterial;
+    [SerializeField] private int cassetteBodyShaderMaterialIndex = 0;
+
+    private Renderer _resolvedCassetteBodyRenderer;
+
     private void OnDestroy()
     {
         // EventInstance CreateInstance : pas liée à la scène — arrêt explicite au déchargement / destruction.
@@ -144,6 +153,32 @@ public class ShellPuzzleManager : MonoBehaviour
             _cassetteWasUseGravity = _cassetteRb.useGravity;
             _cassetteWasConstraints = _cassetteRb.constraints;
         }
+
+        ResolveCassetteBodyRenderer();
+    }
+
+    private void ResolveCassetteBodyRenderer()
+    {
+        _resolvedCassetteBodyRenderer = cassetteBodyShaderRenderer;
+        if (_resolvedCassetteBodyRenderer != null || _cassetteRoot == null)
+            return;
+
+        Transform body = _cassetteRoot.Find("body");
+        if (body == null)
+        {
+            var children = _cassetteRoot.GetComponentsInChildren<Transform>(true);
+            for (int i = 0; i < children.Length; i++)
+            {
+                if (children[i] != null && children[i].name == "body")
+                {
+                    body = children[i];
+                    break;
+                }
+            }
+        }
+
+        if (body != null)
+            _resolvedCassetteBodyRenderer = body.GetComponent<Renderer>();
     }
 
     public void NotifyZoneChanged()
@@ -168,9 +203,22 @@ public class ShellPuzzleManager : MonoBehaviour
         if (activateRewardObjectOnSolve && rewardObjectToActivate != null)
             rewardObjectToActivate.SetActive(true);
 
-        // 2) Matériau de la cassette (couleur du noir->blanc)
-        if (blackCubeRenderer != null)
+        // 2) Cube / indic : noir → blanc (si ce n'est pas le même mesh que le body shader K7, pour éviter de teinter puis remplacer inutilement).
+        bool bodyUsesK7Shader = cassetteBodyShaderMaterial != null && _resolvedCassetteBodyRenderer != null;
+        bool blackCubeIsShaderBody = bodyUsesK7Shader && blackCubeRenderer != null
+            && blackCubeRenderer == _resolvedCassetteBodyRenderer;
+
+        if (blackCubeRenderer != null && !blackCubeIsShaderBody)
             blackCubeRenderer.material.color = solvedColor;
+
+        if (bodyUsesK7Shader)
+        {
+            ShaderGraphSuccessUtility.ApplySharedMaterialWithSuccess(
+                _resolvedCassetteBodyRenderer,
+                cassetteBodyShaderMaterialIndex,
+                cassetteBodyShaderMaterial,
+                false);
+        }
 
         if (cassetteSpotlightOnSolve != null)
             cassetteSpotlightOnSolve.SetActive(true);

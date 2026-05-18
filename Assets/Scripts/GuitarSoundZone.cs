@@ -57,6 +57,15 @@ public class GuitarSoundZone : MonoBehaviour
         _activeChordInstance.clearHandle();
     }
 
+    /// <summary>
+    /// Stoppe immédiatement l'event FMOD d'accord en cours (s'il y en a un).
+    /// Wrapper public pour appel externe (ex. UnlockPlacementSocket sur la pose guitare).
+    /// </summary>
+    public void StopActiveAudio()
+    {
+        StopActiveChordInstance();
+    }
+
     private void PlayChordEventAttached(EventReference evt)
     {
         StopActiveChordInstance();

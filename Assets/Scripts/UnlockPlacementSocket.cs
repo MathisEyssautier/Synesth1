@@ -16,6 +16,8 @@ public class UnlockPlacementSocket : MonoBehaviour
     [SerializeField] private ShellPuzzleManager requiredShellPuzzle;
     [Tooltip("Déblocage dépôt + arrêt de la boucle FMOD post-prisme sur la guitare (voir GuitarCapoCrankController).")]
     [SerializeField] private GuitarCapoCrankController requiredGuitarPuzzle;
+    [Tooltip("Si un prérequis puzzle est défini : ignore un objet déjà dans le trigger au moment du déblocage (ex. lecteur cassette qui reçoit des colliders solides quand les coquillages sont validés). Il faut sortir puis reposer.")]
+    [SerializeField] private bool requireFreshOverlapAfterUnlock = true;
     [Tooltip("VFX à activer quand la socket est débloquée, puis à couper quand l'objet est posé (ex: Visual Effect K7 / Visual Effect Guitar).")]
     [SerializeField] private GameObject unlockReadyVisualEffect;
 
@@ -32,9 +34,17 @@ public class UnlockPlacementSocket : MonoBehaviour
     [SerializeField] private Behaviour[] behavioursToDisableOnPlaced;
     [Tooltip("Optionnel : coupe la boucle audio cassette gérée par ShellPuzzleManager.")]
     [SerializeField] private ShellPuzzleManager shellPuzzleAudioToStop;
-    [Tooltip("Optionnel : renderer à recolorer quand l'objet est posé (ex: RECORDER).")]
+    [Tooltip("Auto-stoppe tous les events FMOD émis depuis l'objet posé (accord guitare en cours, boucle post-prisme). Filet de sécurité même si les références ci-dessus ne sont pas câblées.")]
+    [SerializeField] private bool autoStopGuitarFmodOnPlaced = true;
+    [Tooltip("Optionnel : renderer à recolorer au dépôt. Si c'est le même que la cible du bool Success (body shader), la teinte est ignorée pour ne pas écraser le rendu du shader.")]
     [SerializeField] private Renderer placedObjectRenderer;
     [SerializeField] private Color placedObjectColor = Color.yellow;
+
+    [Header("Shader Graph — bool Success au dépôt")]
+    [Tooltip("Après pose : met Success=1 sur les materials du renderer (fige la variation du shader). Vide = enfant « body » sous expectedObjectRoot.")]
+    [SerializeField] private Renderer rendererForShaderSuccessOnPlaced;
+    [SerializeField] private bool applyShaderSuccessWhenPlaced = true;
+
     [SerializeField] private bool hideSocketOnPlaced = true;
     [Tooltip("Optionnel: visuel à cacher (mesh jaune). Si vide et hideSocketOnPlaced=true, on masque ce GameObject.")]
     [SerializeField] private GameObject socketVisualToHide;
@@ -48,12 +58,17 @@ public class UnlockPlacementSocket : MonoBehaviour
 
     private bool _filled;
     private bool _unlockReadyVisualWasActive;
+    private bool _placementArmed = true;
+    private bool _requirementMetPreviousFrame;
 
     private void Awake()
     {
         var col = GetComponent<Collider>();
         col.isTrigger = true;
         if (snapPoint == null) snapPoint = transform;
+
+        _requirementMetPreviousFrame = IsRequirementMet();
+        RefreshPlacementArmingOnRequirementEdge();
 
         UpdateUnlockReadyVisual(force: true);
     }
@@ -66,6 +81,11 @@ public class UnlockPlacementSocket : MonoBehaviour
             return;
         }
 
+        bool reqMet = IsRequirementMet();
+        if (reqMet != _requirementMetPreviousFrame)
+            RefreshPlacementArmingOnRequirementEdge();
+        _requirementMetPreviousFrame = reqMet;
+
         UpdateUnlockReadyVisual(force: false);
     }
 
@@ -75,6 +95,7 @@ public class UnlockPlacementSocket : MonoBehaviour
         if (expectedObjectRoot == null || other == null) return;
         if (!other.transform.IsChildOf(expectedObjectRoot)) return;
         if (!IsRequirementMet()) return;
+        if (!CanAcceptPlacement()) return;
         if (requireObjectReleased && IsExpectedObjectHeld()) return;
 
         PlaceExpectedObject();
@@ -86,9 +107,26 @@ public class UnlockPlacementSocket : MonoBehaviour
         if (expectedObjectRoot == null || other == null) return;
         if (!other.transform.IsChildOf(expectedObjectRoot)) return;
         if (!IsRequirementMet()) return;
+        if (!CanAcceptPlacement()) return;
         if (requireObjectReleased && IsExpectedObjectHeld()) return;
 
         PlaceExpectedObject();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (_filled) return;
+        if (expectedObjectRoot == null || other == null) return;
+        if (!other.transform.IsChildOf(expectedObjectRoot)) return;
+        if (!IsRequirementMet()) return;
+
+        // L'objet a quitté la zone après déblocage : on autorise un vrai dépôt au prochain passage.
+        _placementArmed = true;
+    }
+
+    private bool HasUnlockRequirement()
+    {
+        return requiredShellPuzzle != null || requiredGuitarPuzzle != null;
     }
 
     private bool IsRequirementMet()
@@ -104,6 +142,57 @@ public class UnlockPlacementSocket : MonoBehaviour
         }
 
         return true;
+    }
+
+    private bool CanAcceptPlacement()
+    {
+        if (!requireFreshOverlapAfterUnlock || !HasUnlockRequirement())
+            return true;
+        if (!IsRequirementMet())
+            return false;
+        return _placementArmed;
+    }
+
+    /// <summary>
+    /// Quand le puzzle vient de se résoudre : si l'objet est déjà dans le trigger, on attend qu'il sorte
+    /// (évite un « faux dépôt » quand les colliders passent de trigger à solide au Solve).
+    /// </summary>
+    private void RefreshPlacementArmingOnRequirementEdge()
+    {
+        if (!requireFreshOverlapAfterUnlock || !HasUnlockRequirement())
+        {
+            _placementArmed = true;
+            return;
+        }
+
+        if (!IsRequirementMet())
+        {
+            _placementArmed = false;
+            return;
+        }
+
+        _placementArmed = !IsExpectedObjectOverlapping();
+    }
+
+    private bool IsExpectedObjectOverlapping()
+    {
+        if (expectedObjectRoot == null) return false;
+
+        var socketCol = GetComponent<Collider>();
+        if (socketCol == null || !socketCol.enabled) return false;
+
+        var objectCols = expectedObjectRoot.GetComponentsInChildren<Collider>(true);
+        Bounds socketBounds = socketCol.bounds;
+
+        for (int i = 0; i < objectCols.Length; i++)
+        {
+            var c = objectCols[i];
+            if (c == null || !c.enabled) continue;
+            if (socketBounds.Intersects(c.bounds))
+                return true;
+        }
+
+        return false;
     }
 
     private void PlaceExpectedObject()
@@ -182,7 +271,27 @@ public class UnlockPlacementSocket : MonoBehaviour
         if (requiredGuitarPuzzle != null)
             requiredGuitarPuzzle.StopPostPrismCompletionLoop();
 
-        if (placedObjectRenderer != null)
+        if (autoStopGuitarFmodOnPlaced && expectedObjectRoot != null)
+        {
+            var soundZones = expectedObjectRoot.GetComponentsInChildren<GuitarSoundZone>(true);
+            for (int i = 0; i < soundZones.Length; i++)
+            {
+                if (soundZones[i] == null) continue;
+                soundZones[i].StopActiveAudio();
+            }
+
+            var capoControllers = expectedObjectRoot.GetComponentsInChildren<GuitarCapoCrankController>(true);
+            for (int i = 0; i < capoControllers.Length; i++)
+            {
+                if (capoControllers[i] == null) continue;
+                capoControllers[i].StopPostPrismCompletionLoop();
+            }
+        }
+
+        Renderer shaderSuccessTarget = applyShaderSuccessWhenPlaced ? ResolveRendererForShaderSuccess() : null;
+        bool skipLegacyPlacedColor = shaderSuccessTarget != null && placedObjectRenderer == shaderSuccessTarget;
+
+        if (placedObjectRenderer != null && !skipLegacyPlacedColor)
         {
             var mat = placedObjectRenderer.material;
             if (mat != null)
@@ -196,6 +305,9 @@ public class UnlockPlacementSocket : MonoBehaviour
                     mat.SetColor("_EmissionColor", placedObjectColor);
             }
         }
+
+        if (applyShaderSuccessWhenPlaced)
+            ApplyShaderSuccessOnPlacedObject();
 
         if (faderToActivate != null)
             faderToActivate.SetActive(true);
@@ -242,6 +354,38 @@ public class UnlockPlacementSocket : MonoBehaviour
         }
 
         onObjectPlaced?.Invoke();
+    }
+
+    private void ApplyShaderSuccessOnPlacedObject()
+    {
+        Renderer r = ResolveRendererForShaderSuccess();
+        ShaderGraphSuccessUtility.SetSuccessOnRendererMaterials(r, true);
+    }
+
+    private Renderer ResolveRendererForShaderSuccess()
+    {
+        Renderer r = rendererForShaderSuccessOnPlaced;
+        if (r == null && expectedObjectRoot != null)
+        {
+            Transform body = expectedObjectRoot.Find("body");
+            if (body == null)
+            {
+                var trs = expectedObjectRoot.GetComponentsInChildren<Transform>(true);
+                for (int i = 0; i < trs.Length; i++)
+                {
+                    if (trs[i] != null && trs[i].name == "body")
+                    {
+                        body = trs[i];
+                        break;
+                    }
+                }
+            }
+
+            if (body != null)
+                r = body.GetComponent<Renderer>();
+        }
+
+        return r;
     }
 
     private void UpdateUnlockReadyVisual(bool force)

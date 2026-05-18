@@ -63,6 +63,8 @@ public class VRPauseMenuController : MonoBehaviour
     private bool _restartConfirmArmed;
     private float _restartConfirmExpireAt;
     [SerializeField] private float restartConfirmWindowSeconds = 1.2f;
+    [Tooltip("Scène chargée par « Relancer la scène » (ex. écran d'accueil).")]
+    [SerializeField] private string restartSceneName = "StartScene";
 
     private const int OptionCount = 7;
 
@@ -419,8 +421,10 @@ public class VRPauseMenuController : MonoBehaviour
         SaveSettingsToStore();
         Time.timeScale = 1f;
         FinalSequenceController.StopOutsideFinalMusicIfPlaying();
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.buildIndex);
+        if (!string.IsNullOrEmpty(restartSceneName))
+            SceneManager.LoadScene(restartSceneName, LoadSceneMode.Single);
+        else
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void OnDisable()

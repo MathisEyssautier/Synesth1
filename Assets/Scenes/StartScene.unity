@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f93e876726a354786e4fbadf2c86d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StartSceneController
-  gameplaySceneName: SynesthesiaMain
+  gameplaySceneName: SynesthesiaBlackRoom
   loadDelay: 1
   leftHandNode: 4
   triggerPressThreshold: 0.8

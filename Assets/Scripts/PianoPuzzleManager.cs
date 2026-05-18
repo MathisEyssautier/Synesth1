@@ -16,8 +16,8 @@ public class PianoPuzzleManager : MonoBehaviour
     [SerializeField] private bool disableKeysOnSuccess = true;
 
     [Header("Réussite — visuel piano")]
-    [Tooltip("Mesh du piano dont le shader expose un bool 'Success' (ou propriété équivalente).")]
-    [SerializeField] private Renderer pianoSuccessRenderer;
+    [Tooltip("Tous les meshes du piano (caisse, couvercle, etc.) dont le shader expose le bool Success.")]
+    [SerializeField] private Renderer[] pianoSuccessRenderers;
     [SerializeField] private string pianoSuccessBoolProperty = "Success";
 
     [Header("Réussite — audio piano")]
@@ -203,22 +203,29 @@ public class PianoPuzzleManager : MonoBehaviour
 
     private void ApplyPianoSuccessVisual()
     {
-        if (pianoSuccessRenderer == null) return;
-        Material[] mats = pianoSuccessRenderer.materials;
-        if (mats == null || mats.Length == 0) return;
+        if (pianoSuccessRenderers == null || pianoSuccessRenderers.Length == 0) return;
 
         string configured = pianoSuccessBoolProperty;
         string configuredUnderscore = string.IsNullOrEmpty(configured) ? string.Empty : "_" + configured;
 
-        for (int i = 0; i < mats.Length; i++)
+        for (int r = 0; r < pianoSuccessRenderers.Length; r++)
         {
-            var mat = mats[i];
-            if (mat == null) continue;
+            var renderer = pianoSuccessRenderers[r];
+            if (renderer == null) continue;
 
-            if (TrySetSuccessProperty(mat, configured)) continue;
-            if (TrySetSuccessProperty(mat, configuredUnderscore)) continue;
-            if (TrySetSuccessProperty(mat, "Success")) continue;
-            TrySetSuccessProperty(mat, "_Success");
+            Material[] mats = renderer.materials;
+            if (mats == null || mats.Length == 0) continue;
+
+            for (int i = 0; i < mats.Length; i++)
+            {
+                var mat = mats[i];
+                if (mat == null) continue;
+
+                if (TrySetSuccessProperty(mat, configured)) continue;
+                if (TrySetSuccessProperty(mat, configuredUnderscore)) continue;
+                if (TrySetSuccessProperty(mat, "Success")) continue;
+                TrySetSuccessProperty(mat, "_Success");
+            }
         }
     }
 

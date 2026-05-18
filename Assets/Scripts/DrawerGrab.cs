@@ -27,6 +27,8 @@ public class DrawerGrab : MonoBehaviour
     [SerializeField] private Vector3 localSlideAxis = Vector3.forward;
     [Tooltip("Verrouille la chaine de parents pendant le grab pour eviter qu'une partie de la scene soit emportee.")]
     [SerializeField] private bool lockAncestorChainWhileGrabbed = true;
+    [Tooltip("En dessous de cette distance (m), le tiroir est considéré fermé (indice flèche, etc.).")]
+    [SerializeField] private float closedDistanceThreshold = 0.015f;
 
     private XRGrabInteractable _grab;
     private Rigidbody _rb;
@@ -44,6 +46,12 @@ public class DrawerGrab : MonoBehaviour
     private float _grabStartDist;
     private float _currentDist;
     private float _distVel;
+
+    /// <summary>Distance actuelle du coulissement (0 = fermé).</summary>
+    public float CurrentPullDistance => _currentDist;
+
+    /// <summary>Vrai si le tiroir est à sa position fermée (± seuil).</summary>
+    public bool IsClosed => _currentDist <= closedDistanceThreshold;
 
     private void Awake()
     {

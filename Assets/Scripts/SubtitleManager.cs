@@ -187,6 +187,17 @@ public class SubtitleManager : MonoBehaviour
         StartNextQueuedInternal();
     }
 
+    /// <summary>
+    /// Libère une instance voix bloquée puis démarre la prochaine ligne en file.
+    /// Utile après une pause (ex. sonnerie) si <see cref="TryStartNextInQueue"/> ne débloque pas.
+    /// </summary>
+    public void ForcePlayNextQueuedLine()
+    {
+        if (_isShuttingDown || _queue.Count == 0) return;
+        SafeStopAndReleaseVoiceInstance();
+        StartNextQueuedInternal();
+    }
+
     private void StartNextQueuedInternal()
     {
         if (_queue.Count == 0) return;
@@ -303,10 +314,12 @@ public class SubtitleManager : MonoBehaviour
                             return;
                         }
 
-                        OnVoiceEnded?.Invoke();
+                        // Libérer l'instance AVANT OnVoiceEnded : sinon un Enqueue dans un
+                        // abonné démarre la ligne suivante puis est tuée par le release ci-dessous.
                         mgr.SafeStopAndReleaseVoiceInstance();
+                        OnVoiceEnded?.Invoke();
                         if (mgr._queue.Count > 0)
-                            mgr.StartNextQueuedInternal();
+                            mgr.TryStartNextInQueue();
                     });
                 }
             }

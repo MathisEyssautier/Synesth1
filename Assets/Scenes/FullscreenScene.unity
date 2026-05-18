@@ -1037,7 +1037,8 @@ MonoBehaviour:
   requiredOrder: 01000000020000000300000004000000
   onSuccessActivate: {fileID: 1337883048}
   disableKeysOnSuccess: 0
-  pianoSuccessRenderer: {fileID: 104796152}
+  pianoSuccessRenderers:
+  - {fileID: 104796152}
   pianoSuccessBoolProperty: Success
   pianoSuccessSound:
     Guid:

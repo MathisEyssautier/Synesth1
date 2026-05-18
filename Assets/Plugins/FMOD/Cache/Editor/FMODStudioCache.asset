@@ -594,6 +594,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 47156
+--- !u!114 &-6510447343970801971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano14
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano14
+  Guid:
+    Data1: -730873885
+    Data2: 1160565510
+    Data3: -1347549798
+    Data4: -1015162481
+  Banks:
+  - {fileID: 7829833519190734865}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1440
 --- !u!114 &-6067463600968762027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,13 +663,40 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Mobile/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639140407655460428
+  lastModified: 639146380605224402
   FileSizes:
   - Name: Desktop
     Value: 1892
   - Name: Mobile
     Value: 1892
   Exists: 1
+--- !u!114 &-5684356753679032116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DARKROOMEVENTS/DRNayaTransition
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DARKROOMEVENTS/DRNayaTransition
+  Guid:
+    Data1: 789716922
+    Data2: 1301759222
+    Data3: 1565398659
+    Data4: -722277828
+  Banks:
+  - {fileID: 3288432053310217778}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10600
 --- !u!114 &-5383615140306712833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,12 +793,12 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Mobile/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639140407655500576
+  lastModified: 639146380605239561
   FileSizes:
   - Name: Desktop
-    Value: 6716
+    Value: 7288
   - Name: Mobile
-    Value: 6716
+    Value: 7288
   Exists: 1
 --- !u!114 &-5083907371529951328
 MonoBehaviour:
@@ -1178,6 +1232,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 49302
+--- !u!114 &-1940773023205446203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DARKROOMEVENTS/SonneriePhoneBlackRoom
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DARKROOMEVENTS/SonneriePhoneBlackRoom
+  Guid:
+    Data1: 447639327
+    Data2: 1165100071
+    Data3: -2013084021
+    Data4: -661313705
+  Banks:
+  - {fileID: 3288432053310217778}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 110115
+--- !u!114 &-1884846666043531588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DARKROOMEVENTS/OkJeMyMets
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DARKROOMEVENTS/OkJeMyMets
+  Guid:
+    Data1: 1080105111
+    Data2: 1179089200
+    Data3: 1470743706
+    Data4: -522923605
+  Banks:
+  - {fileID: 3288432053310217778}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2330
 --- !u!114 &-1533764841269862209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,7 +1447,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 161209
+  Length: 29264
 --- !u!114 &-367790549299036395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1526,6 +1634,18 @@ MonoBehaviour:
   - {fileID: -1070558307712652459}
   - {fileID: 2331193377453963221}
   - {fileID: -5083907371529951328}
+  - {fileID: 4240275946826861560}
+  - {fileID: 3172897309533275643}
+  - {fileID: -6510447343970801971}
+  - {fileID: 7287575447954170676}
+  - {fileID: 5875489974641180101}
+  - {fileID: 873967784589254755}
+  - {fileID: 642178525145877051}
+  - {fileID: 2509598216787690662}
+  - {fileID: -1884846666043531588}
+  - {fileID: -5684356753679032116}
+  - {fileID: 739805741634607859}
+  - {fileID: -1940773023205446203}
   EditorParameters:
   - {fileID: 1609086805843980587}
   MasterBanks:
@@ -1533,7 +1653,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5097152707226768382}
   cacheVersion: 131858
-  cacheTime: 639141316264638153
+  cacheTime: 639146385001988671
   SerializableEventsDict:
   - key: event:/VoixOffs/Therapiste/AQuoiCaTaFaitPenser
     index: 0
@@ -1763,6 +1883,30 @@ MonoBehaviour:
     index: 112
   - key: event:/VoixOffs/Naya/NarraMetro
     index: 113
+  - key: event:/NotesPiano2/NotePiano12
+    index: 114
+  - key: event:/NotesPiano2/NotePiano13
+    index: 115
+  - key: event:/NotesPiano2/NotePiano14
+    index: 116
+  - key: event:/DARKROOMEVENTS/DRDaccordJeVois
+    index: 117
+  - key: event:/DARKROOMEVENTS/DRTuReconnais
+    index: 118
+  - key: event:/DARKROOMEVENTS/DRAhTelephone
+    index: 119
+  - key: event:/DARKROOMEVENTS/AhCestUneAlarme
+    index: 120
+  - key: event:/DARKROOMEVENTS/DRAucunSoucis
+    index: 121
+  - key: event:/DARKROOMEVENTS/OkJeMyMets
+    index: 122
+  - key: event:/DARKROOMEVENTS/DRNayaTransition
+    index: 123
+  - key: event:/DARKROOMEVENTS/AlorsCommentDireExplications
+    index: 124
+  - key: event:/DARKROOMEVENTS/SonneriePhoneBlackRoom
+    index: 125
 --- !u!114 &9185753966903091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1979,6 +2123,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 54850
+--- !u!114 &642178525145877051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DARKROOMEVENTS/AhCestUneAlarme
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DARKROOMEVENTS/AhCestUneAlarme
+  Guid:
+    Data1: 2126364522
+    Data2: 1147944487
+    Data3: 1950643343
+    Data4: -89107813
+  Banks:
+  - {fileID: 3288432053310217778}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4808
 --- !u!114 &643708526169436094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2033,6 +2204,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1535
+--- !u!114 &739805741634607859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DARKROOMEVENTS/AlorsCommentDireExplications
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DARKROOMEVENTS/AlorsCommentDireExplications
+  Guid:
+    Data1: 1079468516
+    Data2: 1317660696
+    Data3: -1302947178
+    Data4: -839566833
+  Banks:
+  - {fileID: 3288432053310217778}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 15410
 --- !u!114 &818271116846166440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2060,6 +2258,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2793
+--- !u!114 &873967784589254755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DARKROOMEVENTS/DRAhTelephone
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DARKROOMEVENTS/DRAhTelephone
+  Guid:
+    Data1: -2120232858
+    Data2: 1332308612
+    Data3: 182857894
+    Data4: -1232695943
+  Banks:
+  - {fileID: 3288432053310217778}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3250
 --- !u!114 &1424098778438377976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2408,6 +2633,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2793
+--- !u!114 &2509598216787690662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DARKROOMEVENTS/DRAucunSoucis
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DARKROOMEVENTS/DRAucunSoucis
+  Guid:
+    Data1: -71373951
+    Data2: 1210859521
+    Data3: 1983229866
+    Data4: -907600799
+  Banks:
+  - {fileID: 3288432053310217778}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4000
 --- !u!114 &2831363980572060349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2435,6 +2687,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4806
+--- !u!114 &3172897309533275643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano13
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano13
+  Guid:
+    Data1: -2031822498
+    Data2: 1190373002
+    Data3: -1698522451
+    Data4: 165525683
+  Banks:
+  - {fileID: 7829833519190734865}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1440
 --- !u!114 &3252982700142805514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2477,12 +2756,12 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Mobile/VoixBank.bank
   Name: VoixBank
   StudioPath: bank:/VoixBank
-  lastModified: 639140407759766658
+  lastModified: 639146385001988671
   FileSizes:
   - Name: Desktop
-    Value: 33459392
+    Value: 41762784
   - Name: Mobile
-    Value: 17671456
+    Value: 22305472
   Exists: 1
 --- !u!114 &3402471770419219183
 MonoBehaviour:
@@ -2643,6 +2922,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2793
+--- !u!114 &4240275946826861560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/NotesPiano2/NotePiano12
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/NotesPiano2/NotePiano12
+  Guid:
+    Data1: 1303398227
+    Data2: 1262638981
+    Data3: -1077497413
+    Data4: 1285476858
+  Banks:
+  - {fileID: 7829833519190734865}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1440
 --- !u!114 &4287914767846117653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3180,6 +3486,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3150
+--- !u!114 &5875489974641180101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DARKROOMEVENTS/DRTuReconnais
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DARKROOMEVENTS/DRTuReconnais
+  Guid:
+    Data1: -1156173540
+    Data2: 1153256463
+    Data3: -2054464624
+    Data4: -114078814
+  Banks:
+  - {fileID: 3288432053310217778}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11400
 --- !u!114 &5890322003260462676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3370,6 +3703,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4550
+--- !u!114 &7287575447954170676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DARKROOMEVENTS/DRDaccordJeVois
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/DARKROOMEVENTS/DRDaccordJeVois
+  Guid:
+    Data1: -160399608
+    Data2: 1125831610
+    Data3: 517082042
+    Data4: -1918457582
+  Banks:
+  - {fileID: 3288432053310217778}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2500
 --- !u!114 &7289376699045627917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3517,12 +3877,12 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Mobile/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639141316264638153
+  lastModified: 639145712992699833
   FileSizes:
   - Name: Desktop
-    Value: 89063488
+    Value: 82509056
   - Name: Mobile
-    Value: 48885344
+    Value: 45544864
   Exists: 1
 --- !u!114 &7931245305510330179
 MonoBehaviour:

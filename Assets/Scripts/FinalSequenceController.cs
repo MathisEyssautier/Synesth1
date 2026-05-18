@@ -121,6 +121,14 @@ public class FinalSequenceController : MonoBehaviour
     private static EventInstance s_outsideFinalMusicInstanceGlobal;
     private bool _waitingForFinalDialogueEndToUnlockExit;
     private int _finalDialogueVoicesRemaining;
+    private bool _allMixFadersVisiblePrevious;
+
+    /// <summary>
+    /// Les trois faders (rouge / vert / bleu) sont actifs dans la hiérarchie — même condition que le spot table de mix
+    /// et que <see cref="SalonExplorationNarrative"/> pour la narration « trois faders ».
+    /// </summary>
+    public bool AreAllMixFadersActiveInHierarchy =>
+        AreAllFaderRootsActiveInHierarchy(redFader, greenFader, blueFader);
 
     private void Awake()
     {
@@ -137,6 +145,8 @@ public class FinalSequenceController : MonoBehaviour
 
         if (hideExitHandlesUntilFinalVoice)
             SetExitHandlesActive(false);
+
+        _allMixFadersVisiblePrevious = AreAllMixFadersActiveInHierarchy;
     }
 
     private void OnEnable()
@@ -392,10 +402,16 @@ public class FinalSequenceController : MonoBehaviour
 
     private void UpdateMixTableFaderSpotlight()
     {
+        bool allFadersVisible = AreAllMixFadersActiveInHierarchy;
+
+        if (allFadersVisible != _allMixFadersVisiblePrevious)
+        {
+            _allMixFadersVisiblePrevious = allFadersVisible;
+            RefreshMixFaderTargetVisualFeedback();
+        }
+
         if (mixTableFaderSpotlight == null)
             return;
-
-        bool allFadersVisible = AreAllFaderRootsActiveInHierarchy(redFader, greenFader, blueFader);
 
         // On synchronise à la fois le GameObject (SetActive) et le composant (enabled)
         // pour que la spot s'allume même si elle a été désactivée au niveau du GameObject.
@@ -404,6 +420,19 @@ public class FinalSequenceController : MonoBehaviour
             lightGo.SetActive(allFadersVisible);
         if (mixTableFaderSpotlight.enabled != allFadersVisible)
             mixTableFaderSpotlight.enabled = allFadersVisible;
+    }
+
+    private void RefreshMixFaderTargetVisualFeedback()
+    {
+        RefreshSingleFaderTargetVisual(redFader);
+        RefreshSingleFaderTargetVisual(greenFader);
+        RefreshSingleFaderTargetVisual(blueFader);
+    }
+
+    private static void RefreshSingleFaderTargetVisual(FaderTarget target)
+    {
+        if (target?.fader == null) return;
+        target.fader.RefreshTargetVisualFeedback();
     }
 
     private static bool AreAllFaderRootsActiveInHierarchy(FaderTarget a, FaderTarget b, FaderTarget c)

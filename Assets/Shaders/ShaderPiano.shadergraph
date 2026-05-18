@@ -1529,7 +1529,7 @@
     "m_StageCapability": 3,
     "m_BareResource": false,
     "m_Texture": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"c3ff9a13a23bf9a45a820b8b1f6e4f0b\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"9c85769abdfbc7a4fbc811e3a6dcc647\",\"type\":3}}",
         "m_Guid": ""
     },
     "m_DefaultType": 0
@@ -2809,7 +2809,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_BlendMode": 18
+    "m_BlendMode": 12
 }
 
 {

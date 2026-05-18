@@ -8,7 +8,7 @@ using UnityEngine.XR;
 public class StartSceneController : MonoBehaviour
 {
     [Header("Scene loading")]
-    [SerializeField] private string gameplaySceneName = "Mécanique1";
+    [SerializeField] private string gameplaySceneName = "SynesthesiaBlackRoom";
     [SerializeField] private float loadDelay = 0.05f;
 
     [Header("Input")]
