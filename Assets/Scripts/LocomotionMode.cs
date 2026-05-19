@@ -126,6 +126,9 @@ public class LocomotionManager : MonoBehaviour
         _rigCharacterController = _rigRoot != null ? _rigRoot.GetComponent<CharacterController>() : null;
         CacheControllerTransforms();
         SetMode(LocomotionMode.LinearSnapTurn);
+        SetSnapTurnEnabled(VRSettingsStore.SnapEnabled);
+        if (snapTurnProvider != null)
+            snapTurnProvider.turnAmount = VRSettingsStore.SnapAngle;
     }
 
     private void Update()

@@ -72,6 +72,8 @@ public class RadioManager : MonoBehaviour
 
     [Tooltip("Invoque quand un son exclusif (ex. vocal parents) s'est terminé et avant la restauration des boucles.")]
     public UnityEvent onExclusiveRadioPlaybackEnded;
+    [Tooltip("Invoque quand la radio est débloquée (résolution du puzzle piano).")]
+    public UnityEvent onRadioUnlocked;
 
     public enum EtatAlignement { Aucun, AA, BB }
 
@@ -248,6 +250,8 @@ public class RadioManager : MonoBehaviour
             Transform t = origineSonRadio != null ? origineSonRadio : transform;
             PlayOneShotFmod(sonDeblocageRadio, t.position);
         }
+
+        onRadioUnlocked?.Invoke();
     }
 
     public void ToggleStandby()

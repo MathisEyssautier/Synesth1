@@ -456,10 +456,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -729
-    y: -1470
-    width: 4353
-    height: 4533
+    x: -728
+    y: -1468
+    width: 4352
+    height: 4531
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -15164,7 +15164,7 @@ MonoBehaviour:
   AlphaComposition: 0
   SampleMode: 0
   Mode: 1
-  ColorMode: 3
+  ColorMode: 1
   channels: 6
 --- !u!114 &8926484042661617982
 MonoBehaviour:

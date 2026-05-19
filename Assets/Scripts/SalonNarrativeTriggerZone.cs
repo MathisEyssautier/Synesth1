@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -5,6 +6,8 @@ using UnityEngine;
 /// </summary>
 public class SalonNarrativeTriggerZone : MonoBehaviour
 {
+    /// <summary>Déclenché quand le joueur entre dans une zone (cuisine ou bureau).</summary>
+    public static event Action<ZoneType> PlayerEnteredZone;
     public enum ZoneType
     {
         Kitchen,
@@ -21,6 +24,8 @@ public class SalonNarrativeTriggerZone : MonoBehaviour
         if (narrative == null) return;
         if (!string.IsNullOrEmpty(requiredTag) && !other.CompareTag(requiredTag))
             return;
+
+        PlayerEnteredZone?.Invoke(zone);
 
         if (zone == ZoneType.Kitchen)
             narrative.NotifyKitchenEntered();

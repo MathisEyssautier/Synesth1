@@ -55,6 +55,8 @@ public class TurntableDisc : MonoBehaviour
     public int DiscNumber => discNumber;
     public bool IsPlaying => _isPlaying;
     public bool IsDocked => _isDocked;
+    /// <summary>Vrai après le premier play sur la platine (même si en pause ensuite).</summary>
+    public bool HasStartedPlayback => _eventStarted;
 
     private void Awake()
     {

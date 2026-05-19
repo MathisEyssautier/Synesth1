@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -29,7 +30,11 @@ public class RingingPhone : MonoBehaviour
     private Material _phoneMaterial;
     private Coroutine _emissionRoutine;
 
-    private bool _isOn = true;
+    private bool _isOn;
+
+    public bool IsOn => _isOn;
+
+    public static event Action<RingingPhone, bool> OnStateChanged;
 
     private void Awake()
     {
@@ -79,22 +84,31 @@ public class RingingPhone : MonoBehaviour
 
     private void OnActivate(ActivateEventArgs args)
     {
-        // Toggle on/off à chaque pression de la gâchette index.
+        if (!_grab.isSelected)
+            return;
+
         SetState(!_isOn, instant: false);
     }
 
     private void SetState(bool turnOn, bool instant)
     {
+        bool changed = _isOn != turnOn;
         _isOn = turnOn;
 
-        // Audio: on garde l'event en boucle, on change juste son volume global.
+        ApplyStatePresentation(turnOn, instant);
+
+        if (changed)
+            OnStateChanged?.Invoke(this, _isOn);
+    }
+
+    private void ApplyStatePresentation(bool turnOn, bool instant)
+    {
         if (_phoneInstance.isValid())
         {
             float targetVolume = turnOn ? onVolume : offVolume;
             _phoneInstance.setVolume(targetVolume);
         }
 
-        // Emission visuelle.
         float targetIntensity = turnOn ? emissionOnIntensity : emissionOffIntensity;
         AnimateEmission(targetIntensity, instant);
     }

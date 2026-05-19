@@ -4,6 +4,7 @@ using FMOD;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -27,6 +28,10 @@ public class FinalSequenceController : MonoBehaviour
     [Header("Table de mix — spot (optionnel)")]
     [Tooltip("S’allume uniquement quand les trois faders (red/green/blue) sont actifs dans la hiérarchie.")]
     [SerializeField] private Light mixTableFaderSpotlight;
+    [Tooltip("Invoqué quand les trois faders de la table de mix deviennent visibles (spot allumée).")]
+    public UnityEvent onAllMixFadersBecameVisible;
+    [Tooltip("Invoqué quand les trois faders sont équilibrés et que la séquence finale démarre.")]
+    public UnityEvent onFinalMixSequenceStarted;
 
     [Header("Final mix behavior")]
     [SerializeField] private float masterFadeOutDuration = 1.5f;
@@ -87,6 +92,13 @@ public class FinalSequenceController : MonoBehaviour
     [SerializeField] private float outsideFinalMusicFadeInDuration = 1.2f;
     [SerializeField] private WorldSpaceCreditsScroller creditsScroller;
 
+    [Header("Éclairage extérieur (sortie maison)")]
+    [Tooltip("Directional Light Shadows — réglages appliqués pendant le fondu de sortie.")]
+    [SerializeField] private Light outsideDirectionalLightShadows;
+    [SerializeField] private Vector3 outsideDirectionalLightEuler = new Vector3(10.9999962f, 81.11f, 39.9630089f);
+    [SerializeField] private bool outsideUseColorTemperature = true;
+    [SerializeField] private float outsideDirectionalLightKelvin = 2300f;
+
     [Header("Voix off (début séquence finale, après bons faders)")]
     [SerializeField] private SubtitleManager subtitleManager;
     [SerializeField] private float delaySecondsBeforeFinalDialogue = 5f;
@@ -130,6 +142,8 @@ public class FinalSequenceController : MonoBehaviour
     public bool AreAllMixFadersActiveInHierarchy =>
         AreAllFaderRootsActiveInHierarchy(redFader, greenFader, blueFader);
 
+    public bool IsFinalMixSequenceStarted => _started;
+
     private void Awake()
     {
         _masterBus = RuntimeManager.GetBus("bus:/");
@@ -169,6 +183,14 @@ public class FinalSequenceController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resynchronise spot + événements (ex. après God Mode qui active les faders sans passer par le flux normal).
+    /// </summary>
+    public void RefreshMixFadersVisibilityState()
+    {
+        UpdateMixTableFaderSpotlight();
+    }
+
     private void Update()
     {
         UpdateMixTableFaderSpotlight();
@@ -181,6 +203,7 @@ public class FinalSequenceController : MonoBehaviour
                 if (_stableTimer >= requiredStableTime)
                 {
                     _started = true;
+                    onFinalMixSequenceStarted?.Invoke();
                     SetFadersBrokenState(true);
                     ActivateFinalSequenceGameObjects();
                     StartCoroutine(RunFinalAudioSequence());
@@ -319,6 +342,8 @@ public class FinalSequenceController : MonoBehaviour
             {
                 var l = lightsToModulate[i];
                 if (l == null) continue;
+                if (_outsideSequenceStarted && l == outsideDirectionalLightShadows)
+                    continue;
 
                 if (ColorDistanceSqr(l.color, _lightTargetColors[i]) <= targetRefreshThreshold * targetRefreshThreshold)
                     _lightTargetColors[i] = ComputeLightTargetColor(l.color);
@@ -408,6 +433,8 @@ public class FinalSequenceController : MonoBehaviour
         {
             _allMixFadersVisiblePrevious = allFadersVisible;
             RefreshMixFaderTargetVisualFeedback();
+            if (allFadersVisible)
+                onAllMixFadersBecameVisible?.Invoke();
         }
 
         if (mixTableFaderSpotlight == null)
@@ -555,6 +582,8 @@ public class FinalSequenceController : MonoBehaviour
         if (fadeCanvasGroup != null)
             yield return FadeCanvas(0f, 1f, fadeToBlackDuration);
 
+        ApplyOutsideDirectionalLightSettings();
+
         // Keep synesthesia modulation running outside as requested.
         _modulationEnabled = true;
 
@@ -701,6 +730,19 @@ public class FinalSequenceController : MonoBehaviour
         if (locomotionManager == null) return;
 
         locomotionManager.SetForceDisabled(true);
+    }
+
+    private void ApplyOutsideDirectionalLightSettings()
+    {
+        if (outsideDirectionalLightShadows == null) return;
+
+        outsideDirectionalLightShadows.transform.localEulerAngles = outsideDirectionalLightEuler;
+
+        if (outsideUseColorTemperature)
+        {
+            outsideDirectionalLightShadows.useColorTemperature = true;
+            outsideDirectionalLightShadows.colorTemperature = outsideDirectionalLightKelvin;
+        }
     }
 
     private void TeleportOutside()

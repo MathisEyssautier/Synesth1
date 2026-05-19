@@ -1653,7 +1653,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -5097152707226768382}
   cacheVersion: 131858
-  cacheTime: 639146385001988671
+  cacheTime: 639147247568925697
   SerializableEventsDict:
   - key: event:/VoixOffs/Therapiste/AQuoiCaTaFaitPenser
     index: 0
@@ -3877,7 +3877,7 @@ MonoBehaviour:
   Path: Assets/FMODAssets/Mobile/BankGame.bank
   Name: BankGame
   StudioPath: bank:/BankGame
-  lastModified: 639145712992699833
+  lastModified: 639147247568925697
   FileSizes:
   - Name: Desktop
     Value: 82509056

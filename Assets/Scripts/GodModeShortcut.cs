@@ -1,10 +1,17 @@
 using UnityEngine;
 using UnityEngine.XR;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.XR;
+#endif
 
 public class GodModeShortcut : MonoBehaviour
 {
     [Header("Input")]
     [SerializeField] private XRNode inputNode = XRNode.LeftHand;
+    [Tooltip("Left controller Y on Quest.")]
+    [SerializeField] private bool useSecondaryButton = true;
     [SerializeField] private bool triggerOnlyOnce = true;
 
     [Header("Faders to activate")]
@@ -16,6 +23,10 @@ public class GodModeShortcut : MonoBehaviour
     [SerializeField] private float openAngle = -20f;
     [SerializeField] private bool enableDoorHandles = true;
 
+    [Header("Sync (tuto table de mix, spot faders)")]
+    [SerializeField] private FinalSequenceController finalSequenceController;
+    [SerializeField] private MixingConsoleTutorialUIController mixingConsoleTutorial;
+
     private bool _wasPressed;
     private bool _alreadyTriggered;
 
@@ -23,10 +34,7 @@ public class GodModeShortcut : MonoBehaviour
     {
         if (_alreadyTriggered && triggerOnlyOnce) return;
 
-        InputDevice device = InputDevices.GetDeviceAtXRNode(inputNode);
-        bool pressed = false;
-        if (device.isValid)
-            device.TryGetFeatureValue(CommonUsages.primaryButton, out pressed);
+        bool pressed = ReadTriggerButtonHeld();
 
         if (pressed && !_wasPressed)
         {
@@ -36,6 +44,27 @@ public class GodModeShortcut : MonoBehaviour
         }
 
         _wasPressed = pressed;
+    }
+
+    private bool ReadTriggerButtonHeld()
+    {
+#if ENABLE_INPUT_SYSTEM
+        var xrDevice = inputNode == XRNode.LeftHand ? XRController.leftHand : XRController.rightHand;
+        if (xrDevice != null)
+        {
+            string controlName = useSecondaryButton ? "secondaryButton" : "primaryButton";
+            var btn = xrDevice.TryGetChildControl<ButtonControl>(controlName);
+            if (btn != null)
+                return btn.isPressed;
+        }
+#endif
+        var device = InputDevices.GetDeviceAtXRNode(inputNode);
+        if (!device.isValid) return false;
+
+        var usage = useSecondaryButton
+            ? UnityEngine.XR.CommonUsages.secondaryButton
+            : UnityEngine.XR.CommonUsages.primaryButton;
+        return device.TryGetFeatureValue(usage, out bool pressed) && pressed;
     }
 
     private void TriggerGodMode()
@@ -54,6 +83,13 @@ public class GodModeShortcut : MonoBehaviour
             if (go == null) continue;
             go.SetActive(true);
         }
+
+        if (finalSequenceController == null)
+            finalSequenceController = FindFirstObjectByType<FinalSequenceController>();
+        finalSequenceController?.RefreshMixFadersVisibilityState();
+
+        if (mixingConsoleTutorial == null)
+            mixingConsoleTutorial = FindFirstObjectByType<MixingConsoleTutorialUIController>();
     }
 
     private void OpenDoor(DoorController door)
