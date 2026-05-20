@@ -208,6 +208,13 @@ public class GuitarCapoCrankController : MonoBehaviour
     public int CurrentCrankIndex => _currentIndex;
     public bool IsSolved => _solved;
 
+    /// <summary>Active le fader récompense (ex. violons) même si <see cref="activateFaderOnSolve"/> est désactivé en scène.</summary>
+    public void ActivateRewardFader()
+    {
+        if (thirdFaderToActivate != null)
+            thirdFaderToActivate.SetActive(true);
+    }
+
     public void TrySolveFromPrismPuzzle()
     {
         // La résolution peut arriver à la fin d'une anim : la main n'est pas forcément sur la guitare.

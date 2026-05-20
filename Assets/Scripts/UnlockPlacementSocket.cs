@@ -61,6 +61,9 @@ public class UnlockPlacementSocket : MonoBehaviour
     private bool _placementArmed = true;
     private bool _requirementMetPreviousFrame;
 
+    /// <summary>Socket guitare : prérequis capo, pas de puzzle coquillages.</summary>
+    public bool IsGuitarSocket => requiredGuitarPuzzle != null && requiredShellPuzzle == null;
+
     private void Awake()
     {
         var col = GetComponent<Collider>();
@@ -195,7 +198,24 @@ public class UnlockPlacementSocket : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Seine Lab : pose la guitare sur le support sans activer le fader guitare ni la narration.
+    /// </summary>
+    public void ForcePlaceForSeineLab(bool activateFader, bool invokePlacedEvent)
+    {
+        if (_filled || expectedObjectRoot == null)
+            return;
+
+        _placementArmed = true;
+        PlaceExpectedObject(activateFader, invokePlacedEvent);
+    }
+
     private void PlaceExpectedObject()
+    {
+        PlaceExpectedObject(activateFader: true, invokePlacedEvent: true);
+    }
+
+    private void PlaceExpectedObject(bool activateFader, bool invokePlacedEvent)
     {
         _filled = true;
         UpdateUnlockReadyVisual(force: true);
@@ -309,7 +329,7 @@ public class UnlockPlacementSocket : MonoBehaviour
         if (applyShaderSuccessWhenPlaced)
             ApplyShaderSuccessOnPlacedObject();
 
-        if (faderToActivate != null)
+        if (activateFader && faderToActivate != null)
             faderToActivate.SetActive(true);
 
         if (hideSocketOnPlaced)
@@ -353,7 +373,8 @@ public class UnlockPlacementSocket : MonoBehaviour
             }
         }
 
-        onObjectPlaced?.Invoke();
+        if (invokePlacedEvent)
+            onObjectPlaced?.Invoke();
     }
 
     private void ApplyShaderSuccessOnPlacedObject()

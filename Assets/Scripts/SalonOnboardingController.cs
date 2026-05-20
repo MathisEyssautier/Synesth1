@@ -125,22 +125,25 @@ public class SalonOnboardingController : MonoBehaviour
 
     private void Start()
     {
-        if (subtitleManager == null)
-            return;
-
         StartCoroutine(EnqueueIntroAfterDelay());
     }
 
     private IEnumerator EnqueueIntroAfterDelay()
     {
+        GameAudioBootstrap.EnsureUnpausedForGameplay();
+
         float d = Mathf.Max(0f, delayBeforeFirstIntroLineSeconds);
         if (d > 0f)
             yield return new WaitForSecondsRealtime(d);
 
         if (subtitleManager == null)
+            subtitleManager = FindFirstObjectByType<SubtitleManager>();
+        if (subtitleManager == null)
             yield break;
 
         subtitleManager.EnqueueSubtitledLine(voNayaTuPeuxGarder);
+        yield return null;
+        subtitleManager.ForcePlayNextQueuedLine();
     }
 
     private void OnEnable()
@@ -264,7 +267,7 @@ public class SalonOnboardingController : MonoBehaviour
         SetBehavioursEnabled(behavioursToDisableUntilPiano, true);
 
         _postFirstPianoVoRemaining = 0;
-        if (subtitleManager != null && !voNayaWowLesSensations.IsNull)
+        if (!ExperienceProfile.IsSeineLab && subtitleManager != null && !voNayaWowLesSensations.IsNull)
         {
             subtitleManager.EnqueueSubtitledLine(voNayaWowLesSensations);
             _postFirstPianoVoRemaining++;

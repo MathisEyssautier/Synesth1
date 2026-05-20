@@ -43,9 +43,18 @@ public class GuitarAssemblyManager : MonoBehaviour
 
     private void DemoAutoPlaceAllStrings()
     {
+        ForceCompleteAllStringsSilently(firePlacedEvent: true);
+    }
+
+    /// <summary>
+    /// Seine Lab : monte toutes les cordes sans déclencher la narration « cordes posées ».
+    /// </summary>
+    public void ForceCompleteAllStringsSilently(bool firePlacedEvent = false)
+    {
         if (_placed == null) return;
 
-        _allStringsEventFired = true;
+        if (!firePlacedEvent)
+            _allStringsEventFired = true;
 
         for (int i = 0; i < _placed.Length; i++)
         {
@@ -53,6 +62,12 @@ public class GuitarAssemblyManager : MonoBehaviour
                 ? demoPickupStringsToHide[i]
                 : null;
             TryPlaceString(i, pickup);
+        }
+
+        if (firePlacedEvent && !_allStringsEventFired && _placed.Length > 0 && _placedCount >= _placed.Length)
+        {
+            _allStringsEventFired = true;
+            onAllStringsPlaced?.Invoke();
         }
     }
 

@@ -260,6 +260,8 @@ public class FaderController : MonoBehaviour
 
     private bool ShouldApplyTargetVisualFeedback()
     {
+        if (!SalonExplorationNarrative.IsFinalMixGameplayUnlocked)
+            return false;
         if (!gateTargetVisualFeedbackUntilAllFadersActive)
             return true;
         if (finalSequenceController == null)

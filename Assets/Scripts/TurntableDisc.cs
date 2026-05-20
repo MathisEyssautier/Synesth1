@@ -60,6 +60,9 @@ public class TurntableDisc : MonoBehaviour
 
     private void Awake()
     {
+        if (ExperienceProfile.IsSeineLab && numberCanvasRoot != null)
+            numberCanvasRoot.SetActive(false);
+
         _grab = GetComponent<XRGrabInteractable>();
         _rb = GetComponent<Rigidbody>();
         _physicsColliders = GetComponentsInChildren<Collider>(true);

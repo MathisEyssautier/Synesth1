@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using Unity.XR.CoreUtils;
 
 /// <summary>
@@ -9,14 +10,30 @@ public class MixingConsoleTutorialUIController : MonoBehaviour
 {
     [Header("Refs")]
     [SerializeField] private GameObject tutorialPrefab;
-    [SerializeField] private Transform anchor;
     [SerializeField] private FinalSequenceController finalSequenceController;
 
-    [Header("Placement")]
-    [SerializeField] private Vector3 localOffset = new Vector3(0f, 0.35f, 0f);
-    [SerializeField] private bool faceMainCamera = true;
+    [Header("Placement — snap point (recommandé)")]
+    [Tooltip("Empty en scène au-dessus des faders. Si rempli, le tuto suit sa position/rotation.")]
+    [SerializeField] private Transform tutorialSnapPoint;
+    [Tooltip("Décalage local optionnel par rapport au snap point (mètres).")]
+    [SerializeField] private Vector3 offsetMetersFromSnapPoint = Vector3.zero;
 
-    [Header("Bobbing (axe Y local du panneau)")]
+    [Header("Placement — repli (si pas de snap point)")]
+    [Tooltip("Legacy : utilisé si Tutorial Snap Point est vide.")]
+    [SerializeField] private Transform anchor;
+    [SerializeField] private Transform tableMixage;
+    [FormerlySerializedAs("localOffset")]
+    [Tooltip("Décalage en mètres (axes locaux TableMixage, rotation seule).")]
+    [SerializeField] private Vector3 offsetMetersFromTable = new Vector3(0f, 0.35f, 0.08f);
+
+    [Header("Placement — rendu")]
+    [SerializeField] private bool faceMainCamera = true;
+    [Tooltip("Rotation locale ajoutée à l'activation (ex. Y = 90 pour orienter le panneau vers les faders).")]
+    [SerializeField] private Vector3 eulerRotationOffset = new Vector3(0f, 90f, 0f);
+    [Tooltip("Largeur du panneau en mètres (monde).")]
+    [SerializeField] private float targetWorldWidthMeters = 0.47f;
+
+    [Header("Bobbing")]
     [SerializeField] private float bobAmplitude = 0.015f;
     [SerializeField] private float bobSpeed = 2.5f;
 
@@ -25,10 +42,31 @@ public class MixingConsoleTutorialUIController : MonoBehaviour
     [SerializeField] private bool debugForceVisible;
 
     private GameObject _tutorialInstance;
-    private Vector3 _baseLocalPosition;
+    private Vector3 _baseWorldPosition;
     private bool _visible;
     private bool _dismissed;
     private Camera _mainCamera;
+
+    private Transform TableAnchor => tableMixage != null ? tableMixage : anchor;
+    private bool UsesSnapPoint => tutorialSnapPoint != null;
+
+    private void Awake()
+    {
+        ResolveTableMixageAnchor();
+    }
+
+    private void ResolveTableMixageAnchor()
+    {
+        if (tableMixage == null && anchor != null)
+            tableMixage = anchor;
+
+        if (tableMixage != null || UsesSnapPoint)
+            return;
+
+        var found = GameObject.Find("TableMixage");
+        if (found != null)
+            tableMixage = found.transform;
+    }
 
     private void OnEnable()
     {
@@ -68,7 +106,8 @@ public class MixingConsoleTutorialUIController : MonoBehaviour
             return;
         }
 
-        bool shouldShow = finalSequenceController.AreAllMixFadersActiveInHierarchy
+        bool shouldShow = SalonExplorationNarrative.IsFinalMixGameplayUnlocked
+                          && finalSequenceController.AreAllMixFadersActiveInHierarchy
                           && !finalSequenceController.IsFinalMixSequenceStarted;
 
         if (shouldShow)
@@ -84,12 +123,11 @@ public class MixingConsoleTutorialUIController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!_visible || _tutorialInstance == null)
+        if (!_visible || _tutorialInstance == null || !HasPlacementAnchor())
             return;
 
-        Transform t = _tutorialInstance.transform;
         float bob = Mathf.Sin(Time.time * bobSpeed) * bobAmplitude;
-        t.localPosition = _baseLocalPosition + Vector3.up * bob;
+        ApplyWorldPlacement(bob);
 
         if (!faceMainCamera)
             return;
@@ -99,9 +137,7 @@ public class MixingConsoleTutorialUIController : MonoBehaviour
         if (_mainCamera == null)
             return;
 
-        Vector3 toCam = _mainCamera.transform.position - t.position;
-        if (toCam.sqrMagnitude > 0.0001f)
-            t.rotation = Quaternion.LookRotation(-toCam.normalized, Vector3.up);
+        ApplyTutorialRotation(_tutorialInstance.transform);
     }
 
     private void OnFinalMixSequenceStarted()
@@ -123,10 +159,12 @@ public class MixingConsoleTutorialUIController : MonoBehaviour
         if (!EnsureInstance())
             return;
 
-        _tutorialInstance.transform.SetParent(anchor, false);
-        _baseLocalPosition = localOffset;
-        _tutorialInstance.transform.localPosition = _baseLocalPosition;
-        _tutorialInstance.transform.localRotation = Quaternion.identity;
+        Transform root = _tutorialInstance.transform;
+        root.SetParent(transform, worldPositionStays: false);
+
+        ApplyPanelWorldScale(root);
+        ApplyWorldPlacement(0f);
+        ApplyTutorialRotation(root);
 
         if (!_tutorialInstance.activeSelf)
             _tutorialInstance.SetActive(true);
@@ -148,6 +186,66 @@ public class MixingConsoleTutorialUIController : MonoBehaviour
             _tutorialInstance.SetActive(false);
     }
 
+    private bool HasPlacementAnchor() => UsesSnapPoint || TableAnchor != null;
+
+    private void ApplyWorldPlacement(float bobMeters)
+    {
+        if (UsesSnapPoint)
+        {
+            _baseWorldPosition = tutorialSnapPoint.TransformPoint(offsetMetersFromSnapPoint);
+            Vector3 bobAxis = tutorialSnapPoint.up;
+            _tutorialInstance.transform.position = _baseWorldPosition + bobAxis * bobMeters;
+            return;
+        }
+
+        Transform table = TableAnchor;
+        Vector3 offsetWorld = table.rotation * offsetMetersFromTable;
+        _baseWorldPosition = table.position + offsetWorld + Vector3.up * bobMeters;
+        _tutorialInstance.transform.position = _baseWorldPosition;
+    }
+
+    private Quaternion GetBaseWorldRotation()
+    {
+        if (UsesSnapPoint)
+            return tutorialSnapPoint.rotation;
+        if (TableAnchor != null)
+            return TableAnchor.rotation;
+        return Quaternion.identity;
+    }
+
+    private void ApplyTutorialRotation(Transform root)
+    {
+        Quaternion offset = Quaternion.Euler(eulerRotationOffset);
+
+        if (faceMainCamera)
+        {
+            if (_mainCamera == null)
+                _mainCamera = ResolveMainCamera();
+            if (_mainCamera != null)
+            {
+                Vector3 toCam = _mainCamera.transform.position - root.position;
+                if (toCam.sqrMagnitude > 0.0001f)
+                    root.rotation = Quaternion.LookRotation(-toCam.normalized, Vector3.up) * offset;
+                else
+                    root.rotation = GetBaseWorldRotation() * offset;
+                return;
+            }
+        }
+
+        root.rotation = GetBaseWorldRotation() * offset;
+    }
+
+    private void ApplyPanelWorldScale(Transform root)
+    {
+        float widthUnits = 933f;
+        var rt = root.GetComponent<RectTransform>();
+        if (rt != null && rt.sizeDelta.x > 1f)
+            widthUnits = rt.sizeDelta.x;
+
+        float uniform = targetWorldWidthMeters / widthUnits;
+        root.localScale = new Vector3(uniform, uniform, uniform);
+    }
+
     private bool EnsureInstance()
     {
         if (_tutorialInstance != null)
@@ -159,13 +257,16 @@ public class MixingConsoleTutorialUIController : MonoBehaviour
             return false;
         }
 
-        if (anchor == null)
+        ResolveTableMixageAnchor();
+        if (!HasPlacementAnchor())
         {
-            Debug.LogWarning($"{nameof(MixingConsoleTutorialUIController)} on {name}: anchor non assigné.", this);
+            Debug.LogWarning(
+                $"{nameof(MixingConsoleTutorialUIController)} on {name}: assigne un Tutorial Snap Point (empty en scène) ou TableMixage.",
+                this);
             return false;
         }
 
-        _tutorialInstance = Instantiate(tutorialPrefab, anchor);
+        _tutorialInstance = Instantiate(tutorialPrefab, transform);
         _tutorialInstance.name = tutorialPrefab.name;
         _tutorialInstance.SetActive(false);
         return true;
@@ -182,4 +283,16 @@ public class MixingConsoleTutorialUIController : MonoBehaviour
 
         return FindFirstObjectByType<Camera>();
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        if (tutorialSnapPoint == null)
+            return;
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(tutorialSnapPoint.TransformPoint(offsetMetersFromSnapPoint), 0.04f);
+        Gizmos.DrawLine(tutorialSnapPoint.position, tutorialSnapPoint.TransformPoint(offsetMetersFromSnapPoint));
+    }
+#endif
 }

@@ -35,6 +35,9 @@ public class NumberedSoundCube : MonoBehaviour
         _grabInteractable = GetComponent<XRGrabInteractable>();
         _grabInteractable.activated.AddListener(OnActivated);
 
+        if (ExperienceProfile.IsSeineLab && numberCanvasRoot != null)
+            numberCanvasRoot.SetActive(false);
+
         if (cubeRenderer != null)
         {
             _cubeMaterial = cubeRenderer.material;

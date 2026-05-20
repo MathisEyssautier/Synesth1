@@ -85,6 +85,9 @@ public class VRPauseMenuController : MonoBehaviour
     private VRMenuCardSelectable _settingsBackOption;
     private VRMenuCardSelectable _lockedTwoHandsOption;
     private VRMenuCardSelectable _lockedFrenchOption;
+    private Image _modeSensitiveImage;
+    private Image _modeIntermediateImage;
+    private Image _modeExpertImage;
     private int _settingsMovementIndex;
     private bool _settingsFocusBackButton;
 
@@ -98,13 +101,10 @@ public class VRPauseMenuController : MonoBehaviour
     private bool _heightCalibrated;
     private Coroutine _heightCalibrationRoutine;
 
-    private static bool _sessionDefaultsApplied;
-
     private void Awake()
     {
-        if (_sessionDefaultsApplied) return;
-        VRSettingsStore.ResetToDefaults();
-        _sessionDefaultsApplied = true;
+        if (!VRSettingsStore.IsConfigured)
+            VRSettingsStore.ResetToDefaults();
     }
 
     private void Start()
@@ -508,6 +508,43 @@ public class VRPauseMenuController : MonoBehaviour
 
         if (IsAlive(_settingsBackOption))
             _settingsBackOption.SetHovered(focusBack);
+
+        ApplyModePlayerProfileDisplay();
+    }
+
+    private void CacheModePlayerDisplayImages()
+    {
+        if (settingsMenuPanel == null) return;
+
+        _modeSensitiveImage = FindCardImage("Mode_sensitive");
+        _modeIntermediateImage = FindCardImage("Mode_intermediate");
+        _modeExpertImage = FindCardImage("Mode_expert");
+    }
+
+    private Image FindCardImage(string objectName)
+    {
+        if (settingsMenuPanel == null) return null;
+        Transform t = FindDeepChild(settingsMenuPanel.transform, objectName);
+        return t != null ? t.GetComponent<Image>() : null;
+    }
+
+    private void ApplyModePlayerProfileDisplay()
+    {
+        const float dim = 0.45f;
+        const float bright = 1f;
+        LocomotionPreset preset = VRSettingsStore.CurrentPreset;
+
+        SetImageAlpha(_modeSensitiveImage, preset == LocomotionPreset.Sensitive ? bright : dim);
+        SetImageAlpha(_modeIntermediateImage, preset == LocomotionPreset.Intermediate ? bright : dim);
+        SetImageAlpha(_modeExpertImage, preset == LocomotionPreset.Expert ? bright : dim);
+    }
+
+    private static void SetImageAlpha(Image image, float alpha)
+    {
+        if (image == null) return;
+        Color c = image.color;
+        c.a = alpha;
+        image.color = c;
     }
 
     private void ApplyLockedSettingsVisuals()
@@ -595,6 +632,7 @@ public class VRPauseMenuController : MonoBehaviour
         _settingsBackOption = EnsureCardOnNamedChild("Btn_back", withCircle: false);
         _lockedTwoHandsOption = EnsureCardOnNamedChild("btn_twoHands", withCircle: true);
         _lockedFrenchOption = EnsureCardOnFrench();
+        CacheModePlayerDisplayImages();
 
         HideObjectNamed("Smooth");
         HideObjectNamed("Btn_close");
@@ -847,7 +885,7 @@ public class VRPauseMenuController : MonoBehaviour
         yield return null;
         _isOpen = false;
         SaveSettingsToStore();
-        Time.timeScale = 1f;
+        GameAudioBootstrap.EnsureUnpausedForGameplay();
         FinalSequenceController.StopOutsideFinalMusicIfPlaying();
         if (!string.IsNullOrEmpty(restartSceneName))
             SceneManager.LoadScene(restartSceneName, LoadSceneMode.Single);
@@ -874,6 +912,7 @@ public class VRPauseMenuController : MonoBehaviour
         VRSettingsStore.SnapEnabled = _snapTurnEnabled;
         VRSettingsStore.SnapAngle = snapTurnAngleDegrees;
         VRSettingsStore.HeightOffset = _playerHeightOffset;
+        VRSettingsStore.SyncPresetFromMoveSettings();
     }
 
     private bool TryReadNavigationAxis(out Vector2 axis)

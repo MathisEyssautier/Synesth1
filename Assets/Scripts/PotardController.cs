@@ -67,7 +67,9 @@ public class PotardController : MonoBehaviour
 
     public int CranActuel => _cranActuel;
     public bool EstSurA => _cranActuel == cranPositionA;
-    public bool EstSurB => _cranActuel == cranPositionB;
+    public bool EstSurB => _positionBEnabled && _cranActuel == cranPositionB;
+
+    private bool _positionBEnabled = true;
 
     public System.Action<int> OnCranChange;
     public System.Action<bool> OnPositionValide;
@@ -88,6 +90,16 @@ public class PotardController : MonoBehaviour
             _grabInteractable.retainTransformParent = true;
             _grabInteractable.throwOnDetach = false;
         }
+    }
+
+    /// <summary>Seine Lab : false = le cran « position B » (bureau) est inaccessible.</summary>
+    public void SetPositionBEnabled(bool enabled)
+    {
+        _positionBEnabled = enabled;
+        if (!enabled && _cranActuel == cranPositionB)
+            SetCranSansInteraction(cranPositionA);
+        else
+            MettreAJourCouleur();
     }
 
     /// <summary>Désactive la saisie XR (grab) sans retirer le script.</summary>
@@ -227,7 +239,16 @@ public class PotardController : MonoBehaviour
 
     private void ChangerCran(int direction)
     {
-        _cranActuel = (_cranActuel + direction + nombreCrans) % nombreCrans;
+        int n = Mathf.Max(1, nombreCrans);
+        int next = _cranActuel;
+        for (int guard = 0; guard < n; guard++)
+        {
+            next = (next + direction + n) % n;
+            if (_positionBEnabled || next != cranPositionB)
+                break;
+        }
+
+        _cranActuel = next;
 
         OnCranChange?.Invoke(_cranActuel);
         EnvoyerHapticsCran();
@@ -238,7 +259,7 @@ public class PotardController : MonoBehaviour
             EnvoyerHapticsPositionValide();
             OnPositionValide?.Invoke(true);
         }
-        else if (_cranActuel == cranPositionB)
+        else if (_positionBEnabled && _cranActuel == cranPositionB)
         {
             EnvoyerHapticsPositionValide();
             OnPositionValide?.Invoke(false);
@@ -271,7 +292,7 @@ public class PotardController : MonoBehaviour
 
         Color cible = couleurNeutre;
         if (_cranActuel == cranPositionA) cible = couleurA;
-        else if (_cranActuel == cranPositionB) cible = couleurB;
+        else if (_positionBEnabled && _cranActuel == cranPositionB) cible = couleurB;
 
         cubeIndicateur.material.SetColor("_EmissionColor", cible);
         cubeIndicateur.material.color = cible;

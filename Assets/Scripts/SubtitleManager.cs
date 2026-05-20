@@ -70,6 +70,13 @@ public class SubtitleManager : MonoBehaviour
         return false;
     }
 
+    private void Awake()
+    {
+        _isShuttingDown = false;
+        _queue.Clear();
+        SafeStopAndReleaseVoiceInstance();
+    }
+
     private void Start()
     {
         if (subtitlePanel != null)

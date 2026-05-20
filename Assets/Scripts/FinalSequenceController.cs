@@ -195,7 +195,7 @@ public class FinalSequenceController : MonoBehaviour
     {
         UpdateMixTableFaderSpotlight();
 
-        if (!_started)
+        if (!_started && SalonExplorationNarrative.IsFinalMixGameplayUnlocked)
         {
             if (AreAllFadersActiveAndMatching())
             {
@@ -428,25 +428,27 @@ public class FinalSequenceController : MonoBehaviour
     private void UpdateMixTableFaderSpotlight()
     {
         bool allFadersVisible = AreAllMixFadersActiveInHierarchy;
+        bool spotlightAllowed = allFadersVisible && SalonExplorationNarrative.IsFinalMixGameplayUnlocked && !_started;
 
         if (allFadersVisible != _allMixFadersVisiblePrevious)
         {
             _allMixFadersVisiblePrevious = allFadersVisible;
-            RefreshMixFaderTargetVisualFeedback();
-            if (allFadersVisible)
-                onAllMixFadersBecameVisible?.Invoke();
+            if (SalonExplorationNarrative.IsFinalMixGameplayUnlocked)
+            {
+                RefreshMixFaderTargetVisualFeedback();
+                if (allFadersVisible)
+                    onAllMixFadersBecameVisible?.Invoke();
+            }
         }
 
         if (mixTableFaderSpotlight == null)
             return;
 
-        // On synchronise à la fois le GameObject (SetActive) et le composant (enabled)
-        // pour que la spot s'allume même si elle a été désactivée au niveau du GameObject.
         var lightGo = mixTableFaderSpotlight.gameObject;
-        if (lightGo.activeSelf != allFadersVisible)
-            lightGo.SetActive(allFadersVisible);
-        if (mixTableFaderSpotlight.enabled != allFadersVisible)
-            mixTableFaderSpotlight.enabled = allFadersVisible;
+        if (lightGo.activeSelf != spotlightAllowed)
+            lightGo.SetActive(spotlightAllowed);
+        if (mixTableFaderSpotlight.enabled != spotlightAllowed)
+            mixTableFaderSpotlight.enabled = spotlightAllowed;
     }
 
     private void RefreshMixFaderTargetVisualFeedback()

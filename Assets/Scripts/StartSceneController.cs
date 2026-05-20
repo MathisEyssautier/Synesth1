@@ -8,7 +8,7 @@ using UnityEngine.XR;
 public class StartSceneController : MonoBehaviour
 {
     [Header("Scene loading")]
-    [SerializeField] private string gameplaySceneName = "SynesthesiaBlackRoom";
+    [SerializeField] private string gameplaySceneName = "Synesthesia_SeineLab";
     [SerializeField] private float loadDelay = 0.05f;
 
     [Header("Input")]
@@ -64,6 +64,7 @@ public class StartSceneController : MonoBehaviour
         if (loadDelay > 0f)
             yield return new WaitForSeconds(loadDelay);
 
+        GameAudioBootstrap.EnsureUnpausedForGameplay();
         SceneManager.LoadScene(gameplaySceneName, LoadSceneMode.Single);
     }
 

@@ -140,6 +140,9 @@ public class RadioManager : MonoBehaviour
         SetEmissionPorte(rendererPorteA, couleurPorteAinactive);
         SetEmissionPorte(rendererPorteB, couleurPorteBinactive);
         ApplyParticlesForEtat(_etatCourant);
+
+        if (ExperienceProfile.IsSeineLab)
+            PrepareSeineLabPotardsForRadio();
     }
 
     /// <summary>
@@ -232,8 +235,9 @@ public class RadioManager : MonoBehaviour
         // un éventuel toggle accidentel du bouton avant la résolution est annulé.
         _isStandby = false;
 
-        potard1?.SetInteractable(true);
-        potard2?.SetInteractable(true);
+        if (ExperienceProfile.IsSeineLab)
+            PrepareSeineLabPotardsForRadio();
+
         AppliquerCouleurPartieRadio(couleurRadioDebloquee);
 
         CreerEtDemarrerToutesLesInstancesRadio();
@@ -268,15 +272,8 @@ public class RadioManager : MonoBehaviour
         RefreshPotardInteractivity();
         AppliquerCouleurPartieRadio(GetCurrentRadioColor());
 
-        // Ne touche ni aux portes, ni à l'état logique des crans.
-        if (_isStandby)
-        {
-            ForceMuteAllRadioAudio();
-        }
-        else
-        {
-            AppliquerVolumesRadio(_etatCourant);
-        }
+        // Ne touche ni aux portes, ni à l'état logique des crans — volume seulement.
+        AppliquerVolumesRadio(_etatCourant);
     }
 
     private Color GetCurrentRadioColor()
@@ -338,8 +335,8 @@ public class RadioManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Neutre : boucle 1. AA/BB : boucle 0.
-    /// Les sons AA/BB sont joués en one-shot à l'entrée d'alignement.
+    /// Neutre : boucle à fond, AA/BB coupés. AA/BB : chaîne à fond, boucle à 0.
+    /// En veille (bouton OFF) : toutes les instances restent actives mais volume 0.
     /// </summary>
     private void AppliquerVolumesRadio(EtatAlignement etat)
     {
@@ -347,17 +344,32 @@ public class RadioManager : MonoBehaviour
 
         if (_isStandby)
         {
-            ForceMuteAllRadioAudio();
+            SetRadioInstanceVolume(ref _instBoucle, 0f);
+            SetRadioInstanceVolume(ref _instAA, 0f);
+            SetRadioInstanceVolume(ref _instBB, 0f);
+            SetRadioInstanceVolume(ref _instExclusiveOverride, 0f);
             return;
         }
 
-        if (_instBoucle.isValid())
-            _instBoucle.setVolume(etat == EtatAlignement.Aucun ? 1f : 0f);
+        if (_exclusiveRadioPlaying)
+        {
+            SetRadioInstanceVolume(ref _instExclusiveOverride, 1f);
+            SetRadioInstanceVolume(ref _instBoucle, 0f);
+            SetRadioInstanceVolume(ref _instAA, 0f);
+            SetRadioInstanceVolume(ref _instBB, 0f);
+            return;
+        }
+
+        SetRadioInstanceVolume(ref _instBoucle, etat == EtatAlignement.Aucun ? 1f : 0f);
+        SetRadioInstanceVolume(ref _instAA, etat == EtatAlignement.AA ? 1f : 0f);
+        SetRadioInstanceVolume(ref _instBB, etat == EtatAlignement.BB ? 1f : 0f);
+        SetRadioInstanceVolume(ref _instExclusiveOverride, 0f);
     }
 
-    private void ForceMuteAllRadioAudio()
+    private static void SetRadioInstanceVolume(ref EventInstance instance, float volume)
     {
-        if (_instBoucle.isValid()) _instBoucle.setVolume(0f);
+        if (!instance.isValid()) return;
+        instance.setVolume(Mathf.Clamp01(volume));
     }
 
     private void AppliquerCouleurPartieRadio(Color couleur)
@@ -387,9 +399,21 @@ public class RadioManager : MonoBehaviour
             return EtatAlignement.Aucun;
         if (potard1.EstSurA && potard2.EstSurA)
             return EtatAlignement.AA;
-        if (potard1.EstSurB && potard2.EstSurB)
+        if (!ExperienceProfile.IsSeineLab && potard1.EstSurB && potard2.EstSurB)
             return EtatAlignement.BB;
         return EtatAlignement.Aucun;
+    }
+
+    /// <summary>
+    /// Seine Lab : potards au cran 0, position B (bureau) désactivée ; porte cuisine via alignement AA uniquement.
+    /// </summary>
+    private void PrepareSeineLabPotardsForRadio()
+    {
+        potard1?.SetPositionBEnabled(false);
+        potard2?.SetPositionBEnabled(false);
+        potard1?.SetCranSansInteraction(0);
+        potard2?.SetCranSansInteraction(0);
+        _etatCourant = EtatAlignement.Aucun;
     }
 
     private void AppliquerChangementAlignementSiDifferent(EtatAlignement nouvelEtat)
@@ -428,7 +452,7 @@ public class RadioManager : MonoBehaviour
             if (entreeAA) DemarrerSonEtatRadio(sonChaineAA, ref _instAA);
             OnAlignementAA?.Invoke();
         }
-        else if (nouvelEtat == EtatAlignement.BB)
+        else if (nouvelEtat == EtatAlignement.BB && !ExperienceProfile.IsSeineLab)
         {
             DebloquetEtEntrouvrir(porteB);
             SetEmissionPorte(rendererPorteB, couleurPorteBactive);
@@ -449,6 +473,7 @@ public class RadioManager : MonoBehaviour
 
         RuntimeManager.AttachInstanceToGameObject(instance, OrigineAudio.gameObject);
         instance.start();
+        AppliquerVolumesRadio(_etatCourant);
     }
 
     private void ApplyParticlesForEtat(EtatAlignement etat)
@@ -561,7 +586,9 @@ public class RadioManager : MonoBehaviour
             return;
         }
 
-        bool shouldEnable = _radioDebloquee || !verrouillerPotardsJusquaPiano;
+        bool shouldEnable = (_radioDebloquee || !verrouillerPotardsJusquaPiano)
+                            && !_isStandby
+                            && !_exclusiveRadioPlaying;
         potard1?.SetInteractable(shouldEnable);
         potard2?.SetInteractable(shouldEnable);
     }

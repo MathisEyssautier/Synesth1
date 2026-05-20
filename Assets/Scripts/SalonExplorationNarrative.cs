@@ -10,6 +10,12 @@ using FMODUnity;
 /// </summary>
 public class SalonExplorationNarrative : MonoBehaviour
 {
+    /// <summary>Vrai après la fin du vocal parents sur la radio (avant les VO post-radio).</summary>
+    public static bool ParentsRadioPlaybackFinished { get; private set; }
+
+    /// <summary>Spot tuto mix, spot faders et séquence finale : autorisés seulement après le vocal parents.</summary>
+    public static bool IsFinalMixGameplayUnlocked => ParentsRadioPlaybackFinished;
+
     [Header("Core")]
     [SerializeField] private SubtitleManager subtitleManager;
     [SerializeField] private PianoPuzzleManager pianoPuzzleManager;
@@ -110,6 +116,8 @@ public class SalonExplorationNarrative : MonoBehaviour
 
     private void OnEnable()
     {
+        ParentsRadioPlaybackFinished = false;
+
         if (radioManager != null)
             radioManager.onExclusiveRadioPlaybackEnded.AddListener(OnParentsRadioSoundEnded);
 
@@ -224,8 +232,18 @@ public class SalonExplorationNarrative : MonoBehaviour
         if (_pianoSolvedVoDone) return;
         _pianoSolvedVoDone = true;
         EnqueueSub(voTherapeuteBienJoueTuFaisDesProgres);
-        EnqueueSub(voNayaCePianoEst);
+        if (!ExperienceProfile.IsSeineLab)
+            EnqueueSub(voNayaCePianoEst);
         EnqueueSub(voNayaCestLaRadioQui);
+    }
+
+    /// <summary>Seine Lab : évite les VO guitare lors de la résolution instantanée.</summary>
+    public void MarkSeineLabGuitarResolvedSilently()
+    {
+        _guitarStringsVoDone = true;
+        _guitarFirstChordVoDone = true;
+        _guitarSolvedVoDone = true;
+        _guitarPlacedVoDone = true;
     }
 
     public void NotifyShellPuzzleSolved()
@@ -240,6 +258,7 @@ public class SalonExplorationNarrative : MonoBehaviour
 
     public void NotifyAllGuitarStringsPlaced()
     {
+        if (ExperienceProfile.IsSeineLab) return;
         if (_guitarStringsVoDone) return;
         _guitarStringsVoDone = true;
         EnqueueSub(voTherapeuteCestPresqueTermine);
@@ -254,6 +273,7 @@ public class SalonExplorationNarrative : MonoBehaviour
     /// </summary>
     public void NotifyFirstGuitarChordPlayed()
     {
+        if (ExperienceProfile.IsSeineLab) return;
         if (_guitarFirstChordVoDone) return;
         _guitarFirstChordVoDone = true;
         EnqueueSub(voGuitarFirstChordLine1);
@@ -262,6 +282,7 @@ public class SalonExplorationNarrative : MonoBehaviour
 
     public void NotifyGuitarChordSolved()
     {
+        if (ExperienceProfile.IsSeineLab) return;
         if (_guitarSolvedVoDone) return;
         _guitarSolvedVoDone = true;
         EnqueueSub(voTherapeuteParfaitGuitare);
@@ -272,6 +293,7 @@ public class SalonExplorationNarrative : MonoBehaviour
 
     public void NotifyGuitarPlacedOnStand()
     {
+        if (ExperienceProfile.IsSeineLab) return;
         if (_guitarPlacedVoDone) return;
         _guitarPlacedVoDone = true;
         EnqueueSub(voTherapeuteEtLaTuViensDeRajouter);
@@ -289,7 +311,11 @@ public class SalonExplorationNarrative : MonoBehaviour
         _threeFadersVoDone = true;
 
         if (demoSkipThreeFadersNarration)
+        {
+            ParentsRadioPlaybackFinished = true;
+            FindFirstObjectByType<FinalSequenceController>()?.RefreshMixFadersVisibilityState();
             return;
+        }
 
         _postParentsVoQueued = false;
         if (_radioAfterNarrationRoutine != null)
@@ -312,6 +338,12 @@ public class SalonExplorationNarrative : MonoBehaviour
 
     private void OnParentsRadioSoundEnded()
     {
+        ParentsRadioPlaybackFinished = true;
+
+        var finalSequence = FindFirstObjectByType<FinalSequenceController>();
+        if (finalSequence != null)
+            finalSequence.RefreshMixFadersVisibilityState();
+
         if (_postParentsVoQueued) return;
         _postParentsVoQueued = true;
         EnqueueSub(voNayaJeMeSuisToujoursDit);

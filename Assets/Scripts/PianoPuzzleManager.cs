@@ -103,6 +103,13 @@ public class PianoPuzzleManager : MonoBehaviour
     {
         if (_completed) return;
         if (key == null) return;
+
+        if (ExperienceProfile.IsSeineLab)
+        {
+            Complete(seineLabInstant: true);
+            return;
+        }
+
         if (requiredOrder == null || requiredOrder.Length == 0) return;
 
         int expected = requiredOrder[_progress];
@@ -122,7 +129,7 @@ public class PianoPuzzleManager : MonoBehaviour
             Complete();
     }
 
-    private void Complete()
+    private void Complete(bool seineLabInstant = false)
     {
         _completed = true;
 
@@ -138,10 +145,15 @@ public class PianoPuzzleManager : MonoBehaviour
             }
         }
 
-        ApplyPianoSuccessVisual();
+        if (!seineLabInstant)
+            ApplyPianoSuccessVisual();
+
         PlayPianoSuccessSound();
         radioManager?.UnlockAfterPianoSuccess();
         onPuzzleSolved?.Invoke();
+
+        if (seineLabInstant)
+            SeineLabExperienceBootstrap.OnPianoInstantSolved();
     }
 
     private void CacheSequenceIndicatorMaterials()
