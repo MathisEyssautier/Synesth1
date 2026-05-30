@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WallsBureau2
+  m_Name: OfficeWallsPatched
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,11 +28,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 6dd43700182ac2a4692c62a65ec9db12, type: 3}
-        m_Scale: {x: 1, y: 0.51}
-        m_Offset: {x: 0, y: 0.22}
+        m_Texture: {fileID: 2800000, guid: cd6efed63ad03dc4da893d0d48701de1, type: 3}
+        m_Scale: {x: 0.85, y: 0.85}
+        m_Offset: {x: 0.09, y: 0.09}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 0556d59d2393293439385bdecc489af2, type: 3}
+        m_Texture: {fileID: 2800000, guid: f2f16457ded7f5944b3eb25035c8faec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -52,11 +52,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6dd43700182ac2a4692c62a65ec9db12, type: 3}
-        m_Scale: {x: 1, y: 0.51}
-        m_Offset: {x: 0, y: 0.22}
+        m_Texture: {fileID: 2800000, guid: cd6efed63ad03dc4da893d0d48701de1, type: 3}
+        m_Scale: {x: 0.85, y: 0.85}
+        m_Offset: {x: 0.09, y: 0.09}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 665e3bc3e5a3e6a4f9a734657d6b2416, type: 3}
+        m_Texture: {fileID: 2800000, guid: ffe69ce9b88c16d47a5365bf84b33bc3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -124,7 +124,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &8326343559094783772
+--- !u!114 &8320571890933484756
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

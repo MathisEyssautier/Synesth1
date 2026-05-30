@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WallsBureau2
+  m_Name: WallsSalonCoteRadio
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,11 +28,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 6dd43700182ac2a4692c62a65ec9db12, type: 3}
-        m_Scale: {x: 1, y: 0.51}
-        m_Offset: {x: 0, y: 0.22}
+        m_Texture: {fileID: 2800000, guid: 028274d0482cbfc409ece577225171b9, type: 3}
+        m_Scale: {x: 0.41, y: 0.17}
+        m_Offset: {x: -0.06, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 0556d59d2393293439385bdecc489af2, type: 3}
+        m_Texture: {fileID: 2800000, guid: 770c204e734df5d41a63cd0e6ca334bd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -52,11 +52,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 6dd43700182ac2a4692c62a65ec9db12, type: 3}
-        m_Scale: {x: 1, y: 0.51}
-        m_Offset: {x: 0, y: 0.22}
+        m_Texture: {fileID: 2800000, guid: 028274d0482cbfc409ece577225171b9, type: 3}
+        m_Scale: {x: 0.41, y: 0.17}
+        m_Offset: {x: -0.06, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 665e3bc3e5a3e6a4f9a734657d6b2416, type: 3}
+        m_Texture: {fileID: 2800000, guid: 96a32e89ba4db6b41a689f919809f21a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -124,7 +124,7 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &8326343559094783772
+--- !u!114 &5346459222217851554
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
