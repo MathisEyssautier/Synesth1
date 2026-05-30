@@ -49,7 +49,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_2A1A8040:
-        m_Texture: {fileID: 2800000, guid: 2d04320ded45428479d9f57744b0bc92, type: 3}
+        m_Texture: {fileID: 2800000, guid: 43a87cd608ca35648be7a82c0359c847, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_2B72368E:
@@ -172,6 +172,7 @@ Material:
     - _TransparentZWrite: 0
     - _UseShadowThreshold: 1
     - _WorkflowMode: 1
+    - _XRMotionVectorsPass: 1
     - _ZTest: 4
     - _ZTestDepthEqualForOpaque: 4
     - _ZTestGBuffer: 3

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Bouton physique ON/OFF pour la radio de la black room (onboarding).
-/// Pilote le volume d'un <see cref="StudioEventEmitter"/> et la teinte du mesh radio (comme le standby du salon).
+/// Pilote un <see cref="StudioEventEmitter"/> (play/stop) et la teinte du mesh radio (comme le standby du salon).
 /// </summary>
 [RequireComponent(typeof(Collider))]
 public class RadioButtonBlackroom : MonoBehaviour
@@ -56,7 +56,26 @@ public class RadioButtonBlackroom : MonoBehaviour
 
     private void Start()
     {
-        ApplyRadioState(false);
+        ResetRadioToOff();
+    }
+
+    private void OnDisable()
+    {
+        StopRadioEmitterCompletely();
+    }
+
+    private void OnDestroy()
+    {
+        StopRadioEmitterCompletely();
+    }
+
+    /// <summary>État initial + après reload de scène : aucune lecture tant que la radio est « off ».</summary>
+    private void ResetRadioToOff()
+    {
+        StopRadioEmitterCompletely();
+        _isRadioOn = false;
+        ApplyRadioVisual(false);
+        UpdateHintCanvas();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -89,34 +108,46 @@ public class RadioButtonBlackroom : MonoBehaviour
 
     private void ApplyRadioState(bool on)
     {
-        _isRadioOn = on;
-
         if (on)
-            EnsureEmitterPlaying();
+        {
+            _isRadioOn = true;
+            EnsureSingleEmitterPlayingAtFullVolume();
+            ApplyRadioVisual(true);
+        }
+        else
+        {
+            _isRadioOn = false;
+            StopRadioEmitterCompletely();
+            ApplyRadioVisual(false);
+        }
 
-        SetEmitterVolume(on ? 1f : 0f);
-        ApplyRadioVisual(on);
         UpdateHintCanvas();
     }
 
-    private void EnsureEmitterPlaying()
+    private void EnsureSingleEmitterPlayingAtFullVolume()
     {
         if (radioEmitter == null) return;
 
         EventInstance inst = radioEmitter.EventInstance;
-        if (!inst.isValid())
+        bool needsPlay = true;
+        if (inst.isValid())
+        {
+            inst.getPlaybackState(out PLAYBACK_STATE state);
+            needsPlay = state == PLAYBACK_STATE.STOPPED;
+        }
+
+        if (needsPlay)
             radioEmitter.Play();
+
+        inst = radioEmitter.EventInstance;
+        if (inst.isValid())
+            inst.setVolume(1f);
     }
 
-    private void SetEmitterVolume(float volume)
+    private void StopRadioEmitterCompletely()
     {
         if (radioEmitter == null) return;
-
-        EventInstance inst = radioEmitter.EventInstance;
-        if (!inst.isValid())
-            return;
-
-        inst.setVolume(Mathf.Clamp01(volume));
+        radioEmitter.Stop();
     }
 
     private void ApplyRadioVisual(bool on)
