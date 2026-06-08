@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using TMPro;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 /// <summary>
@@ -75,10 +76,14 @@ public class SubtitleManager : MonoBehaviour
         _isShuttingDown = false;
         _queue.Clear();
         SafeStopAndReleaseVoiceInstance();
+        // Créer le dispatcher sur le thread principal avant tout callback FMOD.
+        UnityMainThreadDispatcher.Instance();
     }
 
     private void Start()
     {
+        EnsureSubtitleCanvasVisible();
+
         if (subtitlePanel != null)
             subtitlePanel.SetActive(false);
         if (subtitleText != null)
@@ -354,6 +359,36 @@ public class SubtitleManager : MonoBehaviour
             subtitleText.text = markerName;
             subtitlePanel.SetActive(true);
         }
+    }
+
+    private void EnsureSubtitleCanvasVisible()
+    {
+        Transform root = subtitlePanel != null ? subtitlePanel.transform : transform;
+        while (root.parent != null)
+            root = root.parent;
+
+        if (root.localScale.sqrMagnitude < 0.0001f)
+            root.localScale = Vector3.one;
+
+        var canvas = root.GetComponent<Canvas>();
+        if (canvas == null)
+            return;
+
+        if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
+        {
+            Camera cam = canvas.worldCamera;
+            if (cam == null || !cam.isActiveAndEnabled)
+            {
+                var origin = FindFirstObjectByType<XROrigin>();
+                if (origin != null && origin.Camera != null)
+                    canvas.worldCamera = origin.Camera;
+                else if (Camera.main != null)
+                    canvas.worldCamera = Camera.main;
+            }
+        }
+
+        if (canvas.sortingOrder < 100)
+            canvas.sortingOrder = 100;
     }
 
     private void OnDestroy()

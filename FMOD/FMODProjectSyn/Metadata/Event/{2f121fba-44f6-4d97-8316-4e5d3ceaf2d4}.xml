@@ -125,7 +125,7 @@
 			<value>1.4000000000000001</value>
 		</property>
 		<property name="name">
-			<value>Naya,</value>
+			<value>Naïa,</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{ca07b5bc-b292-4c42-a958-5c83d52e7d21}</destination>
@@ -139,7 +139,7 @@
 			<value>3.2000000000000002</value>
 		</property>
 		<property name="name">
-			<value>Naya, tu m'entends ?</value>
+			<value>Naïa, tu m'entends ?</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{ca07b5bc-b292-4c42-a958-5c83d52e7d21}</destination>

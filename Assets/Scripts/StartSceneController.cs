@@ -8,7 +8,13 @@ using UnityEngine.XR;
 public class StartSceneController : MonoBehaviour
 {
     [Header("Scene loading")]
+    [Tooltip("Parcours complet (StartScene → Black Room → Main). Utilisé si présent dans le build.")]
+    [SerializeField] private string blackRoomSceneName = "SynesthesiaBlackRoom";
+    [Tooltip("Parcours démo événement. Chargé si sélectionné et présent dans le build.")]
+    [SerializeField] private string seineLabSceneName = ExperienceProfile.SeineLabSceneName;
+    [Tooltip("Secours si aucune scène cible n'est dans le build.")]
     [SerializeField] private string gameplaySceneName = "SynesthesiaBlackRoom";
+    [SerializeField] private StartSceneRouteSelectController routeSelect;
     [SerializeField] private float loadDelay = 0.05f;
 
     [Header("Input")]
@@ -28,6 +34,9 @@ public class StartSceneController : MonoBehaviour
 
     private void Start()
     {
+        if (routeSelect == null)
+            routeSelect = GetComponent<StartSceneRouteSelectController>();
+
         if (fadeCanvasGroup != null)
             fadeCanvasGroup.alpha = 0f;
 
@@ -65,7 +74,26 @@ public class StartSceneController : MonoBehaviour
             yield return new WaitForSeconds(loadDelay);
 
         GameAudioBootstrap.EnsureUnpausedForGameplay();
-        SceneManager.LoadScene(gameplaySceneName, LoadSceneMode.Single);
+        string sceneToLoad = ResolveGameplaySceneName();
+        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+    }
+
+    private string ResolveGameplaySceneName()
+    {
+        if (routeSelect != null)
+            return routeSelect.ResolveSceneName(gameplaySceneName);
+
+        if (ExperienceProfile.IsSceneInBuild(seineLabSceneName)
+            && !ExperienceProfile.IsSceneInBuild(blackRoomSceneName))
+            return seineLabSceneName;
+
+        if (ExperienceProfile.IsSceneInBuild(blackRoomSceneName))
+            return blackRoomSceneName;
+
+        if (ExperienceProfile.IsSceneInBuild(seineLabSceneName))
+            return seineLabSceneName;
+
+        return gameplaySceneName;
     }
 
     private IEnumerator FadeCanvas(float from, float to, float duration)

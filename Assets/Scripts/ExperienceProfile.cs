@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,4 +11,20 @@ public static class ExperienceProfile
 
     public static bool IsSeineLab =>
         SceneManager.GetActiveScene().name == SeineLabSceneName;
+
+    /// <summary>True si la scène est listée et activée dans les Build Settings.</summary>
+    public static bool IsSceneInBuild(string sceneName)
+    {
+        if (string.IsNullOrEmpty(sceneName)) return false;
+
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string path = SceneUtility.GetScenePathByBuildIndex(i);
+            if (string.IsNullOrEmpty(path)) continue;
+            if (Path.GetFileNameWithoutExtension(path) == sceneName)
+                return true;
+        }
+
+        return false;
+    }
 }
